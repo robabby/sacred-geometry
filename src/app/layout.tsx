@@ -1,6 +1,7 @@
 import "@radix-ui/themes/styles.css";
 import "@/styles/globals.css";
 
+import { Analytics } from "@vercel/analytics/next";
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body>{children}</body>
+      <Analytics />
     </html>
   );
 }
