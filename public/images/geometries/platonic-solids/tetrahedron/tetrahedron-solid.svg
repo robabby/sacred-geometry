@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124.07 107.72">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 2px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        stroke-dasharray: 0 2.83;
+        stroke-width: .71px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Tetrahedron">
+      <polygon class="cls-1" points="62.04 1 1 106.72 123.07 106.72 62.04 1"/>
+      <polyline class="cls-2" points=".98 106.72 62.04 71.48 62.04 1"/>
+      <line class="cls-2" x1="123.09" y1="106.72" x2="62.04" y2="71.48"/>
+    </g>
+  </g>
+</svg>

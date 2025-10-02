@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124.1 142.99">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        stroke-dasharray: 0 12;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-width: 2px;
+      }
+
+      .cls-4 {
+        stroke-dasharray: 0 0 4.07 4.07;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Octahedron">
+      <polygon class="cls-3" points="1 106.74 62.05 1 123.1 106.74 1 106.74"/>
+      <polyline class="cls-3" points="123.1 106.74 123.1 36.25 62.05 1"/>
+      <polyline class="cls-3" points="62.05 1 1 36.25 1 106.74"/>
+      <polyline class="cls-3" points="1 106.74 62.05 141.99 123.1 106.74"/>
+      <g>
+        <polyline class="cls-1" points="121.1 36.25 123.1 36.25 122.1 37.98"/>
+        <line class="cls-4" x1="120.06" y1="41.51" x2="64.07" y2="138.49"/>
+        <polyline class="cls-1" points="63.05 140.26 62.05 141.99 61.05 140.26"/>
+        <line class="cls-4" x1="59.01" y1="136.73" x2="3.02" y2="39.74"/>
+        <polyline class="cls-1" points="2 37.98 1 36.25 3 36.25"/>
+        <line class="cls-4" x1="7.07" y1="36.25" x2="119.06" y2="36.25"/>
+      </g>
+      <polyline class="cls-2" points="1 36.25 1 106.74 62.05 141.99"/>
+      <polyline class="cls-2" points="62.05 141.99 123.1 106.74 123.1 36.25"/>
+      <polyline class="cls-2" points="123.1 36.25 62.05 1 1 36.25"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207.58 204.31">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-dasharray: 0 2.83;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .99px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Octahedron_3D" data-name="Octahedron 3D">
+      <g>
+        <line class="cls-2" x1="134.25" y1=".5" x2=".5" y2="80.96"/>
+        <line class="cls-2" x1="81.01" y1="203.81" x2=".5" y2="80.96"/>
+        <line class="cls-2" x1="207.09" y1="129.26" x2="134.25" y2=".5"/>
+        <line class="cls-2" x1="81.01" y1="203.81" x2="207.09" y2="129.26"/>
+        <line class="cls-2" x1=".5" y1="80.96" x2="117.95" y2="133.37"/>
+        <line class="cls-2" x1="207.09" y1="129.26" x2="117.95" y2="133.37"/>
+        <line class="cls-2" x1="81.01" y1="203.81" x2="117.95" y2="133.37"/>
+        <line class="cls-2" x1="134.25" y1=".5" x2="117.95" y2="133.37"/>
+      </g>
+      <g>
+        <line class="cls-1" x1="81.01" y1="203.81" x2="99.48" y2="87.09"/>
+        <line class="cls-1" x1="134.25" y1=".5" x2="99.48" y2="87.09"/>
+        <line class="cls-1" x1=".5" y1="80.96" x2="99.48" y2="87.09"/>
+        <line class="cls-1" x1="207.09" y1="129.26" x2="99.48" y2="87.09"/>
+      </g>
+    </g>
+  </g>
+</svg>

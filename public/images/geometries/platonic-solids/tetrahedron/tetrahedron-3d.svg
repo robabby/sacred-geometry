@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 265.86 254.82">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-dasharray: 0 2.83;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .99px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Tetrahedron_3D" data-name="Tetrahedron 3D">
+      <g>
+        <line class="cls-2" x1=".5" y1="19.5" x2="152.84" y2=".5"/>
+        <line class="cls-2" x1="99.29" y1="144.13" x2=".5" y2="19.5"/>
+        <line class="cls-2" x1="152.84" y1=".5" x2="99.29" y2="144.13"/>
+        <line class="cls-2" x1="105.41" y1="26.91" x2="152.84" y2=".5"/>
+        <line class="cls-2" x1=".5" y1="19.5" x2="105.41" y2="26.91"/>
+        <line class="cls-2" x1="99.29" y1="144.13" x2="105.41" y2="26.91"/>
+      </g>
+      <g>
+        <g id="_3DFACE" data-name="3DFACE">
+          <line id="MeshWire_0" class="cls-2" x1="183.9" y1="112.95" x2="140.01" y2="254.33"/>
+          <line id="MeshWire_0-2" data-name="MeshWire_0" class="cls-2" x1="183.9" y1="112.95" x2="265.37" y2="228.18"/>
+          <line id="MeshWire_0-3" data-name="MeshWire_0" class="cls-2" x1="140.01" y1="254.33" x2="265.37" y2="228.18"/>
+          <line id="MeshWire_0-4" data-name="MeshWire_0" class="cls-2" x1="265.37" y1="228.18" x2="265.37" y2="228.18"/>
+        </g>
+        <g id="_3DFACE-2" data-name="3DFACE">
+          <line id="MeshWire_0-5" data-name="MeshWire_0" class="cls-2" x1="183.9" y1="112.95" x2="130.87" y2="197.84"/>
+          <line id="MeshWire_0-6" data-name="MeshWire_0" class="cls-2" x1="183.9" y1="112.95" x2="140.01" y2="254.33"/>
+          <line id="MeshWire_0-7" data-name="MeshWire_0" class="cls-2" x1="130.87" y1="197.84" x2="140.01" y2="254.33"/>
+          <line id="MeshWire_0-8" data-name="MeshWire_0" class="cls-2" x1="140.01" y1="254.33" x2="140.01" y2="254.33"/>
+        </g>
+        <g id="_3DFACE-3" data-name="3DFACE">
+          <line id="MeshWire_0-9" data-name="MeshWire_0" class="cls-2" x1="140.01" y1="254.33" x2="130.87" y2="197.84"/>
+          <line id="MeshWire_0-10" data-name="MeshWire_0" class="cls-2" x1="140.01" y1="254.33" x2="265.37" y2="228.18"/>
+          <line id="MeshWire_0-11" data-name="MeshWire_0" class="cls-1" x1="130.87" y1="197.84" x2="265.37" y2="228.18"/>
+          <line id="MeshWire_0-12" data-name="MeshWire_0" class="cls-2" x1="265.37" y1="228.18" x2="265.37" y2="228.18"/>
+        </g>
+        <g id="_3DFACE-4" data-name="3DFACE">
+          <line id="MeshWire_0-13" data-name="MeshWire_0" class="cls-1" x1="130.87" y1="197.84" x2="183.9" y2="112.95"/>
+          <line id="MeshWire_0-14" data-name="MeshWire_0" class="cls-1" x1="183.9" y1="112.95" x2="265.37" y2="228.18"/>
+          <line id="MeshWire_0-15" data-name="MeshWire_0" class="cls-1" x1="265.37" y1="228.18" x2="265.37" y2="228.18"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

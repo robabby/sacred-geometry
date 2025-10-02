@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 273.63 237.1">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .99px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Tetrahedron_2D_Net" data-name="Tetrahedron 2D Net">
+      <g id="_3DFACE" data-name="3DFACE">
+        <line id="MeshWire_0" class="cls-1" x1="136.81" y1="236.61" x2="204.97" y2="118.55"/>
+        <line id="MeshWire_0-2" data-name="MeshWire_0" class="cls-1" x1="136.81" y1="236.61" x2="68.65" y2="118.55"/>
+        <line id="MeshWire_0-3" data-name="MeshWire_0" class="cls-1" x1="204.97" y1="118.55" x2="68.65" y2="118.55"/>
+        <line id="MeshWire_0-4" data-name="MeshWire_0" class="cls-1" x1="68.65" y1="118.55" x2="68.65" y2="118.55"/>
+      </g>
+      <g id="_3DFACE-2" data-name="3DFACE">
+        <line id="MeshWire_0-5" data-name="MeshWire_0" class="cls-1" x1="136.81" y1=".5" x2="68.65" y2="118.55"/>
+        <line id="MeshWire_0-6" data-name="MeshWire_0" class="cls-1" x1="136.81" y1=".5" x2="204.97" y2="118.55"/>
+        <line id="MeshWire_0-7" data-name="MeshWire_0" class="cls-1" x1="204.97" y1="118.55" x2="204.97" y2="118.55"/>
+      </g>
+      <g id="_3DFACE-3" data-name="3DFACE">
+        <line id="MeshWire_0-8" data-name="MeshWire_0" class="cls-1" x1="136.81" y1="236.61" x2=".5" y2="236.61"/>
+        <line id="MeshWire_0-9" data-name="MeshWire_0" class="cls-1" x1="68.65" y1="118.55" x2=".5" y2="236.61"/>
+        <line id="MeshWire_0-10" data-name="MeshWire_0" class="cls-1" x1=".5" y1="236.61" x2=".5" y2="236.61"/>
+      </g>
+      <g id="_3DFACE-4" data-name="3DFACE">
+        <line id="MeshWire_0-11" data-name="MeshWire_0" class="cls-1" x1="273.13" y1="236.61" x2="204.97" y2="118.55"/>
+        <line id="MeshWire_0-12" data-name="MeshWire_0" class="cls-1" x1="273.13" y1="236.61" x2="136.81" y2="236.61"/>
+        <line id="MeshWire_0-13" data-name="MeshWire_0" class="cls-1" x1="136.81" y1="236.61" x2="136.81" y2="236.61"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226.42 240.56">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .99px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Cube_Wire" data-name="Cube Wire">
+      <rect class="cls-1" x="14.24" y="23.87" width="66.34" height="66.34" transform="translate(-26.45 50.23) rotate(-45)"/>
+      <g>
+        <polygon class="cls-1" points="142.51 24.58 142.51 72.73 184.22 96.81 225.92 72.73 225.92 24.58 184.22 .5 142.51 24.58"/>
+        <line class="cls-1" x1="184.22" y1="96.81" x2="184.22" y2=".5"/>
+        <line class="cls-1" x1="225.92" y1="72.73" x2="142.51" y2="24.58"/>
+        <line class="cls-1" x1="225.92" y1="24.58" x2="142.51" y2="72.73"/>
+      </g>
+      <g>
+        <rect class="cls-1" x="5.74" y="158.73" width="85.33" height="60.44"/>
+        <line class="cls-1" x1="48.41" y1="158.73" x2="48.41" y2="219.17"/>
+      </g>
+      <line class="cls-1" x1="134.63" y1="170.58" x2="134.63" y2="205.1"/>
+      <g>
+        <line class="cls-1" x1="178.83" y1="136.51" x2="220.85" y2="170.88"/>
+        <line class="cls-1" x1="177" y1="205.54" x2="220.85" y2="170.88"/>
+        <line class="cls-1" x1="134.63" y1="170.58" x2="178.83" y2="136.51"/>
+        <line class="cls-1" x1="177" y1="205.54" x2="134.63" y2="170.58"/>
+        <line class="cls-1" x1="178.83" y1="171.03" x2="220.85" y2="205.4"/>
+        <line class="cls-1" x1="177" y1="240.06" x2="220.85" y2="205.4"/>
+        <line class="cls-1" x1="134.63" y1="205.1" x2="178.83" y2="171.03"/>
+        <line class="cls-1" x1="177" y1="240.06" x2="134.63" y2="205.1"/>
+        <line class="cls-1" x1="220.85" y1="170.88" x2="220.85" y2="205.4"/>
+        <line class="cls-1" x1="178.83" y1="136.51" x2="178.83" y2="171.03"/>
+        <line class="cls-1" x1="177" y1="240.06" x2="177" y2="205.54"/>
+      </g>
+    </g>
+  </g>
+</svg>
