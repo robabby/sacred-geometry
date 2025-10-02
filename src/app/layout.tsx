@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Geist } from "next/font/google";
 import { type Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
+import { Header } from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Sacred Geometry",
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en" className={`${geist.variable}`}>
       <body>
         <Theme appearance="dark">
+          <Header />
           {children}
         </Theme>
       </body>

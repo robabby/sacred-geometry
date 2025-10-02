@@ -1,5 +1,6 @@
 import { Box, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
+import { SolidNavigation } from "@/components/solid-navigation";
 
 const DATA = {
   name: "Octahedron",
@@ -193,6 +194,9 @@ export default function OctahedronPage() {
               </li>
             </ul>
           </Card>
+
+          {/* Navigation */}
+          <SolidNavigation currentSolid="octahedron" />
         </div>
       </div>
     </main>

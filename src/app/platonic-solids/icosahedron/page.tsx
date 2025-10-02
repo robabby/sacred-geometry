@@ -1,21 +1,22 @@
 import { Box, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
+import { SolidNavigation } from "@/components/solid-navigation";
 
 const DATA = {
-  name: "Hexahedron (Cube)",
-  slug: "hexahedron",
+  name: "Icosahedron",
+  slug: "icosahedron",
   category: "platonic-solids",
-  element: "Earth",
-  chakra: "Root",
-  faces: 6,
-  vertices: 8,
-  edges: 12,
-  dualOf: "octahedron",
+  element: "Water",
+  chakra: "Sacral",
+  faces: 20,
+  vertices: 12,
+  edges: 30,
+  dualOf: "dodecahedron",
   featured: true,
-  order: 2
+  order: 5
 }
 
-export default function HexahedronPage() {
+export default function IcosahedronPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-16">
@@ -25,20 +26,20 @@ export default function HexahedronPage() {
             {/* Text Content */}
             <Flex direction="column" gap="6" justify="center">
               <Heading size="9" className="text-amber-100">
-                The Hexahedron: Foundation of Earth
+                The Icosahedron: Flow of Water
               </Heading>
 
               <Text size="5" className="text-blue-200">
-                The hexahedron, commonly known as the cube, represents the element of Earth—stability,
-                structure, and the material world. It is the most grounded of all Platonic Solids.
+                The icosahedron embodies the element of Water—emotion, fluidity, and adaptability.
+                It is the shape of flow and transformation, rolling smoothly like water itself.
               </Text>
             </Flex>
 
             {/* Hero Image */}
             <Box className="flex items-center justify-center">
               <Image
-                src="/images/geometries/platonic-solids/hexahedron/hexahedron-3d.svg"
-                alt="Hexahedron (Cube)"
+                src="/images/geometries/platonic-solids/icosahedron/icosahedron-3d.svg"
+                alt="Icosahedron"
                 width={400}
                 height={400}
                 className="object-contain"
@@ -62,25 +63,25 @@ export default function HexahedronPage() {
               </Box>
               <Box>
                 <Text weight="bold" className="text-amber-200">Dual:</Text>
-                <Text className="text-blue-200">Octahedron</Text>
+                <Text className="text-blue-200">Dodecahedron</Text>
               </Box>
               <Box>
                 <Text weight="bold" className="text-amber-200">Order:</Text>
-                <Text className="text-blue-200">Second Solid</Text>
+                <Text className="text-blue-200">Fifth Solid</Text>
               </Box>
             </Grid>
 
             <Text className="text-blue-200">
-              The cube embodies the principle of <strong>stability through right angles</strong>.
-              Its six square faces represent the six directions of space—up, down, left, right,
-              forward, and backward. In sacred geometry, it symbolizes:
+              With twenty triangular faces, the icosahedron is the <strong>most spherical</strong>
+              of the Platonic Solids—approaching the perfect fluidity of a sphere. This quality
+              makes it the ideal representation of water. In sacred geometry, it symbolizes:
             </Text>
 
             <ul className="mt-4 space-y-2 text-blue-200">
-              <li>• <strong>Material reality</strong> and physical manifestation</li>
-              <li>• <strong>Grounding and stability</strong>, like the foundation of a building</li>
-              <li>• <strong>The Root Chakra</strong>, our connection to Earth and security</li>
-              <li>• <strong>The four elements</strong> plus above and below</li>
+              <li>• <strong>Water and emotions</strong>, the flow of feeling</li>
+              <li>• <strong>The Sacral Chakra</strong>, center of creativity and emotion</li>
+              <li>• <strong>Transformation and adaptability</strong>, like water taking any shape</li>
+              <li>• <strong>Life force</strong> and the primordial waters of creation</li>
             </ul>
           </Card>
 
@@ -92,7 +93,7 @@ export default function HexahedronPage() {
               <Box className="text-center">
                 <Text size="8" weight="bold" className="text-amber-400">{DATA.faces}</Text>
                 <Text className="text-blue-200">Faces</Text>
-                <Text size="1" className="text-blue-300">Square</Text>
+                <Text size="1" className="text-blue-300">Triangular</Text>
               </Box>
               <Box className="text-center">
                 <Text size="8" weight="bold" className="text-amber-400">{DATA.vertices}</Text>
@@ -106,11 +107,17 @@ export default function HexahedronPage() {
               </Box>
             </Grid>
 
+            <Text className="text-blue-200 mb-4">
+              The icosahedron is the <strong>dual</strong> of the dodecahedron—where spirit
+              (dodecahedron) meets matter through emotion (icosahedron). Together they represent
+              the dance between consciousness and feeling, thought and sensation.
+            </Text>
+
             <Text className="text-blue-200">
-              The cube is unique among Platonic Solids for its perpendicular faces. Every edge
-              meets every other edge at exactly 90 degrees, creating perfect stability. This is
-              why we build our homes and cities using cubic forms—they naturally resist
-              gravitational forces and provide maximum usable space.
+              It has the greatest number of faces among the Platonic Solids, giving it the
+              largest surface area relative to its volume. This makes it <strong>the most
+              efficient for containing and moving</strong>—just like water molecules arranging
+              themselves for optimal flow.
             </Text>
           </Card>
 
@@ -122,8 +129,8 @@ export default function HexahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="w-full h-40 flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/hexahedron/hexahedron-solid.svg"
-                    alt="Hexahedron Solid"
+                    src="/images/geometries/platonic-solids/icosahedron/icosahedron-solid.svg"
+                    alt="Icosahedron Solid"
                     width={150}
                     height={150}
                     className="object-contain"
@@ -137,8 +144,8 @@ export default function HexahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="w-full h-40 flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/hexahedron/hexahedron-wireframe.svg"
-                    alt="Hexahedron Wireframe"
+                    src="/images/geometries/platonic-solids/icosahedron/icosahedron-wireframe.svg"
+                    alt="Icosahedron Wireframe"
                     width={150}
                     height={150}
                     className="object-contain"
@@ -152,8 +159,8 @@ export default function HexahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="w-full h-40 flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/hexahedron/hexahedron-net.svg"
-                    alt="Hexahedron Net"
+                    src="/images/geometries/platonic-solids/icosahedron/icosahedron-net.svg"
+                    alt="Icosahedron Net"
                     width={150}
                     height={150}
                     className="object-contain"
@@ -171,28 +178,35 @@ export default function HexahedronPage() {
             <Heading size="6" className="text-amber-300 mb-4">In Nature and Culture</Heading>
 
             <Text className="text-blue-200 mb-4">
-              The cubic form appears throughout nature and human civilization:
+              The icosahedral form appears throughout nature and science:
             </Text>
 
             <ul className="space-y-3 text-blue-200">
               <li>
-                <strong className="text-amber-300">Crystals:</strong> Salt (halite) and pyrite
-                form natural perfect cubes
+                <strong className="text-amber-300">Water Structure:</strong> Researchers have
+                found water molecules can form icosahedral clusters
               </li>
               <li>
-                <strong className="text-amber-300">Architecture:</strong> The Kaaba in Mecca,
-                representing the spiritual center of Islam
+                <strong className="text-amber-300">Geodesic Domes:</strong> Buckminster Fuller&apos;s
+                geodesic structures are based on icosahedral geometry
               </li>
               <li>
-                <strong className="text-amber-300">Symbolism:</strong> The cornerstone,
-                the building block of civilization
+                <strong className="text-amber-300">Biology:</strong> Many viruses and radiolaria
+                (marine organisms) exhibit icosahedral symmetry
               </li>
               <li>
-                <strong className="text-amber-300">Sacred Space:</strong> The cube represents
-                the material temple that houses divine consciousness
+                <strong className="text-amber-300">Planetology:</strong> Some planetary features
+                and gravitational models use icosahedral grids
+              </li>
+              <li>
+                <strong className="text-amber-300">Gaming:</strong> The twenty-sided die (d20)
+                brings this sacred form into play
               </li>
             </ul>
           </Card>
+
+          {/* Navigation */}
+          <SolidNavigation currentSolid="icosahedron" />
         </div>
       </div>
     </main>

@@ -1,21 +1,22 @@
 import { Box, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
+import { SolidNavigation } from "@/components/solid-navigation";
 
 const DATA = {
-  name: "Tetrahedron",
-  slug: "tetrahedron",
+  name: "Hexahedron (Cube)",
+  slug: "hexahedron",
   category: "platonic-solids",
-  element: "Fire",
-  chakra: "Solar Plexus",
-  faces: 4,
-  vertices: 4,
-  edges: 6,
-  dualOf: "tetrahedron",
+  element: "Earth",
+  chakra: "Root",
+  faces: 6,
+  vertices: 8,
+  edges: 12,
+  dualOf: "octahedron",
   featured: true,
-  order: 1
+  order: 2
 }
 
-export default function TetrahedronPage() {
+export default function HexahedronPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-16">
@@ -25,20 +26,20 @@ export default function TetrahedronPage() {
             {/* Text Content */}
             <Flex direction="column" gap="6" justify="center">
               <Heading size="9" className="text-amber-100">
-                The Tetrahedron: Gateway of Fire
+                The Hexahedron: Foundation of Earth
               </Heading>
 
               <Text size="5" className="text-blue-200">
-                The tetrahedron is the first Platonic Solid, the simplest three-dimensional form that can exist.
-                Imagine consciousness taking its first step from the flat plane into depth—this is that moment crystallized.
+                The hexahedron, commonly known as the cube, represents the element of Earth—stability,
+                structure, and the material world. It is the most grounded of all Platonic Solids.
               </Text>
             </Flex>
 
             {/* Hero Image */}
             <Box className="flex items-center justify-center">
               <Image
-                src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-3d.svg"
-                alt="Tetrahedron"
+                src="/images/geometries/platonic-solids/hexahedron/hexahedron-3d.svg"
+                alt="Hexahedron (Cube)"
                 width={400}
                 height={400}
                 className="object-contain"
@@ -62,25 +63,25 @@ export default function TetrahedronPage() {
               </Box>
               <Box>
                 <Text weight="bold" className="text-amber-200">Dual:</Text>
-                <Text className="text-blue-200">Self-dual (Tetrahedron)</Text>
+                <Text className="text-blue-200">Octahedron</Text>
               </Box>
               <Box>
                 <Text weight="bold" className="text-amber-200">Order:</Text>
-                <Text className="text-blue-200">First Solid</Text>
+                <Text className="text-blue-200">Second Solid</Text>
               </Box>
             </Grid>
 
             <Text className="text-blue-200">
-              In the language of sacred geometry, the tetrahedron speaks of <strong>fire and transformation</strong>.
-              With only four faces, it represents the minimum number of surfaces needed to enclose space.
-              This makes it the foundation of all three-dimensional reality.
+              The cube embodies the principle of <strong>stability through right angles</strong>.
+              Its six square faces represent the six directions of space—up, down, left, right,
+              forward, and backward. In sacred geometry, it symbolizes:
             </Text>
 
             <ul className="mt-4 space-y-2 text-blue-200">
-              <li>• <strong>Fire and transformation</strong>, the spark of creation</li>
-              <li>• <strong>Stability through tension</strong>, like a tripod that never wobbles</li>
-              <li>• <strong>The Solar Plexus Chakra</strong>, our center of personal power</li>
-              <li>• <strong>The number 4</strong>, representing foundation and structure</li>
+              <li>• <strong>Material reality</strong> and physical manifestation</li>
+              <li>• <strong>Grounding and stability</strong>, like the foundation of a building</li>
+              <li>• <strong>The Root Chakra</strong>, our connection to Earth and security</li>
+              <li>• <strong>The four elements</strong> plus above and below</li>
             </ul>
           </Card>
 
@@ -92,7 +93,7 @@ export default function TetrahedronPage() {
               <Box className="text-center">
                 <Text size="8" weight="bold" className="text-amber-400">{DATA.faces}</Text>
                 <Text className="text-blue-200">Faces</Text>
-                <Text size="1" className="text-blue-300">Triangular</Text>
+                <Text size="1" className="text-blue-300">Square</Text>
               </Box>
               <Box className="text-center">
                 <Text size="8" weight="bold" className="text-amber-400">{DATA.vertices}</Text>
@@ -106,16 +107,11 @@ export default function TetrahedronPage() {
               </Box>
             </Grid>
 
-            <Text className="text-blue-200 mb-4">
-              The tetrahedron embodies the principle of <strong>minimal complexity</strong>. With its 4 faces,
-              4 vertices, and 6 edges, it is the simplest possible polyhedron. Remarkably, it is
-              <strong> self-dual</strong>—its dual is another tetrahedron, rotated inside the original.
-            </Text>
-
             <Text className="text-blue-200">
-              Every vertex connects to every other vertex—a complete graph in three dimensions. This
-              represents total interconnection, where every point relates directly to all others.
-              No simpler structure can achieve this.
+              The cube is unique among Platonic Solids for its perpendicular faces. Every edge
+              meets every other edge at exactly 90 degrees, creating perfect stability. This is
+              why we build our homes and cities using cubic forms—they naturally resist
+              gravitational forces and provide maximum usable space.
             </Text>
           </Card>
 
@@ -127,8 +123,8 @@ export default function TetrahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="w-full h-40 flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-solid.svg"
-                    alt="Tetrahedron Solid"
+                    src="/images/geometries/platonic-solids/hexahedron/hexahedron-solid.svg"
+                    alt="Hexahedron Solid"
                     width={150}
                     height={150}
                     className="object-contain"
@@ -142,8 +138,8 @@ export default function TetrahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="w-full h-40 flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-wireframe.svg"
-                    alt="Tetrahedron Wireframe"
+                    src="/images/geometries/platonic-solids/hexahedron/hexahedron-wireframe.svg"
+                    alt="Hexahedron Wireframe"
                     width={150}
                     height={150}
                     className="object-contain"
@@ -157,8 +153,8 @@ export default function TetrahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="w-full h-40 flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-net.svg"
-                    alt="Tetrahedron Net"
+                    src="/images/geometries/platonic-solids/hexahedron/hexahedron-net.svg"
+                    alt="Hexahedron Net"
                     width={150}
                     height={150}
                     className="object-contain"
@@ -176,28 +172,31 @@ export default function TetrahedronPage() {
             <Heading size="6" className="text-amber-300 mb-4">In Nature and Culture</Heading>
 
             <Text className="text-blue-200 mb-4">
-              The tetrahedral form appears throughout nature and sacred traditions:
+              The cubic form appears throughout nature and human civilization:
             </Text>
 
             <ul className="space-y-3 text-blue-200">
               <li>
-                <strong className="text-amber-300">Chemistry:</strong> The carbon atom in methane (CH₄)
-                forms a perfect tetrahedron
+                <strong className="text-amber-300">Crystals:</strong> Salt (halite) and pyrite
+                form natural perfect cubes
               </li>
               <li>
-                <strong className="text-amber-300">Crystals:</strong> Diamond&apos;s crystal structure
-                is based on tetrahedral geometry
+                <strong className="text-amber-300">Architecture:</strong> The Kaaba in Mecca,
+                representing the spiritual center of Islam
               </li>
               <li>
-                <strong className="text-amber-300">Engineering:</strong> The pyramid form provides
-                maximum strength with minimum material
+                <strong className="text-amber-300">Symbolism:</strong> The cornerstone,
+                the building block of civilization
               </li>
               <li>
-                <strong className="text-amber-300">Symbolism:</strong> Represents the element of fire
-                in Greek philosophy—sharp, active, ascending
+                <strong className="text-amber-300">Sacred Space:</strong> The cube represents
+                the material temple that houses divine consciousness
               </li>
             </ul>
           </Card>
+
+          {/* Navigation */}
+          <SolidNavigation currentSolid="hexahedron" />
         </div>
       </div>
     </main>

@@ -95,13 +95,13 @@ export default function HomePage() {
 
         <Flex gap="4" className="mt-8">
           <Button asChild size="4" className="bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-gray-900 font-semibold shadow-lg shadow-amber-500/30">
-            <Link href={ROUTES.geometries.path}>
-              Explore All Geometries
+            <Link href={ROUTES.platonicSolids.path}>
+              Explore Platonic Solids →
             </Link>
           </Button>
           <Button asChild size="4" variant="outline" className="border-amber-400/50 text-amber-300 hover:bg-amber-400/10 hover:border-amber-400">
-            <Link href={ROUTES.platonicSolids.path}>
-              Platonic Solids
+            <Link href={ROUTES.sacredPatterns.path}>
+              Sacred Patterns →
             </Link>
           </Button>
         </Flex>
