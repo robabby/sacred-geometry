@@ -5,42 +5,61 @@ import { ROUTES } from "@/util/routes";
 export default function SeedOfLifePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-12 sm:py-16">
         <div className="max-w-6xl mx-auto">
-          {/* Header with Image */}
-          <Grid columns={{ initial: "1", md: "2" }} gap="8" className="mb-12">
+          <Grid columns={{ initial: "1", md: "2" }} gap={{ initial: "6", md: "8" }} className="mb-8 sm:mb-12">
             <Flex direction="column" gap="6" justify="center">
-              <Heading size="9" className="text-amber-100">
+              <Heading size={{ initial: "7", md: "9" }} className="text-amber-100">
                 {ROUTES.sacredPatterns.children.seedOfLife.name}
               </Heading>
-
-              <Text size="5" className="text-blue-200">
+              <Text size={{ initial: "3", md: "5" }} className="text-blue-200">
                 Seven circles arranged in perfect hexagonal symmetry, representing the seven days
                 of creation and forming the foundation from which the Flower of Life grows.
               </Text>
             </Flex>
-
-            {/* Hero Image */}
             <div className="flex items-center justify-center">
               <Image
                 src="/images/geometries/sacred-patterns/seed-of-life/seed-of-life-primary.svg"
                 alt="Seed of Life"
                 width={400}
                 height={400}
-                className="object-contain"
+                className="object-contain w-full max-w-md"
                 style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
               />
             </div>
           </Grid>
 
-          {/* Content sections coming soon */}
-          <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8">
-            <Heading size="6" className="text-amber-300 mb-4">
-              Sacred Significance
+          <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-6 sm:p-8 mb-6 sm:mb-8">
+            <Heading size={{ initial: "5", md: "6" }} className="text-amber-300 mb-4">
+              The Seven Days of Creation
+            </Heading>
+            <Text className="text-blue-200 mb-4">
+              The Seed of Life consists of seven circles: one central circle surrounded by six others in perfect hexagonal symmetry. This pattern mirrors the creation story found in many traditions—seven days, seven stages, seven levels.
+            </Text>
+            <Text className="text-blue-200">
+              The first circle represents the void or unity. The second creates the vesica piscis. By the seventh circle, the complete Seed pattern emerges—the blueprint from which all of creation unfolds.
+            </Text>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-6 sm:p-8 mb-6 sm:mb-8">
+            <Heading size={{ initial: "5", md: "6" }} className="text-amber-300 mb-4">
+              Foundation of the Flower
             </Heading>
             <Text className="text-blue-200">
-              Content coming soon...
+              The Seed of Life is the inner component of the Flower of Life. If you continue the pattern outward, adding more circles following the same geometric rules, the Seed blossoms into the full Flower. It represents potential—the seed from which infinite complexity grows.
             </Text>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-6 sm:p-8">
+            <Heading size={{ initial: "5", md: "6" }} className="text-amber-300 mb-4">
+              Symbolic Meaning
+            </Heading>
+            <ul className="space-y-3 text-blue-200">
+              <li><strong className="text-amber-300">Seven Chakras:</strong> The pattern can represent the seven energy centers in the human body</li>
+              <li><strong className="text-amber-300">Seven Musical Notes:</strong> The seven-fold symmetry relates to harmonic octaves</li>
+              <li><strong className="text-amber-300">Seven Days:</strong> The creation cycle found in Genesis and other creation myths</li>
+              <li><strong className="text-amber-300">Cell Division:</strong> Mirrors the first seven stages of embryonic development</li>
+            </ul>
           </Card>
         </div>
       </div>
