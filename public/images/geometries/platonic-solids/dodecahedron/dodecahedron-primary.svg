@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148.52 142.99">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        stroke-dasharray: 0 0 3.91 3.91;
+      }
+
+      .cls-3 {
+        stroke-width: 2px;
+      }
+
+      .cls-4 {
+        stroke-dasharray: 0 0 4.16 4.16;
+      }
+
+      .cls-5 {
+        stroke-dasharray: 0 0 4.08 4.08;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Dodecahedron">
+      <polygon class="cls-3" points="74.26 71.49 33.56 94.99 49.84 141.99 98.68 141.99 114.96 94.99 74.26 71.49"/>
+      <polygon class="cls-3" points="74.26 71.49 114.96 94.99 147.52 57.4 123.1 15.1 74.26 24.5 74.26 71.49"/>
+      <g>
+        <polygon class="cls-3" points="74.26 71.49 74.26 24.5 25.42 15.1 1 57.4 33.56 94.99 74.26 71.49"/>
+        <g>
+          <g>
+            <polyline class="cls-1" points="74.26 73.49 74.26 71.49 72.53 70.49"/>
+            <line class="cls-2" x1="69.14" y1="68.54" x2="36.98" y2="49.97"/>
+            <polyline class="cls-1" points="35.29 49 33.56 48 32.25 49.51"/>
+            <line class="cls-4" x1="29.53" y1="52.65" x2="3.67" y2="82.51"/>
+            <polyline class="cls-1" points="2.31 84.08 1 85.59 2 87.33"/>
+            <line class="cls-5" x1="4.04" y1="90.86" x2="23.4" y2="124.39"/>
+            <polyline class="cls-1" points="24.42 126.16 25.42 127.89 27.38 127.51"/>
+            <line class="cls-4" x1="31.47" y1="126.73" x2="70.25" y2="119.26"/>
+            <polyline class="cls-1" points="72.3 118.87 74.26 118.49 74.26 116.49"/>
+            <line class="cls-2" x1="74.26" y1="112.58" x2="74.26" y2="75.45"/>
+          </g>
+          <g>
+            <polyline class="cls-1" points="72.53 70.49 74.26 71.49 75.99 70.49"/>
+            <line class="cls-2" x1="79.38" y1="68.54" x2="111.53" y2="49.97"/>
+            <polyline class="cls-1" points="113.23 49 114.96 48 114.3 46.11"/>
+            <line class="cls-4" x1="112.94" y1="42.18" x2="100.01" y2="4.85"/>
+            <polyline class="cls-1" points="99.33 2.89 98.68 1 96.68 1"/>
+            <line class="cls-5" x1="92.6" y1="1" x2="53.88" y2="1"/>
+            <polyline class="cls-1" points="51.84 1 49.84 1 49.19 2.89"/>
+            <line class="cls-4" x1="47.82" y1="6.82" x2="34.89" y2="44.14"/>
+            <polyline class="cls-1" points="34.21 46.11 33.56 48 35.29 49"/>
+            <line class="cls-2" x1="38.68" y1="50.95" x2="70.84" y2="69.52"/>
+          </g>
+          <g>
+            <polyline class="cls-1" points="75.99 70.49 74.26 71.49 74.26 73.49"/>
+            <line class="cls-2" x1="74.26" y1="77.4" x2="74.26" y2="114.54"/>
+            <polyline class="cls-1" points="74.26 116.49 74.26 118.49 76.22 118.87"/>
+            <line class="cls-4" x1="80.31" y1="119.65" x2="119.09" y2="127.12"/>
+            <polyline class="cls-1" points="121.14 127.51 123.1 127.89 124.1 126.16"/>
+            <line class="cls-5" x1="126.14" y1="122.63" x2="145.5" y2="89.09"/>
+            <polyline class="cls-1" points="146.52 87.33 147.52 85.59 146.21 84.08"/>
+            <line class="cls-4" x1="143.49" y1="80.94" x2="117.63" y2="51.08"/>
+            <polyline class="cls-1" points="116.27 49.51 114.96 48 113.23 49"/>
+            <line class="cls-2" x1="109.84" y1="50.95" x2="77.68" y2="69.52"/>
+          </g>
+        </g>
+      </g>
+      <polyline class="cls-3" points="98.68 141.99 123.1 127.89 147.52 85.59 147.52 57.4"/>
+      <polyline class="cls-3" points="1 57.4 1 85.59 25.42 127.89 49.84 141.99"/>
+      <polyline class="cls-3" points="123.1 15.1 98.68 1 49.84 1 25.42 15.1"/>
+      <line class="cls-3" x1="49.84" y1="141.99" x2="25.42" y2="127.89"/>
+      <line class="cls-3" x1="1" y1="85.59" x2="1" y2="57.4"/>
+      <line class="cls-3" x1="49.84" y1="1" x2="25.42" y2="15.1"/>
+      <line class="cls-3" x1="123.1" y1="15.1" x2="98.68" y2="1"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 289.7 288.15">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .99px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Tetrahedron_Wire" data-name="Tetrahedron Wire">
+      <g>
+        <polygon class="cls-1" points="78 .5 .52 134.69 155.47 134.69 78 .5"/>
+        <polyline class="cls-1" points=".5 134.69 78 89.96 78 .5"/>
+        <line class="cls-1" x1="155.5" y1="134.69" x2="78" y2="89.96"/>
+      </g>
+      <g>
+        <rect class="cls-1" x="156.9" y="155.36" width="109.6" height="109.6" transform="translate(-86.6 211.25) rotate(-45)"/>
+        <line class="cls-1" x1="211.7" y1="132.66" x2="211.7" y2="287.66"/>
+        <line class="cls-1" x1="134.2" y1="210.16" x2="289.2" y2="210.16"/>
+      </g>
+    </g>
+  </g>
+</svg>

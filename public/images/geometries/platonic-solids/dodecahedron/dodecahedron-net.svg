@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 279.63 138.51">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .99px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Dodecahedron_2D_Net" data-name="Dodecahedron 2D Net">
+      <g>
+        <polygon class="cls-1" points="72.79 32.96 45.18 53.02 55.73 85.48 89.86 85.48 100.41 53.02 72.79 32.96"/>
+        <polygon class="cls-1" points="72.79 138.01 45.18 117.95 55.73 85.48 89.86 85.48 100.41 117.95 72.79 138.01"/>
+        <polygon class="cls-1" points="145.09 85.48 117.47 105.55 89.86 85.48 100.41 53.02 134.54 53.02 145.09 85.48"/>
+        <polygon class="cls-1" points="117.47 .5 128.02 32.96 100.41 53.02 72.79 32.96 83.34 .5 117.47 .5"/>
+        <polygon class="cls-1" points="28.11 .5 62.24 .5 72.79 32.96 45.18 53.02 17.56 32.96 28.11 .5"/>
+        <polygon class="cls-1" points=".5 85.48 11.04 53.02 45.18 53.02 55.73 85.48 28.11 105.55 .5 85.48"/>
+      </g>
+      <g>
+        <polygon class="cls-1" points="206.84 105.55 179.22 85.48 189.77 53.02 223.9 53.02 234.45 85.48 206.84 105.55"/>
+        <polygon class="cls-1" points="206.84 .5 179.22 20.56 189.77 53.02 223.9 53.02 234.45 20.56 206.84 .5"/>
+        <polygon class="cls-1" points="279.13 53.02 251.52 32.96 223.9 53.02 234.45 85.48 268.58 85.48 279.13 53.02"/>
+        <polygon class="cls-1" points="251.52 138.01 262.07 105.55 234.45 85.48 206.84 105.55 217.38 138.01 251.52 138.01"/>
+        <polygon class="cls-1" points="162.15 138.01 196.29 138.01 206.84 105.55 179.22 85.48 151.61 105.55 162.15 138.01"/>
+        <polygon class="cls-1" points="134.54 53.02 145.09 85.48 179.22 85.48 189.77 53.02 162.15 32.96 134.54 53.02"/>
+      </g>
+    </g>
+  </g>
+</svg>

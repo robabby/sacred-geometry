@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 214.62 271.86">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .99px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Icosahedron_2D_Net" data-name="Icosahedron 2D Net">
+      <rect class="cls-1" x="78.69" y="78.69" width="57.24" height="57.24"/>
+      <rect class="cls-1" x=".5" y="214.13" width="57.24" height="57.24"/>
+      <rect class="cls-1" x="39.59" y="10.97" width="57.24" height="57.24" transform="translate(136.61 .31) rotate(120)"/>
+      <rect class="cls-1" x="146.41" y="39.59" width="57.24" height="57.24" transform="translate(321.62 -49.26) rotate(120)"/>
+      <rect class="cls-1" x="117.79" y="146.41" width="57.24" height="57.24" transform="translate(371.19 135.75) rotate(120)"/>
+      <rect class="cls-1" x="39.59" y="146.41" width="57.24" height="57.24" transform="translate(185.69 28.44) rotate(60)"/>
+      <polygon class="cls-1" points="107.31 29.12 78.69 78.69 135.93 78.69 107.31 29.12"/>
+      <polygon class="cls-1" points="29.12 107.31 78.69 135.93 78.69 78.69 29.12 107.31"/>
+      <polygon class="cls-1" points="107.31 185.5 135.93 135.93 78.69 135.93 107.31 185.5"/>
+      <polygon class="cls-1" points="185.5 107.31 135.93 78.69 135.93 135.93 185.5 107.31"/>
+      <polygon class="cls-1" points="164.55 29.12 214.13 57.74 214.13 .5 164.55 29.12"/>
+      <polygon class="cls-1" points="57.74 214.13 107.31 185.5 107.31 242.75 57.74 214.13"/>
+      <polygon class="cls-1" points="29.12 164.55 57.74 214.13 .5 214.13 29.12 164.55"/>
+      <polygon class="cls-1" points="185.5 164.55 156.88 214.13 214.13 214.13 185.5 164.55"/>
+    </g>
+  </g>
+</svg>

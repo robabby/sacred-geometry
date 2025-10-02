@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124.73 143.72">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-dasharray: 0 4;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Icosahedron">
+      <g>
+        <polygon class="cls-2" points="31.68 54.15 93.05 54.15 62.37 107.29 31.68 54.15"/>
+        <line class="cls-2" x1="62.37" y1="1" x2="31.68" y2="54.15"/>
+        <line class="cls-2" x1="1" y1="107.29" x2="62.37" y2="107.29"/>
+        <line class="cls-2" x1="123.73" y1="107.29" x2="93.05" y2="54.15"/>
+        <polyline class="cls-2" points="1 36.43 31.68 54.15 1 107.29 1 36.43 62.37 1"/>
+        <polyline class="cls-2" points="62.37 142.72 62.37 107.29 123.73 107.29 62.37 142.72 1 107.29"/>
+        <polyline class="cls-2" points="123.73 36.43 93.05 54.15 62.37 1 123.73 36.43 123.73 107.29"/>
+      </g>
+      <g>
+        <polygon class="cls-1" points="93.05 89.58 31.68 89.58 62.37 36.43 93.05 89.58"/>
+        <line class="cls-1" x1="62.37" y1="142.72" x2="93.05" y2="89.58"/>
+        <line class="cls-1" x1="123.73" y1="36.43" x2="62.37" y2="36.43"/>
+        <line class="cls-1" x1="1" y1="36.43" x2="31.68" y2="89.58"/>
+        <polyline class="cls-1" points="123.73 107.29 93.05 89.58 123.73 36.43 123.73 107.29 62.37 142.72"/>
+        <polyline class="cls-1" points="62.37 1 62.37 36.43 1 36.43 62.37 1 123.73 36.43"/>
+        <polyline class="cls-1" points="1 107.29 31.68 89.58 62.37 142.72 1 107.29 1 36.43"/>
+      </g>
+    </g>
+  </g>
+</svg>

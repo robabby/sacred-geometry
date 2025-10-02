@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215.03 286.25">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.36px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Cube_2D_Net" data-name="Cube 2D Net">
+      <rect class="cls-1" x="71.9" y=".68" width="71.22" height="71.22"/>
+      <rect class="cls-1" x="71.9" y="71.9" width="71.22" height="71.22"/>
+      <rect class="cls-1" x="143.12" y="71.9" width="71.22" height="71.22"/>
+      <rect class="cls-1" x=".68" y="71.9" width="71.22" height="71.22" transform="translate(72.58 215.03) rotate(-180)"/>
+      <rect class="cls-1" x="71.9" y="143.12" width="71.22" height="71.22"/>
+      <rect class="cls-1" x="71.9" y="214.35" width="71.22" height="71.22"/>
+    </g>
+  </g>
+</svg>

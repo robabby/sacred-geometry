@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 276.38 205.2">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .99px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Octahedron_2D_Net" data-name="Octahedron 2D Net">
+      <polygon class="cls-1" points="118.52 68.41 79.18 136.55 157.86 136.55 118.52 68.41"/>
+      <polygon class="cls-1" points="79.18 136.55 39.84 68.41 118.52 68.41 79.18 136.55"/>
+      <polygon class="cls-1" points="118.52 204.71 79.18 136.57 157.86 136.57 118.52 204.71"/>
+      <polygon class="cls-1" points="236.54 136.55 197.2 68.41 275.88 68.41 236.54 136.55"/>
+      <polygon class="cls-1" points="157.86 .5 118.52 68.64 197.2 68.64 157.86 .5"/>
+      <polygon class="cls-1" points="197.2 68.47 157.86 136.61 236.54 136.61 197.2 68.47"/>
+      <polygon class="cls-1" points="39.84 68.41 .5 136.55 79.18 136.55 39.84 68.41"/>
+    </g>
+  </g>
+</svg>
