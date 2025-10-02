@@ -47,6 +47,44 @@ export const ROUTES = {
     "name": "Sacred Patterns",
     "path": "/sacred-patterns",
     "description": "Infinite geometries that encode universal principles",
-    "order": 2
+    "order": 2,
+    children: {
+      flowerOfLife: {
+        "name": "Flower of Life",
+        "path": "/sacred-patterns/flower-of-life",
+        "description": "Ancient symbol of creation consisting of overlapping circles representing the fundamental forms of space and time",
+        "order": 1
+      },
+      seedOfLife: {
+        "name": "Seed of Life",
+        "path": "/sacred-patterns/seed-of-life",
+        "description": "Seven circles in perfect symmetry, representing the seven days of creation",
+        "order": 2
+      },
+      metatronsCube: {
+        "name": "Metatron's Cube",
+        "path": "/sacred-patterns/metatrons-cube",
+        "description": "Contains all five Platonic Solids and represents the geometric pattern of the universe",
+        "order": 3
+      },
+      sriYantra: {
+        "name": "Sri Yantra",
+        "path": "/sacred-patterns/sri-yantra",
+        "description": "Sacred Hindu geometry representing the union of divine masculine and feminine energies",
+        "order": 4
+      },
+      merkaba: {
+        "name": "Merkaba",
+        "path": "/sacred-patterns/merkaba",
+        "description": "Sacred light vehicle, two interlocking tetrahedrons representing spirit and matter",
+        "order": 5
+      },
+      goldenRatio: {
+        "name": "Golden Ratio",
+        "path": "/sacred-patterns/golden-ratio",
+        "description": "Divine proportion (φ ≈ 1.618) that appears throughout nature and sacred architecture",
+        "order": 6
+      }
+    }
   }
 }

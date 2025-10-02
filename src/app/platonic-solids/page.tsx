@@ -1,7 +1,11 @@
-import { Box, Button, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
+import { Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
+import { Triangle, Box as BoxIcon, Octagon, Sparkles, Droplets } from "lucide-react";
 import { ROUTES } from "@/util/routes";
+import { Badge } from "@/components/ui/badge";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Card } from "@/components/ui/card";
 
 const platonicSolids = [
   {
@@ -9,35 +13,55 @@ const platonicSolids = [
     route: ROUTES.platonicSolids.children.tetrahedron,
     element: "Fire",
     faces: 4,
-    image: "/images/geometries/platonic-solids/tetrahedron/tetrahedron-primary.svg",
+    vertices: 4,
+    edges: 6,
+    icon: Triangle,
+    color: "text-red-400",
+    image: "/images/geometries/platonic-solids/tetrahedron/tetrahedron-3d.svg",
   },
   {
     slug: "hexahedron",
     route: ROUTES.platonicSolids.children.hexahedron,
     element: "Earth",
     faces: 6,
-    image: "/images/geometries/platonic-solids/hexahedron/hexahedron-primary.svg",
+    vertices: 8,
+    edges: 12,
+    icon: BoxIcon,
+    color: "text-green-400",
+    image: "/images/geometries/platonic-solids/hexahedron/hexahedron-3d.svg",
   },
   {
     slug: "octahedron",
     route: ROUTES.platonicSolids.children.octahedron,
     element: "Air",
     faces: 8,
-    image: "/images/geometries/platonic-solids/octahedron/octahedron-primary.svg",
+    vertices: 6,
+    edges: 12,
+    icon: Octagon,
+    color: "text-cyan-400",
+    image: "/images/geometries/platonic-solids/octahedron/octahedron-3d.svg",
   },
   {
     slug: "dodecahedron",
     route: ROUTES.platonicSolids.children.dodecahedron,
     element: "Ether",
     faces: 12,
-    image: "/images/geometries/platonic-solids/dodecahedron/dodecahedron-primary.svg",
+    vertices: 20,
+    edges: 30,
+    icon: Sparkles,
+    color: "text-purple-400",
+    image: "/images/geometries/platonic-solids/dodecahedron/dodecahedron-3d.svg",
   },
   {
     slug: "icosahedron",
     route: ROUTES.platonicSolids.children.icosahedron,
     element: "Water",
     faces: 20,
-    image: "/images/geometries/platonic-solids/icosahedron/icosahedron-primary.svg",
+    vertices: 12,
+    edges: 30,
+    icon: Droplets,
+    color: "text-blue-400",
+    image: "/images/geometries/platonic-solids/icosahedron/icosahedron-3d.svg",
   },
 ];
 
@@ -61,56 +85,85 @@ export default function PlatonicSolidsPage() {
         </div>
 
         {/* Platonic Solids Grid */}
-        <Grid columns={{ initial: "1", md: "2", lg: "3" }} gap="6" className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {platonicSolids.map((solid) => {
+            const Icon = solid.icon;
             return (
-              <Card
-                key={solid.route.path}
-                className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 backdrop-blur-sm border-amber-500/20 p-6 hover:border-amber-500/40 transition-all hover:scale-105"
-              >
-                <Flex direction="column" gap="4">
-                  {/* Image */}
-                  <Box className="relative w-full h-48 flex items-center justify-center">
-                    <Image
-                      src={solid.image}
-                      alt={solid.route.name}
-                      width={180}
-                      height={180}
-                      className="object-contain filter brightness-0 invert opacity-90"
-                      style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
-                    />
-                  </Box>
+              <HoverCard key={solid.route.path}>
+                <HoverCardTrigger asChild>
+                  <Link href={solid.route.path}>
+                    <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 backdrop-blur-sm border-amber-500/20 p-6 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
+                      <div className="flex flex-col gap-4">
+                        {/* Image */}
+                        <div className="relative w-full h-48 flex items-center justify-center">
+                          <Image
+                            src={solid.image}
+                            alt={solid.route.name}
+                            width={180}
+                            height={180}
+                            className="object-contain"
+                            style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                          />
+                        </div>
 
-                  <Flex align="center" justify="between">
-                    <Heading size="5" className="text-amber-100">
-                      {solid.route.name}
-                    </Heading>
-                    <Text className="text-amber-300 text-sm">{solid.faces} faces</Text>
-                  </Flex>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <Icon className={`h-5 w-5 ${solid.color}`} />
+                            <Heading size="5" className="text-amber-100">
+                              {solid.route.name}
+                            </Heading>
+                          </div>
+                        </div>
 
-                  <Box>
-                    <Text className="text-xs text-amber-300 mb-1">Element</Text>
-                    <Text className="text-blue-200">{solid.element}</Text>
-                  </Box>
+                        <div className="flex gap-2 flex-wrap">
+                          <Badge variant="secondary" className="bg-amber-500/20 text-amber-300 border-amber-500/30">
+                            {solid.element}
+                          </Badge>
+                          <Badge variant="outline" className="bg-blue-900/50 text-blue-200 border-blue-500/30">
+                            {solid.faces} faces
+                          </Badge>
+                        </div>
 
-                  <Text size="2" className="text-blue-300 flex-grow">
-                    {solid.route.description}
-                  </Text>
+                        <Text size="2" className="text-blue-300 flex-grow">
+                          {solid.route.description}
+                        </Text>
 
-                  <Button
-                    asChild
-                    variant="soft"
-                    className="bg-amber-500/20 text-amber-300 hover:bg-amber-500/30"
-                  >
-                    <Link href={solid.route.path}>
-                      Explore →
-                    </Link>
-                  </Button>
-                </Flex>
-              </Card>
+                        <div className="text-amber-300 text-sm font-medium hover:text-amber-400 transition-colors">
+                          Explore →
+                        </div>
+                      </div>
+                    </Card>
+                  </Link>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80 bg-blue-950/90 border-amber-500/30 backdrop-blur-xl">
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-semibold text-amber-300">{solid.route.name}</h4>
+                    <div className="grid grid-cols-3 gap-2 text-xs">
+                      <div>
+                        <p className="text-blue-400">Faces</p>
+                        <p className="text-white font-semibold">{solid.faces}</p>
+                      </div>
+                      <div>
+                        <p className="text-blue-400">Vertices</p>
+                        <p className="text-white font-semibold">{solid.vertices}</p>
+                      </div>
+                      <div>
+                        <p className="text-blue-400">Edges</p>
+                        <p className="text-white font-semibold">{solid.edges}</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-blue-200 pt-2">
+                      <strong>Element:</strong> {solid.element}
+                    </p>
+                    <p className="text-xs text-blue-300/80">
+                      {solid.route.description}
+                    </p>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
             );
           })}
-        </Grid>
+        </div>
 
         {/* Additional Info */}
         <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 max-w-4xl mx-auto mt-16">
