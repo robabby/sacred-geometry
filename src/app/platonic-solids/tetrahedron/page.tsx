@@ -1,21 +1,22 @@
 import { Box, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
+import { SolidNavigation } from "@/components/solid-navigation";
 
 const DATA = {
-  name: "Icosahedron",
-  slug: "icosahedron",
+  name: "Tetrahedron",
+  slug: "tetrahedron",
   category: "platonic-solids",
-  element: "Water",
-  chakra: "Sacral",
-  faces: 20,
-  vertices: 12,
-  edges: 30,
-  dualOf: "dodecahedron",
+  element: "Fire",
+  chakra: "Solar Plexus",
+  faces: 4,
+  vertices: 4,
+  edges: 6,
+  dualOf: "tetrahedron",
   featured: true,
-  order: 5
+  order: 1
 }
 
-export default function IcosahedronPage() {
+export default function TetrahedronPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-16">
@@ -25,20 +26,20 @@ export default function IcosahedronPage() {
             {/* Text Content */}
             <Flex direction="column" gap="6" justify="center">
               <Heading size="9" className="text-amber-100">
-                The Icosahedron: Flow of Water
+                The Tetrahedron: Gateway of Fire
               </Heading>
 
               <Text size="5" className="text-blue-200">
-                The icosahedron embodies the element of Water—emotion, fluidity, and adaptability.
-                It is the shape of flow and transformation, rolling smoothly like water itself.
+                The tetrahedron is the first Platonic Solid, the simplest three-dimensional form that can exist.
+                Imagine consciousness taking its first step from the flat plane into depth—this is that moment crystallized.
               </Text>
             </Flex>
 
             {/* Hero Image */}
             <Box className="flex items-center justify-center">
               <Image
-                src="/images/geometries/platonic-solids/icosahedron/icosahedron-3d.svg"
-                alt="Icosahedron"
+                src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-3d.svg"
+                alt="Tetrahedron"
                 width={400}
                 height={400}
                 className="object-contain"
@@ -62,25 +63,25 @@ export default function IcosahedronPage() {
               </Box>
               <Box>
                 <Text weight="bold" className="text-amber-200">Dual:</Text>
-                <Text className="text-blue-200">Dodecahedron</Text>
+                <Text className="text-blue-200">Self-dual (Tetrahedron)</Text>
               </Box>
               <Box>
                 <Text weight="bold" className="text-amber-200">Order:</Text>
-                <Text className="text-blue-200">Fifth Solid</Text>
+                <Text className="text-blue-200">First Solid</Text>
               </Box>
             </Grid>
 
             <Text className="text-blue-200">
-              With twenty triangular faces, the icosahedron is the <strong>most spherical</strong>
-              of the Platonic Solids—approaching the perfect fluidity of a sphere. This quality
-              makes it the ideal representation of water. In sacred geometry, it symbolizes:
+              In the language of sacred geometry, the tetrahedron speaks of <strong>fire and transformation</strong>.
+              With only four faces, it represents the minimum number of surfaces needed to enclose space.
+              This makes it the foundation of all three-dimensional reality.
             </Text>
 
             <ul className="mt-4 space-y-2 text-blue-200">
-              <li>• <strong>Water and emotions</strong>, the flow of feeling</li>
-              <li>• <strong>The Sacral Chakra</strong>, center of creativity and emotion</li>
-              <li>• <strong>Transformation and adaptability</strong>, like water taking any shape</li>
-              <li>• <strong>Life force</strong> and the primordial waters of creation</li>
+              <li>• <strong>Fire and transformation</strong>, the spark of creation</li>
+              <li>• <strong>Stability through tension</strong>, like a tripod that never wobbles</li>
+              <li>• <strong>The Solar Plexus Chakra</strong>, our center of personal power</li>
+              <li>• <strong>The number 4</strong>, representing foundation and structure</li>
             </ul>
           </Card>
 
@@ -107,16 +108,15 @@ export default function IcosahedronPage() {
             </Grid>
 
             <Text className="text-blue-200 mb-4">
-              The icosahedron is the <strong>dual</strong> of the dodecahedron—where spirit
-              (dodecahedron) meets matter through emotion (icosahedron). Together they represent
-              the dance between consciousness and feeling, thought and sensation.
+              The tetrahedron embodies the principle of <strong>minimal complexity</strong>. With its 4 faces,
+              4 vertices, and 6 edges, it is the simplest possible polyhedron. Remarkably, it is
+              <strong> self-dual</strong>—its dual is another tetrahedron, rotated inside the original.
             </Text>
 
             <Text className="text-blue-200">
-              It has the greatest number of faces among the Platonic Solids, giving it the
-              largest surface area relative to its volume. This makes it <strong>the most
-              efficient for containing and moving</strong>—just like water molecules arranging
-              themselves for optimal flow.
+              Every vertex connects to every other vertex—a complete graph in three dimensions. This
+              represents total interconnection, where every point relates directly to all others.
+              No simpler structure can achieve this.
             </Text>
           </Card>
 
@@ -128,8 +128,8 @@ export default function IcosahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="w-full h-40 flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/icosahedron/icosahedron-solid.svg"
-                    alt="Icosahedron Solid"
+                    src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-solid.svg"
+                    alt="Tetrahedron Solid"
                     width={150}
                     height={150}
                     className="object-contain"
@@ -143,8 +143,8 @@ export default function IcosahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="w-full h-40 flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/icosahedron/icosahedron-wireframe.svg"
-                    alt="Icosahedron Wireframe"
+                    src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-wireframe.svg"
+                    alt="Tetrahedron Wireframe"
                     width={150}
                     height={150}
                     className="object-contain"
@@ -158,8 +158,8 @@ export default function IcosahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="w-full h-40 flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/icosahedron/icosahedron-net.svg"
-                    alt="Icosahedron Net"
+                    src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-net.svg"
+                    alt="Tetrahedron Net"
                     width={150}
                     height={150}
                     className="object-contain"
@@ -177,32 +177,31 @@ export default function IcosahedronPage() {
             <Heading size="6" className="text-amber-300 mb-4">In Nature and Culture</Heading>
 
             <Text className="text-blue-200 mb-4">
-              The icosahedral form appears throughout nature and science:
+              The tetrahedral form appears throughout nature and sacred traditions:
             </Text>
 
             <ul className="space-y-3 text-blue-200">
               <li>
-                <strong className="text-amber-300">Water Structure:</strong> Researchers have
-                found water molecules can form icosahedral clusters
+                <strong className="text-amber-300">Chemistry:</strong> The carbon atom in methane (CH₄)
+                forms a perfect tetrahedron
               </li>
               <li>
-                <strong className="text-amber-300">Geodesic Domes:</strong> Buckminster Fuller&apos;s
-                geodesic structures are based on icosahedral geometry
+                <strong className="text-amber-300">Crystals:</strong> Diamond&apos;s crystal structure
+                is based on tetrahedral geometry
               </li>
               <li>
-                <strong className="text-amber-300">Biology:</strong> Many viruses and radiolaria
-                (marine organisms) exhibit icosahedral symmetry
+                <strong className="text-amber-300">Engineering:</strong> The pyramid form provides
+                maximum strength with minimum material
               </li>
               <li>
-                <strong className="text-amber-300">Planetology:</strong> Some planetary features
-                and gravitational models use icosahedral grids
-              </li>
-              <li>
-                <strong className="text-amber-300">Gaming:</strong> The twenty-sided die (d20)
-                brings this sacred form into play
+                <strong className="text-amber-300">Symbolism:</strong> Represents the element of fire
+                in Greek philosophy—sharp, active, ascending
               </li>
             </ul>
           </Card>
+
+          {/* Navigation */}
+          <SolidNavigation currentSolid="tetrahedron" />
         </div>
       </div>
     </main>
