@@ -186,7 +186,7 @@ export default function IcosahedronPage() {
                 found water molecules can form icosahedral clusters
               </li>
               <li>
-                <strong className="text-amber-300">Geodesic Domes:</strong> Buckminster Fuller's
+                <strong className="text-amber-300">Geodesic Domes:</strong> Buckminster Fuller&apos;s
                 geodesic structures are based on icosahedral geometry
               </li>
               <li>

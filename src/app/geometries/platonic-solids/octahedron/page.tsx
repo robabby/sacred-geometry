@@ -176,7 +176,7 @@ export default function OctahedronPage() {
 
             <ul className="space-y-3 text-blue-200">
               <li>
-                <strong className="text-amber-300">Crystals:</strong> Diamond's crystal structure
+                <strong className="text-amber-300">Crystals:</strong> Diamond&apos;s crystal structure
                 is based on octahedral geometry
               </li>
               <li>
