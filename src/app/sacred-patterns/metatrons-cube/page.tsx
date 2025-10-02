@@ -35,7 +35,7 @@ export default function MetatronsCubePage() {
               All Five Platonic Solids Within
             </Heading>
             <Text className="text-blue-200 mb-4">
-              Metatron's Cube is derived from the Fruit of Life (13 circles from the Flower of Life). When you connect the centers of these 13 circles, you create a complex pattern containing all five Platonic Solids:
+              Metatron&apos;s Cube is derived from the Fruit of Life (13 circles from the Flower of Life). When you connect the centers of these 13 circles, you create a complex pattern containing all five Platonic Solids:
             </Text>
             <Grid columns={{ initial: "1", sm: "2" }} gap="4">
               <div>
@@ -71,7 +71,7 @@ export default function MetatronsCubePage() {
               The Complete Blueprint
             </Heading>
             <Text className="text-blue-200 mb-4">
-              Because Metatron's Cube contains all five Platonic Solids, and these solids were believed by ancient Greeks to be the building blocks of reality, this pattern is often called the blueprint of creation:
+              Because Metatron&apos;s Cube contains all five Platonic Solids, and these solids were believed by ancient Greeks to be the building blocks of reality, this pattern is often called the blueprint of creation:
             </Text>
             <ul className="space-y-3 text-blue-200">
               <li><strong className="text-amber-300">Physical Matter:</strong> All matter is built from atoms whose electron shells form these geometric shapes</li>
@@ -86,7 +86,7 @@ export default function MetatronsCubePage() {
               Sacred Protection
             </Heading>
             <Text className="text-blue-200">
-              Many spiritual traditions use Metatron's Cube as a protective symbol, believing it wards off negative energies. The completeness of the pattern—containing all the building blocks of creation—is thought to create a shield of divine geometry that maintains balance and harmony.
+              Many spiritual traditions use Metatron&apos;s Cube as a protective symbol, believing it wards off negative energies. The completeness of the pattern—containing all the building blocks of creation—is thought to create a shield of divine geometry that maintains balance and harmony.
             </Text>
           </Card>
         </div>

@@ -35,10 +35,10 @@ export default function MerkabaPage() {
               The Light Vehicle
             </Heading>
             <Text className="text-blue-200 mb-4">
-              The word "Merkaba" comes from ancient Egyptian, meaning "Mer" (light), "Ka" (spirit), and "Ba" (body). Together: the light spirit body—a vehicle for ascending or traveling between dimensions.
+              The word &quot;Merkaba&quot; comes from ancient Egyptian, meaning &quot;Mer&quot; (light), &quot;Ka&quot; (spirit), and &quot;Ba&quot; (body). Together: the light spirit body—a vehicle for ascending or traveling between dimensions.
             </Text>
             <Text className="text-blue-200">
-              In Hebrew, Merkavah means "chariot," referring to the divine throne-chariot of God described in Ezekiel's vision—a vehicle of light used to ascend to higher realms of consciousness.
+              In Hebrew, Merkavah means &quot;chariot,&quot; referring to the divine throne-chariot of God described in Ezekiel&apos;s vision—a vehicle of light used to ascend to higher realms of consciousness.
             </Text>
           </Card>
 
@@ -71,7 +71,7 @@ export default function MerkabaPage() {
               Activation & Meditation
             </Heading>
             <Text className="text-blue-200 mb-4">
-              Many spiritual traditions teach Merkaba meditation—a practice involving breath, visualization, and mudras (hand positions) to activate one's personal Merkaba field:
+              Many spiritual traditions teach Merkaba meditation—a practice involving breath, visualization, and mudras (hand positions) to activate one&apos;s personal Merkaba field:
             </Text>
             <ul className="space-y-3 text-blue-200">
               <li><strong className="text-amber-300">Breath:</strong> Specific breathing patterns to energize the field</li>
