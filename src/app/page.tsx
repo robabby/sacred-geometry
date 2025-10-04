@@ -6,7 +6,6 @@ import { ROUTES } from "@/util/routes";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 const platonicSolids = [
   {
@@ -141,47 +140,29 @@ export default function HomePage() {
               {platonicSolids.map((solid) => {
                 const Icon = solid.icon;
                 return (
-                  <HoverCard key={solid.name}>
-                    <HoverCardTrigger asChild>
-                      <Link href={solid.path}>
-                        <div className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border border-amber-500/20 rounded-lg p-3 sm:p-4 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
-                          <div className="flex flex-col items-center gap-2 sm:gap-3">
-                            <div className="w-full h-16 sm:h-24 flex items-center justify-center">
-                              <Image
-                                src={solid.image}
-                                alt={solid.name}
-                                width={60}
-                                height={60}
-                                className="object-contain sm:w-20 sm:h-20"
-                                style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
-                              />
-                            </div>
-                            <Icon className={`h-4 w-4 sm:h-5 sm:w-5 ${solid.color}`} />
-                            <Text className="text-[10px] sm:text-xs text-amber-200 font-medium text-center leading-tight">
-                              {solid.name}
-                            </Text>
-                            <Badge variant="secondary" className="text-[10px] sm:text-xs bg-blue-900/50 px-1.5 py-0.5">
-                              {solid.faces}
-                            </Badge>
-                          </div>
+                  <Link key={solid.name} href={solid.path}>
+                    <div className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border border-amber-500/20 rounded-lg p-3 sm:p-4 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
+                      <div className="flex flex-col items-center gap-2 sm:gap-3">
+                        <div className="w-full h-16 sm:h-24 flex items-center justify-center">
+                          <Image
+                            src={solid.image}
+                            alt={solid.name}
+                            width={60}
+                            height={60}
+                            className="object-contain sm:w-20 sm:h-20"
+                            style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                          />
                         </div>
-                      </Link>
-                    </HoverCardTrigger>
-                    <HoverCardContent className="w-64 sm:w-80 bg-blue-950/90 border-amber-500/30 backdrop-blur-xl">
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-semibold text-amber-300">{solid.name}</h4>
-                        <p className="text-xs text-blue-200">
-                          <strong>Element:</strong> {solid.element}
-                        </p>
-                        <p className="text-xs text-blue-200">
-                          <strong>Faces:</strong> {solid.faces} equilateral triangles or regular polygons
-                        </p>
-                        <p className="text-xs text-blue-300/80">
-                          Click to explore the {solid.name} in detail and learn about its sacred significance.
-                        </p>
+                        <Icon className={`h-4 w-4 sm:h-5 sm:w-5 ${solid.color}`} />
+                        <Text className="text-[10px] sm:text-xs text-amber-200 font-medium text-center leading-tight">
+                          {solid.name}
+                        </Text>
+                        <Badge variant="secondary" className="text-[10px] sm:text-xs bg-blue-900/50 px-1.5 py-0.5">
+                          {solid.element}
+                        </Badge>
                       </div>
-                    </HoverCardContent>
-                  </HoverCard>
+                    </div>
+                  </Link>
                 );
               })}
             </div>
@@ -206,113 +187,68 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 px-4 sm:px-0">
-              <HoverCard>
-                <HoverCardTrigger asChild>
-                  <Link href={ROUTES.sacredPatterns.children.flowerOfLife.path}>
-                    <div className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border border-amber-500/20 rounded-lg p-6 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
-                      <div className="flex flex-col items-center gap-4">
-                        <div className="w-full h-32 flex items-center justify-center">
-                          <Image
-                            src="/images/geometries/sacred-patterns/flower-of-life/flower-of-life-primary.svg"
-                            alt="Flower of Life"
-                            width={120}
-                            height={120}
-                            style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
-                          />
-                        </div>
-                        <Heading size="4" className="text-amber-200">Flower of Life</Heading>
-                        <Text size="2" className="text-blue-300 text-center">
-                          Ancient symbol encoding the fundamental forms of space and time
-                        </Text>
-                        <Badge className="bg-amber-500/20 text-amber-300">Universal Pattern</Badge>
-                      </div>
+              <Link href={ROUTES.sacredPatterns.children.flowerOfLife.path}>
+                <div className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border border-amber-500/20 rounded-lg p-6 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-full h-32 flex items-center justify-center">
+                      <Image
+                        src="/images/geometries/sacred-patterns/flower-of-life/flower-of-life-primary.svg"
+                        alt="Flower of Life"
+                        width={120}
+                        height={120}
+                        style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                      />
                     </div>
-                  </Link>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-80 bg-blue-950/90 border-amber-500/30 backdrop-blur-xl">
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-semibold text-amber-300">Flower of Life</h4>
-                    <p className="text-xs text-blue-200">
-                      <strong>Category:</strong> Universal Pattern
-                    </p>
-                    <p className="text-xs text-blue-300/80">
-                      {ROUTES.sacredPatterns.children.flowerOfLife.description}
-                    </p>
+                    <Heading size="4" className="text-amber-200">Flower of Life</Heading>
+                    <Text size="2" className="text-blue-300 text-center">
+                      Ancient symbol encoding the fundamental forms of space and time
+                    </Text>
+                    <Badge className="bg-amber-500/20 text-amber-300">Universal Pattern</Badge>
                   </div>
-                </HoverCardContent>
-              </HoverCard>
+                </div>
+              </Link>
 
-              <HoverCard>
-                <HoverCardTrigger asChild>
-                  <Link href={ROUTES.sacredPatterns.children.metatronsCube.path}>
-                    <div className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border border-amber-500/20 rounded-lg p-6 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
-                      <div className="flex flex-col items-center gap-4">
-                        <div className="w-full h-32 flex items-center justify-center">
-                          <Image
-                            src="/images/geometries/sacred-patterns/metatrons-cube/metatrons-cube-primary.svg"
-                            alt="Metatron's Cube"
-                            width={120}
-                            height={120}
-                            style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
-                          />
-                        </div>
-                        <Heading size="4" className="text-amber-200">Metatron&apos;s Cube</Heading>
-                        <Text size="2" className="text-blue-300 text-center">
-                          Contains all five Platonic Solids within its structure
-                        </Text>
-                        <Badge className="bg-amber-500/20 text-amber-300">Sacred Blueprint</Badge>
-                      </div>
+              <Link href={ROUTES.sacredPatterns.children.metatronsCube.path}>
+                <div className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border border-amber-500/20 rounded-lg p-6 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-full h-32 flex items-center justify-center">
+                      <Image
+                        src="/images/geometries/sacred-patterns/metatrons-cube/metatrons-cube-primary.svg"
+                        alt="Metatron's Cube"
+                        width={120}
+                        height={120}
+                        style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                      />
                     </div>
-                  </Link>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-80 bg-blue-950/90 border-amber-500/30 backdrop-blur-xl">
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-semibold text-amber-300">Metatron&apos;s Cube</h4>
-                    <p className="text-xs text-blue-200">
-                      <strong>Category:</strong> Sacred Blueprint
-                    </p>
-                    <p className="text-xs text-blue-300/80">
-                      {ROUTES.sacredPatterns.children.metatronsCube.description}
-                    </p>
+                    <Heading size="4" className="text-amber-200">Metatron&apos;s Cube</Heading>
+                    <Text size="2" className="text-blue-300 text-center">
+                      Contains all five Platonic Solids within its structure
+                    </Text>
+                    <Badge className="bg-amber-500/20 text-amber-300">Sacred Blueprint</Badge>
                   </div>
-                </HoverCardContent>
-              </HoverCard>
+                </div>
+              </Link>
 
-              <HoverCard>
-                <HoverCardTrigger asChild>
-                  <Link href={ROUTES.sacredPatterns.children.goldenRatio.path}>
-                    <div className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border border-amber-500/20 rounded-lg p-6 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
-                      <div className="flex flex-col items-center gap-4">
-                        <div className="w-full h-32 flex items-center justify-center">
-                          <Image
-                            src="/images/geometries/sacred-patterns/golden-ratio/golden-ratio-spiral.svg"
-                            alt="Golden Ratio"
-                            width={120}
-                            height={120}
-                            style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
-                          />
-                        </div>
-                        <Heading size="4" className="text-amber-200">Golden Ratio</Heading>
-                        <Text size="2" className="text-blue-300 text-center">
-                          Divine proportion (φ ≈ 1.618) found throughout nature
-                        </Text>
-                        <Badge className="bg-amber-500/20 text-amber-300">Divine Proportion</Badge>
-                      </div>
+              <Link href={ROUTES.sacredPatterns.children.goldenRatio.path}>
+                <div className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border border-amber-500/20 rounded-lg p-6 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-full h-32 flex items-center justify-center">
+                      <Image
+                        src="/images/geometries/sacred-patterns/golden-ratio/golden-ratio-spiral.svg"
+                        alt="Golden Ratio"
+                        width={120}
+                        height={120}
+                        style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                      />
                     </div>
-                  </Link>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-80 bg-blue-950/90 border-amber-500/30 backdrop-blur-xl">
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-semibold text-amber-300">Golden Ratio</h4>
-                    <p className="text-xs text-blue-200">
-                      <strong>Category:</strong> Divine Proportion
-                    </p>
-                    <p className="text-xs text-blue-300/80">
-                      {ROUTES.sacredPatterns.children.goldenRatio.description}
-                    </p>
+                    <Heading size="4" className="text-amber-200">Golden Ratio</Heading>
+                    <Text size="2" className="text-blue-300 text-center">
+                      Divine proportion (φ ≈ 1.618) found throughout nature
+                    </Text>
+                    <Badge className="bg-amber-500/20 text-amber-300">Divine Proportion</Badge>
                   </div>
-                </HoverCardContent>
-              </HoverCard>
+                </div>
+              </Link>
             </div>
 
             <div className="text-center mt-6 sm:mt-8 px-4">

@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Sparkles, Hexagon, Star, Triangle } from "lucide-react";
 import { ROUTES } from "@/util/routes";
 import { Badge } from "@/components/ui/badge";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Card } from "@/components/ui/card";
 
 const sacredPatterns = [
@@ -82,64 +81,46 @@ export default function SacredPatternsPage() {
           {sacredPatterns.map((pattern) => {
             const Icon = pattern.icon;
             return (
-              <HoverCard key={pattern.route.path}>
-                <HoverCardTrigger asChild>
-                  <Link href={pattern.route.path}>
-                    <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 backdrop-blur-sm border-amber-500/20 p-6 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
-                      <div className="flex flex-col gap-4">
-                        {/* Image */}
-                        <div className="relative w-full h-48 flex items-center justify-center">
-                          <Image
-                            src={pattern.image}
-                            alt={pattern.route.name}
-                            width={180}
-                            height={180}
-                            className="object-contain"
-                            style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
-                          />
-                        </div>
+              <Link key={pattern.route.path} href={pattern.route.path}>
+                <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 backdrop-blur-sm border-amber-500/20 p-6 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
+                  <div className="flex flex-col gap-4">
+                    {/* Image */}
+                    <div className="relative w-full h-48 flex items-center justify-center">
+                      <Image
+                        src={pattern.image}
+                        alt={pattern.route.name}
+                        width={180}
+                        height={180}
+                        className="object-contain"
+                        style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                      />
+                    </div>
 
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <Icon className={`h-5 w-5 ${pattern.color}`} />
-                            <Heading size="5" className="text-amber-100">
-                              {pattern.route.name}
-                            </Heading>
-                          </div>
-                        </div>
-
-                        <div className="flex gap-2 flex-wrap">
-                          <Badge variant="secondary" className="bg-amber-500/20 text-amber-300 border-amber-500/30">
-                            {pattern.category}
-                          </Badge>
-                        </div>
-
-                        <Text size="2" className="text-blue-300 flex-grow">
-                          {pattern.route.description}
-                        </Text>
-
-                        <div className="text-amber-300 text-sm font-medium hover:text-amber-400 transition-colors">
-                          Explore →
-                        </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Icon className={`h-5 w-5 ${pattern.color}`} />
+                        <Heading size="5" className="text-amber-100">
+                          {pattern.route.name}
+                        </Heading>
                       </div>
-                    </Card>
-                  </Link>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-80 bg-blue-950/90 border-amber-500/30 backdrop-blur-xl">
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-semibold text-amber-300">{pattern.route.name}</h4>
-                    <p className="text-xs text-blue-200">
-                      <strong>Category:</strong> {pattern.category}
-                    </p>
-                    <p className="text-xs text-blue-300/80">
+                    </div>
+
+                    <div className="flex gap-2 flex-wrap">
+                      <Badge variant="secondary" className="bg-amber-500/20 text-amber-300 border-amber-500/30">
+                        {pattern.category}
+                      </Badge>
+                    </div>
+
+                    <Text size="2" className="text-blue-300 flex-grow">
                       {pattern.route.description}
-                    </p>
-                    <p className="text-xs text-blue-400 italic mt-2">
-                      Click to explore this pattern in detail
-                    </p>
+                    </Text>
+
+                    <div className="text-amber-300 text-sm font-medium hover:text-amber-400 transition-colors">
+                      Explore →
+                    </div>
                   </div>
-                </HoverCardContent>
-              </HoverCard>
+                </Card>
+              </Link>
             );
           })}
         </div>
