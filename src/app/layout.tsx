@@ -6,6 +6,7 @@ import { Geist } from "next/font/google";
 import { type Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
 import { Header } from "@/components/header";
+import { SkipToContent } from "@/components/skip-to-content";
 
 export const metadata: Metadata = {
   title: "Sacred Geometry",
@@ -24,9 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body>
+        <SkipToContent />
         <Theme appearance="dark">
           <Header />
-          {children}
+          <main id="main-content">{children}</main>
         </Theme>
       </body>
       <Analytics />
