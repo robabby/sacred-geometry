@@ -50,25 +50,25 @@ export default function DodecahedronPage() {
 
           {/* Sacred Significance */}
           <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 mb-8">
-            <Heading size="6" className="text-amber-300 mb-4">Sacred Significance</Heading>
+            <Heading size="6" className="text-amber-300 mb-6">Sacred Significance</Heading>
 
-            <Grid columns="2" gap="4" className="mb-6">
-              <Box>
-                <Text weight="bold" className="text-amber-200">Element:</Text>
-                <Text className="text-blue-200">{DATA.element}</Text>
-              </Box>
-              <Box>
-                <Text weight="bold" className="text-amber-200">Chakra:</Text>
-                <Text className="text-blue-200">{DATA.chakra}</Text>
-              </Box>
-              <Box>
-                <Text weight="bold" className="text-amber-200">Dual:</Text>
-                <Text className="text-blue-200">Icosahedron</Text>
-              </Box>
-              <Box>
-                <Text weight="bold" className="text-amber-200">Order:</Text>
-                <Text className="text-blue-200">Fourth Solid</Text>
-              </Box>
+            <Grid columns={{ initial: "1", sm: "2" }} gap="6" className="mb-8">
+              <Flex direction="column" gap="2">
+                <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Element</Text>
+                <Text size="5" className="text-blue-200">{DATA.element}</Text>
+              </Flex>
+              <Flex direction="column" gap="2">
+                <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Chakra</Text>
+                <Text size="5" className="text-blue-200">{DATA.chakra}</Text>
+              </Flex>
+              <Flex direction="column" gap="2">
+                <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Dual</Text>
+                <Text size="5" className="text-blue-200">Icosahedron</Text>
+              </Flex>
+              <Flex direction="column" gap="2">
+                <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Order</Text>
+                <Text size="5" className="text-blue-200">Fourth Solid</Text>
+              </Flex>
             </Grid>
 
             <Text className="text-blue-200">
@@ -87,24 +87,24 @@ export default function DodecahedronPage() {
 
           {/* Mathematical Properties */}
           <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 mb-8">
-            <Heading size="6" className="text-amber-300 mb-4">Mathematical Properties</Heading>
+            <Heading size="6" className="text-amber-300 mb-6">Mathematical Properties</Heading>
 
-            <Grid columns="3" gap="6" className="mb-6">
-              <Box className="text-center">
+            <Grid columns={{ initial: "1", sm: "3" }} gap="8" className="mb-8">
+              <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">{DATA.faces}</Text>
-                <Text className="text-blue-200">Faces</Text>
-                <Text size="1" className="text-blue-300">Pentagonal</Text>
-              </Box>
-              <Box className="text-center">
+                <Text size="4" weight="medium" className="text-blue-200">Faces</Text>
+                <Text size="2" className="text-blue-300">Pentagonal</Text>
+              </Flex>
+              <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">{DATA.vertices}</Text>
-                <Text className="text-blue-200">Vertices</Text>
-                <Text size="1" className="text-blue-300">Corners</Text>
-              </Box>
-              <Box className="text-center">
+                <Text size="4" weight="medium" className="text-blue-200">Vertices</Text>
+                <Text size="2" className="text-blue-300">Corners</Text>
+              </Flex>
+              <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">{DATA.edges}</Text>
-                <Text className="text-blue-200">Edges</Text>
-                <Text size="1" className="text-blue-300">Lines</Text>
-              </Box>
+                <Text size="4" weight="medium" className="text-blue-200">Edges</Text>
+                <Text size="2" className="text-blue-300">Lines</Text>
+              </Flex>
             </Grid>
 
             <Text className="text-blue-200 mb-4">
@@ -123,17 +123,17 @@ export default function DodecahedronPage() {
 
           {/* Visual Representations */}
           <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 mb-8">
-            <Heading size="6" className="text-amber-300 mb-6">Visual Representations</Heading>
+            <Heading mb="6" size="6" className="text-amber-300">Visual Representations</Heading>
 
             <Grid columns={{ initial: "1", md: "3" }} gap="6">
               <Flex direction="column" gap="3" align="center">
-                <Box className="w-full h-40 flex items-center justify-center">
+                <Box className="flex items-center justify-center">
                   <Image
                     src="/images/geometries/platonic-solids/dodecahedron/dodecahedron-primary.svg"
                     alt="Dodecahedron Solid"
                     width={150}
                     height={150}
-                    className="object-contain"
+                    className="h-40 object-contain mx-auto"
                     style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
                   />
                 </Box>
@@ -142,13 +142,13 @@ export default function DodecahedronPage() {
               </Flex>
 
               <Flex direction="column" gap="3" align="center">
-                <Box className="w-full h-40 flex items-center justify-center">
+                <Box className="flex items-center justify-center">
                   <Image
                     src="/images/geometries/platonic-solids/dodecahedron/dodecahedron-wireframe.svg"
                     alt="Dodecahedron Wireframe"
                     width={150}
                     height={150}
-                    className="object-contain"
+                    className="h-40 object-contain mx-auto"
                     style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
                   />
                 </Box>
@@ -157,13 +157,13 @@ export default function DodecahedronPage() {
               </Flex>
 
               <Flex direction="column" gap="3" align="center">
-                <Box className="w-full h-40 flex items-center justify-center">
+                <Box className="flex items-center justify-center">
                   <Image
                     src="/images/geometries/platonic-solids/dodecahedron/dodecahedron-net.svg"
                     alt="Dodecahedron Net"
                     width={150}
                     height={150}
-                    className="object-contain"
+                    className="h-40 object-contain mx-auto"
                     style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
                   />
                 </Box>
