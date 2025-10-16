@@ -5,13 +5,22 @@ import { SolidNavigation } from "@/components/solid-navigation";
 const DATA = {
   name: "Octahedron",
   slug: "octahedron",
+  title: "The Octahedron: Breath of Air",
+  description:
+    "The octahedron embodies the element of Air—intellect, communication, and the breath of life. It represents perfect balance between the material and the ethereal.",
+  heroImage: "/images/geometries/platonic-solids/octahedron/octahedron-3d.svg",
+  solidImage: "/images/geometries/platonic-solids/octahedron/octahedron-solid.svg",
+  wireframeImage: "/images/geometries/platonic-solids/octahedron/octahedron-primary.svg",
+  netImage: "/images/geometries/platonic-solids/octahedron/octahedron-net.svg",
   category: "platonic-solids",
   element: "Air",
   chakra: "Heart",
   faces: 8,
+  faceShape: "Triangular",
   vertices: 6,
   edges: 12,
   dualOf: "hexahedron",
+  dualOfTitle: "Cube (Hexahedron)",
   featured: true,
   order: 3
 }
@@ -26,31 +35,31 @@ export default function OctahedronPage() {
             {/* Text Content */}
             <Flex direction="column" gap="6" justify="center">
               <Heading size="9" className="text-amber-100">
-                The Octahedron: Breath of Air
+                {DATA.title}
               </Heading>
 
               <Text size="5" className="text-blue-200">
-                The octahedron embodies the element of Air—intellect, communication, and the breath
-                of life. It represents perfect balance between the material and the ethereal.
+                {DATA.description}
               </Text>
             </Flex>
 
             {/* Hero Image */}
             <Box className="flex items-center justify-center">
               <Image
-                src="/images/geometries/platonic-solids/octahedron/octahedron-3d.svg"
-                alt="Octahedron"
+                src={DATA.heroImage}
+                alt={DATA.name}
                 width={400}
                 height={400}
                 className="object-contain"
-                style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                style={{ 
+                  filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                }}
               />
             </Box>
           </Grid>
 
-          {/* Sacred Significance */}
           <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 mb-8">
-            <Heading size="6" className="text-amber-300 mb-6">Sacred Significance</Heading>
+            <Heading size="6" className="text-amber-300 mb-6">Symbolic Properties</Heading>
 
             <Grid columns={{ initial: "1", sm: "2" }} gap="6" className="mb-8">
               <Flex direction="column" gap="2">
@@ -63,7 +72,7 @@ export default function OctahedronPage() {
               </Flex>
               <Flex direction="column" gap="2">
                 <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Dual</Text>
-                <Text size="5" className="text-blue-200">Cube (Hexahedron)</Text>
+                <Text size="5" className="text-blue-200">{DATA.dualOfTitle}</Text>
               </Flex>
               <Flex direction="column" gap="2">
                 <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Order</Text>
@@ -93,7 +102,7 @@ export default function OctahedronPage() {
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">{DATA.faces}</Text>
                 <Text size="4" weight="medium" className="text-blue-200">Faces</Text>
-                <Text size="2" className="text-blue-300">Triangular</Text>
+                <Text size="2" className="text-blue-300">{DATA.faceShape}</Text>
               </Flex>
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">{DATA.vertices}</Text>
@@ -123,12 +132,14 @@ export default function OctahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/octahedron/octahedron-solid.svg"
+                    src={DATA.solidImage}
                     alt="Octahedron Solid"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Solid View</Text>
@@ -138,12 +149,14 @@ export default function OctahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/octahedron/octahedron-primary.svg"
+                    src={DATA.wireframeImage}
                     alt="Octahedron Wireframe"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Wireframe</Text>
@@ -153,12 +166,14 @@ export default function OctahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/octahedron/octahedron-net.svg"
+                    src={DATA.netImage}
                     alt="Octahedron Net"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)"
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Unfolded Net</Text>
@@ -196,7 +211,7 @@ export default function OctahedronPage() {
           </Card>
 
           {/* Navigation */}
-          <SolidNavigation currentSolid="octahedron" />
+          <SolidNavigation currentSolid={DATA.slug} />
         </div>
       </div>
     </main>
