@@ -12,7 +12,7 @@ const solidsOrder = [
 ];
 
 interface SolidNavigationProps {
-  currentSolid: "tetrahedron" | "hexahedron" | "octahedron" | "dodecahedron" | "icosahedron";
+  currentSolid: string;
 }
 
 export function SolidNavigation({ currentSolid }: SolidNavigationProps) {

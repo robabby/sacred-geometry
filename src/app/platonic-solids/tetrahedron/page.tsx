@@ -5,6 +5,13 @@ import { SolidNavigation } from "@/components/solid-navigation";
 const DATA = {
   name: "Tetrahedron",
   slug: "tetrahedron",
+  title: "The Tetrahedron: Gateway of Fire",
+  description:
+    "The tetrahedron is the first Platonic Solid, the simplest three-dimensional form that can exist. It represents fire, transformation, and the spark of creation.",
+  heroImage: "/images/geometries/platonic-solids/tetrahedron/tetrahedron-3d.svg",
+  solidImage: "/images/geometries/platonic-solids/tetrahedron/tetrahedron-solid.svg",
+  wireframeImage: "/images/geometries/platonic-solids/tetrahedron/tetrahedron-wireframe.svg",
+  netImage: "/images/geometries/platonic-solids/tetrahedron/tetrahedron-net.svg",
   category: "platonic-solids",
   element: "Fire",
   chakra: "Solar Plexus",
@@ -12,6 +19,7 @@ const DATA = {
   vertices: 4,
   edges: 6,
   dualOf: "tetrahedron",
+  dualOfTitle: "Self-dual (Tetrahedron)",
   featured: true,
   order: 1
 }
@@ -26,31 +34,31 @@ export default function TetrahedronPage() {
             {/* Text Content */}
             <Flex direction="column" gap="6" justify="center">
               <Heading size="9" className="text-amber-100">
-                The Tetrahedron: Gateway of Fire
+                {DATA.title}
               </Heading>
 
               <Text size="5" className="text-blue-200">
-                The tetrahedron is the first Platonic Solid, the simplest three-dimensional form that can exist.
-                Imagine consciousness taking its first step from the flat plane into depth—this is that moment crystallized.
+                {DATA.description}
               </Text>
             </Flex>
 
             {/* Hero Image */}
             <Box className="flex items-center justify-center">
               <Image
-                src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-3d.svg"
-                alt="Tetrahedron"
+                src={DATA.heroImage}
+                alt={DATA.title}
                 width={400}
                 height={400}
                 className="object-contain"
-                style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                style={{ 
+                  filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                }}
               />
             </Box>
           </Grid>
 
-          {/* Sacred Significance */}
           <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 mb-8">
-            <Heading size="6" className="text-amber-300 mb-6">Sacred Significance</Heading>
+            <Heading size="6" className="text-amber-300 mb-6">Symbolic Properties</Heading>
 
             <Grid columns={{ initial: "1", sm: "2" }} gap="6" className="mb-8">
               <Flex direction="column" gap="2">
@@ -63,7 +71,7 @@ export default function TetrahedronPage() {
               </Flex>
               <Flex direction="column" gap="2">
                 <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Dual</Text>
-                <Text size="5" className="text-blue-200">Self-dual (Tetrahedron)</Text>
+                <Text size="5" className="text-blue-200">{DATA.dualOfTitle}</Text>
               </Flex>
               <Flex direction="column" gap="2">
                 <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Order</Text>
@@ -128,12 +136,14 @@ export default function TetrahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-solid.svg"
+                    src={DATA.solidImage}
                     alt="Tetrahedron Solid"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Solid View</Text>
@@ -143,12 +153,14 @@ export default function TetrahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-wireframe.svg"
+                    src={DATA.wireframeImage}
                     alt="Tetrahedron Wireframe"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Wireframe</Text>
@@ -158,12 +170,14 @@ export default function TetrahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/tetrahedron/tetrahedron-net.svg"
+                    src={DATA.netImage}
                     alt="Tetrahedron Net"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Unfolded Net</Text>
@@ -201,7 +215,7 @@ export default function TetrahedronPage() {
           </Card>
 
           {/* Navigation */}
-          <SolidNavigation currentSolid="tetrahedron" />
+          <SolidNavigation currentSolid={DATA.slug} />
         </div>
       </div>
     </main>

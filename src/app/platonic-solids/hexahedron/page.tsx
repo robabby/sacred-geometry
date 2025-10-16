@@ -5,6 +5,12 @@ import { SolidNavigation } from "@/components/solid-navigation";
 const DATA = {
   name: "Hexahedron (Cube)",
   slug: "hexahedron",
+  title: "The Hexahedron: Foundation of Earth",
+  description: "The hexahedron, commonly known as the cube, represents the element of Earth—stability, structure, and the material world. It is the most grounded of all Platonic Solids.",
+  heroImage: "/images/geometries/platonic-solids/hexahedron/hexahedron-3d.svg",
+  solidImage: "/images/geometries/platonic-solids/hexahedron/hexahedron-solid.svg",
+  wireframeImage: "/images/geometries/platonic-solids/hexahedron/hexahedron-wireframe.svg",
+  netImage: "/images/geometries/platonic-solids/hexahedron/hexahedron-net.svg",
   category: "platonic-solids",
   element: "Earth",
   chakra: "Root",
@@ -12,6 +18,7 @@ const DATA = {
   vertices: 8,
   edges: 12,
   dualOf: "octahedron",
+  dualOfTitle: "Octahedron",
   featured: true,
   order: 2
 }
@@ -26,31 +33,32 @@ export default function HexahedronPage() {
             {/* Text Content */}
             <Flex direction="column" gap="6" justify="center">
               <Heading size="9" className="text-amber-100">
-                The Hexahedron: Foundation of Earth
+                {DATA.title}
               </Heading>
 
               <Text size="5" className="text-blue-200">
-                The hexahedron, commonly known as the cube, represents the element of Earth—stability,
-                structure, and the material world. It is the most grounded of all Platonic Solids.
+                {DATA.description}
               </Text>
             </Flex>
 
             {/* Hero Image */}
             <Box className="flex items-center justify-center">
               <Image
-                src="/images/geometries/platonic-solids/hexahedron/hexahedron-3d.svg"
-                alt="Hexahedron (Cube)"
+                src={DATA.heroImage}
+                alt={DATA.title}
                 width={400}
                 height={400}
                 className="object-contain"
-                style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                style={{ 
+                  filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                }}
               />
             </Box>
           </Grid>
 
           {/* Sacred Significance */}
           <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 mb-8">
-            <Heading size="6" className="text-amber-300 mb-6">Sacred Significance</Heading>
+            <Heading size="6" className="text-amber-300 mb-6">Symbolic Properties</Heading>
 
             <Grid columns={{ initial: "1", sm: "2" }} gap="6" className="mb-8">
               <Flex direction="column" gap="2">
@@ -63,7 +71,7 @@ export default function HexahedronPage() {
               </Flex>
               <Flex direction="column" gap="2">
                 <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Dual</Text>
-                <Text size="5" className="text-blue-200">Octahedron</Text>
+                <Text size="5" className="text-blue-200">{DATA.dualOfTitle}</Text>
               </Flex>
               <Flex direction="column" gap="2">
                 <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Order</Text>
@@ -123,12 +131,14 @@ export default function HexahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/hexahedron/hexahedron-solid.svg"
+                    src={DATA.solidImage}
                     alt="Hexahedron Solid"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Solid View</Text>
@@ -138,12 +148,14 @@ export default function HexahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/hexahedron/hexahedron-wireframe.svg"
+                    src={DATA.wireframeImage}
                     alt="Hexahedron Wireframe"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Wireframe</Text>
@@ -153,12 +165,14 @@ export default function HexahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/hexahedron/hexahedron-net.svg"
+                    src={DATA.netImage}
                     alt="Hexahedron Net"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Unfolded Net</Text>
@@ -196,7 +210,7 @@ export default function HexahedronPage() {
           </Card>
 
           {/* Navigation */}
-          <SolidNavigation currentSolid="hexahedron" />
+          <SolidNavigation currentSolid={DATA.slug} />
         </div>
       </div>
     </main>

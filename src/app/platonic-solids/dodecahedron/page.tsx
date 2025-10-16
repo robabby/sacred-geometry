@@ -5,6 +5,12 @@ import { SolidNavigation } from "@/components/solid-navigation";
 const DATA = {
   name: "Dodecahedron",
   slug: "dodecahedron",
+  title: "The Dodecahedron: Gateway to Spirit",
+  description: "The dodecahedron represents Ether—the fifth element beyond the physical four. It is the shape of the cosmos itself, embodying the universe and higher consciousness.",
+  heroImage: "/images/geometries/platonic-solids/dodecahedron/dodecahedron-3d.svg",
+  solidImage: "/images/geometries/platonic-solids/dodecahedron/dodecahedron-primary.svg",
+  wireframeImage: "/images/geometries/platonic-solids/dodecahedron/dodecahedron-wireframe.svg",
+  netImage: "/images/geometries/platonic-solids/dodecahedron/dodecahedron-net.svg",
   category: "platonic-solids",
   element: "Ether/Spirit",
   chakra: "Crown",
@@ -12,6 +18,7 @@ const DATA = {
   vertices: 20,
   edges: 30,
   dualOf: "icosahedron",
+  dualOfTitle: "Icosahedron",
   featured: true,
   order: 4
 }
@@ -26,31 +33,32 @@ export default function DodecahedronPage() {
             {/* Text Content */}
             <Flex direction="column" gap="6" justify="center">
               <Heading size="9" className="text-amber-100">
-                The Dodecahedron: Gateway to Spirit
+                {DATA.title}
               </Heading>
 
               <Text size="5" className="text-blue-200">
-                The dodecahedron represents Ether—the fifth element beyond the physical four.
-                It is the shape of the cosmos itself, embodying the universe and higher consciousness.
+                {DATA.description}
               </Text>
             </Flex>
 
             {/* Hero Image */}
             <Box className="flex items-center justify-center">
               <Image
-                src="/images/geometries/platonic-solids/dodecahedron/dodecahedron-3d.svg"
-                alt="Dodecahedron"
+                src={DATA.heroImage}
+                alt={DATA.title}
                 width={400}
                 height={400}
                 className="object-contain"
-                style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                style={{ 
+                  filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                }}
               />
             </Box>
           </Grid>
 
           {/* Sacred Significance */}
           <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 mb-8">
-            <Heading size="6" className="text-amber-300 mb-6">Sacred Significance</Heading>
+            <Heading size="6" className="text-amber-300 mb-6">Symbolic Properties</Heading>
 
             <Grid columns={{ initial: "1", sm: "2" }} gap="6" className="mb-8">
               <Flex direction="column" gap="2">
@@ -63,7 +71,7 @@ export default function DodecahedronPage() {
               </Flex>
               <Flex direction="column" gap="2">
                 <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Dual</Text>
-                <Text size="5" className="text-blue-200">Icosahedron</Text>
+                <Text size="5" className="text-blue-200">{DATA.dualOfTitle}</Text>
               </Flex>
               <Flex direction="column" gap="2">
                 <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Order</Text>
@@ -129,12 +137,14 @@ export default function DodecahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/dodecahedron/dodecahedron-primary.svg"
+                    src={DATA.solidImage}
                     alt="Dodecahedron Solid"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Solid View</Text>
@@ -144,12 +154,14 @@ export default function DodecahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/dodecahedron/dodecahedron-wireframe.svg"
+                    src={DATA.wireframeImage}
                     alt="Dodecahedron Wireframe"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Wireframe</Text>
@@ -159,12 +171,14 @@ export default function DodecahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src="/images/geometries/platonic-solids/dodecahedron/dodecahedron-net.svg"
+                    src={DATA.netImage}
                     alt="Dodecahedron Net"
                     width={150}
                     height={150}
                     className="h-40 object-contain mx-auto"
-                    style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                    style={{ 
+                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    }}
                   />
                 </Box>
                 <Text weight="bold" className="text-amber-200">Unfolded Net</Text>
@@ -206,7 +220,7 @@ export default function DodecahedronPage() {
           </Card>
 
           {/* Navigation */}
-          <SolidNavigation currentSolid="dodecahedron" />
+          <SolidNavigation currentSolid={DATA.slug} />
         </div>
       </div>
     </main>
