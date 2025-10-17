@@ -29,7 +29,10 @@ console.log("Flower of Life:", flowerOfLife);
 
 // Get all Platonic Solids
 const platonicSolids = getPlatonicSolids();
-console.log("Platonic Solids:", platonicSolids.map((g) => g.name));
+console.log(
+  "Platonic Solids:",
+  platonicSolids.map((g) => g.name)
+);
 
 // ============================================================================
 // Duality Relationships
@@ -67,7 +70,10 @@ console.log(
 
 // Get all geometries associated with fire
 const fireGeometries = getGeometriesByElement("fire");
-console.log("Fire geometries:", fireGeometries.map((g) => g.name));
+console.log(
+  "Fire geometries:",
+  fireGeometries.map((g) => g.name)
+);
 
 // Get all element associations for Platonic solids
 const elementMap = platonicSolids.reduce(
@@ -87,11 +93,17 @@ console.log("Element associations:", elementMap);
 
 // Search for geometries related to creation
 const creationGeometries = searchGeometries("creation");
-console.log("Creation-related:", creationGeometries.map((g) => g.name));
+console.log(
+  "Creation-related:",
+  creationGeometries.map((g) => g.name)
+);
 
 // Search for geometries with "circles" in properties
 const circleGeometries = searchGeometries("circles");
-console.log("Circle-based:", circleGeometries.map((g) => g.name));
+console.log(
+  "Circle-based:",
+  circleGeometries.map((g) => g.name)
+);
 
 // ============================================================================
 // Building a Relationship Graph
@@ -122,10 +134,7 @@ console.log("Merkaba relationship graph:", merkabaGraph);
 // Finding Connections Between Geometries
 // ============================================================================
 
-function findConnections(
-  geometry1Id: string,
-  geometry2Id: string
-): string[] {
+function findConnections(geometry1Id: string, geometry2Id: string): string[] {
   const connections: string[] = [];
 
   const g1 = getGeometryById(geometry1Id);
@@ -233,4 +242,7 @@ function GeometryPage({ params }: GeometryPageProps) {
 }
 
 // Example usage
-console.log("Example page for tetrahedron:", GeometryPage({ params: { slug: "tetrahedron" } }));
+console.log(
+  "Example page for tetrahedron:",
+  GeometryPage({ params: { slug: "tetrahedron" } })
+);

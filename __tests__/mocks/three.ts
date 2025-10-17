@@ -51,7 +51,7 @@ export class PerspectiveCamera extends Object3D {
     public fov: number,
     public aspect: number,
     public near: number,
-    public far: number,
+    public far: number
   ) {
     super();
   }
@@ -79,13 +79,19 @@ export class Material {
 export class MeshStandardMaterial extends Material {}
 
 export class LineSegments extends Object3D {
-  constructor(public geometry: BufferGeometry, public material: Material) {
+  constructor(
+    public geometry: BufferGeometry,
+    public material: Material
+  ) {
     super();
   }
 }
 
 export class Mesh extends Object3D {
-  constructor(public geometry?: BufferGeometry, public material?: Material) {
+  constructor(
+    public geometry?: BufferGeometry,
+    public material?: Material
+  ) {
     super();
   }
 }

@@ -6,10 +6,13 @@ const DATA = {
   name: "Hexahedron (Cube)",
   slug: "hexahedron",
   title: "The Hexahedron: Foundation of Earth",
-  description: "The hexahedron, commonly known as the cube, represents the element of Earth—stability, structure, and the material world. It is the most grounded of all Platonic Solids.",
+  description:
+    "The hexahedron, commonly known as the cube, represents the element of Earth—stability, structure, and the material world. It is the most grounded of all Platonic Solids.",
   heroImage: "/images/geometries/platonic-solids/hexahedron/hexahedron-3d.svg",
-  solidImage: "/images/geometries/platonic-solids/hexahedron/hexahedron-solid.svg",
-  wireframeImage: "/images/geometries/platonic-solids/hexahedron/hexahedron-wireframe.svg",
+  solidImage:
+    "/images/geometries/platonic-solids/hexahedron/hexahedron-solid.svg",
+  wireframeImage:
+    "/images/geometries/platonic-solids/hexahedron/hexahedron-wireframe.svg",
   netImage: "/images/geometries/platonic-solids/hexahedron/hexahedron-net.svg",
   category: "platonic-solids",
   element: "Earth",
@@ -20,14 +23,14 @@ const DATA = {
   dualOf: "octahedron",
   dualOfTitle: "Octahedron",
   featured: true,
-  order: 2
-}
+  order: 2,
+};
 
 export default function HexahedronPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
+        <div className="mx-auto max-w-6xl">
           {/* Header with Image */}
           <Grid columns={{ initial: "1", md: "2" }} gap="8" className="mb-12">
             {/* Text Content */}
@@ -49,83 +52,148 @@ export default function HexahedronPage() {
                 width={400}
                 height={400}
                 className="object-contain"
-                style={{ 
-                  filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                style={{
+                  filter:
+                    "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
                 }}
               />
             </Box>
           </Grid>
 
           {/* Sacred Significance */}
-          <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 mb-8">
-            <Heading size="6" className="text-amber-300 mb-6">Symbolic Properties</Heading>
+          <Card className="mb-8 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
+            <Heading size="6" className="mb-6 text-amber-300">
+              Symbolic Properties
+            </Heading>
 
             <Grid columns={{ initial: "1", sm: "2" }} gap="6" className="mb-8">
               <Flex direction="column" gap="2">
-                <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Element</Text>
-                <Text size="5" className="text-blue-200">{DATA.element}</Text>
+                <Text
+                  weight="bold"
+                  className="text-sm tracking-wide text-amber-200 uppercase"
+                >
+                  Element
+                </Text>
+                <Text size="5" className="text-blue-200">
+                  {DATA.element}
+                </Text>
               </Flex>
               <Flex direction="column" gap="2">
-                <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Chakra</Text>
-                <Text size="5" className="text-blue-200">{DATA.chakra}</Text>
+                <Text
+                  weight="bold"
+                  className="text-sm tracking-wide text-amber-200 uppercase"
+                >
+                  Chakra
+                </Text>
+                <Text size="5" className="text-blue-200">
+                  {DATA.chakra}
+                </Text>
               </Flex>
               <Flex direction="column" gap="2">
-                <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Dual</Text>
-                <Text size="5" className="text-blue-200">{DATA.dualOfTitle}</Text>
+                <Text
+                  weight="bold"
+                  className="text-sm tracking-wide text-amber-200 uppercase"
+                >
+                  Dual
+                </Text>
+                <Text size="5" className="text-blue-200">
+                  {DATA.dualOfTitle}
+                </Text>
               </Flex>
               <Flex direction="column" gap="2">
-                <Text weight="bold" className="text-amber-200 text-sm uppercase tracking-wide">Order</Text>
-                <Text size="5" className="text-blue-200">Second Solid</Text>
+                <Text
+                  weight="bold"
+                  className="text-sm tracking-wide text-amber-200 uppercase"
+                >
+                  Order
+                </Text>
+                <Text size="5" className="text-blue-200">
+                  Second Solid
+                </Text>
               </Flex>
             </Grid>
 
             <Text className="text-blue-200">
-              The cube embodies the principle of <strong>stability through right angles</strong>.
-              Its six square faces represent the six directions of space—up, down, left, right,
+              The cube embodies the principle of{" "}
+              <strong>stability through right angles</strong>. Its six square
+              faces represent the six directions of space—up, down, left, right,
               forward, and backward. In sacred geometry, it symbolizes:
             </Text>
 
             <ul className="mt-4 space-y-2 text-blue-200">
-              <li>• <strong>Material reality</strong> and physical manifestation</li>
-              <li>• <strong>Grounding and stability</strong>, like the foundation of a building</li>
-              <li>• <strong>The Root Chakra</strong>, our connection to Earth and security</li>
-              <li>• <strong>The four elements</strong> plus above and below</li>
+              <li>
+                • <strong>Material reality</strong> and physical manifestation
+              </li>
+              <li>
+                • <strong>Grounding and stability</strong>, like the foundation
+                of a building
+              </li>
+              <li>
+                • <strong>The Root Chakra</strong>, our connection to Earth and
+                security
+              </li>
+              <li>
+                • <strong>The four elements</strong> plus above and below
+              </li>
             </ul>
           </Card>
 
           {/* Mathematical Properties */}
-          <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 mb-8">
-            <Heading size="6" className="text-amber-300 mb-6">Mathematical Properties</Heading>
+          <Card className="mb-8 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
+            <Heading size="6" className="mb-6 text-amber-300">
+              Mathematical Properties
+            </Heading>
 
             <Grid columns={{ initial: "1", sm: "3" }} gap="8" className="mb-8">
               <Flex direction="column" gap="3" align="center" className="p-4">
-                <Text size="8" weight="bold" className="text-amber-400">{DATA.faces}</Text>
-                <Text size="4" weight="medium" className="text-blue-200">Faces</Text>
-                <Text size="2" className="text-blue-300">Square</Text>
+                <Text size="8" weight="bold" className="text-amber-400">
+                  {DATA.faces}
+                </Text>
+                <Text size="4" weight="medium" className="text-blue-200">
+                  Faces
+                </Text>
+                <Text size="2" className="text-blue-300">
+                  Square
+                </Text>
               </Flex>
               <Flex direction="column" gap="3" align="center" className="p-4">
-                <Text size="8" weight="bold" className="text-amber-400">{DATA.vertices}</Text>
-                <Text size="4" weight="medium" className="text-blue-200">Vertices</Text>
-                <Text size="2" className="text-blue-300">Corners</Text>
+                <Text size="8" weight="bold" className="text-amber-400">
+                  {DATA.vertices}
+                </Text>
+                <Text size="4" weight="medium" className="text-blue-200">
+                  Vertices
+                </Text>
+                <Text size="2" className="text-blue-300">
+                  Corners
+                </Text>
               </Flex>
               <Flex direction="column" gap="3" align="center" className="p-4">
-                <Text size="8" weight="bold" className="text-amber-400">{DATA.edges}</Text>
-                <Text size="4" weight="medium" className="text-blue-200">Edges</Text>
-                <Text size="2" className="text-blue-300">Lines</Text>
+                <Text size="8" weight="bold" className="text-amber-400">
+                  {DATA.edges}
+                </Text>
+                <Text size="4" weight="medium" className="text-blue-200">
+                  Edges
+                </Text>
+                <Text size="2" className="text-blue-300">
+                  Lines
+                </Text>
               </Flex>
             </Grid>
 
             <Text className="text-blue-200">
-              The cube is unique among Platonic Solids for its perpendicular faces. Every edge
-              meets every other edge at exactly 90 degrees, creating perfect stability. This is
-              why we build our homes and cities using cubic forms—they naturally resist
-              gravitational forces and provide maximum usable space.
+              The cube is unique among Platonic Solids for its perpendicular
+              faces. Every edge meets every other edge at exactly 90 degrees,
+              creating perfect stability. This is why we build our homes and
+              cities using cubic forms—they naturally resist gravitational
+              forces and provide maximum usable space.
             </Text>
           </Card>
 
           {/* Visual Representations */}
-          <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 mb-8">
-            <Heading mb="6" size="6" className="text-amber-300">Visual Representations</Heading>
+          <Card className="mb-8 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
+            <Heading mb="6" size="6" className="text-amber-300">
+              Visual Representations
+            </Heading>
 
             <Grid columns={{ initial: "1", md: "3" }} gap="6">
               <Flex direction="column" gap="3" align="center">
@@ -135,14 +203,19 @@ export default function HexahedronPage() {
                     alt="Hexahedron Solid"
                     width={150}
                     height={150}
-                    className="h-40 object-contain mx-auto"
-                    style={{ 
-                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    className="mx-auto h-40 object-contain"
+                    style={{
+                      filter:
+                        "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
                     }}
                   />
                 </Box>
-                <Text weight="bold" className="text-amber-200">Solid View</Text>
-                <Text size="2" className="text-blue-300 text-center">All faces visible</Text>
+                <Text weight="bold" className="text-amber-200">
+                  Solid View
+                </Text>
+                <Text size="2" className="text-center text-blue-300">
+                  All faces visible
+                </Text>
               </Flex>
 
               <Flex direction="column" gap="3" align="center">
@@ -152,14 +225,19 @@ export default function HexahedronPage() {
                     alt="Hexahedron Wireframe"
                     width={150}
                     height={150}
-                    className="h-40 object-contain mx-auto"
-                    style={{ 
-                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    className="mx-auto h-40 object-contain"
+                    style={{
+                      filter:
+                        "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
                     }}
                   />
                 </Box>
-                <Text weight="bold" className="text-amber-200">Wireframe</Text>
-                <Text size="2" className="text-blue-300 text-center">Edge structure</Text>
+                <Text weight="bold" className="text-amber-200">
+                  Wireframe
+                </Text>
+                <Text size="2" className="text-center text-blue-300">
+                  Edge structure
+                </Text>
               </Flex>
 
               <Flex direction="column" gap="3" align="center">
@@ -169,42 +247,50 @@ export default function HexahedronPage() {
                     alt="Hexahedron Net"
                     width={150}
                     height={150}
-                    className="h-40 object-contain mx-auto"
-                    style={{ 
-                      filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" 
+                    className="mx-auto h-40 object-contain"
+                    style={{
+                      filter:
+                        "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
                     }}
                   />
                 </Box>
-                <Text weight="bold" className="text-amber-200">Unfolded Net</Text>
-                <Text size="2" className="text-blue-300 text-center">2D pattern</Text>
+                <Text weight="bold" className="text-amber-200">
+                  Unfolded Net
+                </Text>
+                <Text size="2" className="text-center text-blue-300">
+                  2D pattern
+                </Text>
               </Flex>
             </Grid>
           </Card>
 
           {/* In Nature and Culture */}
-          <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8">
-            <Heading size="6" className="text-amber-300 mb-4">In Nature and Culture</Heading>
+          <Card className="border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
+            <Heading size="6" className="mb-4 text-amber-300">
+              In Nature and Culture
+            </Heading>
 
-            <Text className="text-blue-200 mb-4">
+            <Text className="mb-4 text-blue-200">
               The cubic form appears throughout nature and human civilization:
             </Text>
 
             <ul className="space-y-3 text-blue-200">
               <li>
-                <strong className="text-amber-300">Crystals:</strong> Salt (halite) and pyrite
-                form natural perfect cubes
+                <strong className="text-amber-300">Crystals:</strong> Salt
+                (halite) and pyrite form natural perfect cubes
               </li>
               <li>
-                <strong className="text-amber-300">Architecture:</strong> The Kaaba in Mecca,
-                representing the spiritual center of Islam
+                <strong className="text-amber-300">Architecture:</strong> The
+                Kaaba in Mecca, representing the spiritual center of Islam
               </li>
               <li>
-                <strong className="text-amber-300">Symbolism:</strong> The cornerstone,
-                the building block of civilization
+                <strong className="text-amber-300">Symbolism:</strong> The
+                cornerstone, the building block of civilization
               </li>
               <li>
-                <strong className="text-amber-300">Sacred Space:</strong> The cube represents
-                the material temple that houses divine consciousness
+                <strong className="text-amber-300">Sacred Space:</strong> The
+                cube represents the material temple that houses divine
+                consciousness
               </li>
             </ul>
           </Card>

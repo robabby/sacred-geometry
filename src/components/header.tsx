@@ -28,7 +28,7 @@ export function Header() {
       if (path === "/") return pathname === "/";
       return pathname.startsWith(path);
     },
-    [pathname],
+    [pathname]
   );
 
   const navItems = useMemo<NavItem[]>(
@@ -44,7 +44,7 @@ export function Header() {
         mobileLabel: "Patterns",
       },
     ],
-    [],
+    []
   );
 
   const activeIndex = useMemo(() => {
@@ -68,7 +68,7 @@ export function Header() {
       setFocusIndex(clampedIndex);
       node?.focus();
     },
-    [navItems.length],
+    [navItems.length]
   );
 
   const focusHome = useCallback(() => {
@@ -80,7 +80,9 @@ export function Header() {
       if (navItems.length === 0) return;
       const { key } = event;
       if (
-        !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "End"].includes(key)
+        !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "End"].includes(
+          key
+        )
       ) {
         return;
       }
@@ -102,7 +104,7 @@ export function Header() {
         }
       }
     },
-    [focusNavItem, navItems.length],
+    [focusNavItem, navItems.length]
   );
 
   const handleNavKeyDown = useCallback(
@@ -110,16 +112,18 @@ export function Header() {
       if (navItems.length === 0) return;
       const key = event.key;
       if (
-        !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(
-          key,
-        )
+        ![
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowUp",
+          "ArrowDown",
+          "Home",
+          "End",
+        ].includes(key)
       )
         return;
 
-      if (
-        focusIndex === 0 &&
-        ["ArrowLeft", "ArrowUp", "Home"].includes(key)
-      ) {
+      if (focusIndex === 0 && ["ArrowLeft", "ArrowUp", "Home"].includes(key)) {
         event.preventDefault();
         event.stopPropagation();
         focusHome();
@@ -156,7 +160,7 @@ export function Header() {
         }
       }
     },
-    [focusHome, focusIndex, focusNavItem, navItems.length],
+    [focusHome, focusIndex, focusNavItem, navItems.length]
   );
 
   return (
@@ -166,7 +170,7 @@ export function Header() {
         <Link
           href={ROUTES.home.path}
           ref={homeRef}
-          className="flex items-center gap-1.5 sm:gap-2 transition-opacity hover:opacity-80"
+          className="flex items-center gap-1.5 transition-opacity hover:opacity-80 sm:gap-2"
           onKeyDown={handleHomeKeyDown}
         >
           <CircleDot className="h-5 w-5 text-amber-400 sm:h-6 sm:w-6" />
@@ -194,7 +198,7 @@ export function Header() {
               onFocus={() => setFocusIndex(index)}
               className={cn(
                 "text-xs font-medium transition-colors hover:text-amber-300 sm:text-sm",
-                isActive(item.path) ? "text-amber-400" : "text-blue-200",
+                isActive(item.path) ? "text-amber-400" : "text-blue-200"
               )}
             >
               <span className="hidden sm:inline">{item.desktopLabel}</span>

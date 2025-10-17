@@ -1,7 +1,13 @@
 import { Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
-import { Triangle, Box as BoxIcon, Octagon, Sparkles, Droplets } from "lucide-react";
+import {
+  Triangle,
+  Box as BoxIcon,
+  Octagon,
+  Sparkles,
+  Droplets,
+} from "lucide-react";
 import { ROUTES } from "@/util/routes";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -49,7 +55,8 @@ const platonicSolids = [
     edges: 30,
     icon: Sparkles,
     color: "text-purple-400",
-    image: "/images/geometries/platonic-solids/dodecahedron/dodecahedron-3d.svg",
+    image:
+      "/images/geometries/platonic-solids/dodecahedron/dodecahedron-3d.svg",
   },
   {
     slug: "icosahedron",
@@ -69,37 +76,41 @@ export default function PlatonicSolidsPage() {
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
-        <div className="max-w-4xl mx-auto mb-16 text-center">
-          <Heading size="9" className="text-amber-100 mb-6">
+        <div className="mx-auto mb-16 max-w-4xl text-center">
+          <Heading size="9" className="mb-6 text-amber-100">
             {ROUTES.platonicSolids.name}
           </Heading>
-          <Text size="5" className="text-blue-200 mb-4">
+          <Text size="5" className="mb-4 text-blue-200">
             {ROUTES.platonicSolids.description}
           </Text>
-          <Text size="3" className="text-blue-300/80 max-w-3xl mx-auto">
-            Discovered by the ancient Greeks and explored by Plato, these five perfect solids
-            are the only three-dimensional shapes where every face, edge, and angle is identical.
-            Each represents a fundamental element and holds profound significance in sacred geometry.
+          <Text size="3" className="mx-auto max-w-3xl text-blue-300/80">
+            Discovered by the ancient Greeks and explored by Plato, these five
+            perfect solids are the only three-dimensional shapes where every
+            face, edge, and angle is identical. Each represents a fundamental
+            element and holds profound significance in sacred geometry.
           </Text>
         </div>
 
         {/* Platonic Solids Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {platonicSolids.map((solid) => {
             const Icon = solid.icon;
             return (
               <Link key={solid.route.path} href={solid.route.path}>
-                <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 backdrop-blur-sm border-amber-500/20 p-6 hover:border-amber-500/40 transition-all hover:scale-105 cursor-pointer">
+                <Card className="cursor-pointer border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-6 backdrop-blur-sm transition-all hover:scale-105 hover:border-amber-500/40">
                   <div className="flex flex-col gap-4">
                     {/* Image */}
-                    <div className="relative w-full h-48 flex items-center justify-center">
+                    <div className="relative flex h-48 w-full items-center justify-center">
                       <Image
                         src={solid.image}
                         alt={solid.route.name}
                         width={180}
                         height={180}
                         className="object-contain"
-                        style={{ filter: "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)" }}
+                        style={{
+                          filter:
+                            "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
+                        }}
                       />
                     </div>
 
@@ -112,17 +123,20 @@ export default function PlatonicSolidsPage() {
                       </div>
                     </div>
 
-                    <div className="flex gap-2 flex-wrap">
-                      <Badge variant="secondary" className="bg-amber-500/20 text-amber-300 border-amber-500/30">
+                    <div className="flex flex-wrap gap-2">
+                      <Badge
+                        variant="secondary"
+                        className="border-amber-500/30 bg-amber-500/20 text-amber-300"
+                      >
                         {solid.element}
                       </Badge>
                     </div>
 
-                    <Text size="2" className="text-blue-300 flex-grow">
+                    <Text size="2" className="flex-grow text-blue-300">
                       {solid.route.description}
                     </Text>
 
-                    <div className="text-amber-300 text-sm font-medium hover:text-amber-400 transition-colors">
+                    <div className="text-sm font-medium text-amber-300 transition-colors hover:text-amber-400">
                       Explore →
                     </div>
                   </div>
@@ -133,19 +147,21 @@ export default function PlatonicSolidsPage() {
         </div>
 
         {/* Additional Info */}
-        <Card className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 border-amber-500/20 p-8 max-w-4xl mx-auto mt-16">
-          <Heading size="6" className="text-amber-300 mb-4">
+        <Card className="mx-auto mt-16 max-w-4xl border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
+          <Heading size="6" className="mb-4 text-amber-300">
             The Sacred Five
           </Heading>
-          <Text className="text-blue-200 mb-4">
-            These five shapes are unique in all of geometry. No other regular polyhedra exist
-            beyond these. This mathematical limitation gives them profound significance—they
-            represent the complete set of possible perfect three-dimensional forms.
+          <Text className="mb-4 text-blue-200">
+            These five shapes are unique in all of geometry. No other regular
+            polyhedra exist beyond these. This mathematical limitation gives
+            them profound significance—they represent the complete set of
+            possible perfect three-dimensional forms.
           </Text>
           <Text className="text-blue-200">
-            The ancient Greeks believed these shapes were the building blocks of reality itself.
-            Modern physics has discovered surprising connections between these geometries and
-            the structure of atoms, molecules, and even the fabric of spacetime.
+            The ancient Greeks believed these shapes were the building blocks of
+            reality itself. Modern physics has discovered surprising connections
+            between these geometries and the structure of atoms, molecules, and
+            even the fabric of spacetime.
           </Text>
         </Card>
       </div>
