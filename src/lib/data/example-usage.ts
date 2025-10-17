@@ -6,7 +6,7 @@
  */
 
 import {
-  getGeometry,
+  getGeometryById,
   getPlatonicSolids,
   getDual,
   getRelatedGeometries,
@@ -19,7 +19,7 @@ import {
 // ============================================================================
 
 // Get a specific geometry
-const tetrahedron = getGeometry("tetrahedron");
+const tetrahedron = getGeometryById("tetrahedron");
 console.log("Tetrahedron:", tetrahedron);
 
 // Get all Platonic Solids
@@ -93,7 +93,7 @@ console.log("Circle-based:", circleGeometries.map((g) => g.name));
 // ============================================================================
 
 function buildRelationshipGraph(geometryId: string): Record<string, unknown> {
-  const geometry = getGeometry(geometryId);
+  const geometry = getGeometryById(geometryId);
   if (!geometry) return {};
 
   const relations = getRelatedGeometries(geometryId);
@@ -123,8 +123,8 @@ function findConnections(
 ): string[] {
   const connections: string[] = [];
 
-  const g1 = getGeometry(geometry1Id);
-  const g2 = getGeometry(geometry2Id);
+  const g1 = getGeometryById(geometry1Id);
+  const g2 = getGeometryById(geometry2Id);
 
   if (!g1 || !g2) return connections;
 

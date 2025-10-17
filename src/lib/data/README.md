@@ -39,13 +39,13 @@ interface Geometry {
 
 ```typescript
 import {
-  getGeometry,
+  getGeometryById,
   getPlatonicSolids,
   getSacredPatterns
 } from "@/lib/data";
 
 // Get a specific geometry
-const tetrahedron = getGeometry('tetrahedron');
+const tetrahedron = getGeometryById('tetrahedron');
 
 // Get all Platonic Solids
 const solids = getPlatonicSolids();
@@ -149,7 +149,7 @@ Platonic solids are associated with classical elements:
 
 | Function | Description | Returns |
 |----------|-------------|---------|
-| `getGeometry(id)` | Get a geometry by ID | `Geometry \| undefined` |
+| `getGeometryById(id)` | Get a geometry by ID | `Geometry \| undefined` |
 | `getGeometriesByCategory(category)` | Get all geometries in a category | `Geometry[]` |
 | `getDual(geometryId)` | Get the dual of a Platonic solid | `Geometry \| undefined` |
 | `getContainedGeometries(geometryId)` | Get geometries contained within | `Geometry[]` |
@@ -164,11 +164,11 @@ Platonic solids are associated with classical elements:
 ## Example: Building a Related Content Component
 
 ```typescript
-import { getRelatedGeometries, getGeometry } from "@/lib/data";
+import { getRelatedGeometries, getGeometryById } from "@/lib/data";
 
 function RelatedGeometries({ geometryId }: { geometryId: string }) {
   const { dual, contains, appearsIn } = getRelatedGeometries(geometryId);
-  const geometry = getGeometry(geometryId);
+  const geometry = getGeometryById(geometryId);
 
   return (
     <div>

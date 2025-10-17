@@ -266,7 +266,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
 /**
  * Get a geometry by its ID
  */
-export function getGeometry(id: string): Geometry | undefined {
+export function getGeometryById(id: string): Geometry | undefined {
   return GEOMETRIES[id];
 }
 
