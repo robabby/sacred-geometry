@@ -271,6 +271,15 @@ export function getGeometryById(id: string): Geometry | undefined {
 }
 
 /**
+ * Get a geometry by its slug
+ * This is useful for dynamic routing where the slug is used in the URL
+ * e.g., /platonic-solids/tetrahedron or /sacred-patterns/flower-of-life
+ */
+export function getGeometryBySlug(slug: string): Geometry | undefined {
+  return Object.values(GEOMETRIES).find(g => g.slug === slug);
+}
+
+/**
  * Get all geometries in a specific category
  */
 export function getGeometriesByCategory(category: GeometryCategory): Geometry[] {

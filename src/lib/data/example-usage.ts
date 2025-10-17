@@ -7,6 +7,7 @@
 
 import {
   getGeometryById,
+  getGeometryBySlug,
   getPlatonicSolids,
   getDual,
   getRelatedGeometries,
@@ -18,9 +19,13 @@ import {
 // Basic Queries
 // ============================================================================
 
-// Get a specific geometry
+// Get a specific geometry by ID
 const tetrahedron = getGeometryById("tetrahedron");
 console.log("Tetrahedron:", tetrahedron);
+
+// Get a geometry by slug (useful for dynamic routes)
+const flowerOfLife = getGeometryBySlug("flower-of-life");
+console.log("Flower of Life:", flowerOfLife);
 
 // Get all Platonic Solids
 const platonicSolids = getPlatonicSolids();
@@ -159,3 +164,73 @@ function findConnections(
 // Example: Find connections between Tetrahedron and Merkaba
 const connections = findConnections("tetrahedron", "merkaba");
 console.log("Connections:", connections);
+
+// ============================================================================
+// Dynamic Route Example (Next.js App Router)
+// ============================================================================
+
+/**
+ * Example: Dynamic page component for geometry details
+ * File: app/platonic-solids/[slug]/page.tsx or app/sacred-patterns/[slug]/page.tsx
+ *
+ * This demonstrates how to use getGeometryBySlug in a Next.js dynamic route
+ */
+
+interface GeometryPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+function GeometryPage({ params }: GeometryPageProps) {
+  const geometry = getGeometryBySlug(params.slug);
+
+  if (!geometry) {
+    return <div>Geometry not found</div>;
+  }
+
+  const { dual, contains, appearsIn } = getRelatedGeometries(geometry.id);
+
+  return (
+    <div>
+      <h1>{geometry.name}</h1>
+      <p>{geometry.description}</p>
+
+      {geometry.relatedBy?.element && (
+        <div>Element: {geometry.relatedBy.element}</div>
+      )}
+
+      {dual && (
+        <section>
+          <h2>Dual Geometry</h2>
+          <p>{dual.name}</p>
+        </section>
+      )}
+
+      {contains.length > 0 && (
+        <section>
+          <h2>Contains</h2>
+          <ul>
+            {contains.map((g) => (
+              <li key={g.id}>{g.name}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {appearsIn.length > 0 && (
+        <section>
+          <h2>Appears In</h2>
+          <ul>
+            {appearsIn.map((g) => (
+              <li key={g.id}>{g.name}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+  );
+}
+
+// Example usage
+console.log("Example page for tetrahedron:", GeometryPage({ params: { slug: "tetrahedron" } }));

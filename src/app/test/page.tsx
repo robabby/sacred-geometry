@@ -1,5 +1,3 @@
-import { Button, Flex, Heading, Text } from "@radix-ui/themes";
-import { ROUTES } from "@/util/routes";
 import { ExampleGeometryViewer } from "@/components/3d/example-usage";
 
 export default function HomePage() {

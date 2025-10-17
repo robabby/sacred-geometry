@@ -40,12 +40,16 @@ interface Geometry {
 ```typescript
 import {
   getGeometryById,
+  getGeometryBySlug,
   getPlatonicSolids,
   getSacredPatterns
 } from "@/lib/data";
 
-// Get a specific geometry
+// Get a specific geometry by ID
 const tetrahedron = getGeometryById('tetrahedron');
+
+// Get a geometry by slug (useful for dynamic routes)
+const geometry = getGeometryBySlug('flower-of-life');
 
 // Get all Platonic Solids
 const solids = getPlatonicSolids();
@@ -150,6 +154,7 @@ Platonic solids are associated with classical elements:
 | Function | Description | Returns |
 |----------|-------------|---------|
 | `getGeometryById(id)` | Get a geometry by ID | `Geometry \| undefined` |
+| `getGeometryBySlug(slug)` | Get a geometry by slug (for URL routing) | `Geometry \| undefined` |
 | `getGeometriesByCategory(category)` | Get all geometries in a category | `Geometry[]` |
 | `getDual(geometryId)` | Get the dual of a Platonic solid | `Geometry \| undefined` |
 | `getContainedGeometries(geometryId)` | Get geometries contained within | `Geometry[]` |
@@ -161,18 +166,80 @@ Platonic solids are associated with classical elements:
 | `getAllGeometries()` | Get all geometries | `Geometry[]` |
 | `searchGeometries(query)` | Search by name/description/properties | `Geometry[]` |
 
-## Example: Building a Related Content Component
+## Example: Dynamic Route with Slug
+
+This is the recommended pattern for creating dynamic geometry pages:
 
 ```typescript
-import { getRelatedGeometries, getGeometryById } from "@/lib/data";
+// File: app/platonic-solids/[slug]/page.tsx
 
-function RelatedGeometries({ geometryId }: { geometryId: string }) {
-  const { dual, contains, appearsIn } = getRelatedGeometries(geometryId);
-  const geometry = getGeometryById(geometryId);
+import { getGeometryBySlug, getRelatedGeometries } from "@/lib/data";
+import { notFound } from "next/navigation";
+
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default function GeometryPage({ params }: PageProps) {
+  const geometry = getGeometryBySlug(params.slug);
+
+  if (!geometry) {
+    notFound();
+  }
+
+  const { dual, contains, appearsIn } = getRelatedGeometries(geometry.id);
 
   return (
     <div>
-      <h2>Related to {geometry?.name}</h2>
+      <h1>{geometry.name}</h1>
+      <p>{geometry.description}</p>
+
+      {geometry.relatedBy?.element && (
+        <div>Element: {geometry.relatedBy.element}</div>
+      )}
+
+      {dual && (
+        <section>
+          <h2>Dual Geometry</h2>
+          <a href={`/platonic-solids/${dual.slug}`}>{dual.name}</a>
+        </section>
+      )}
+
+      {contains.length > 0 && (
+        <section>
+          <h2>Contains</h2>
+          <ul>
+            {contains.map(g => (
+              <li key={g.id}>
+                <a href={`/${g.category === 'platonic' ? 'platonic-solids' : 'sacred-patterns'}/${g.slug}`}>
+                  {g.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+  );
+}
+```
+
+## Example: Building a Related Content Component
+
+```typescript
+import { getRelatedGeometries, getGeometryBySlug } from "@/lib/data";
+
+function RelatedGeometries({ slug }: { slug: string }) {
+  const geometry = getGeometryBySlug(slug);
+  if (!geometry) return null;
+
+  const { dual, contains, appearsIn } = getRelatedGeometries(geometry.id);
+
+  return (
+    <div>
+      <h2>Related to {geometry.name}</h2>
 
       {dual && (
         <section>
