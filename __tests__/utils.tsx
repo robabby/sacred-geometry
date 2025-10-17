@@ -15,7 +15,7 @@ type CustomRenderOptions = RenderOptions;
 
 export function renderWithProviders(
   ui: ReactElement,
-  options: CustomRenderOptions = {},
+  options: CustomRenderOptions = {}
 ): RenderResult {
   return render(ui, {
     wrapper: AllProviders,

@@ -12,17 +12,19 @@ describe("GeometryViewer", () => {
 
     const createElementMock = vi
       .spyOn(document, "createElement")
-      .mockImplementation((tagName: string, options?: ElementCreationOptions) => {
-        if (tagName === "canvas") {
-          return canvasElement;
+      .mockImplementation(
+        (tagName: string, options?: ElementCreationOptions) => {
+          if (tagName === "canvas") {
+            return canvasElement;
+          }
+          return originalCreateElement(tagName, options);
         }
-        return originalCreateElement(tagName, options);
-      });
+      );
 
     renderWithProviders(
       <GeometryViewer>
         <mesh />
-      </GeometryViewer>,
+      </GeometryViewer>
     );
 
     expect(await screen.findByTestId("mock-canvas")).toBeInTheDocument();

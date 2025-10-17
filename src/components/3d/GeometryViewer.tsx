@@ -32,9 +32,10 @@ function Scene({
       />
 
       {/* Render custom children or default mesh */}
-      {children ?? (geometry && material ? (
-        <mesh geometry={geometry} material={material} />
-      ) : null)}
+      {children ??
+        (geometry && material ? (
+          <mesh geometry={geometry} material={material} />
+        ) : null)}
     </>
   );
 }
