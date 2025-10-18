@@ -81,14 +81,20 @@ export default function CircleDotPage() {
             </Text>
             <ul className="space-y-3 text-blue-200">
               <li>
-                <strong className="text-amber-300">Ancient Egypt:</strong> The
-                symbol of Ra, the sun god—representing the divine light at the
-                center of creation
+                <strong className="text-amber-300">Astrology:</strong> The
+                official symbol for the Sun (☉)—the center of our solar system
+                and source of all light and life
               </li>
               <li>
                 <strong className="text-amber-300">Alchemy:</strong> The symbol
-                of gold and the sun, representing spiritual perfection and the
-                philosopher&apos;s stone
+                for Gold (⊙), the most perfect and incorruptible metal,
+                representing spiritual perfection and the philosopher&apos;s
+                stone
+              </li>
+              <li>
+                <strong className="text-amber-300">Ancient Egypt:</strong> The
+                symbol of Ra, the sun god—representing the divine light at the
+                center of creation
               </li>
               <li>
                 <strong className="text-amber-300">Hinduism:</strong> The bindu,
