@@ -1,32 +1,25 @@
 import { Box, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import { SolidNavigation } from "@/components/solid-navigation";
-
-const DATA = {
-  name: "Hexahedron (Cube)",
-  slug: "hexahedron",
-  title: "The Hexahedron: Foundation of Earth",
-  description:
-    "The hexahedron, commonly known as the cube, represents the element of Earth—stability, structure, and the material world. It is the most grounded of all Platonic Solids.",
-  heroImage: "/images/geometries/platonic-solids/hexahedron/hexahedron-3d.svg",
-  solidImage:
-    "/images/geometries/platonic-solids/hexahedron/hexahedron-solid.svg",
-  wireframeImage:
-    "/images/geometries/platonic-solids/hexahedron/hexahedron-wireframe.svg",
-  netImage: "/images/geometries/platonic-solids/hexahedron/hexahedron-net.svg",
-  category: "platonic-solids",
-  element: "Earth",
-  chakra: "Root",
-  faces: 6,
-  vertices: 8,
-  edges: 12,
-  dualOf: "octahedron",
-  dualOfTitle: "Octahedron",
-  featured: true,
-  order: 2,
-};
+import { getGeometryBySlug } from "@/lib/data";
 
 export default function HexahedronPage() {
+  const geometry = getGeometryBySlug("hexahedron");
+
+  if (!geometry) {
+    notFound();
+  }
+
+  const {
+    title,
+    description,
+    images,
+    mathProperties,
+    relatedBy,
+    dualOfTitle,
+    slug,
+  } = geometry;
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-16">
@@ -36,19 +29,19 @@ export default function HexahedronPage() {
             {/* Text Content */}
             <Flex direction="column" gap="6" justify="center">
               <Heading size="9" className="text-amber-100">
-                {DATA.title}
+                {title}
               </Heading>
 
               <Text size="5" className="text-blue-200">
-                {DATA.description}
+                {description}
               </Text>
             </Flex>
 
             {/* Hero Image */}
             <Box className="flex items-center justify-center">
               <Image
-                src={DATA.heroImage}
-                alt={DATA.title}
+                src={images?.heroImage ?? ""}
+                alt={title ?? "Hexahedron"}
                 width={400}
                 height={400}
                 className="object-contain"
@@ -75,7 +68,7 @@ export default function HexahedronPage() {
                   Element
                 </Text>
                 <Text size="5" className="text-blue-200">
-                  {DATA.element}
+                  {relatedBy?.element === "earth" ? "Earth" : relatedBy?.element}
                 </Text>
               </Flex>
               <Flex direction="column" gap="2">
@@ -86,7 +79,7 @@ export default function HexahedronPage() {
                   Chakra
                 </Text>
                 <Text size="5" className="text-blue-200">
-                  {DATA.chakra}
+                  {relatedBy?.chakra}
                 </Text>
               </Flex>
               <Flex direction="column" gap="2">
@@ -97,7 +90,7 @@ export default function HexahedronPage() {
                   Dual
                 </Text>
                 <Text size="5" className="text-blue-200">
-                  {DATA.dualOfTitle}
+                  {dualOfTitle}
                 </Text>
               </Flex>
               <Flex direction="column" gap="2">
@@ -147,18 +140,18 @@ export default function HexahedronPage() {
             <Grid columns={{ initial: "1", sm: "3" }} gap="8" className="mb-8">
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">
-                  {DATA.faces}
+                  {mathProperties?.faces}
                 </Text>
                 <Text size="4" weight="medium" className="text-blue-200">
                   Faces
                 </Text>
                 <Text size="2" className="text-blue-300">
-                  Square
+                  {mathProperties?.faceShape}
                 </Text>
               </Flex>
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">
-                  {DATA.vertices}
+                  {mathProperties?.vertices}
                 </Text>
                 <Text size="4" weight="medium" className="text-blue-200">
                   Vertices
@@ -169,7 +162,7 @@ export default function HexahedronPage() {
               </Flex>
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">
-                  {DATA.edges}
+                  {mathProperties?.edges}
                 </Text>
                 <Text size="4" weight="medium" className="text-blue-200">
                   Edges
@@ -199,7 +192,7 @@ export default function HexahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src={DATA.solidImage}
+                    src={images?.solidImage ?? ""}
                     alt="Hexahedron Solid"
                     width={150}
                     height={150}
@@ -221,7 +214,7 @@ export default function HexahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src={DATA.wireframeImage}
+                    src={images?.wireframeImage ?? ""}
                     alt="Hexahedron Wireframe"
                     width={150}
                     height={150}
@@ -243,7 +236,7 @@ export default function HexahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src={DATA.netImage}
+                    src={images?.netImage ?? ""}
                     alt="Hexahedron Net"
                     width={150}
                     height={150}
@@ -296,7 +289,7 @@ export default function HexahedronPage() {
           </Card>
 
           {/* Navigation */}
-          <SolidNavigation currentSolid={DATA.slug} />
+          <SolidNavigation currentSolid={slug} />
         </div>
       </div>
     </main>
