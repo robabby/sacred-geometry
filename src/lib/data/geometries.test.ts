@@ -197,8 +197,8 @@ describe("Data Integrity", () => {
   describe("Sacred Patterns", () => {
     const sacredPatterns = getSacredPatterns().filter((p) => p.featured);
 
-    it("should have exactly 10 featured sacred patterns", () => {
-      expect(sacredPatterns).toHaveLength(10);
+    it("should have exactly 11 featured sacred patterns", () => {
+      expect(sacredPatterns).toHaveLength(11);
     });
 
     it("should all have order field defined", () => {

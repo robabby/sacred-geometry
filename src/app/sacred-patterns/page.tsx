@@ -1,7 +1,7 @@
 import { Box, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
-import { Sparkles, Hexagon, Star, Triangle } from "lucide-react";
+import { Sparkles, Hexagon, Star, Triangle, Circle } from "lucide-react";
 import { ROUTES } from "@/util/routes";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -9,6 +9,7 @@ import { getSacredPatterns, getGeometryPath } from "@/lib/data";
 
 // Icon mapping for Sacred Patterns
 const iconMap: Record<string, typeof Hexagon> = {
+  "circle-dot": Circle,
   "flower-of-life": Hexagon,
   "seed-of-life": Hexagon,
   "metatrons-cube": Sparkles,
@@ -23,6 +24,7 @@ const iconMap: Record<string, typeof Hexagon> = {
 
 // Color mapping for Sacred Patterns
 const colorMap: Record<string, string> = {
+  "circle-dot": "text-white",
   "flower-of-life": "text-amber-400",
   "seed-of-life": "text-green-400",
   "metatrons-cube": "text-purple-400",
@@ -37,6 +39,7 @@ const colorMap: Record<string, string> = {
 
 // Category mapping for Sacred Patterns
 const categoryMap: Record<string, string> = {
+  "circle-dot": "Divine Source",
   "flower-of-life": "Universal Pattern",
   "seed-of-life": "Creation Symbol",
   "metatrons-cube": "Sacred Blueprint",

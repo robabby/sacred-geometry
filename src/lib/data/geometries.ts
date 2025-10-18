@@ -258,6 +258,34 @@ export const GEOMETRIES: Record<string, Geometry> = {
   // SACRED PATTERNS
   // ============================================================================
 
+  "circle-dot": {
+    id: "circle-dot",
+    name: "Circle Dot",
+    slug: "circle-dot",
+    category: "pattern",
+    title: "Circle Dot",
+    description:
+      "The primordial symbol of unity and creation, representing the divine spark and the beginning of all form",
+    relatedBy: {
+      property: [
+        "unity",
+        "creation point",
+        "divine spark",
+        "zero point",
+        "source",
+        "monad",
+        "bindu",
+        "cosmic egg",
+      ],
+    },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/circle-dot/circle-dot-primary.svg",
+    },
+    featured: true,
+    order: 1,
+  },
+
   "flower-of-life": {
     id: "flower-of-life",
     name: "Flower of Life",
@@ -281,7 +309,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/flower-of-life/flower-of-life-primary.svg",
     },
     featured: true,
-    order: 4,
+    order: 5,
   },
 
   "seed-of-life": {
@@ -308,7 +336,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/seed-of-life/seed-of-life-primary.svg",
     },
     featured: true,
-    order: 2,
+    order: 3,
   },
 
   "metatrons-cube": {
@@ -341,7 +369,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/metatrons-cube/metatrons-cube-primary.svg",
     },
     featured: true,
-    order: 5,
+    order: 6,
   },
 
   "sri-yantra": {
@@ -367,7 +395,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/sri-yantra/sri-yantra-primary.svg",
     },
     featured: true,
-    order: 6,
+    order: 7,
   },
 
   "star-tetrahedron": {
@@ -397,7 +425,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/star-tetrahedron/star-tetrahedron-primary.svg",
     },
     featured: true,
-    order: 7,
+    order: 8,
   },
 
   "golden-ratio": {
@@ -424,7 +452,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/golden-ratio/golden-ratio-spiral.svg",
     },
     featured: true,
-    order: 8,
+    order: 9,
   },
 
   "vesica-piscis": {
@@ -453,7 +481,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/vesica-piscis/vesica-piscis-primary.svg",
     },
     featured: true,
-    order: 1,
+    order: 2,
   },
 
   "fruit-of-life": {
@@ -481,7 +509,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/fruit-of-life/fruit-of-life-primary.svg",
     },
     featured: true,
-    order: 3,
+    order: 4,
   },
 
   "philosophers-stone": {
@@ -508,7 +536,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/philosophers-stone/philosophers-stone-primary.svg",
     },
     featured: true,
-    order: 9,
+    order: 10,
   },
 
   // ============================================================================
@@ -582,7 +610,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/pentagram/pentagram-primary.svg",
     },
     featured: true,
-    order: 10,
+    order: 11,
   },
 
   "fibonacci-spiral": {

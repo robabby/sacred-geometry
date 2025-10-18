@@ -99,15 +99,14 @@ describe("GeometryNavigation", () => {
       expect(screen.getByText(/All Sacred Patterns/i)).toBeInTheDocument();
     });
 
-    it("should not render Previous button for first pattern (Vesica Piscis)", () => {
-      render(
-        <GeometryNavigation currentSlug="vesica-piscis" category="pattern" />
-      );
+    it("should not render Previous button for first pattern (Circle Dot)", () => {
+      render(<GeometryNavigation currentSlug="circle-dot" category="pattern" />);
 
       // Should NOT have Previous button
       expect(screen.queryAllByText(/Previous/i)).toHaveLength(0);
 
-      // Should have Next button
+      // Should have Next button to Vesica Piscis
+      expect(screen.getByText(/Vesica Piscis/i)).toBeInTheDocument();
       expect(screen.getAllByText(/Next/i).length).toBeGreaterThan(0);
     });
 
