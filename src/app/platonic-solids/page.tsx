@@ -105,21 +105,21 @@ export default function PlatonicSolidsPage() {
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-2">
+                    <Text size="2" className="text-blue-300">
+                      {solid.description}
+                    </Text>
+
+                    <div className="flex flex-wrap gap-2 justify-between">
                       <Badge
                         variant="secondary"
                         className="border-amber-500/30 bg-amber-500/20 text-amber-300"
                       >
                         {solid.element}
                       </Badge>
-                    </div>
 
-                    <Text size="2" className="flex-grow text-blue-300">
-                      {solid.description}
-                    </Text>
-
-                    <div className="text-sm font-medium text-amber-300 transition-colors hover:text-amber-400">
-                      Explore →
+                      <Text size="1" className="font-medium text-amber-300 transition-colors hover:text-amber-400">
+                        Explore →
+                      </Text>
                     </div>
                   </div>
                 </Card>
