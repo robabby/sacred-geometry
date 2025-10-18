@@ -1,8 +1,14 @@
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
-import { ROUTES } from "@/util/routes";
+import { notFound } from "next/navigation";
+import { getGeometryBySlug } from "@/lib/data";
 
 export default function FlowerOfLifePage() {
+  const geometry = getGeometryBySlug("flower-of-life");
+
+  if (!geometry) {
+    notFound();
+  }
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-12 sm:py-16">
@@ -18,22 +24,19 @@ export default function FlowerOfLifePage() {
                 size={{ initial: "7", md: "9" }}
                 className="text-amber-100"
               >
-                {ROUTES.sacredPatterns.children.flowerOfLife.name}
+                {geometry.title}
               </Heading>
 
               <Text size={{ initial: "3", md: "5" }} className="text-blue-200">
-                The Flower of Life is perhaps the most recognized sacred
-                geometry symbol, found in temples worldwide from Egypt to China.
-                This ancient pattern contains the fundamental forms of space and
-                time.
+                {geometry.description}
               </Text>
             </Flex>
 
             {/* Hero Image */}
             <div className="flex items-center justify-center">
               <Image
-                src="/images/geometries/sacred-patterns/flower-of-life/flower-of-life-primary.svg"
-                alt="Flower of Life"
+                src={geometry.images?.heroImage ?? ""}
+                alt={geometry.name}
                 width={400}
                 height={400}
                 className="w-full max-w-md object-contain"

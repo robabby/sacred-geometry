@@ -267,6 +267,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Flower of Life",
     slug: "flower-of-life",
     category: "pattern",
+    title: "Flower of Life",
     description:
       "Ancient symbol of creation consisting of overlapping circles representing the fundamental forms of space and time",
     contains: ["seed-of-life", "vesica-piscis", "tree-of-life"],
@@ -279,6 +280,12 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "sacred blueprint",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/flower-of-life/flower-of-life-primary.svg",
+    },
+    featured: true,
+    order: 1,
   },
 
   "seed-of-life": {
@@ -286,6 +293,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Seed of Life",
     slug: "seed-of-life",
     category: "pattern",
+    title: "Seed of Life",
     description:
       "Seven circles in perfect symmetry, representing the seven days of creation",
     appearsIn: ["flower-of-life"],
@@ -299,6 +307,12 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "divine feminine",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/seed-of-life/seed-of-life-primary.svg",
+    },
+    featured: true,
+    order: 2,
   },
 
   "metatrons-cube": {
@@ -306,6 +320,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Metatron's Cube",
     slug: "metatrons-cube",
     category: "pattern",
+    title: "Metatron's Cube",
     description:
       "Contains all five Platonic Solids and represents the geometric pattern of the universe",
     contains: [
@@ -325,6 +340,8 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "sacred geometry map",
       ],
     },
+    featured: true,
+    order: 3,
   },
 
   "sri-yantra": {
@@ -332,6 +349,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Sri Yantra",
     slug: "sri-yantra",
     category: "pattern",
+    title: "Sri Yantra",
     description:
       "Sacred Hindu geometry representing the union of divine masculine and feminine energies",
     contains: ["triangle"],
@@ -344,6 +362,12 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "creation and manifestation",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/sri-yantra/sri-yantra-primary.svg",
+    },
+    featured: true,
+    order: 4,
   },
 
   merkaba: {
@@ -351,6 +375,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Merkaba",
     slug: "merkaba",
     category: "compound",
+    title: "Merkaba",
     description:
       "Sacred light vehicle, two interlocking tetrahedrons representing spirit and matter",
     contains: ["tetrahedron", "star-tetrahedron"],
@@ -363,6 +388,12 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "counter-rotating fields",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/merkaba/merkaba-primary.svg",
+    },
+    featured: true,
+    order: 5,
   },
 
   "golden-ratio": {
@@ -370,6 +401,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Golden Ratio",
     slug: "golden-ratio",
     category: "pattern",
+    title: "Golden Ratio",
     description:
       "Divine proportion (φ ≈ 1.618) that appears throughout nature and sacred architecture",
     appearsIn: ["fibonacci-spiral", "pentagram", "dodecahedron"],
@@ -383,6 +415,12 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "beauty",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/golden-ratio/golden-ratio-spiral.svg",
+    },
+    featured: true,
+    order: 6,
   },
 
   // ============================================================================

@@ -1,8 +1,14 @@
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
-import { ROUTES } from "@/util/routes";
+import { notFound } from "next/navigation";
+import { getGeometryBySlug } from "@/lib/data";
 
 export default function SriYantraPage() {
+  const geometry = getGeometryBySlug("sri-yantra");
+
+  if (!geometry) {
+    notFound();
+  }
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-12 sm:py-16">
@@ -17,18 +23,16 @@ export default function SriYantraPage() {
                 size={{ initial: "7", md: "9" }}
                 className="text-amber-100"
               >
-                {ROUTES.sacredPatterns.children.sriYantra.name}
+                {geometry.title}
               </Heading>
               <Text size={{ initial: "3", md: "5" }} className="text-blue-200">
-                An ancient Hindu sacred geometry consisting of nine interlocking
-                triangles, representing the union of divine masculine (Shiva)
-                and feminine (Shakti) energies.
+                {geometry.description}
               </Text>
             </Flex>
             <div className="flex items-center justify-center">
               <Image
-                src="/images/geometries/sacred-patterns/sri-yantra/sri-yantra-primary.svg"
-                alt="Sri Yantra"
+                src={geometry.images?.heroImage ?? ""}
+                alt={geometry.name}
                 width={400}
                 height={400}
                 className="w-full max-w-md object-contain"

@@ -1,8 +1,14 @@
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
-import { ROUTES } from "@/util/routes";
+import { notFound } from "next/navigation";
+import { getGeometryBySlug } from "@/lib/data";
 
 export default function MerkabaPage() {
+  const geometry = getGeometryBySlug("merkaba");
+
+  if (!geometry) {
+    notFound();
+  }
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-12 sm:py-16">
@@ -17,18 +23,16 @@ export default function MerkabaPage() {
                 size={{ initial: "7", md: "9" }}
                 className="text-amber-100"
               >
-                {ROUTES.sacredPatterns.children.merkaba.name}
+                {geometry.title}
               </Heading>
               <Text size={{ initial: "3", md: "5" }} className="text-blue-200">
-                A star tetrahedron formed by two interlocking tetrahedrons, one
-                pointing up (masculine/spirit) and one pointing down
-                (feminine/matter), creating a three-dimensional Star of David.
+                {geometry.description}
               </Text>
             </Flex>
             <div className="flex items-center justify-center">
               <Image
-                src="/images/geometries/sacred-patterns/merkaba/merkaba-primary.svg"
-                alt="Merkaba"
+                src={geometry.images?.heroImage ?? ""}
+                alt={geometry.name}
                 width={400}
                 height={400}
                 className="w-full max-w-md object-contain"
