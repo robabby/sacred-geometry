@@ -37,9 +37,11 @@ describe("Path Generation", () => {
         id: "unknown",
         name: "Unknown",
         slug: "unknown",
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
         category: "platonic" as any, // Force invalid category
       };
       // Modify to test edge case
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
       const modifiedGeometry = { ...unknownGeometry, category: "invalid" as any };
       expect(getGeometryPath(modifiedGeometry)).toBe("/");
     });
