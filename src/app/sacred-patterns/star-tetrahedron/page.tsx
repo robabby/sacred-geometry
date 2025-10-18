@@ -5,7 +5,7 @@ import { GeometryNavigation } from "@/components/geometry-navigation";
 import { getGeometryBySlug } from "@/lib/data";
 
 export default function MerkabaPage() {
-  const geometry = getGeometryBySlug("merkaba");
+  const geometry = getGeometryBySlug("star-tetrahedron");
 
   if (!geometry) {
     notFound();
@@ -150,7 +150,7 @@ export default function MerkabaPage() {
           </Card>
 
           {/* Navigation */}
-          <GeometryNavigation currentSlug="merkaba" category="pattern" />
+          <GeometryNavigation currentSlug="star-tetrahedron" category="pattern" />
         </div>
       </div>
     </main>
