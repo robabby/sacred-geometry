@@ -281,7 +281,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/flower-of-life/flower-of-life-primary.svg",
     },
     featured: true,
-    order: 1,
+    order: 4,
   },
 
   "seed-of-life": {
@@ -326,7 +326,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
       "dodecahedron",
       "icosahedron",
     ],
-    appearsIn: ["flower-of-life"],
+    appearsIn: ["flower-of-life", "fruit-of-life"],
     relatedBy: {
       property: [
         "13 circles",
@@ -341,7 +341,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/metatrons-cube/metatrons-cube-primary.svg",
     },
     featured: true,
-    order: 3,
+    order: 5,
   },
 
   "sri-yantra": {
@@ -367,7 +367,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/sri-yantra/sri-yantra-primary.svg",
     },
     featured: true,
-    order: 4,
+    order: 6,
   },
 
   "star-tetrahedron": {
@@ -397,7 +397,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/star-tetrahedron/star-tetrahedron-primary.svg",
     },
     featured: true,
-    order: 5,
+    order: 7,
   },
 
   "golden-ratio": {
@@ -424,31 +424,96 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "/images/geometries/sacred-patterns/golden-ratio/golden-ratio-spiral.svg",
     },
     featured: true,
-    order: 6,
+    order: 8,
   },
-
-  // ============================================================================
-  // ADDITIONAL GEOMETRIES (for completeness of relationships)
-  // ============================================================================
 
   "vesica-piscis": {
     id: "vesica-piscis",
     name: "Vesica Piscis",
     slug: "vesica-piscis",
     category: "pattern",
+    title: "Vesica Piscis",
     description:
-      "The intersection of two circles, representing duality and creation",
+      "The intersection of two circles, representing duality and the portal of creation",
     appearsIn: ["seed-of-life", "flower-of-life"],
     relatedBy: {
       property: [
+        "2 circles",
         "intersection",
         "duality",
         "creation portal",
         "divine feminine",
         "sacred geometry foundation",
+        "vesica",
+        "almond shape",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/vesica-piscis/vesica-piscis-primary.svg",
+    },
+    featured: true,
+    order: 1,
   },
+
+  "fruit-of-life": {
+    id: "fruit-of-life",
+    name: "Fruit of Life",
+    slug: "fruit-of-life",
+    category: "pattern",
+    title: "Fruit of Life",
+    description:
+      "Thirteen circles extracted from the Flower of Life, representing the blueprint of the universe",
+    appearsIn: ["flower-of-life"],
+    contains: ["metatrons-cube"],
+    relatedBy: {
+      property: [
+        "13 circles",
+        "cosmic blueprint",
+        "metatron's cube foundation",
+        "universe structure",
+        "sacred grid",
+        "dimensional keys",
+      ],
+    },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/fruit-of-life/fruit-of-life-primary.svg",
+    },
+    featured: true,
+    order: 3,
+  },
+
+  "philosophers-stone": {
+    id: "philosophers-stone",
+    name: "Philosopher's Stone",
+    slug: "philosophers-stone",
+    category: "pattern",
+    title: "Philosopher's Stone",
+    description:
+      "Ancient alchemical symbol representing spiritual transformation and the union of opposites",
+    relatedBy: {
+      property: [
+        "alchemy",
+        "transformation",
+        "union of opposites",
+        "spiritual transmutation",
+        "squared circle",
+        "matter and spirit",
+        "magnum opus",
+      ],
+    },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/philosophers-stone/philosophers-stone-primary.svg",
+    },
+    featured: true,
+    order: 9,
+  },
+
+  // ============================================================================
+  // ADDITIONAL GEOMETRIES (for completeness of relationships)
+  // ============================================================================
 
   triangle: {
     id: "triangle",
@@ -498,7 +563,8 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Pentagram",
     slug: "pentagram",
     category: "pattern",
-    description: "Five-pointed star embodying the golden ratio",
+    title: "Pentagram",
+    description: "Five-pointed star embodying the golden ratio and representing the human form",
     contains: ["golden-ratio"],
     relatedBy: {
       property: [
@@ -507,8 +573,16 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "microcosm",
         "human form",
         "protection",
+        "pentacle",
+        "phi ratio",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/pentagram/pentagram-primary.svg",
+    },
+    featured: true,
+    order: 10,
   },
 
   "fibonacci-spiral": {

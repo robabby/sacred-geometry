@@ -84,14 +84,14 @@ describe("Navigation Helpers", () => {
 
       const next = getNextGeometry(flowerOfLife!.id, "pattern");
       expect(next).toBeDefined();
-      expect(next?.slug).toBe("seed-of-life");
+      expect(next?.slug).toBe("metatrons-cube");
     });
 
     it("should handle geometries without order field", () => {
-      // vesica-piscis doesn't have an order field
-      const vesicaPiscis = getGeometryBySlug("vesica-piscis");
-      if (vesicaPiscis) {
-        const next = getNextGeometry(vesicaPiscis.id, "pattern");
+      // triangle doesn't have an order field
+      const triangle = getGeometryBySlug("triangle");
+      if (triangle) {
+        const next = getNextGeometry(triangle.id, "pattern");
         // Should not appear in navigation since it lacks order
         expect(next).toBeUndefined();
       }
@@ -123,7 +123,7 @@ describe("Navigation Helpers", () => {
 
       const prev = getPreviousGeometry(seedOfLife!.id, "pattern");
       expect(prev).toBeDefined();
-      expect(prev?.slug).toBe("flower-of-life");
+      expect(prev?.slug).toBe("vesica-piscis");
     });
   });
 });
@@ -197,8 +197,8 @@ describe("Data Integrity", () => {
   describe("Sacred Patterns", () => {
     const sacredPatterns = getSacredPatterns().filter((p) => p.featured);
 
-    it("should have exactly 6 featured sacred patterns", () => {
-      expect(sacredPatterns).toHaveLength(6);
+    it("should have exactly 10 featured sacred patterns", () => {
+      expect(sacredPatterns).toHaveLength(10);
     });
 
     it("should all have order field defined", () => {

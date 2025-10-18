@@ -15,6 +15,10 @@ const iconMap: Record<string, typeof Hexagon> = {
   "sri-yantra": Triangle,
   "star-tetrahedron": Star,
   "golden-ratio": Sparkles,
+  "vesica-piscis": Hexagon,
+  "fruit-of-life": Hexagon,
+  "philosophers-stone": Star,
+  "pentagram": Star,
 };
 
 // Color mapping for Sacred Patterns
@@ -25,6 +29,10 @@ const colorMap: Record<string, string> = {
   "sri-yantra": "text-red-400",
   "star-tetrahedron": "text-cyan-400",
   "golden-ratio": "text-yellow-400",
+  "vesica-piscis": "text-blue-400",
+  "fruit-of-life": "text-pink-400",
+  "philosophers-stone": "text-orange-400",
+  "pentagram": "text-emerald-400",
 };
 
 // Category mapping for Sacred Patterns
@@ -35,6 +43,10 @@ const categoryMap: Record<string, string> = {
   "sri-yantra": "Divine Union",
   "star-tetrahedron": "Light Vehicle",
   "golden-ratio": "Divine Proportion",
+  "vesica-piscis": "Creation Portal",
+  "fruit-of-life": "Cosmic Blueprint",
+  "philosophers-stone": "Alchemical Symbol",
+  "pentagram": "Human Microcosm",
 };
 
 const sacredPatterns = getSacredPatterns()

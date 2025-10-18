@@ -87,21 +87,21 @@ describe("GeometryNavigation", () => {
         <GeometryNavigation currentSlug="seed-of-life" category="pattern" />
       );
 
-      // Should have Previous button to Flower of Life
-      expect(screen.getByText(/Flower of Life/i)).toBeInTheDocument();
+      // Should have Previous button to Vesica Piscis
+      expect(screen.getByText(/Vesica Piscis/i)).toBeInTheDocument();
       expect(screen.getAllByText(/Previous/i).length).toBeGreaterThan(0);
 
-      // Should have Next button to Metatron's Cube
-      expect(screen.getByText(/Metatron's Cube/i)).toBeInTheDocument();
+      // Should have Next button to Fruit of Life
+      expect(screen.getByText(/Fruit of Life/i)).toBeInTheDocument();
       expect(screen.getAllByText(/Next/i).length).toBeGreaterThan(0);
 
       // Should have "All Sacred Patterns" link
       expect(screen.getByText(/All Sacred Patterns/i)).toBeInTheDocument();
     });
 
-    it("should not render Previous button for first pattern (Flower of Life)", () => {
+    it("should not render Previous button for first pattern (Vesica Piscis)", () => {
       render(
-        <GeometryNavigation currentSlug="flower-of-life" category="pattern" />
+        <GeometryNavigation currentSlug="vesica-piscis" category="pattern" />
       );
 
       // Should NOT have Previous button
@@ -111,9 +111,9 @@ describe("GeometryNavigation", () => {
       expect(screen.getAllByText(/Next/i).length).toBeGreaterThan(0);
     });
 
-    it("should not render Next button for last pattern (Golden Ratio)", () => {
+    it("should not render Next button for last pattern (Pentagram)", () => {
       render(
-        <GeometryNavigation currentSlug="golden-ratio" category="pattern" />
+        <GeometryNavigation currentSlug="pentagram" category="pattern" />
       );
 
       // Should have Previous button
