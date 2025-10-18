@@ -1,0 +1,30 @@
+slug: icosahedron
+order: Fifth Solid
+
+symbolic:
+  introduction: "With twenty triangular faces, the icosahedron is the **most spherical** of the Platonic Solids—approaching the perfect fluidity of a sphere. This quality makes it the ideal representation of water. In sacred geometry, it symbolizes:"
+
+  associations:
+    - "**Water and emotions**, the flow of feeling"
+    - "**The Sacral Chakra**, center of creativity and emotion"
+    - "**Transformation and adaptability**, like water taking any shape"
+    - "**Life force** and the primordial waters of creation"
+
+mathematical:
+  insights:
+    - "The icosahedron is the **dual** of the dodecahedron—where spirit (dodecahedron) meets matter through emotion (icosahedron). Together they represent the dance between consciousness and feeling, thought and sensation."
+    - "It has the greatest number of faces among the Platonic Solids, giving it the largest surface area relative to its volume. This makes it **the most efficient for containing and moving**—just like water molecules arranging themselves for optimal flow."
+
+nature:
+  introduction: "The icosahedral form appears throughout nature and science:"
+  examples:
+    - category: Water Structure
+      description: "Researchers have found water molecules can form icosahedral clusters"
+    - category: Geodesic Domes
+      description: "Buckminster Fuller's geodesic structures are based on icosahedral geometry"
+    - category: Biology
+      description: "Many viruses and radiolaria (marine organisms) exhibit icosahedral symmetry"
+    - category: Planetology
+      description: "Some planetary features and gravitational models use icosahedral grids"
+    - category: Gaming
+      description: "The twenty-sided die (d20) brings this sacred form into play"
