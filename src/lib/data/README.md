@@ -14,7 +14,7 @@ The data model includes:
 ### Types
 
 ```typescript
-type GeometryCategory = 'platonic' | 'pattern' | 'compound';
+type GeometryCategory = 'platonic' | 'pattern';
 
 interface Geometry {
   id: string;
@@ -79,8 +79,8 @@ const relations = getRelatedGeometries('metatrons-cube');
 // }
 
 // Get contained geometries
-const contained = getContainedGeometries('merkaba');
-// Returns: [tetrahedron, star-tetrahedron]
+const contained = getContainedGeometries('star-tetrahedron');
+// Returns: [tetrahedron]
 ```
 
 ### Filter by Properties
@@ -97,8 +97,8 @@ const fireGeometries = getGeometriesByElement('fire');
 // Returns: [tetrahedron]
 
 // Get geometries by category
-const compounds = getGeometriesByCategory('compound');
-// Returns: [merkaba, star-tetrahedron]
+const patterns = getGeometriesByCategory('pattern');
+// Returns: [flower-of-life, seed-of-life, metatrons-cube, sri-yantra, star-tetrahedron, golden-ratio, ...]
 
 // Search geometries
 const results = searchGeometries('creation');

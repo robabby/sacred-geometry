@@ -13,7 +13,7 @@ const iconMap: Record<string, typeof Hexagon> = {
   "seed-of-life": Hexagon,
   "metatrons-cube": Sparkles,
   "sri-yantra": Triangle,
-  merkaba: Star,
+  "star-tetrahedron": Star,
   "golden-ratio": Sparkles,
 };
 
@@ -23,7 +23,7 @@ const colorMap: Record<string, string> = {
   "seed-of-life": "text-green-400",
   "metatrons-cube": "text-purple-400",
   "sri-yantra": "text-red-400",
-  merkaba: "text-cyan-400",
+  "star-tetrahedron": "text-cyan-400",
   "golden-ratio": "text-yellow-400",
 };
 
@@ -33,7 +33,7 @@ const categoryMap: Record<string, string> = {
   "seed-of-life": "Creation Symbol",
   "metatrons-cube": "Sacred Blueprint",
   "sri-yantra": "Divine Union",
-  merkaba: "Light Vehicle",
+  "star-tetrahedron": "Light Vehicle",
   "golden-ratio": "Divine Proportion",
 };
 

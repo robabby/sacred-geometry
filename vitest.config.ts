@@ -6,7 +6,10 @@ export default defineConfig({
   test: {
     environment: "happy-dom",
     globals: true,
-    include: ["__tests__/**/*.test.{ts,tsx}"],
+    include: [
+      "__tests__/**/*.test.{ts,tsx}",
+      "src/**/*.test.{ts,tsx}",
+    ],
     setupFiles: ["./__tests__/setup.ts"],
     coverage: {
       reporter: ["text", "lcov"],

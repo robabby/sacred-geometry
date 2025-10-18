@@ -5,7 +5,7 @@
  * and provides helper functions for querying and navigating these connections.
  */
 
-export type GeometryCategory = "platonic" | "pattern" | "compound";
+export type GeometryCategory = "platonic" | "pattern";
 
 export interface GeometryRelations {
   element?: "fire" | "earth" | "air" | "water" | "ether";
@@ -34,6 +34,7 @@ export interface Geometry {
   category: GeometryCategory;
   title?: string; // Full display title for the page
   description?: string;
+  aliases?: string[]; // Alternative names for this geometry (e.g., "Merkaba" for Star Tetrahedron)
   dual?: string; // geometry id
   dualOfTitle?: string; // Display name for dual
   contains?: string[]; // array of geometry ids found within this geometry
@@ -63,7 +64,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
       "The tetrahedron is the first Platonic Solid, the simplest three-dimensional form that can exist. It represents fire, transformation, and the spark of creation.",
     dual: "tetrahedron", // Self-dual
     dualOfTitle: "Self-dual (Tetrahedron)",
-    appearsIn: ["metatrons-cube", "merkaba", "star-tetrahedron"],
+    appearsIn: ["metatrons-cube", "star-tetrahedron"],
     relatedBy: {
       element: "fire",
       chakra: "Solar Plexus",
@@ -100,7 +101,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Hexahedron (Cube)",
     slug: "hexahedron",
     category: "platonic",
-    title: "The Hexahedron: Foundation of Earth",
+    title: "The Hexahedron (Cube): Foundation of Earth",
     description:
       "The hexahedron, commonly known as the cube, represents the element of Earth—stability, structure, and the material world. It is the most grounded of all Platonic Solids.",
     dual: "octahedron",
@@ -374,27 +375,31 @@ export const GEOMETRIES: Record<string, Geometry> = {
     order: 4,
   },
 
-  merkaba: {
-    id: "merkaba",
-    name: "Merkaba",
-    slug: "merkaba",
-    category: "compound",
-    title: "Merkaba",
+  "star-tetrahedron": {
+    id: "star-tetrahedron",
+    name: "Star Tetrahedron",
+    slug: "star-tetrahedron",
+    category: "pattern",
+    title: "Star Tetrahedron",
     description:
-      "Sacred light vehicle, two interlocking tetrahedrons representing spirit and matter",
-    contains: ["tetrahedron", "star-tetrahedron"],
+      "Two interlocking tetrahedrons forming a three-dimensional Star of David, representing the union of spirit and matter",
+    aliases: ["Merkaba", "Merkavah", "Light Body"],
+    contains: ["tetrahedron"],
     relatedBy: {
       property: [
+        "3D star of david",
+        "masculine-feminine balance",
+        "8 points",
+        "dimensional gateway",
         "light body",
         "vehicle of ascension",
         "spirit-matter union",
-        "divine light vehicle",
         "counter-rotating fields",
       ],
     },
     images: {
       heroImage:
-        "/images/geometries/sacred-patterns/merkaba/merkaba-primary.svg",
+        "/images/geometries/sacred-patterns/star-tetrahedron/star-tetrahedron-primary.svg",
     },
     featured: true,
     order: 5,
@@ -450,25 +455,6 @@ export const GEOMETRIES: Record<string, Geometry> = {
     },
   },
 
-  "star-tetrahedron": {
-    id: "star-tetrahedron",
-    name: "Star Tetrahedron",
-    slug: "star-tetrahedron",
-    category: "compound",
-    description:
-      "Two interlocking tetrahedrons forming a three-dimensional Star of David",
-    contains: ["tetrahedron"],
-    appearsIn: ["merkaba"],
-    relatedBy: {
-      property: [
-        "3D star of david",
-        "masculine-feminine balance",
-        "8 points",
-        "dimensional gateway",
-      ],
-    },
-  },
-
   triangle: {
     id: "triangle",
     name: "Triangle",
@@ -480,7 +466,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
       "octahedron",
       "icosahedron",
       "sri-yantra",
-      "merkaba",
+      "star-tetrahedron",
     ],
     relatedBy: {
       property: [
@@ -657,13 +643,16 @@ export function getAllGeometries(): Geometry[] {
 }
 
 /**
- * Search geometries by name or property
+ * Search geometries by name, aliases, description, or property
  */
 export function searchGeometries(query: string): Geometry[] {
   const lowerQuery = query.toLowerCase();
   return Object.values(GEOMETRIES).filter(
     (g) =>
       g.name.toLowerCase().includes(lowerQuery) ||
+      (g.aliases?.some((alias) =>
+        alias.toLowerCase().includes(lowerQuery)
+      ) ?? false) ||
       (g.description?.toLowerCase().includes(lowerQuery) ?? false) ||
       (g.relatedBy?.property?.some((p) =>
         p.toLowerCase().includes(lowerQuery)
@@ -678,10 +667,7 @@ export function searchGeometries(query: string): Geometry[] {
 export function getGeometryPath(geometry: Geometry): string {
   if (geometry.category === "platonic") {
     return `/platonic-solids/${geometry.slug}`;
-  } else if (
-    geometry.category === "pattern" ||
-    geometry.category === "compound"
-  ) {
+  } else if (geometry.category === "pattern") {
     return `/sacred-patterns/${geometry.slug}`;
   }
   return "/";
