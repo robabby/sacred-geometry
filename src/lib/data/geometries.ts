@@ -667,3 +667,59 @@ export function searchGeometries(query: string): Geometry[] {
         false)
   );
 }
+
+/**
+ * Get the URL path for a geometry based on its category
+ */
+export function getGeometryPath(geometry: Geometry): string {
+  if (geometry.category === "platonic") {
+    return `/platonic-solids/${geometry.slug}`;
+  } else if (
+    geometry.category === "pattern" ||
+    geometry.category === "compound"
+  ) {
+    return `/sacred-patterns/${geometry.slug}`;
+  }
+  return "/";
+}
+
+/**
+ * Get the URL path for a category's list page
+ */
+export function getGeometryListPath(category: GeometryCategory): string {
+  if (category === "platonic") return "/platonic-solids";
+  if (category === "pattern") return "/sacred-patterns";
+  return "/";
+}
+
+/**
+ * Get the next geometry in sequence within a category (by order field)
+ */
+export function getNextGeometry(
+  currentId: string,
+  category: GeometryCategory
+): Geometry | undefined {
+  const geometries = getGeometriesByCategory(category)
+    .filter((g) => g.order !== undefined)
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+  const currentIndex = geometries.findIndex((g) => g.id === currentId);
+  return currentIndex >= 0 && currentIndex < geometries.length - 1
+    ? geometries[currentIndex + 1]
+    : undefined;
+}
+
+/**
+ * Get the previous geometry in sequence within a category (by order field)
+ */
+export function getPreviousGeometry(
+  currentId: string,
+  category: GeometryCategory
+): Geometry | undefined {
+  const geometries = getGeometriesByCategory(category)
+    .filter((g) => g.order !== undefined)
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+  const currentIndex = geometries.findIndex((g) => g.id === currentId);
+  return currentIndex > 0 ? geometries[currentIndex - 1] : undefined;
+}

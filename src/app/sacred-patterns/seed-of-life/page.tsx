@@ -1,6 +1,7 @@
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { GeometryNavigation } from "@/components/geometry-navigation";
 import { getGeometryBySlug } from "@/lib/data";
 
 export default function SeedOfLifePage() {
@@ -106,6 +107,9 @@ export default function SeedOfLifePage() {
               </li>
             </ul>
           </Card>
+
+          {/* Navigation */}
+          <GeometryNavigation currentSlug="seed-of-life" category="pattern" />
         </div>
       </div>
     </main>

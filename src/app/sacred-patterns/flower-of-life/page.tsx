@@ -1,6 +1,7 @@
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { GeometryNavigation } from "@/components/geometry-navigation";
 import { getGeometryBySlug } from "@/lib/data";
 
 export default function FlowerOfLifePage() {
@@ -327,6 +328,9 @@ export default function FlowerOfLifePage() {
               </li>
             </ul>
           </Card>
+
+          {/* Navigation */}
+          <GeometryNavigation currentSlug="flower-of-life" category="pattern" />
         </div>
       </div>
     </main>
