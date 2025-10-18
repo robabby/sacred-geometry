@@ -92,17 +92,6 @@ export default async function PlatonicSolidPage({
                   weight="bold"
                   className="text-sm tracking-wide text-amber-200 uppercase"
                 >
-                  Chakra
-                </Text>
-                <Text size="5" className="text-blue-200">
-                  {relatedBy?.chakra}
-                </Text>
-              </Flex>
-              <Flex direction="column" gap="2">
-                <Text
-                  weight="bold"
-                  className="text-sm tracking-wide text-amber-200 uppercase"
-                >
                   Dual
                 </Text>
                 <Text size="5" className="text-blue-200">

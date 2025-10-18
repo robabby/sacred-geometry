@@ -67,7 +67,6 @@ export const GEOMETRIES: Record<string, Geometry> = {
     appearsIn: ["metatrons-cube", "star-tetrahedron"],
     relatedBy: {
       element: "fire",
-      chakra: "Solar Plexus",
       property: [
         "4 faces",
         "4 vertices",
@@ -109,7 +108,6 @@ export const GEOMETRIES: Record<string, Geometry> = {
     appearsIn: ["metatrons-cube"],
     relatedBy: {
       element: "earth",
-      chakra: "Root",
       property: [
         "6 faces",
         "8 vertices",
@@ -151,7 +149,6 @@ export const GEOMETRIES: Record<string, Geometry> = {
     appearsIn: ["metatrons-cube"],
     relatedBy: {
       element: "air",
-      chakra: "Heart",
       property: ["8 faces", "6 vertices", "12 edges", "balance", "integration"],
     },
     images: {
@@ -187,7 +184,6 @@ export const GEOMETRIES: Record<string, Geometry> = {
     appearsIn: ["metatrons-cube"],
     relatedBy: {
       element: "ether",
-      chakra: "Crown",
       property: [
         "12 faces",
         "20 vertices",
@@ -230,7 +226,6 @@ export const GEOMETRIES: Record<string, Geometry> = {
     appearsIn: ["metatrons-cube"],
     relatedBy: {
       element: "water",
-      chakra: "Sacral",
       property: [
         "20 faces",
         "12 vertices",
