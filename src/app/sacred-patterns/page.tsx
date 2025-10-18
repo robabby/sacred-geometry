@@ -5,62 +5,51 @@ import { Sparkles, Hexagon, Star, Triangle } from "lucide-react";
 import { ROUTES } from "@/util/routes";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { getSacredPatterns, getGeometryPath } from "@/lib/data";
 
-const sacredPatterns = [
-  {
-    slug: "flower-of-life",
-    route: ROUTES.sacredPatterns.children.flowerOfLife,
-    icon: Hexagon,
-    color: "text-amber-400",
-    category: "Universal Pattern",
-    image:
-      "/images/geometries/sacred-patterns/flower-of-life/flower-of-life-primary.svg",
-  },
-  {
-    slug: "seed-of-life",
-    route: ROUTES.sacredPatterns.children.seedOfLife,
-    icon: Hexagon,
-    color: "text-green-400",
-    category: "Creation Symbol",
-    image:
-      "/images/geometries/sacred-patterns/seed-of-life/seed-of-life-primary.svg",
-  },
-  {
-    slug: "metatrons-cube",
-    route: ROUTES.sacredPatterns.children.metatronsCube,
-    icon: Sparkles,
-    color: "text-purple-400",
-    category: "Sacred Blueprint",
-    image:
-      "/images/geometries/sacred-patterns/metatrons-cube/metatrons-cube-primary.svg",
-  },
-  {
-    slug: "sri-yantra",
-    route: ROUTES.sacredPatterns.children.sriYantra,
-    icon: Triangle,
-    color: "text-red-400",
-    category: "Divine Union",
-    image:
-      "/images/geometries/sacred-patterns/sri-yantra/sri-yantra-primary.svg",
-  },
-  {
-    slug: "merkaba",
-    route: ROUTES.sacredPatterns.children.merkaba,
-    icon: Star,
-    color: "text-cyan-400",
-    category: "Light Vehicle",
-    image: "/images/geometries/sacred-patterns/merkaba/merkaba-primary.svg",
-  },
-  {
-    slug: "golden-ratio",
-    route: ROUTES.sacredPatterns.children.goldenRatio,
-    icon: Sparkles,
-    color: "text-yellow-400",
-    category: "Divine Proportion",
-    image:
-      "/images/geometries/sacred-patterns/golden-ratio/golden-ratio-spiral.svg",
-  },
-];
+// Icon mapping for Sacred Patterns
+const iconMap: Record<string, typeof Hexagon> = {
+  "flower-of-life": Hexagon,
+  "seed-of-life": Hexagon,
+  "metatrons-cube": Sparkles,
+  "sri-yantra": Triangle,
+  merkaba: Star,
+  "golden-ratio": Sparkles,
+};
+
+// Color mapping for Sacred Patterns
+const colorMap: Record<string, string> = {
+  "flower-of-life": "text-amber-400",
+  "seed-of-life": "text-green-400",
+  "metatrons-cube": "text-purple-400",
+  "sri-yantra": "text-red-400",
+  merkaba: "text-cyan-400",
+  "golden-ratio": "text-yellow-400",
+};
+
+// Category mapping for Sacred Patterns
+const categoryMap: Record<string, string> = {
+  "flower-of-life": "Universal Pattern",
+  "seed-of-life": "Creation Symbol",
+  "metatrons-cube": "Sacred Blueprint",
+  "sri-yantra": "Divine Union",
+  merkaba: "Light Vehicle",
+  "golden-ratio": "Divine Proportion",
+};
+
+const sacredPatterns = getSacredPatterns()
+  .filter((p) => p.featured)
+  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+  .map((pattern) => ({
+    slug: pattern.slug,
+    name: pattern.name,
+    description: pattern.description,
+    path: getGeometryPath(pattern),
+    icon: iconMap[pattern.slug] ?? Hexagon,
+    color: colorMap[pattern.slug] ?? "text-amber-400",
+    category: categoryMap[pattern.slug] ?? "Sacred Pattern",
+    image: pattern.images?.heroImage ?? "",
+  }));
 
 export default function SacredPatternsPage() {
   return (
@@ -87,14 +76,14 @@ export default function SacredPatternsPage() {
           {sacredPatterns.map((pattern) => {
             const Icon = pattern.icon;
             return (
-              <Link key={pattern.route.path} href={pattern.route.path}>
+              <Link key={pattern.path} href={pattern.path}>
                 <Card className="cursor-pointer border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-6 backdrop-blur-sm transition-all hover:scale-105 hover:border-amber-500/40">
                   <div className="flex flex-col gap-4">
                     {/* Image */}
                     <div className="relative flex h-48 w-full items-center justify-center">
                       <Image
                         src={pattern.image}
-                        alt={pattern.route.name}
+                        alt={pattern.name}
                         width={180}
                         height={180}
                         className="object-contain"
@@ -109,7 +98,7 @@ export default function SacredPatternsPage() {
                       <div className="flex items-center gap-2">
                         <Icon className={`h-5 w-5 ${pattern.color}`} />
                         <Heading size="5" className="text-amber-100">
-                          {pattern.route.name}
+                          {pattern.name}
                         </Heading>
                       </div>
                     </div>
@@ -124,7 +113,7 @@ export default function SacredPatternsPage() {
                     </div>
 
                     <Text size="2" className="flex-grow text-blue-300">
-                      {pattern.route.description}
+                      {pattern.description}
                     </Text>
 
                     <div className="text-sm font-medium text-amber-300 transition-colors hover:text-amber-400">

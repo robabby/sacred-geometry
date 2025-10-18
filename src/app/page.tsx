@@ -13,55 +13,45 @@ import { ROUTES } from "@/util/routes";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import {
+  getPlatonicSolids,
+  getSacredPatterns,
+  getGeometryPath,
+} from "@/lib/data";
 
-const platonicSolids = [
-  {
-    name: "Tetrahedron",
-    path: ROUTES.platonicSolids.children.tetrahedron.path,
-    element: "Fire",
-    faces: 4,
-    icon: Triangle,
-    image: "/images/geometries/platonic-solids/tetrahedron/tetrahedron-3d.svg",
-    color: "text-red-400",
-  },
-  {
-    name: "Hexahedron",
-    path: ROUTES.platonicSolids.children.hexahedron.path,
-    element: "Earth",
-    faces: 6,
-    icon: BoxIcon,
-    image: "/images/geometries/platonic-solids/hexahedron/hexahedron-3d.svg",
-    color: "text-green-400",
-  },
-  {
-    name: "Octahedron",
-    path: ROUTES.platonicSolids.children.octahedron.path,
-    element: "Air",
-    faces: 8,
-    icon: Octagon,
-    image: "/images/geometries/platonic-solids/octahedron/octahedron-3d.svg",
-    color: "text-cyan-400",
-  },
-  {
-    name: "Dodecahedron",
-    path: ROUTES.platonicSolids.children.dodecahedron.path,
-    element: "Ether",
-    faces: 12,
-    icon: Sparkles,
-    image:
-      "/images/geometries/platonic-solids/dodecahedron/dodecahedron-3d.svg",
-    color: "text-purple-400",
-  },
-  {
-    name: "Icosahedron",
-    path: ROUTES.platonicSolids.children.icosahedron.path,
-    element: "Water",
-    faces: 20,
-    icon: Droplets,
-    image: "/images/geometries/platonic-solids/icosahedron/icosahedron-3d.svg",
-    color: "text-blue-400",
-  },
-];
+// Icon mapping for Platonic Solids
+const iconMap: Record<string, typeof Triangle> = {
+  tetrahedron: Triangle,
+  hexahedron: BoxIcon,
+  octahedron: Octagon,
+  dodecahedron: Sparkles,
+  icosahedron: Droplets,
+};
+
+// Color mapping for Platonic Solids
+const colorMap: Record<string, string> = {
+  tetrahedron: "text-red-400",
+  hexahedron: "text-green-400",
+  octahedron: "text-cyan-400",
+  dodecahedron: "text-purple-400",
+  icosahedron: "text-blue-400",
+};
+
+const platonicSolids = getPlatonicSolids()
+  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+  .map((solid) => ({
+    id: solid.id,
+    name: solid.name,
+    path: getGeometryPath(solid),
+    element: solid.relatedBy?.element
+      ? solid.relatedBy.element.charAt(0).toUpperCase() +
+        solid.relatedBy.element.slice(1)
+      : "Unknown",
+    faces: solid.mathProperties?.faces ?? 0,
+    icon: iconMap[solid.slug] ?? Triangle,
+    image: solid.images?.heroImage ?? "",
+    color: colorMap[solid.slug] ?? "text-amber-400",
+  }));
 
 export default function HomePage() {
   return (
@@ -249,90 +239,43 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 sm:gap-6 sm:px-0 lg:grid-cols-3">
-              <Link href={ROUTES.sacredPatterns.children.flowerOfLife.path}>
-                <div className="cursor-pointer rounded-lg border border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-6 transition-all hover:scale-105 hover:border-amber-500/40">
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="flex h-32 w-full items-center justify-center">
-                      <Image
-                        src="/images/geometries/sacred-patterns/flower-of-life/flower-of-life-primary.svg"
-                        alt="Flower of Life"
-                        width={120}
-                        height={120}
-                        style={{
-                          filter:
-                            "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
-                        }}
-                      />
+              {[
+                { slug: "flower-of-life", badge: "Universal Pattern" },
+                { slug: "metatrons-cube", badge: "Sacred Blueprint" },
+                { slug: "golden-ratio", badge: "Divine Proportion" },
+              ].map(({ slug, badge }) => {
+                const pattern = getSacredPatterns().find((p) => p.slug === slug);
+                if (!pattern) return null;
+                return (
+                  <Link key={pattern.slug} href={getGeometryPath(pattern)}>
+                    <div className="cursor-pointer rounded-lg border border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-6 transition-all hover:scale-105 hover:border-amber-500/40">
+                      <div className="flex flex-col items-center gap-4">
+                        <div className="flex h-32 w-full items-center justify-center">
+                          <Image
+                            src={pattern.images?.heroImage ?? ""}
+                            alt={pattern.name}
+                            width={120}
+                            height={120}
+                            style={{
+                              filter:
+                                "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
+                            }}
+                          />
+                        </div>
+                        <Heading size="4" className="text-amber-200">
+                          {pattern.name}
+                        </Heading>
+                        <Text size="2" className="text-center text-blue-300">
+                          {pattern.description}
+                        </Text>
+                        <Badge className="bg-amber-500/20 text-amber-300">
+                          {badge}
+                        </Badge>
+                      </div>
                     </div>
-                    <Heading size="4" className="text-amber-200">
-                      Flower of Life
-                    </Heading>
-                    <Text size="2" className="text-center text-blue-300">
-                      Ancient symbol encoding the fundamental forms of space and
-                      time
-                    </Text>
-                    <Badge className="bg-amber-500/20 text-amber-300">
-                      Universal Pattern
-                    </Badge>
-                  </div>
-                </div>
-              </Link>
-
-              <Link href={ROUTES.sacredPatterns.children.metatronsCube.path}>
-                <div className="cursor-pointer rounded-lg border border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-6 transition-all hover:scale-105 hover:border-amber-500/40">
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="flex h-32 w-full items-center justify-center">
-                      <Image
-                        src="/images/geometries/sacred-patterns/metatrons-cube/metatrons-cube-primary.svg"
-                        alt="Metatron's Cube"
-                        width={120}
-                        height={120}
-                        style={{
-                          filter:
-                            "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
-                        }}
-                      />
-                    </div>
-                    <Heading size="4" className="text-amber-200">
-                      Metatron&apos;s Cube
-                    </Heading>
-                    <Text size="2" className="text-center text-blue-300">
-                      Contains all five Platonic Solids within its structure
-                    </Text>
-                    <Badge className="bg-amber-500/20 text-amber-300">
-                      Sacred Blueprint
-                    </Badge>
-                  </div>
-                </div>
-              </Link>
-
-              <Link href={ROUTES.sacredPatterns.children.goldenRatio.path}>
-                <div className="cursor-pointer rounded-lg border border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-6 transition-all hover:scale-105 hover:border-amber-500/40">
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="flex h-32 w-full items-center justify-center">
-                      <Image
-                        src="/images/geometries/sacred-patterns/golden-ratio/golden-ratio-spiral.svg"
-                        alt="Golden Ratio"
-                        width={120}
-                        height={120}
-                        style={{
-                          filter:
-                            "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
-                        }}
-                      />
-                    </div>
-                    <Heading size="4" className="text-amber-200">
-                      Golden Ratio
-                    </Heading>
-                    <Text size="2" className="text-center text-blue-300">
-                      Divine proportion (φ ≈ 1.618) found throughout nature
-                    </Text>
-                    <Badge className="bg-amber-500/20 text-amber-300">
-                      Divine Proportion
-                    </Badge>
-                  </div>
-                </div>
-              </Link>
+                  </Link>
+                );
+              })}
             </div>
 
             <div className="mt-6 px-4 text-center sm:mt-8">

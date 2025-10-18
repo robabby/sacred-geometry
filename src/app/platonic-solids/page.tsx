@@ -11,65 +11,45 @@ import {
 import { ROUTES } from "@/util/routes";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { getPlatonicSolids, getGeometryPath } from "@/lib/data";
 
-const platonicSolids = [
-  {
-    slug: "tetrahedron",
-    route: ROUTES.platonicSolids.children.tetrahedron,
-    element: "Fire",
-    faces: 4,
-    vertices: 4,
-    edges: 6,
-    icon: Triangle,
-    color: "text-red-400",
-    image: "/images/geometries/platonic-solids/tetrahedron/tetrahedron-3d.svg",
-  },
-  {
-    slug: "hexahedron",
-    route: ROUTES.platonicSolids.children.hexahedron,
-    element: "Earth",
-    faces: 6,
-    vertices: 8,
-    edges: 12,
-    icon: BoxIcon,
-    color: "text-green-400",
-    image: "/images/geometries/platonic-solids/hexahedron/hexahedron-3d.svg",
-  },
-  {
-    slug: "octahedron",
-    route: ROUTES.platonicSolids.children.octahedron,
-    element: "Air",
-    faces: 8,
-    vertices: 6,
-    edges: 12,
-    icon: Octagon,
-    color: "text-cyan-400",
-    image: "/images/geometries/platonic-solids/octahedron/octahedron-3d.svg",
-  },
-  {
-    slug: "dodecahedron",
-    route: ROUTES.platonicSolids.children.dodecahedron,
-    element: "Ether",
-    faces: 12,
-    vertices: 20,
-    edges: 30,
-    icon: Sparkles,
-    color: "text-purple-400",
-    image:
-      "/images/geometries/platonic-solids/dodecahedron/dodecahedron-3d.svg",
-  },
-  {
-    slug: "icosahedron",
-    route: ROUTES.platonicSolids.children.icosahedron,
-    element: "Water",
-    faces: 20,
-    vertices: 12,
-    edges: 30,
-    icon: Droplets,
-    color: "text-blue-400",
-    image: "/images/geometries/platonic-solids/icosahedron/icosahedron-3d.svg",
-  },
-];
+// Icon mapping for Platonic Solids
+const iconMap: Record<string, typeof Triangle> = {
+  tetrahedron: Triangle,
+  hexahedron: BoxIcon,
+  octahedron: Octagon,
+  dodecahedron: Sparkles,
+  icosahedron: Droplets,
+};
+
+// Color mapping for Platonic Solids
+const colorMap: Record<string, string> = {
+  tetrahedron: "text-red-400",
+  hexahedron: "text-green-400",
+  octahedron: "text-cyan-400",
+  dodecahedron: "text-purple-400",
+  icosahedron: "text-blue-400",
+};
+
+const platonicSolids = getPlatonicSolids()
+  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+  .map((solid) => ({
+    slug: solid.slug,
+    name: solid.name,
+    title: solid.title,
+    description: solid.description,
+    path: getGeometryPath(solid),
+    element: solid.relatedBy?.element
+      ? solid.relatedBy.element.charAt(0).toUpperCase() +
+        solid.relatedBy.element.slice(1)
+      : "Unknown",
+    faces: solid.mathProperties?.faces,
+    vertices: solid.mathProperties?.vertices,
+    edges: solid.mathProperties?.edges,
+    icon: iconMap[solid.slug] ?? Triangle,
+    color: colorMap[solid.slug] ?? "text-amber-400",
+    image: solid.images?.heroImage ?? "",
+  }));
 
 export default function PlatonicSolidsPage() {
   return (
@@ -96,14 +76,14 @@ export default function PlatonicSolidsPage() {
           {platonicSolids.map((solid) => {
             const Icon = solid.icon;
             return (
-              <Link key={solid.route.path} href={solid.route.path}>
+              <Link key={solid.path} href={solid.path}>
                 <Card className="cursor-pointer border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-6 backdrop-blur-sm transition-all hover:scale-105 hover:border-amber-500/40">
                   <div className="flex flex-col gap-4">
                     {/* Image */}
                     <div className="relative flex h-48 w-full items-center justify-center">
                       <Image
                         src={solid.image}
-                        alt={solid.route.name}
+                        alt={solid.name}
                         width={180}
                         height={180}
                         className="object-contain"
@@ -118,7 +98,7 @@ export default function PlatonicSolidsPage() {
                       <div className="flex items-center gap-2">
                         <Icon className={`h-5 w-5 ${solid.color}`} />
                         <Heading size="5" className="text-amber-100">
-                          {solid.route.name}
+                          {solid.name}
                         </Heading>
                       </div>
                     </div>
@@ -133,7 +113,7 @@ export default function PlatonicSolidsPage() {
                     </div>
 
                     <Text size="2" className="flex-grow text-blue-300">
-                      {solid.route.description}
+                      {solid.description}
                     </Text>
 
                     <div className="text-sm font-medium text-amber-300 transition-colors hover:text-amber-400">

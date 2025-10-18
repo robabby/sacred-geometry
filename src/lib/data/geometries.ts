@@ -340,6 +340,10 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "sacred geometry map",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/metatrons-cube/metatrons-cube-primary.svg",
+    },
     featured: true,
     order: 3,
   },
