@@ -14,7 +14,7 @@ This is a **T3 Stack** Next.js application focused on sacred geometry. The proje
 - **UI Components**: shadcn/ui (New York style)
 - **3D Graphics**: Three.js with @react-three/fiber and @react-three/drei
 - **Icons**: Lucide React
-- **Content**: MDX support via `@next/mdx`
+- **Content**: YAML content system via `js-yaml`, MDX support via `@next/mdx`
 - **Environment**: Type-safe env validation with `@t3-oss/env-nextjs`
 - **Analytics**: Vercel Analytics
 - **Testing**: Vitest with React Testing Library and happy-dom
@@ -57,6 +57,8 @@ pnpm start            # Start production server
 - `src/components/geometry/` - Sacred geometry specific components
 - `src/lib/` - Utility functions and shared logic
 - `src/lib/data/` - **Data models and geometry relationships catalog**
+- `src/lib/content/` - **Content loading and formatting utilities**
+- `src/content/` - **YAML content files for geometry pages**
 - `src/util/` - Application utilities (routing constants, etc.)
 - `src/styles/` - Global CSS and Tailwind imports
 - `src/env.js` - Environment variable validation schema
@@ -142,6 +144,72 @@ export default function Page({ params }: { params: { slug: string } }) {
 ```
 
 See `src/lib/data/README.md` for comprehensive documentation.
+
+### Content System Architecture
+
+**YAML Content Files** (`src/content/`):
+
+The project uses a YAML-based content system to separate page-specific narrative content from the structural geometry data model. This allows for maintainable, version-controlled content that can be easily edited without touching code.
+
+**Structure**:
+- `src/content/platonic-solids/` - Content for Platonic Solid pages (tetrahedron.yml, hexahedron.yml, etc.)
+- `src/content/sacred-patterns/` - Content for sacred pattern pages (future, different schema)
+
+**Content Loading** (`src/lib/content/`):
+
+- `getPlatonicSolidContent(slug)` - Load YAML content for a Platonic Solid
+- `formatText(text)` - Simple formatter converting `**bold**` to `<strong>` tags
+- Type-safe with `PlatonicSolidContent` interface
+
+**Separation of Concerns**:
+- **Data Model** (`src/lib/data/geometries.ts`): Structural data, relationships, mathematical properties
+  - `order: number` - Integer for sorting/logic (1, 2, 3, etc.)
+- **Content YAML**: Presentational content, narrative, symbolic meanings
+  - `order: string` - Display string ("First Solid", "Second Solid", etc.)
+
+**Example Usage**:
+
+```typescript
+import { getGeometryBySlug } from "@/lib/data";
+import { getPlatonicSolidContent, formatText } from "@/lib/content";
+
+export default function Page({ params }: { params: { slug: string } }) {
+  const geometry = getGeometryBySlug(params.slug);
+  const content = getPlatonicSolidContent(params.slug);
+
+  if (!geometry || !content) notFound();
+
+  // Render with formatted text
+  return (
+    <Text dangerouslySetInnerHTML={{
+      __html: formatText(content.symbolic.introduction)
+    }} />
+  );
+}
+```
+
+**YAML Schema**:
+```yaml
+slug: tetrahedron
+order: First Solid
+
+symbolic:
+  introduction: "Opening paragraph with **bold** text..."
+  associations:
+    - "List of symbolic meanings..."
+
+mathematical:
+  insights:
+    - "Mathematical paragraphs..."
+
+nature:
+  introduction: "Opening paragraph..."
+  examples:
+    - category: Chemistry
+      description: "Specific example..."
+```
+
+See `src/content/README.md` for detailed content editing guidelines.
 
 ### 3D Visualization Components
 
