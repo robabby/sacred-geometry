@@ -79,11 +79,11 @@ export const ROUTES = {
           "Sacred Hindu geometry representing the union of divine masculine and feminine energies",
         order: 4,
       },
-      merkaba: {
-        name: "Merkaba",
-        path: "/sacred-patterns/merkaba",
+      starTetrahedron: {
+        name: "Star Tetrahedron",
+        path: "/sacred-patterns/star-tetrahedron",
         description:
-          "Sacred light vehicle, two interlocking tetrahedrons representing spirit and matter",
+          "Two interlocking tetrahedrons forming a three-dimensional Star of David, representing the union of spirit and matter",
         order: 5,
       },
       goldenRatio: {

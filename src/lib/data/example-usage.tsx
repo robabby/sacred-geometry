@@ -126,9 +126,9 @@ function buildRelationshipGraph(geometryId: string): Record<string, unknown> {
   };
 }
 
-// Example: Build graph for Merkaba
-const merkabaGraph = buildRelationshipGraph("merkaba");
-console.log("Merkaba relationship graph:", merkabaGraph);
+// Example: Build graph for Star Tetrahedron
+const starTetGraph = buildRelationshipGraph("star-tetrahedron");
+console.log("Star Tetrahedron relationship graph:", starTetGraph);
 
 // ============================================================================
 // Finding Connections Between Geometries
@@ -170,8 +170,8 @@ function findConnections(geometry1Id: string, geometry2Id: string): string[] {
   return connections;
 }
 
-// Example: Find connections between Tetrahedron and Merkaba
-const connections = findConnections("tetrahedron", "merkaba");
+// Example: Find connections between Tetrahedron and Star Tetrahedron
+const connections = findConnections("tetrahedron", "star-tetrahedron");
 console.log("Connections:", connections);
 
 // ============================================================================
