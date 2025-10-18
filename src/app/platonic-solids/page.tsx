@@ -1,4 +1,4 @@
-import { Heading, Text } from "@radix-ui/themes";
+import { Box, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -57,12 +57,14 @@ export default function PlatonicSolidsPage() {
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
         <div className="mx-auto mb-16 max-w-4xl text-center">
-          <Heading size="9" className="mb-6 text-amber-100">
+          <Heading size="9" className="text-amber-100" mb="4">
             {ROUTES.platonicSolids.name}
           </Heading>
-          <Text size="5" className="mb-4 text-blue-200">
-            {ROUTES.platonicSolids.description}
-          </Text>
+          <Box mb="2">
+            <Text size="5" className="text-blue-200">
+              {ROUTES.platonicSolids.description}
+            </Text>
+          </Box>
           <Text size="3" className="mx-auto max-w-3xl text-blue-300/80">
             Discovered by the ancient Greeks and explored by Plato, these five
             perfect solids are the only three-dimensional shapes where every
@@ -103,21 +105,21 @@ export default function PlatonicSolidsPage() {
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-2">
+                    <Text size="2" className="text-blue-300">
+                      {solid.description}
+                    </Text>
+
+                    <div className="flex flex-wrap gap-2 justify-between">
                       <Badge
                         variant="secondary"
                         className="border-amber-500/30 bg-amber-500/20 text-amber-300"
                       >
                         {solid.element}
                       </Badge>
-                    </div>
 
-                    <Text size="2" className="flex-grow text-blue-300">
-                      {solid.description}
-                    </Text>
-
-                    <div className="text-sm font-medium text-amber-300 transition-colors hover:text-amber-400">
-                      Explore →
+                      <Text size="1" className="font-medium text-amber-300 transition-colors hover:text-amber-400">
+                        Explore →
+                      </Text>
                     </div>
                   </div>
                 </Card>

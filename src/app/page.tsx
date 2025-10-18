@@ -1,8 +1,9 @@
-import { Button, Flex, Heading, Text } from "@radix-ui/themes";
+import { Button, Callout, Flex, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
 import {
   CircleDot,
+  InfoIcon,
   Sparkles,
   Triangle,
   Droplets,
@@ -69,6 +70,15 @@ export default function HomePage() {
             </h1>
             <CircleDot className="h-8 w-8 text-amber-400 sm:h-12 sm:w-12" />
           </div>
+
+          <Callout.Root>
+            <Callout.Icon>
+              <InfoIcon />
+            </Callout.Icon>
+            <Callout.Text>
+              All text content on this site is AI generated, and may not be factually correct. This site is for educational and illustrative purposes only.
+            </Callout.Text>
+          </Callout.Root>
 
           <p className="max-w-2xl px-4 text-base text-blue-200 sm:text-xl">
             {ROUTES.home.description}

@@ -51,47 +51,82 @@ export const ROUTES = {
     description: "Infinite geometries that encode universal principles",
     order: 2,
     children: {
-      flowerOfLife: {
-        name: "Flower of Life",
-        path: "/sacred-patterns/flower-of-life",
+      circleDot: {
+        name: "Circle Dot",
+        path: "/sacred-patterns/circle-dot",
         description:
-          "Ancient symbol of creation consisting of overlapping circles representing the fundamental forms of space and time",
+          "The primordial symbol of unity and creation, representing the divine spark and the beginning of all form",
         order: 1,
+      },
+      vesicaPiscis: {
+        name: "Vesica Piscis",
+        path: "/sacred-patterns/vesica-piscis",
+        description:
+          "The intersection of two circles, representing duality and the portal of creation",
+        order: 2,
       },
       seedOfLife: {
         name: "Seed of Life",
         path: "/sacred-patterns/seed-of-life",
         description:
           "Seven circles in perfect symmetry, representing the seven days of creation",
-        order: 2,
+        order: 3,
+      },
+      fruitOfLife: {
+        name: "Fruit of Life",
+        path: "/sacred-patterns/fruit-of-life",
+        description:
+          "Thirteen circles extracted from the Flower of Life, representing the blueprint of the universe",
+        order: 4,
+      },
+      flowerOfLife: {
+        name: "Flower of Life",
+        path: "/sacred-patterns/flower-of-life",
+        description:
+          "Ancient symbol of creation consisting of overlapping circles representing the fundamental forms of space and time",
+        order: 5,
       },
       metatronsCube: {
         name: "Metatron's Cube",
         path: "/sacred-patterns/metatrons-cube",
         description:
           "Contains all five Platonic Solids and represents the geometric pattern of the universe",
-        order: 3,
+        order: 6,
       },
       sriYantra: {
         name: "Sri Yantra",
         path: "/sacred-patterns/sri-yantra",
         description:
           "Sacred Hindu geometry representing the union of divine masculine and feminine energies",
-        order: 4,
+        order: 7,
       },
       starTetrahedron: {
         name: "Star Tetrahedron",
         path: "/sacred-patterns/star-tetrahedron",
         description:
           "Two interlocking tetrahedrons forming a three-dimensional Star of David, representing the union of spirit and matter",
-        order: 5,
+        order: 8,
       },
       goldenRatio: {
         name: "Golden Ratio",
         path: "/sacred-patterns/golden-ratio",
         description:
           "Divine proportion (φ ≈ 1.618) that appears throughout nature and sacred architecture",
-        order: 6,
+        order: 9,
+      },
+      philosophersStone: {
+        name: "Philosopher's Stone",
+        path: "/sacred-patterns/philosophers-stone",
+        description:
+          "Ancient alchemical symbol representing spiritual transformation and the union of opposites",
+        order: 10,
+      },
+      pentagram: {
+        name: "Pentagram",
+        path: "/sacred-patterns/pentagram",
+        description:
+          "Five-pointed star embodying the golden ratio and representing the human form",
+        order: 11,
       },
     },
   },

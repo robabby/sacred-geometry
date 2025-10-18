@@ -1,7 +1,7 @@
-import { Heading, Text } from "@radix-ui/themes";
+import { Box, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
-import { Sparkles, Hexagon, Star, Triangle } from "lucide-react";
+import { Sparkles, Hexagon, Star, Triangle, Circle } from "lucide-react";
 import { ROUTES } from "@/util/routes";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -9,32 +9,47 @@ import { getSacredPatterns, getGeometryPath } from "@/lib/data";
 
 // Icon mapping for Sacred Patterns
 const iconMap: Record<string, typeof Hexagon> = {
+  "circle-dot": Circle,
   "flower-of-life": Hexagon,
   "seed-of-life": Hexagon,
   "metatrons-cube": Sparkles,
   "sri-yantra": Triangle,
   "star-tetrahedron": Star,
   "golden-ratio": Sparkles,
+  "vesica-piscis": Hexagon,
+  "fruit-of-life": Hexagon,
+  "philosophers-stone": Star,
+  "pentagram": Star,
 };
 
 // Color mapping for Sacred Patterns
 const colorMap: Record<string, string> = {
+  "circle-dot": "text-white",
   "flower-of-life": "text-amber-400",
   "seed-of-life": "text-green-400",
   "metatrons-cube": "text-purple-400",
   "sri-yantra": "text-red-400",
   "star-tetrahedron": "text-cyan-400",
   "golden-ratio": "text-yellow-400",
+  "vesica-piscis": "text-blue-400",
+  "fruit-of-life": "text-pink-400",
+  "philosophers-stone": "text-orange-400",
+  "pentagram": "text-emerald-400",
 };
 
 // Category mapping for Sacred Patterns
 const categoryMap: Record<string, string> = {
+  "circle-dot": "Divine Source",
   "flower-of-life": "Universal Pattern",
   "seed-of-life": "Creation Symbol",
   "metatrons-cube": "Sacred Blueprint",
   "sri-yantra": "Divine Union",
   "star-tetrahedron": "Light Vehicle",
   "golden-ratio": "Divine Proportion",
+  "vesica-piscis": "Creation Portal",
+  "fruit-of-life": "Cosmic Blueprint",
+  "philosophers-stone": "Alchemical Symbol",
+  "pentagram": "Human Microcosm",
 };
 
 const sacredPatterns = getSacredPatterns()
@@ -57,12 +72,14 @@ export default function SacredPatternsPage() {
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
         <div className="mx-auto mb-16 max-w-4xl text-center">
-          <Heading size="9" className="mb-6 text-amber-100">
+          <Heading size="9" className="text-amber-100" mb="4">
             {ROUTES.sacredPatterns.name}
           </Heading>
-          <Text size="5" className="mb-4 text-blue-200">
-            {ROUTES.sacredPatterns.description}
-          </Text>
+          <Box mb="2">
+            <Text size="5" className="mb-4 text-blue-200">
+              {ROUTES.sacredPatterns.description}
+            </Text>
+          </Box>
           <Text size="3" className="mx-auto max-w-3xl text-blue-300/80">
             These timeless patterns appear across cultures and throughout
             history, from ancient temples to modern science. They represent the

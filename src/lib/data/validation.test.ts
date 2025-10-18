@@ -95,9 +95,9 @@ describe("Data Model Validation", () => {
       expect(featuredSolids).toHaveLength(5);
     });
 
-    it("should have exactly 6 featured Sacred Patterns", () => {
+    it("should have exactly 11 featured Sacred Patterns", () => {
       const featuredPatterns = getSacredPatterns().filter((p) => p.featured);
-      expect(featuredPatterns).toHaveLength(6);
+      expect(featuredPatterns).toHaveLength(11);
     });
 
     it("all featured geometries should have order field", () => {
@@ -245,12 +245,12 @@ describe("Data Model Validation", () => {
       expect(orders).toEqual([1, 2, 3, 4, 5]);
     });
 
-    it("Featured Sacred Patterns should have sequential orders (1-6)", () => {
+    it("Featured Sacred Patterns should have sequential orders (1-11)", () => {
       const patterns = getSacredPatterns()
         .filter((p) => p.featured)
         .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
       const orders = patterns.map((p) => p.order);
-      expect(orders).toEqual([1, 2, 3, 4, 5, 6]);
+      expect(orders).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
     });
 
     it("should not have duplicate order values within a category", () => {
