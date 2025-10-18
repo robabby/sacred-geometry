@@ -65,14 +65,29 @@ pnpm start            # Start production server
 
 ### Routing Architecture
 
-The app uses a **dual routing approach**:
+The app uses a **clear separation between page structure and content**:
 
-1. **Static Routes** (`src/util/routes.ts`): Defines all routes with metadata (name, path, description, order). Routes are hierarchical and support nested children. Use `ROUTES` constants for navigation and links.
+1. **ROUTES** (`src/util/routes.ts`): **Page-level routing and metadata only**
+   - Defines top-level sections: Home, Platonic Solids, Sacred Patterns
+   - Provides section metadata: names, descriptions, paths
+   - Use for: Header navigation, page titles, section descriptions
+   - **Do NOT use for individual geometry links** - use the data model instead
 
-2. **Dynamic Routes** (recommended for geometry pages): Use slug-based dynamic routing with the data model:
-   - Pattern: `app/platonic-solids/[slug]/page.tsx` or `app/sacred-patterns/[slug]/page.tsx`
-   - Fetch geometry data using `getGeometryBySlug(params.slug)` from `@/lib/data`
-   - This approach consolidates multiple static pages into reusable templates
+2. **Data Model** (`src/lib/data/geometries.ts`): **Individual geometry content and paths**
+   - All geometry data: names, descriptions, images, relationships
+   - Path generation via `getGeometryPath(geometry)`
+   - Navigation helpers: `getNextGeometry()`, `getPreviousGeometry()`
+   - Use for: Geometry cards, detail pages, navigation between geometries
+
+3. **Dynamic Routes** (Platonic Solids - implemented):
+   - Pattern: `app/platonic-solids/[slug]/page.tsx`
+   - Fetch data: `getGeometryBySlug(params.slug)` and `getPlatonicSolidContent(params.slug)`
+   - Consolidates 5 static pages into one reusable template
+
+4. **Static Routes** (Sacred Patterns - current):
+   - Individual pages: `app/sacred-patterns/flower-of-life/page.tsx`, etc.
+   - Still use data model for titles, images, and navigation
+   - Will migrate to dynamic routing when all patterns have animated SVGs
 
 ### Key Patterns
 
@@ -121,13 +136,22 @@ The app uses a **dual routing approach**:
 
 **Key Helper Functions**:
 
+**Querying Geometries:**
 - `getGeometryById(id)` - Get geometry by ID
 - `getGeometryBySlug(slug)` - **Primary function for dynamic routes**
 - `getRelatedGeometries(id)` - Get all relationships (dual, contains, appearsIn)
-- `getPlatonicSolids()` - Get all Platonic solids
-- `getSacredPatterns()` - Get all sacred patterns
+- `getPlatonicSolids()` - Get all Platonic solids (sorted by order)
+- `getSacredPatterns()` - Get all sacred patterns (sorted by order)
 - `getGeometriesByElement(element)` - Filter by element association
 - `searchGeometries(query)` - Search by name/description/properties
+
+**Path Generation:**
+- `getGeometryPath(geometry)` - Generate URL path based on category (`/platonic-solids/{slug}` or `/sacred-patterns/{slug}`)
+- `getGeometryListPath(category)` - Get list page path (`/platonic-solids` or `/sacred-patterns`)
+
+**Navigation:**
+- `getNextGeometry(currentId, category)` - Get next geometry in sequence (by order field)
+- `getPreviousGeometry(currentId, category)` - Get previous geometry in sequence (by order field)
 
 **Example Usage**:
 
@@ -144,6 +168,47 @@ export default function Page({ params }: { params: { slug: string } }) {
 ```
 
 See `src/lib/data/README.md` for comprehensive documentation.
+
+### Navigation Components
+
+**GeometryNavigation Component** (`src/components/geometry-navigation.tsx`):
+
+A reusable navigation component that provides Previous/Next buttons and a link back to the category list page.
+
+**Features:**
+- Fully data-driven (uses data model, not ROUTES)
+- Category-agnostic (works for both Platonic Solids and Sacred Patterns)
+- Responsive design with mobile/desktop labels
+- Automatically determines previous/next based on `order` field
+
+**Usage:**
+
+```typescript
+import { GeometryNavigation } from "@/components/geometry-navigation";
+
+export default function Page({ params }: { params: { slug: string } }) {
+  // ... your page content ...
+
+  return (
+    <main>
+      {/* Your content here */}
+
+      {/* Navigation - add at bottom of page */}
+      <GeometryNavigation currentSlug={params.slug} category="platonic" />
+      {/* or category="pattern" for Sacred Patterns */}
+    </main>
+  );
+}
+```
+
+**How It Works:**
+1. Fetches current geometry by slug
+2. Uses `getPreviousGeometry(id, category)` and `getNextGeometry(id, category)` to find adjacent geometries
+3. Generates paths using `getGeometryPath(geometry)` and `getGeometryListPath(category)`
+4. Renders Previous/Next buttons (only if they exist) + "All [Category]" link
+
+**Adding to New Pages:**
+Always add `<GeometryNavigation />` at the bottom of geometry detail pages to provide consistent exploration flow.
 
 ### Content System Architecture
 

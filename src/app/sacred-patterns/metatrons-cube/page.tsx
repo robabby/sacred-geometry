@@ -3,6 +3,7 @@
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { GeometryNavigation } from "@/components/geometry-navigation";
 import MetatronsCube from "@/components/geometry/metatrons-cube";
 import { getGeometryBySlug } from "@/lib/data";
 
@@ -185,6 +186,9 @@ export default function MetatronsCubePage() {
               balance and harmony.
             </Text>
           </Card>
+
+          {/* Navigation */}
+          <GeometryNavigation currentSlug="metatrons-cube" category="pattern" />
         </div>
       </div>
     </main>

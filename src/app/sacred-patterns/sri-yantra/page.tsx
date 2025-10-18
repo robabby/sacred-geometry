@@ -1,6 +1,7 @@
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { GeometryNavigation } from "@/components/geometry-navigation";
 import { getGeometryBySlug } from "@/lib/data";
 
 export default function SriYantraPage() {
@@ -146,6 +147,9 @@ export default function SriYantraPage() {
               meditation, manifestation, and spiritual practice.
             </Text>
           </Card>
+
+          {/* Navigation */}
+          <GeometryNavigation currentSlug="sri-yantra" category="pattern" />
         </div>
       </div>
     </main>

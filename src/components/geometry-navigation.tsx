@@ -1,27 +1,37 @@
 import Link from "next/link";
 import { Button, Flex } from "@radix-ui/themes";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ROUTES } from "@/util/routes";
+import {
+  type GeometryCategory,
+  getGeometryBySlug,
+  getNextGeometry,
+  getPreviousGeometry,
+  getGeometryPath,
+  getGeometryListPath,
+} from "@/lib/data";
 
-const solidsOrder = [
-  { key: "tetrahedron", route: ROUTES.platonicSolids.children.tetrahedron },
-  { key: "hexahedron", route: ROUTES.platonicSolids.children.hexahedron },
-  { key: "octahedron", route: ROUTES.platonicSolids.children.octahedron },
-  { key: "dodecahedron", route: ROUTES.platonicSolids.children.dodecahedron },
-  { key: "icosahedron", route: ROUTES.platonicSolids.children.icosahedron },
-];
-
-interface SolidNavigationProps {
-  currentSolid: string;
+interface GeometryNavigationProps {
+  currentSlug: string;
+  category: GeometryCategory;
 }
 
-export function SolidNavigation({ currentSolid }: SolidNavigationProps) {
-  const currentIndex = solidsOrder.findIndex((s) => s.key === currentSolid);
-  const prevSolid = currentIndex > 0 ? solidsOrder[currentIndex - 1] : null;
-  const nextSolid =
-    currentIndex < solidsOrder.length - 1
-      ? solidsOrder[currentIndex + 1]
-      : null;
+export function GeometryNavigation({
+  currentSlug,
+  category,
+}: GeometryNavigationProps) {
+  const currentGeometry = getGeometryBySlug(currentSlug);
+
+  if (!currentGeometry) {
+    return null;
+  }
+
+  const prevGeometry = getPreviousGeometry(currentGeometry.id, category);
+  const nextGeometry = getNextGeometry(currentGeometry.id, category);
+
+  // Category-specific labels
+  const allLabel =
+    category === "platonic" ? "All Platonic Solids" : "All Sacred Patterns";
+  const allLabelMobile = category === "platonic" ? "All Solids" : "All Patterns";
 
   return (
     <Flex
@@ -31,7 +41,7 @@ export function SolidNavigation({ currentSolid }: SolidNavigationProps) {
       className="mt-12 border-t border-amber-500/20 pt-6 sm:mt-16 sm:pt-8"
     >
       <div className="w-full flex-1 sm:w-auto">
-        {prevSolid && (
+        {prevGeometry && (
           <Button
             asChild
             variant="outline"
@@ -39,13 +49,13 @@ export function SolidNavigation({ currentSolid }: SolidNavigationProps) {
             className="w-full border-amber-400/50 text-amber-300 hover:border-amber-400 hover:bg-amber-400/10 sm:w-auto"
           >
             <Link
-              href={prevSolid.route.path}
+              href={getGeometryPath(prevGeometry)}
               className="flex items-center justify-center gap-2"
             >
               <ChevronLeft className="h-4 w-4" />
               <span className="hidden sm:inline">Previous: </span>
               <span className="sm:hidden">Prev: </span>
-              <span className="truncate">{prevSolid.route.name}</span>
+              <span className="truncate">{prevGeometry.name}</span>
             </Link>
           </Button>
         )}
@@ -57,14 +67,14 @@ export function SolidNavigation({ currentSolid }: SolidNavigationProps) {
         size={{ initial: "2", sm: "3" }}
         className="w-full bg-blue-900/50 text-blue-200 hover:bg-blue-900/70 sm:w-auto"
       >
-        <Link href={ROUTES.platonicSolids.path}>
-          <span className="hidden sm:inline">All Platonic Solids</span>
-          <span className="sm:hidden">All Solids</span>
+        <Link href={getGeometryListPath(category)}>
+          <span className="hidden sm:inline">{allLabel}</span>
+          <span className="sm:hidden">{allLabelMobile}</span>
         </Link>
       </Button>
 
       <div className="flex w-full flex-1 justify-end sm:w-auto">
-        {nextSolid && (
+        {nextGeometry && (
           <Button
             asChild
             variant="outline"
@@ -72,12 +82,12 @@ export function SolidNavigation({ currentSolid }: SolidNavigationProps) {
             className="w-full border-amber-400/50 text-amber-300 hover:border-amber-400 hover:bg-amber-400/10 sm:w-auto"
           >
             <Link
-              href={nextSolid.route.path}
+              href={getGeometryPath(nextGeometry)}
               className="flex items-center justify-center gap-2"
             >
               <span className="hidden sm:inline">Next: </span>
               <span className="sm:hidden">Next: </span>
-              <span className="truncate">{nextSolid.route.name}</span>
+              <span className="truncate">{nextGeometry.name}</span>
               <ChevronRight className="h-4 w-4" />
             </Link>
           </Button>

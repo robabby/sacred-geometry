@@ -1,7 +1,7 @@
 import { Box, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { SolidNavigation } from "@/components/solid-navigation";
+import { GeometryNavigation } from "@/components/geometry-navigation";
 import { getGeometryBySlug, getPlatonicSolids } from "@/lib/data";
 import { getPlatonicSolidContent, formatText } from "@/lib/content";
 
@@ -291,7 +291,7 @@ export default async function PlatonicSolidPage({
           </Card>
 
           {/* Navigation */}
-          <SolidNavigation currentSolid={slug} />
+          <GeometryNavigation currentSlug={slug} category="platonic" />
         </div>
       </div>
     </main>

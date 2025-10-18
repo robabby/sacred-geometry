@@ -1,6 +1,7 @@
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { GeometryNavigation } from "@/components/geometry-navigation";
 import { getGeometryBySlug } from "@/lib/data";
 
 export default function MerkabaPage() {
@@ -147,6 +148,9 @@ export default function MerkabaPage() {
               light.
             </Text>
           </Card>
+
+          {/* Navigation */}
+          <GeometryNavigation currentSlug="merkaba" category="pattern" />
         </div>
       </div>
     </main>
