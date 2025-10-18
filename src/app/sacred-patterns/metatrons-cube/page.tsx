@@ -2,10 +2,16 @@
 
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import MetatronsCube from "@/components/geometry/metatrons-cube";
-import { ROUTES } from "@/util/routes";
+import { getGeometryBySlug } from "@/lib/data";
 
 export default function MetatronsCubePage() {
+  const geometry = getGeometryBySlug("metatrons-cube");
+
+  if (!geometry) {
+    notFound();
+  }
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-12 sm:py-16">
@@ -20,12 +26,10 @@ export default function MetatronsCubePage() {
                 size={{ initial: "7", md: "9" }}
                 className="text-amber-100"
               >
-                {ROUTES.sacredPatterns.children.metatronsCube.name}
+                {geometry.title}
               </Heading>
               <Text size={{ initial: "3", md: "5" }} className="text-blue-200">
-                Named after Archangel Metatron, this sacred pattern contains all
-                five Platonic Solids within its structure, representing the
-                geometric blueprint of the universe itself.
+                {geometry.description}
               </Text>
             </Flex>
             <div className="flex items-center justify-center">
@@ -53,7 +57,7 @@ export default function MetatronsCubePage() {
                   <li>
                     •{" "}
                     <Link
-                      href={ROUTES.platonicSolids.children.tetrahedron.path}
+                      href="/platonic-solids/tetrahedron"
                       className="text-amber-300 hover:text-amber-400"
                     >
                       Tetrahedron
@@ -63,7 +67,7 @@ export default function MetatronsCubePage() {
                   <li>
                     •{" "}
                     <Link
-                      href={ROUTES.platonicSolids.children.hexahedron.path}
+                      href="/platonic-solids/hexahedron"
                       className="text-amber-300 hover:text-amber-400"
                     >
                       Hexahedron/Cube
@@ -73,7 +77,7 @@ export default function MetatronsCubePage() {
                   <li>
                     •{" "}
                     <Link
-                      href={ROUTES.platonicSolids.children.octahedron.path}
+                      href="/platonic-solids/octahedron"
                       className="text-amber-300 hover:text-amber-400"
                     >
                       Octahedron
@@ -87,7 +91,7 @@ export default function MetatronsCubePage() {
                   <li>
                     •{" "}
                     <Link
-                      href={ROUTES.platonicSolids.children.dodecahedron.path}
+                      href="/platonic-solids/dodecahedron"
                       className="text-amber-300 hover:text-amber-400"
                     >
                       Dodecahedron
@@ -97,7 +101,7 @@ export default function MetatronsCubePage() {
                   <li>
                     •{" "}
                     <Link
-                      href={ROUTES.platonicSolids.children.icosahedron.path}
+                      href="/platonic-solids/icosahedron"
                       className="text-amber-300 hover:text-amber-400"
                     >
                       Icosahedron
