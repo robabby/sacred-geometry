@@ -13,16 +13,36 @@ export interface GeometryRelations {
   property?: string[];
 }
 
+export interface GeometryImages {
+  heroImage?: string; // Path to hero/primary image
+  solidImage?: string; // Path to solid view image
+  wireframeImage?: string; // Path to wireframe view image
+  netImage?: string; // Path to unfolded net image
+}
+
+export interface GeometryMathProperties {
+  faces?: number;
+  faceShape?: string; // e.g., "Triangular", "Square", "Pentagonal"
+  vertices?: number;
+  edges?: number;
+}
+
 export interface Geometry {
   id: string;
   name: string;
   slug: string;
   category: GeometryCategory;
+  title?: string; // Full display title for the page
   description?: string;
   dual?: string; // geometry id
+  dualOfTitle?: string; // Display name for dual
   contains?: string[]; // array of geometry ids found within this geometry
   appearsIn?: string[]; // array of geometry ids where this appears
   relatedBy?: GeometryRelations;
+  images?: GeometryImages;
+  mathProperties?: GeometryMathProperties;
+  featured?: boolean;
+  order?: number; // Order/sequence number for display
 }
 
 /**
@@ -38,11 +58,15 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Tetrahedron",
     slug: "tetrahedron",
     category: "platonic",
-    description: "The simplest Platonic solid, symbolizing fire and balance.",
+    title: "The Tetrahedron: Gateway of Fire",
+    description:
+      "The tetrahedron is the first Platonic Solid, the simplest three-dimensional form that can exist. It represents fire, transformation, and the spark of creation.",
     dual: "tetrahedron", // Self-dual
+    dualOfTitle: "Self-dual (Tetrahedron)",
     appearsIn: ["metatrons-cube", "merkaba", "star-tetrahedron"],
     relatedBy: {
       element: "fire",
+      chakra: "Solar Plexus",
       property: [
         "4 faces",
         "4 vertices",
@@ -51,6 +75,24 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "simplest polyhedron",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/platonic-solids/tetrahedron/tetrahedron-3d.svg",
+      solidImage:
+        "/images/geometries/platonic-solids/tetrahedron/tetrahedron-solid.svg",
+      wireframeImage:
+        "/images/geometries/platonic-solids/tetrahedron/tetrahedron-wireframe.svg",
+      netImage:
+        "/images/geometries/platonic-solids/tetrahedron/tetrahedron-net.svg",
+    },
+    mathProperties: {
+      faces: 4,
+      faceShape: "Triangular",
+      vertices: 4,
+      edges: 6,
+    },
+    featured: true,
+    order: 1,
   },
 
   hexahedron: {
@@ -58,11 +100,15 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Hexahedron (Cube)",
     slug: "hexahedron",
     category: "platonic",
-    description: "Represents earth, stability, and groundedness.",
+    title: "The Hexahedron: Foundation of Earth",
+    description:
+      "The hexahedron, commonly known as the cube, represents the element of Earth—stability, structure, and the material world. It is the most grounded of all Platonic Solids.",
     dual: "octahedron",
+    dualOfTitle: "Octahedron",
     appearsIn: ["metatrons-cube"],
     relatedBy: {
       element: "earth",
+      chakra: "Root",
       property: [
         "6 faces",
         "8 vertices",
@@ -71,6 +117,24 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "foundation",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/platonic-solids/hexahedron/hexahedron-3d.svg",
+      solidImage:
+        "/images/geometries/platonic-solids/hexahedron/hexahedron-solid.svg",
+      wireframeImage:
+        "/images/geometries/platonic-solids/hexahedron/hexahedron-wireframe.svg",
+      netImage:
+        "/images/geometries/platonic-solids/hexahedron/hexahedron-net.svg",
+    },
+    mathProperties: {
+      faces: 6,
+      faceShape: "Square",
+      vertices: 8,
+      edges: 12,
+    },
+    featured: true,
+    order: 2,
   },
 
   octahedron: {
@@ -78,13 +142,35 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Octahedron",
     slug: "octahedron",
     category: "platonic",
-    description: "Symbolizes air, intellect, and communication.",
+    title: "The Octahedron: Breath of Air",
+    description:
+      "The octahedron embodies the element of Air—intellect, communication, and the breath of life. It represents perfect balance between the material and the ethereal.",
     dual: "hexahedron",
+    dualOfTitle: "Cube (Hexahedron)",
     appearsIn: ["metatrons-cube"],
     relatedBy: {
       element: "air",
+      chakra: "Heart",
       property: ["8 faces", "6 vertices", "12 edges", "balance", "integration"],
     },
+    images: {
+      heroImage:
+        "/images/geometries/platonic-solids/octahedron/octahedron-3d.svg",
+      solidImage:
+        "/images/geometries/platonic-solids/octahedron/octahedron-solid.svg",
+      wireframeImage:
+        "/images/geometries/platonic-solids/octahedron/octahedron-primary.svg",
+      netImage:
+        "/images/geometries/platonic-solids/octahedron/octahedron-net.svg",
+    },
+    mathProperties: {
+      faces: 8,
+      faceShape: "Triangular",
+      vertices: 6,
+      edges: 12,
+    },
+    featured: true,
+    order: 3,
   },
 
   dodecahedron: {
@@ -92,12 +178,15 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Dodecahedron",
     slug: "dodecahedron",
     category: "platonic",
+    title: "The Dodecahedron: Gateway to Spirit",
     description:
-      "Associated with the universe, spirit, and higher consciousness.",
+      "The dodecahedron represents Ether—the fifth element beyond the physical four. It is the shape of the cosmos itself, embodying the universe and higher consciousness.",
     dual: "icosahedron",
+    dualOfTitle: "Icosahedron",
     appearsIn: ["metatrons-cube"],
     relatedBy: {
       element: "ether",
+      chakra: "Crown",
       property: [
         "12 faces",
         "20 vertices",
@@ -107,6 +196,24 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "prana",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/platonic-solids/dodecahedron/dodecahedron-3d.svg",
+      solidImage:
+        "/images/geometries/platonic-solids/dodecahedron/dodecahedron-primary.svg",
+      wireframeImage:
+        "/images/geometries/platonic-solids/dodecahedron/dodecahedron-wireframe.svg",
+      netImage:
+        "/images/geometries/platonic-solids/dodecahedron/dodecahedron-net.svg",
+    },
+    mathProperties: {
+      faces: 12,
+      faceShape: "Pentagonal",
+      vertices: 20,
+      edges: 30,
+    },
+    featured: true,
+    order: 4,
   },
 
   icosahedron: {
@@ -114,11 +221,15 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Icosahedron",
     slug: "icosahedron",
     category: "platonic",
-    description: "Represents water, emotion, and fluidity.",
+    title: "The Icosahedron: Flow of Water",
+    description:
+      "The icosahedron embodies the element of Water—emotion, fluidity, and adaptability. It is the shape of flow and transformation, rolling smoothly like water itself.",
     dual: "dodecahedron",
+    dualOfTitle: "Dodecahedron",
     appearsIn: ["metatrons-cube"],
     relatedBy: {
       element: "water",
+      chakra: "Sacral",
       property: [
         "20 faces",
         "12 vertices",
@@ -127,6 +238,24 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "transformation",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/platonic-solids/icosahedron/icosahedron-3d.svg",
+      solidImage:
+        "/images/geometries/platonic-solids/icosahedron/icosahedron-solid.svg",
+      wireframeImage:
+        "/images/geometries/platonic-solids/icosahedron/icosahedron-wireframe.svg",
+      netImage:
+        "/images/geometries/platonic-solids/icosahedron/icosahedron-net.svg",
+    },
+    mathProperties: {
+      faces: 20,
+      faceShape: "Triangular",
+      vertices: 12,
+      edges: 30,
+    },
+    featured: true,
+    order: 5,
   },
 
   // ============================================================================

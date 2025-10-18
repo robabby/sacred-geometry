@@ -1,34 +1,25 @@
 import { Box, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import { SolidNavigation } from "@/components/solid-navigation";
-
-const DATA = {
-  name: "Dodecahedron",
-  slug: "dodecahedron",
-  title: "The Dodecahedron: Gateway to Spirit",
-  description:
-    "The dodecahedron represents Ether—the fifth element beyond the physical four. It is the shape of the cosmos itself, embodying the universe and higher consciousness.",
-  heroImage:
-    "/images/geometries/platonic-solids/dodecahedron/dodecahedron-3d.svg",
-  solidImage:
-    "/images/geometries/platonic-solids/dodecahedron/dodecahedron-primary.svg",
-  wireframeImage:
-    "/images/geometries/platonic-solids/dodecahedron/dodecahedron-wireframe.svg",
-  netImage:
-    "/images/geometries/platonic-solids/dodecahedron/dodecahedron-net.svg",
-  category: "platonic-solids",
-  element: "Ether/Spirit",
-  chakra: "Crown",
-  faces: 12,
-  vertices: 20,
-  edges: 30,
-  dualOf: "icosahedron",
-  dualOfTitle: "Icosahedron",
-  featured: true,
-  order: 4,
-};
+import { getGeometryBySlug } from "@/lib/data";
 
 export default function DodecahedronPage() {
+  const geometry = getGeometryBySlug("dodecahedron");
+
+  if (!geometry) {
+    notFound();
+  }
+
+  const {
+    title,
+    description,
+    images,
+    mathProperties,
+    relatedBy,
+    dualOfTitle,
+    slug,
+  } = geometry;
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-16">
@@ -38,19 +29,19 @@ export default function DodecahedronPage() {
             {/* Text Content */}
             <Flex direction="column" gap="6" justify="center">
               <Heading size="9" className="text-amber-100">
-                {DATA.title}
+                {title}
               </Heading>
 
               <Text size="5" className="text-blue-200">
-                {DATA.description}
+                {description}
               </Text>
             </Flex>
 
             {/* Hero Image */}
             <Box className="flex items-center justify-center">
               <Image
-                src={DATA.heroImage}
-                alt={DATA.title}
+                src={images?.heroImage ?? ""}
+                alt={title ?? "Dodecahedron"}
                 width={400}
                 height={400}
                 className="object-contain"
@@ -77,7 +68,7 @@ export default function DodecahedronPage() {
                   Element
                 </Text>
                 <Text size="5" className="text-blue-200">
-                  {DATA.element}
+                  {relatedBy?.element === "ether" ? "Ether/Spirit" : relatedBy?.element}
                 </Text>
               </Flex>
               <Flex direction="column" gap="2">
@@ -88,7 +79,7 @@ export default function DodecahedronPage() {
                   Chakra
                 </Text>
                 <Text size="5" className="text-blue-200">
-                  {DATA.chakra}
+                  {relatedBy?.chakra}
                 </Text>
               </Flex>
               <Flex direction="column" gap="2">
@@ -99,7 +90,7 @@ export default function DodecahedronPage() {
                   Dual
                 </Text>
                 <Text size="5" className="text-blue-200">
-                  {DATA.dualOfTitle}
+                  {dualOfTitle}
                 </Text>
               </Flex>
               <Flex direction="column" gap="2">
@@ -147,18 +138,18 @@ export default function DodecahedronPage() {
             <Grid columns={{ initial: "1", sm: "3" }} gap="8" className="mb-8">
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">
-                  {DATA.faces}
+                  {mathProperties?.faces}
                 </Text>
                 <Text size="4" weight="medium" className="text-blue-200">
                   Faces
                 </Text>
                 <Text size="2" className="text-blue-300">
-                  Pentagonal
+                  {mathProperties?.faceShape}
                 </Text>
               </Flex>
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">
-                  {DATA.vertices}
+                  {mathProperties?.vertices}
                 </Text>
                 <Text size="4" weight="medium" className="text-blue-200">
                   Vertices
@@ -169,7 +160,7 @@ export default function DodecahedronPage() {
               </Flex>
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">
-                  {DATA.edges}
+                  {mathProperties?.edges}
                 </Text>
                 <Text size="4" weight="medium" className="text-blue-200">
                   Edges
@@ -206,7 +197,7 @@ export default function DodecahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src={DATA.solidImage}
+                    src={images?.solidImage ?? ""}
                     alt="Dodecahedron Solid"
                     width={150}
                     height={150}
@@ -228,7 +219,7 @@ export default function DodecahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src={DATA.wireframeImage}
+                    src={images?.wireframeImage ?? ""}
                     alt="Dodecahedron Wireframe"
                     width={150}
                     height={150}
@@ -250,7 +241,7 @@ export default function DodecahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src={DATA.netImage}
+                    src={images?.netImage ?? ""}
                     alt="Dodecahedron Net"
                     width={150}
                     height={150}
@@ -308,7 +299,7 @@ export default function DodecahedronPage() {
           </Card>
 
           {/* Navigation */}
-          <SolidNavigation currentSolid={DATA.slug} />
+          <SolidNavigation currentSolid={slug} />
         </div>
       </div>
     </main>

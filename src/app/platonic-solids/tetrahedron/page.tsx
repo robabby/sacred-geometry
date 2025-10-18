@@ -1,34 +1,25 @@
 import { Box, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import { SolidNavigation } from "@/components/solid-navigation";
-
-const DATA = {
-  name: "Tetrahedron",
-  slug: "tetrahedron",
-  title: "The Tetrahedron: Gateway of Fire",
-  description:
-    "The tetrahedron is the first Platonic Solid, the simplest three-dimensional form that can exist. It represents fire, transformation, and the spark of creation.",
-  heroImage:
-    "/images/geometries/platonic-solids/tetrahedron/tetrahedron-3d.svg",
-  solidImage:
-    "/images/geometries/platonic-solids/tetrahedron/tetrahedron-solid.svg",
-  wireframeImage:
-    "/images/geometries/platonic-solids/tetrahedron/tetrahedron-wireframe.svg",
-  netImage:
-    "/images/geometries/platonic-solids/tetrahedron/tetrahedron-net.svg",
-  category: "platonic-solids",
-  element: "Fire",
-  chakra: "Solar Plexus",
-  faces: 4,
-  vertices: 4,
-  edges: 6,
-  dualOf: "tetrahedron",
-  dualOfTitle: "Self-dual (Tetrahedron)",
-  featured: true,
-  order: 1,
-};
+import { getGeometryBySlug } from "@/lib/data";
 
 export default function TetrahedronPage() {
+  const geometry = getGeometryBySlug("tetrahedron");
+
+  if (!geometry) {
+    notFound();
+  }
+
+  const {
+    title,
+    description,
+    images,
+    mathProperties,
+    relatedBy,
+    dualOfTitle,
+    slug,
+  } = geometry;
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
       <div className="container mx-auto px-4 py-16">
@@ -38,19 +29,19 @@ export default function TetrahedronPage() {
             {/* Text Content */}
             <Flex direction="column" gap="6" justify="center">
               <Heading size="9" className="text-amber-100">
-                {DATA.title}
+                {title}
               </Heading>
 
               <Text size="5" className="text-blue-200">
-                {DATA.description}
+                {description}
               </Text>
             </Flex>
 
             {/* Hero Image */}
             <Box className="flex items-center justify-center">
               <Image
-                src={DATA.heroImage}
-                alt={DATA.title}
+                src={images?.heroImage ?? ""}
+                alt={title ?? "Tetrahedron"}
                 width={400}
                 height={400}
                 className="object-contain"
@@ -76,7 +67,7 @@ export default function TetrahedronPage() {
                   Element
                 </Text>
                 <Text size="5" className="text-blue-200">
-                  {DATA.element}
+                  {relatedBy?.element === "fire" ? "Fire" : relatedBy?.element}
                 </Text>
               </Flex>
               <Flex direction="column" gap="2">
@@ -87,7 +78,7 @@ export default function TetrahedronPage() {
                   Chakra
                 </Text>
                 <Text size="5" className="text-blue-200">
-                  {DATA.chakra}
+                  {relatedBy?.chakra}
                 </Text>
               </Flex>
               <Flex direction="column" gap="2">
@@ -98,7 +89,7 @@ export default function TetrahedronPage() {
                   Dual
                 </Text>
                 <Text size="5" className="text-blue-200">
-                  {DATA.dualOfTitle}
+                  {dualOfTitle}
                 </Text>
               </Flex>
               <Flex direction="column" gap="2">
@@ -150,18 +141,18 @@ export default function TetrahedronPage() {
             <Grid columns={{ initial: "1", sm: "3" }} gap="8" className="mb-8">
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">
-                  {DATA.faces}
+                  {mathProperties?.faces}
                 </Text>
                 <Text size="4" weight="medium" className="text-blue-200">
                   Faces
                 </Text>
                 <Text size="2" className="text-blue-300">
-                  Triangular
+                  {mathProperties?.faceShape}
                 </Text>
               </Flex>
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">
-                  {DATA.vertices}
+                  {mathProperties?.vertices}
                 </Text>
                 <Text size="4" weight="medium" className="text-blue-200">
                   Vertices
@@ -172,7 +163,7 @@ export default function TetrahedronPage() {
               </Flex>
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">
-                  {DATA.edges}
+                  {mathProperties?.edges}
                 </Text>
                 <Text size="4" weight="medium" className="text-blue-200">
                   Edges
@@ -210,7 +201,7 @@ export default function TetrahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src={DATA.solidImage}
+                    src={images?.solidImage ?? ""}
                     alt="Tetrahedron Solid"
                     width={150}
                     height={150}
@@ -232,7 +223,7 @@ export default function TetrahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src={DATA.wireframeImage}
+                    src={images?.wireframeImage ?? ""}
                     alt="Tetrahedron Wireframe"
                     width={150}
                     height={150}
@@ -254,7 +245,7 @@ export default function TetrahedronPage() {
               <Flex direction="column" gap="3" align="center">
                 <Box className="flex items-center justify-center">
                   <Image
-                    src={DATA.netImage}
+                    src={images?.netImage ?? ""}
                     alt="Tetrahedron Net"
                     width={150}
                     height={150}
@@ -309,7 +300,7 @@ export default function TetrahedronPage() {
           </Card>
 
           {/* Navigation */}
-          <SolidNavigation currentSolid={DATA.slug} />
+          <SolidNavigation currentSolid={slug} />
         </div>
       </div>
     </main>
