@@ -1,0 +1,30 @@
+slug: dodecahedron
+order: Fourth Solid
+
+symbolic:
+  introduction: "With twelve pentagonal faces, the dodecahedron is the most complex and elegant of the Platonic Solids. Plato associated it with **the heavens and the arrangement of constellations**. In sacred geometry, it symbolizes:"
+
+  associations:
+    - "**Divine consciousness** and universal mind"
+    - "**The Crown Chakra**, connection to source energy"
+    - "**The cosmos** and celestial spheres"
+    - "**Ascension** and spiritual evolution"
+
+mathematical:
+  insights:
+    - "The dodecahedron embodies the **Golden Ratio (φ ≈ 1.618)** throughout its structure. Every edge, face, and angle relates to this divine proportion. The pentagon itself contains the golden ratio in the relationship between its diagonal and side."
+    - "The number twelve appears throughout cosmic and sacred systems: twelve zodiac signs, twelve months, twelve apostles, twelve tribes—the dodecahedron geometrically encodes this universal pattern of completion and cosmic order."
+
+nature:
+  introduction: "The dodecahedron appears in profound contexts:"
+  examples:
+    - category: Cosmic Topology
+      description: "Some theories suggest our universe may have a dodecahedral shape"
+    - category: Viruses
+      description: "Many virus capsids have icosahedral or dodecahedral symmetry"
+    - category: Sacred Artifacts
+      description: "Ancient Roman dodecahedrons have been found across Europe, their purpose still mysterious"
+    - category: Meditation
+      description: "Used to access higher states of consciousness and cosmic awareness"
+    - category: Architecture
+      description: "The pentagon appears in sacred buildings representing heavenly perfection"
