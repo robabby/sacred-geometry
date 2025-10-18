@@ -143,7 +143,7 @@ export default async function PlatonicSolidPage({
 
           {/* Mathematical Properties */}
           <Card className="mb-8 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
-            <Heading size="6" className="mb-6 text-amber-300">
+            <Heading size="6" className="text-amber-300" mb="6">
               Mathematical Properties
             </Heading>
 
@@ -194,7 +194,7 @@ export default async function PlatonicSolidPage({
 
           {/* Symbolic Properties */}
           <Card className="mb-8 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
-            <Heading size="6" className="mb-6 text-amber-300">
+            <Heading size="6" className="text-amber-300" mb="6">
               Symbolic Properties
             </Heading>
 
@@ -258,16 +258,18 @@ export default async function PlatonicSolidPage({
 
           {/* In Nature and Culture */}
           <Card className="border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
-            <Heading size="6" className="mb-4 text-amber-300">
+            <Heading size="6" className="text-amber-300" mb="4">
               In Nature and Culture
             </Heading>
 
-            <Text
-              className="mb-4 text-blue-200"
-              dangerouslySetInnerHTML={{
-                __html: formatText(content.nature.introduction),
-              }}
-            />
+            <Box mb="4">
+              <Text
+                className="text-blue-200"
+                dangerouslySetInnerHTML={{
+                  __html: formatText(content.nature.introduction),
+                }}
+              />
+            </Box>
 
             <ul className="space-y-3 text-blue-200">
               {content.nature.examples.map((example, index) => (
