@@ -1,4 +1,4 @@
-import { Heading, Text } from "@radix-ui/themes";
+import { Box, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
 import { Sparkles, Hexagon, Star, Triangle } from "lucide-react";
@@ -57,12 +57,14 @@ export default function SacredPatternsPage() {
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
         <div className="mx-auto mb-16 max-w-4xl text-center">
-          <Heading size="9" className="mb-6 text-amber-100">
+          <Heading size="9" className="text-amber-100" mb="4">
             {ROUTES.sacredPatterns.name}
           </Heading>
-          <Text size="5" className="mb-4 text-blue-200">
-            {ROUTES.sacredPatterns.description}
-          </Text>
+          <Box mb="2">
+            <Text size="5" className="mb-4 text-blue-200">
+              {ROUTES.sacredPatterns.description}
+            </Text>
+          </Box>
           <Text size="3" className="mx-auto max-w-3xl text-blue-300/80">
             These timeless patterns appear across cultures and throughout
             history, from ancient temples to modern science. They represent the

@@ -66,121 +66,6 @@ export default async function PlatonicSolidPage({
             </Box>
           </Grid>
 
-          {/* Symbolic Properties */}
-          <Card className="mb-8 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
-            <Heading size="6" className="mb-6 text-amber-300">
-              Symbolic Properties
-            </Heading>
-
-            <Grid columns={{ initial: "1", sm: "2" }} gap="6" className="mb-8">
-              <Flex direction="column" gap="2">
-                <Text
-                  weight="bold"
-                  className="text-sm tracking-wide text-amber-200 uppercase"
-                >
-                  Element
-                </Text>
-                <Text size="5" className="text-blue-200">
-                  {relatedBy?.element
-                    ? relatedBy.element.charAt(0).toUpperCase() +
-                      relatedBy.element.slice(1)
-                    : "N/A"}
-                </Text>
-              </Flex>
-              <Flex direction="column" gap="2">
-                <Text
-                  weight="bold"
-                  className="text-sm tracking-wide text-amber-200 uppercase"
-                >
-                  Dual
-                </Text>
-                <Text size="5" className="text-blue-200">
-                  {dualOfTitle}
-                </Text>
-              </Flex>
-              <Flex direction="column" gap="2">
-                <Text
-                  weight="bold"
-                  className="text-sm tracking-wide text-amber-200 uppercase"
-                >
-                  Order
-                </Text>
-                <Text size="5" className="text-blue-200">
-                  {content.order}
-                </Text>
-              </Flex>
-            </Grid>
-
-            <Text
-              className="text-blue-200"
-              dangerouslySetInnerHTML={{
-                __html: formatText(content.symbolic.introduction),
-              }}
-            />
-
-            <ul className="mt-4 space-y-2 text-blue-200">
-              {content.symbolic.associations.map((association, index) => (
-                <li
-                  key={index}
-                  dangerouslySetInnerHTML={{
-                    __html: `• ${formatText(association)}`,
-                  }}
-                />
-              ))}
-            </ul>
-          </Card>
-
-          {/* Mathematical Properties */}
-          <Card className="mb-8 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
-            <Heading size="6" className="mb-6 text-amber-300">
-              Mathematical Properties
-            </Heading>
-
-            <Grid columns={{ initial: "1", sm: "3" }} gap="8" className="mb-8">
-              <Flex direction="column" gap="3" align="center" className="p-4">
-                <Text size="8" weight="bold" className="text-amber-400">
-                  {mathProperties?.faces}
-                </Text>
-                <Text size="4" weight="medium" className="text-blue-200">
-                  Faces
-                </Text>
-                <Text size="2" className="text-blue-300">
-                  {mathProperties?.faceShape}
-                </Text>
-              </Flex>
-              <Flex direction="column" gap="3" align="center" className="p-4">
-                <Text size="8" weight="bold" className="text-amber-400">
-                  {mathProperties?.vertices}
-                </Text>
-                <Text size="4" weight="medium" className="text-blue-200">
-                  Vertices
-                </Text>
-                <Text size="2" className="text-blue-300">
-                  Corners
-                </Text>
-              </Flex>
-              <Flex direction="column" gap="3" align="center" className="p-4">
-                <Text size="8" weight="bold" className="text-amber-400">
-                  {mathProperties?.edges}
-                </Text>
-                <Text size="4" weight="medium" className="text-blue-200">
-                  Edges
-                </Text>
-                <Text size="2" className="text-blue-300">
-                  Lines
-                </Text>
-              </Flex>
-            </Grid>
-
-            {content.mathematical.insights.map((insight, index) => (
-              <Text
-                key={index}
-                className={`text-blue-200 ${index > 0 ? "mt-4" : ""}`}
-                dangerouslySetInnerHTML={{ __html: formatText(insight) }}
-              />
-            ))}
-          </Card>
-
           {/* Visual Representations */}
           <Card className="mb-8 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
             <Heading mb="6" size="6" className="text-amber-300">
@@ -254,6 +139,121 @@ export default async function PlatonicSolidPage({
                 </Text>
               </Flex>
             </Grid>
+          </Card>
+
+          {/* Mathematical Properties */}
+          <Card className="mb-8 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
+            <Heading size="6" className="mb-6 text-amber-300">
+              Mathematical Properties
+            </Heading>
+
+            <Grid columns={{ initial: "1", sm: "3" }} gap="8" className="mb-8">
+              <Flex direction="column" gap="3" align="center" className="p-4">
+                <Text size="8" weight="bold" className="text-amber-400">
+                  {mathProperties?.faces}
+                </Text>
+                <Text size="4" weight="medium" className="text-blue-200">
+                  Faces
+                </Text>
+                <Text size="2" className="text-blue-300">
+                  {mathProperties?.faceShape}
+                </Text>
+              </Flex>
+              <Flex direction="column" gap="3" align="center" className="p-4">
+                <Text size="8" weight="bold" className="text-amber-400">
+                  {mathProperties?.vertices}
+                </Text>
+                <Text size="4" weight="medium" className="text-blue-200">
+                  Vertices
+                </Text>
+                <Text size="2" className="text-blue-300">
+                  Corners
+                </Text>
+              </Flex>
+              <Flex direction="column" gap="3" align="center" className="p-4">
+                <Text size="8" weight="bold" className="text-amber-400">
+                  {mathProperties?.edges}
+                </Text>
+                <Text size="4" weight="medium" className="text-blue-200">
+                  Edges
+                </Text>
+                <Text size="2" className="text-blue-300">
+                  Lines
+                </Text>
+              </Flex>
+            </Grid>
+
+            {content.mathematical.insights.map((insight, index) => (
+              <Text
+                key={index}
+                className={`text-blue-200 ${index > 0 ? "mt-4" : ""}`}
+                dangerouslySetInnerHTML={{ __html: formatText(insight) }}
+              />
+            ))}
+          </Card>
+
+          {/* Symbolic Properties */}
+          <Card className="mb-8 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
+            <Heading size="6" className="mb-6 text-amber-300">
+              Symbolic Properties
+            </Heading>
+
+            <Grid columns={{ initial: "1", sm: "2" }} gap="6" className="mb-8">
+              <Flex direction="column" gap="2">
+                <Text
+                  weight="bold"
+                  className="text-sm tracking-wide text-amber-200 uppercase"
+                >
+                  Element
+                </Text>
+                <Text size="5" className="text-blue-200">
+                  {relatedBy?.element
+                    ? relatedBy.element.charAt(0).toUpperCase() +
+                      relatedBy.element.slice(1)
+                    : "N/A"}
+                </Text>
+              </Flex>
+              <Flex direction="column" gap="2">
+                <Text
+                  weight="bold"
+                  className="text-sm tracking-wide text-amber-200 uppercase"
+                >
+                  Dual
+                </Text>
+                <Text size="5" className="text-blue-200">
+                  {dualOfTitle}
+                </Text>
+              </Flex>
+              <Flex direction="column" gap="2">
+                <Text
+                  weight="bold"
+                  className="text-sm tracking-wide text-amber-200 uppercase"
+                >
+                  Order
+                </Text>
+                <Text size="5" className="text-blue-200">
+                  {content.order}
+                </Text>
+              </Flex>
+            </Grid>
+
+            <Text
+              className="text-blue-200"
+              dangerouslySetInnerHTML={{
+                __html: formatText(content.symbolic.introduction),
+              }}
+            />
+
+            <ul className="mt-4 space-y-2 text-blue-200">
+              {content.symbolic.associations.map((association, index) => (
+                <li
+                  key={index}
+                  dangerouslySetInnerHTML={{
+                    __html: `• ${formatText(association)}`,
+                  }}
+                />
+              ))}
+            </ul>
           </Card>
 
           {/* In Nature and Culture */}
