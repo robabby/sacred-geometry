@@ -320,8 +320,8 @@ export const GEOMETRIES: Record<string, Geometry> = {
     title: "Seed of Life",
     description:
       "Seven circles in perfect symmetry, representing the seven days of creation",
-    appearsIn: ["flower-of-life"],
-    contains: ["vesica-piscis"],
+    appearsIn: ["flower-of-life", "egg-of-life"],
+    contains: ["vesica-piscis", "germ-of-life"],
     relatedBy: {
       property: [
         "7 circles",
@@ -337,6 +337,34 @@ export const GEOMETRIES: Record<string, Geometry> = {
     },
     featured: true,
     order: 3,
+  },
+
+  "egg-of-life": {
+    id: "egg-of-life",
+    name: "Egg of Life",
+    slug: "egg-of-life",
+    category: "pattern",
+    title: "Egg of Life",
+    description:
+      "Eight spheres forming the shape of an egg, representing the embryonic cell division and the blueprint of all living things",
+    contains: ["seed-of-life", "vesica-piscis"],
+    appearsIn: ["flower-of-life"],
+    relatedBy: {
+      property: [
+        "8 circles",
+        "embryonic development",
+        "cell division",
+        "organic forms",
+        "life blueprint",
+        "transition pattern",
+      ],
+    },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/egg-of-life/egg-of-life-primary.svg",
+    },
+    featured: true,
+    order: 3.5,
   },
 
   "metatrons-cube": {
@@ -463,7 +491,7 @@ export const GEOMETRIES: Record<string, Geometry> = {
     title: "Vesica Piscis",
     description:
       "The intersection of two circles, representing duality and the portal of creation",
-    appearsIn: ["seed-of-life", "flower-of-life"],
+    appearsIn: ["seed-of-life", "flower-of-life", "germ-of-life"],
     relatedBy: {
       property: [
         "2 circles",
@@ -482,6 +510,35 @@ export const GEOMETRIES: Record<string, Geometry> = {
     },
     featured: true,
     order: 2,
+  },
+
+  "germ-of-life": {
+    id: "germ-of-life",
+    name: "Germ of Life",
+    slug: "germ-of-life",
+    category: "pattern",
+    title: "Germ of Life",
+    description:
+      "Seven circles forming a six-petaled flower, representing the first rotation of creation and the foundation of growth",
+    contains: ["vesica-piscis"],
+    appearsIn: ["seed-of-life", "flower-of-life"],
+    relatedBy: {
+      property: [
+        "7 circles",
+        "6 petals",
+        "rotation",
+        "hexagonal symmetry",
+        "first day of creation",
+        "foundation pattern",
+        "growth principle",
+      ],
+    },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/germ-of-life/germ-of-life-primary.svg",
+    },
+    featured: true,
+    order: 2.5,
   },
 
   "fruit-of-life": {
@@ -572,8 +629,9 @@ export const GEOMETRIES: Record<string, Geometry> = {
     name: "Tree of Life",
     slug: "tree-of-life",
     category: "pattern",
+    title: "Tree of Life",
     description:
-      "Kabbalistic diagram representing the path of spiritual ascent",
+      "Ancient Kabbalistic diagram of ten spheres and twenty-two paths representing the structure of creation and the path of spiritual ascent",
     appearsIn: ["flower-of-life"],
     relatedBy: {
       property: [
@@ -582,8 +640,16 @@ export const GEOMETRIES: Record<string, Geometry> = {
         "kabbalah",
         "spiritual ascent",
         "divine emanations",
+        "four worlds",
+        "pillars of creation",
       ],
     },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/tree-of-life/tree-of-life-primary.svg",
+    },
+    featured: true,
+    order: 13,
   },
 
   pentagram: {
@@ -611,6 +677,97 @@ export const GEOMETRIES: Record<string, Geometry> = {
     },
     featured: true,
     order: 11,
+  },
+
+  torus: {
+    id: "torus",
+    name: "Torus",
+    slug: "torus",
+    category: "pattern",
+    title: "Torus",
+    description:
+      "The fundamental pattern of energy flow in the universe, a self-sustaining donut-shaped vortex found from atoms to galaxies",
+    relatedBy: {
+      property: [
+        "energy flow",
+        "toroidal field",
+        "self-sustaining",
+        "vortex dynamics",
+        "universal pattern",
+        "circulation",
+        "zero point",
+        "magnetic field",
+      ],
+    },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/torus/torus-primary.svg",
+    },
+    featured: true,
+    order: 12,
+  },
+
+  "vector-equilibrium": {
+    id: "vector-equilibrium",
+    name: "Vector Equilibrium",
+    slug: "vector-equilibrium",
+    category: "pattern",
+    title: "Vector Equilibrium",
+    description:
+      "The only geometry where the radius equals the edge length, representing perfect equilibrium and the balance of forces in the universe",
+    appearsIn: ["flower-of-life"],
+    relatedBy: {
+      property: [
+        "cuboctahedron",
+        "perfect equilibrium",
+        "isotropic vector matrix",
+        "buckminster fuller",
+        "zero point",
+        "balanced forces",
+        "14 faces",
+        "12 vertices",
+        "24 edges",
+        "equal vectors",
+      ],
+    },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/vector-equilibrum/vector-equilibrum-primary.svg",
+    },
+    featured: true,
+    order: 14,
+  },
+
+  "64-tetrahedron": {
+    id: "64-tetrahedron",
+    name: "64 Tetrahedron Grid",
+    slug: "64-tetrahedron",
+    category: "pattern",
+    title: "64 Tetrahedron Grid",
+    description:
+      "A fractal geometric structure of 64 interlocking tetrahedra forming a perfect stellated sphere, representing the fundamental pattern of the quantum vacuum and the geometry of consciousness",
+    contains: ["tetrahedron", "star-tetrahedron"],
+    appearsIn: ["flower-of-life"],
+    relatedBy: {
+      property: [
+        "64 tetrahedra",
+        "fractal structure",
+        "quantum vacuum",
+        "zero-point field",
+        "consciousness geometry",
+        "I Ching",
+        "DNA codons",
+        "merkaba field",
+        "8x8 grid",
+        "nassim haramein",
+      ],
+    },
+    images: {
+      heroImage:
+        "/images/geometries/sacred-patterns/64-tetrahedron/64-tetrahedron-primary.svg",
+    },
+    featured: true,
+    order: 15,
   },
 
   "fibonacci-spiral": {
