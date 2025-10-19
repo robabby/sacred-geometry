@@ -1,5 +1,3 @@
-"use client";
-
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
