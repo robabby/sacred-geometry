@@ -6,7 +6,7 @@ An interactive educational web application for exploring, visualizing, and learn
 
 ## Overview
 
-Sacred Geometry Web App bridges ancient wisdom with modern web technology, making sacred geometry accessible and interactive for students, seekers, and enthusiasts. Explore the fundamental patterns that underlie creation through detailed information pages, interactive 3D visualizations, and comprehensive relationship mapping between geometric forms.
+Sacred Geometry Web App bridges ancient wisdom with modern web technology, making sacred geometry accessible and interactive for students, seekers, and enthusiasts. Explore the fundamental patterns that underlie creation through detailed information pages.
 
 ## Features
 
@@ -16,13 +16,6 @@ Sacred Geometry Web App bridges ancient wisdom with modern web technology, makin
 - **Sacred Patterns**: Flower of Life, Seed of Life, Metatron's Cube, Sri Yantra, Merkaba, Golden Ratio
 - **Relationship Mapping**: Explore connections between geometries (duality, containment, appearances)
 - **Element Associations**: Learn about the classical element correspondences with Platonic solids
-
-### Interactive 3D Visualizations
-
-- Real-time 3D rendering using Three.js
-- Orbit controls for rotation and zoom
-- Responsive canvas that adapts to any screen size
-- Optimized for performance with WebGL detection
 
 ### Educational Content
 
