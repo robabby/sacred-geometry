@@ -1,10 +1,9 @@
-"use client";
-
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GeometryNavigation } from "@/components/geometry-navigation";
-import MetatronsCube from "@/components/geometry/metatrons-cube";
+// import MetatronsCube from "@/components/geometry/metatrons-cube";
 import { getGeometryBySlug } from "@/lib/data";
 
 export default function MetatronsCubePage() {
@@ -34,7 +33,18 @@ export default function MetatronsCubePage() {
               </Text>
             </Flex>
             <div className="flex items-center justify-center">
-              <MetatronsCube />
+              {/* <MetatronsCube /> */}
+              <Image
+                src={geometry.images?.heroImage ?? ""}
+                alt={geometry.name}
+                width={400}
+                height={400}
+                className="w-full max-w-md object-contain"
+                style={{
+                  filter:
+                    "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
+                }}
+              />
             </div>
           </Grid>
 
