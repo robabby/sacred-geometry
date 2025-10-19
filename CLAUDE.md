@@ -56,7 +56,7 @@ pnpm start            # Start production server
 - `src/components/3d/` - Three.js 3D visualization components
 - `src/components/geometry/` - Sacred geometry specific components
 - `src/lib/` - Utility functions and shared logic
-- `src/lib/data/` - **Data models and geometry relationships catalog**
+- `src/lib/data/` - **Modular data model with 7 focused files for geometry relationships**
 - `src/lib/content/` - **Content loading and formatting utilities**
 - `src/content/` - **YAML content files for geometry pages**
 - `src/util/` - Application utilities (routing constants, etc.)
@@ -73,8 +73,9 @@ The app uses a **clear separation between page structure and content**:
    - Use for: Header navigation, page titles, section descriptions
    - **Do NOT use for individual geometry links** - use the data model instead
 
-2. **Data Model** (`src/lib/data/geometries.ts`): **Individual geometry content and paths**
+2. **Data Model** (`src/lib/data/`): **Individual geometry content and paths**
    - All geometry data: names, descriptions, images, relationships
+   - Modular structure with auto-computed relationships
    - Path generation via `getGeometryPath(geometry)`
    - Navigation helpers: `getNextGeometry()`, `getPreviousGeometry()`
    - Use for: Geometry cards, detail pages, navigation between geometries
@@ -127,12 +128,49 @@ The app uses a **clear separation between page structure and content**:
 
 ### Data Model Architecture
 
-**Sacred Geometry Data Catalog** (`src/lib/data/geometries.ts`):
+**Modular Data Structure** (`src/lib/data/`):
 
-- Centralized data model for all sacred geometries and their relationships
-- Includes 16 geometries: 5 Platonic Solids, 6 Sacred Patterns, and additional supporting geometries
-- Each geometry has: `id`, `name`, `slug`, `category`, `description`, `dual`, `contains`, `appearsIn`, `relatedBy`
-- Type-safe with full TypeScript interfaces
+The data model uses a **modular architecture** split across 7 focused files for maintainability and scalability:
+
+```
+src/lib/data/
+├── index.ts                 # Main export - combines all modules
+├── geometries.types.ts      # TypeScript interfaces & type-safe IDs
+├── platonic-solids.ts       # 5 Platonic solids definitions
+├── sacred-patterns.ts       # 17+ sacred patterns definitions
+├── relationships.ts         # CONTAINS_GRAPH & DUAL_GRAPH (single source of truth)
+├── image-paths.ts          # Image path utility functions
+└── helpers.ts              # Query & enhancement functions
+```
+
+**Key Features**:
+- **Type-safe geometry IDs**: Compile-time validation using TypeScript const assertions
+- **Auto-computed relationships**: `appearsIn` is automatically computed from `CONTAINS_GRAPH`
+- **Single source of truth**: Relationships defined once in central graphs
+- **Runtime validation**: Catches broken references at startup (development only)
+- **Image path utilities**: Auto-generate paths from slugs, no repetition
+
+**Relationship Management**:
+
+Relationships are defined in **one place** (`relationships.ts`) and enhanced automatically:
+
+```typescript
+// Define "contains" relationships once
+export const CONTAINS_GRAPH: Record<string, GeometryId[]> = {
+  "flower-of-life": ["seed-of-life", "vesica-piscis", "tree-of-life"],
+  "seed-of-life": ["vesica-piscis", "germ-of-life"],
+  // ... etc
+};
+
+// "appearsIn" is auto-computed as the inverse
+// vesica-piscis.appearsIn → ["flower-of-life", "seed-of-life"]
+```
+
+**Adding New Geometries**:
+
+1. Add definition to `platonic-solids.ts` or `sacred-patterns.ts`
+2. Add relationships to `CONTAINS_GRAPH` or `DUAL_GRAPH` (if applicable)
+3. That's it! Inverse relationships and validation are automatic
 
 **Key Helper Functions**:
 
@@ -165,6 +203,22 @@ export default function Page({ params }: { params: { slug: string } }) {
   const { dual, contains, appearsIn } = getRelatedGeometries(geometry.id);
   // render geometry...
 }
+```
+
+**Image Path Utilities**:
+
+Use helper functions instead of hardcoding paths:
+
+```typescript
+import { getPlatonicImages, getPatternHeroImage } from "@/lib/data/image-paths";
+
+// Platonic solids - auto-generates all 4 image paths
+images: getPlatonicImages("tetrahedron")
+// → { heroImage, solidImage, wireframeImage, netImage }
+
+// Sacred patterns - auto-generates hero image path
+images: getPatternHeroImage("flower-of-life")
+// → { heroImage: "/images/geometries/sacred-patterns/flower-of-life/flower-of-life-primary.svg" }
 ```
 
 See `src/lib/data/README.md` for comprehensive documentation.
@@ -227,7 +281,8 @@ The project uses a YAML-based content system to separate page-specific narrative
 - Type-safe with `PlatonicSolidContent` interface
 
 **Separation of Concerns**:
-- **Data Model** (`src/lib/data/geometries.ts`): Structural data, relationships, mathematical properties
+- **Data Model** (`src/lib/data/`): Structural data, relationships, mathematical properties
+  - Modular files: `platonic-solids.ts`, `sacred-patterns.ts`, `relationships.ts`
   - `order: number` - Integer for sorting/logic (1, 2, 3, etc.)
 - **Content YAML**: Presentational content, narrative, symbolic meanings
   - `order: string` - Display string ("First Solid", "Second Solid", etc.)
