@@ -1,6 +1,9 @@
+"use client";
+
 import { Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+// import CircleDot from "@/components/geometry/circle-dot";
 import { GeometryNavigation } from "@/components/geometry-navigation";
 import { getGeometryBySlug } from "@/lib/data";
 
@@ -31,6 +34,7 @@ export default function CircleDotPage() {
               </Text>
             </Flex>
             <div className="flex items-center justify-center">
+              {/* <CircleDot /> */}
               <Image
                 src={geometry.images?.heroImage ?? ""}
                 alt={geometry.name}
