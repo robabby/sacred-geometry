@@ -14,7 +14,7 @@ This is a **T3 Stack** Next.js application focused on sacred geometry. The proje
 - **UI Components**: shadcn/ui (New York style)
 - **3D Graphics**: Three.js with @react-three/fiber and @react-three/drei
 - **Icons**: Lucide React
-- **Content**: YAML content system via `js-yaml`, MDX support via `@next/mdx`
+- **Content**: MDX content system via `@next/mdx` and `next-mdx-remote`
 - **Environment**: Type-safe env validation with `@t3-oss/env-nextjs`
 - **Analytics**: Vercel Analytics
 - **Testing**: Vitest with React Testing Library and happy-dom
@@ -58,7 +58,7 @@ pnpm start            # Start production server
 - `src/lib/` - Utility functions and shared logic
 - `src/lib/data/` - **Modular data model with 7 focused files for geometry relationships**
 - `src/lib/content/` - **Content loading and formatting utilities**
-- `src/content/` - **YAML content files for geometry pages**
+- `src/content/` - **MDX content files for geometry pages**
 - `src/util/` - Application utilities (routing constants, etc.)
 - `src/styles/` - Global CSS and Tailwind imports
 - `src/env.js` - Environment variable validation schema
@@ -83,7 +83,7 @@ The app uses a **clear separation between page structure and content**:
 3. **Dynamic Routes** (Both categories - implemented):
    - **Platonic Solids**: `app/platonic-solids/[slug]/page.tsx`
      - Fetch data: `getGeometryBySlug(params.slug)` and `getPlatonicSolidContent(params.slug)`
-     - Uses YAML content system
+     - Uses MDX content system
      - Consolidates 5 pages into one reusable template
 
    - **Sacred Patterns**: `app/sacred-patterns/[slug]/page.tsx`
@@ -267,18 +267,23 @@ Always add `<GeometryNavigation />` at the bottom of geometry detail pages to pr
 
 ### Content System Architecture
 
-The project uses two content systems to separate page-specific narrative content from the structural geometry data model. This allows for maintainable, version-controlled content that can be easily edited without touching code.
+The project uses a **unified MDX content system** to separate page-specific narrative content from the structural geometry data model. This allows for maintainable, version-controlled content that can be easily edited without touching code.
 
 **Content Files** (`src/content/`):
-- `src/content/platonic-solids/` - YAML content for Platonic Solid pages (tetrahedron.yml, hexahedron.yml, etc.)
+- `src/content/platonic-solids/` - MDX content for Platonic Solid pages (tetrahedron.mdx, hexahedron.mdx, etc.)
 - `src/content/sacred-patterns/` - MDX content for Sacred Pattern pages (circle-dot.mdx, flower-of-life.mdx, etc.)
 
 **Content Loading** (`src/lib/content/`):
 
-**Platonic Solids (YAML)**:
-- `getPlatonicSolidContent(slug)` - Load YAML content for a Platonic Solid
-- `formatText(text)` - Simple formatter converting `**bold**` to `<strong>` tags
+Both content systems use the same MDX infrastructure:
+
+**Platonic Solids (MDX)**:
+- `getPlatonicSolidContent(slug)` - Load and compile MDX content for a Platonic Solid
+- `platonicSolidContentExists(slug)` - Check if MDX file exists
+- `getAllPlatonicSolidContentSlugs()` - Get all available solid slugs
 - Type-safe with `PlatonicSolidContent` interface
+- Uses `next-mdx-remote/rsc` for server-side MDX compilation
+- Custom MDX components in `src/components/mdx-components.tsx` for styling
 
 **Sacred Patterns (MDX)**:
 - `getSacredPatternContent(slug)` - Load and compile MDX content for a Sacred Pattern
@@ -292,50 +297,63 @@ The project uses two content systems to separate page-specific narrative content
 - **Data Model** (`src/lib/data/`): Structural data, relationships, mathematical properties
   - Modular files: `platonic-solids.ts`, `sacred-patterns.ts`, `relationships.ts`
   - `order: number` - Integer for sorting/logic (1, 2, 3, etc.)
-- **Content Files**: Presentational content, narrative, symbolic meanings
-  - **YAML** (Platonic Solids): `order: string` - Display string ("First Solid", "Second Solid", etc.)
-  - **MDX** (Sacred Patterns): Rich narrative content with React components
+- **Content Files** (MDX): Presentational content, narrative, symbolic meanings
+  - Natural markdown formatting with React components
+  - Rich narrative content with styling via custom MDX components
 
-**Example Usage - Platonic Solids (YAML)**:
+**Example Usage - Platonic Solids (MDX)**:
 
 ```typescript
 import { getGeometryBySlug } from "@/lib/data";
-import { getPlatonicSolidContent, formatText } from "@/lib/content";
+import { getPlatonicSolidContent } from "@/lib/content";
 
-export default function Page({ params }: { params: { slug: string } }) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const geometry = getGeometryBySlug(params.slug);
-  const content = getPlatonicSolidContent(params.slug);
+  const mdxContent = await getPlatonicSolidContent(params.slug);
 
-  if (!geometry || !content) notFound();
+  if (!geometry) notFound();
 
-  // Render with formatted text
+  // Render MDX content directly
   return (
-    <Text dangerouslySetInnerHTML={{
-      __html: formatText(content.symbolic.introduction)
-    }} />
+    <main>
+      <h1>{geometry.title}</h1>
+      {mdxContent?.content}
+    </main>
   );
 }
 ```
 
-**YAML Schema**:
-```yaml
+**Platonic Solids MDX Schema**:
+```mdx
+---
 slug: tetrahedron
-order: First Solid
+---
 
-symbolic:
-  introduction: "Opening paragraph with **bold** text..."
-  associations:
-    - "List of symbolic meanings..."
+<Section>
+## Symbolic Properties
 
-mathematical:
-  insights:
-    - "Mathematical paragraphs..."
+In the language of sacred geometry, the tetrahedron speaks of **fire and transformation**...
 
-nature:
-  introduction: "Opening paragraph..."
-  examples:
-    - category: Chemistry
-      description: "Specific example..."
+**Key Associations:**
+
+- **Fire and transformation**, the spark of creation
+- **Stability through tension**, like a tripod that never wobbles
+</Section>
+
+<Section>
+## Mathematical Insights
+
+The tetrahedron embodies the principle of **minimal complexity**...
+</Section>
+
+<Section>
+## In Nature and Culture
+
+The tetrahedral form appears throughout nature:
+
+- **Chemistry:** The carbon atom in methane forms a perfect tetrahedron
+- **Crystals:** Diamond's crystal structure is based on tetrahedral geometry
+</Section>
 ```
 
 **Example Usage - Sacred Patterns (MDX)**:

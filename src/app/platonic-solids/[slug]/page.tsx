@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { GeometryNavigation } from "@/components/geometry-navigation";
 import { getGeometryBySlug, getPlatonicSolids } from "@/lib/data";
-import { getPlatonicSolidContent, formatText } from "@/lib/content";
+import { getPlatonicSolidContent } from "@/lib/content";
 
 export async function generateStaticParams() {
   return getPlatonicSolids().map((solid) => ({
@@ -18,9 +18,9 @@ export default async function PlatonicSolidPage({
 }) {
   const { slug } = await params;
   const geometry = getGeometryBySlug(slug);
-  const content = getPlatonicSolidContent(slug);
+  const mdxContent = await getPlatonicSolidContent(slug);
 
-  if (!geometry || !content) {
+  if (!geometry) {
     notFound();
   }
 
@@ -147,7 +147,7 @@ export default async function PlatonicSolidPage({
               Mathematical Properties
             </Heading>
 
-            <Grid columns={{ initial: "1", sm: "3" }} gap="8" className="mb-8">
+            <Grid columns={{ initial: "1", sm: "3" }} gap="8">
               <Flex direction="column" gap="3" align="center" className="p-4">
                 <Text size="8" weight="bold" className="text-amber-400">
                   {mathProperties?.faces}
@@ -182,23 +182,15 @@ export default async function PlatonicSolidPage({
                 </Text>
               </Flex>
             </Grid>
-
-            {content.mathematical.insights.map((insight, index) => (
-              <Text
-                key={index}
-                className={`text-blue-200 ${index > 0 ? "mt-4" : ""}`}
-                dangerouslySetInnerHTML={{ __html: formatText(insight) }}
-              />
-            ))}
           </Card>
 
-          {/* Symbolic Properties */}
+          {/* Symbolic Properties Metadata */}
           <Card className="mb-8 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
             <Heading size="6" className="text-amber-300" mb="6">
-              Symbolic Properties
+              Associations
             </Heading>
 
-            <Grid columns={{ initial: "1", sm: "2" }} gap="6" className="mb-8">
+            <Grid columns={{ initial: "1", sm: "2" }} gap="6">
               <Flex direction="column" gap="2">
                 <Text
                   weight="bold"
@@ -224,62 +216,17 @@ export default async function PlatonicSolidPage({
                   {dualOfTitle}
                 </Text>
               </Flex>
-              <Flex direction="column" gap="2">
-                <Text
-                  weight="bold"
-                  className="text-sm tracking-wide text-amber-200 uppercase"
-                >
-                  Order
-                </Text>
-                <Text size="5" className="text-blue-200">
-                  {content.order}
-                </Text>
-              </Flex>
             </Grid>
-
-            <Text
-              className="text-blue-200"
-              dangerouslySetInnerHTML={{
-                __html: formatText(content.symbolic.introduction),
-              }}
-            />
-
-            <ul className="mt-4 space-y-2 text-blue-200">
-              {content.symbolic.associations.map((association, index) => (
-                <li
-                  key={index}
-                  dangerouslySetInnerHTML={{
-                    __html: `• ${formatText(association)}`,
-                  }}
-                />
-              ))}
-            </ul>
           </Card>
 
-          {/* In Nature and Culture */}
-          <Card className="border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
-            <Heading size="6" className="text-amber-300" mb="4">
-              In Nature and Culture
-            </Heading>
-
-            <Box mb="4">
-              <Text
-                className="text-blue-200"
-                dangerouslySetInnerHTML={{
-                  __html: formatText(content.nature.introduction),
-                }}
-              />
+          {/* MDX Content - Narrative sections */}
+          {mdxContent ? (
+            <Box>{mdxContent.content}</Box>
+          ) : (
+            <Box className="text-center text-blue-300">
+              <Text>Content coming soon...</Text>
             </Box>
-
-            <ul className="space-y-3 text-blue-200">
-              {content.nature.examples.map((example, index) => (
-                <li key={index}>
-                  <strong className="text-amber-300">{example.category}:</strong>{" "}
-                  {example.description}
-                </li>
-              ))}
-            </ul>
-          </Card>
+          )}
 
           {/* Navigation */}
           <GeometryNavigation currentSlug={slug} category="platonic" />
