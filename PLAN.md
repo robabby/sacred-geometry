@@ -1,259 +1,396 @@
-# Sacred Patterns Dynamic Routing Migration Plan
+# Migration Plan: YAML → MDX for Platonic Solids
 
-**Project:** Migrate 17 static Sacred Pattern pages to dynamic routing using MDX content system
+## Overview
 
-**Start Date:** 2025-10-19
-
-**Goal:** Enable relationship links and global search by unifying Sacred Patterns with Platonic Solids dynamic routing architecture
+This document outlines the plan for transitioning Platonic Solid content from YAML to MDX format, unifying the content system so both Platonic Solids and Sacred Patterns use the same MDX infrastructure.
 
 ---
 
-## Project Overview
+## Current State Analysis
 
-### Current State
-- ✅ Platonic Solids: Dynamic routing (`/platonic-solids/[slug]`) with YAML content
-- ❌ Sacred Patterns: 17 static routes with hardcoded content
+### YAML Structure (src/content/platonic-solids/*.yml)
+- Structured data with specific fields: `symbolic`, `mathematical`, `nature`
+- Simple text formatting with `**bold**` markers
+- Requires `formatText()` utility to convert to HTML
+- Rigid schema with nested objects/arrays
 
-### Target State
-- ✅ Platonic Solids: Dynamic routing with YAML content (no change)
-- ✅ Sacred Patterns: Dynamic routing (`/sacred-patterns/[slug]`) with MDX content
+**Example:**
+```yaml
+slug: tetrahedron
+order: First Solid
 
-### Why MDX for Sacred Patterns?
-- Rich narrative content (117-343 lines per page, avg 196 lines)
-- Unique storytelling per pattern (vs standardized YAML schema)
-- Future extensibility (can embed React components)
-- Content-code separation (easier editing)
+symbolic:
+  introduction: "In the language of sacred geometry..."
+  associations:
+    - "**Fire and transformation**, the spark of creation"
 
----
+mathematical:
+  insights:
+    - "The tetrahedron embodies the principle..."
 
-## Phase Status
-
-### ✅ Phase 1: MDX Infrastructure Setup (COMPLETED)
-
-**Tasks:**
-- [x] Install MDX dependencies (`@next/mdx`, `next-mdx-remote`, `remark-gfm`)
-- [x] Configure Next.js for MDX support (`next.config.js`)
-- [x] Create MDX components system (`mdx-components.tsx`, `mdx-section.tsx`)
-- [x] Create content loader utilities (`src/lib/content/sacred-patterns.ts`)
-- [x] TypeScript compilation verified
-
-**Files Created/Modified:**
-- `next.config.js` - Added MDX configuration
-- `mdx-components.tsx` - Root MDX components config
-- `src/components/mdx-section.tsx` - Card wrapper component
-- `src/components/mdx-components.tsx` - Styled MDX components
-- `src/lib/content/sacred-patterns.ts` - Content loader functions
-- `src/lib/content/index.ts` - Added Sacred Pattern exports
-
----
-
-### ✅ Phase 2: Proof of Concept (COMPLETED)
-
-**Tasks:**
-- [x] Extract circle-dot to MDX (3 sections, 169 lines)
-- [x] Extract vesica-piscis to MDX (3 sections, 134 lines)
-- [x] Extract flower-of-life to MDX (5 sections, 338 lines)
-- [x] Create dynamic route template
-- [x] TypeScript compilation verified
-
-**Files Created:**
-- `src/content/sacred-patterns/circle-dot.mdx`
-- `src/content/sacred-patterns/vesica-piscis.mdx`
-- `src/content/sacred-patterns/flower-of-life.mdx`
-- `src/content/sacred-patterns/seed-of-life.mdx`
-- `src/content/sacred-patterns/fruit-of-life.mdx`
-- `src/content/sacred-patterns/pentagram.mdx`
-- `src/content/sacred-patterns/egg-of-life.mdx`
-- `src/app/sacred-patterns-dynamic/[slug]/page.tsx`
-
-**Test URLs (localhost:3001):**
-- http://localhost:3001/sacred-patterns-dynamic/circle-dot
-- http://localhost:3001/sacred-patterns-dynamic/vesica-piscis
-- http://localhost:3001/sacred-patterns-dynamic/flower-of-life
-- http://localhost:3001/sacred-patterns-dynamic/seed-of-life
-- http://localhost:3001/sacred-patterns-dynamic/fruit-of-life
-- http://localhost:3001/sacred-patterns-dynamic/pentagram
-- http://localhost:3001/sacred-patterns-dynamic/egg-of-life
-
-**Testing Checklist:**
-- [ ] Hero section displays correctly (title, description, image)
-- [ ] MDX content renders in styled cards
-- [ ] All sections display
-- [ ] Typography matches existing pages
-- [ ] Navigation Previous/Next works
-- [ ] No console errors
-
----
-
-### 🔄 Phase 3: Bulk Content Migration (IN PROGRESS)
-
-**Remaining Patterns to Extract (10 of 14 remaining):**
-
-**Simple (117-150 lines):**
-- [x] seed-of-life (117 lines) ✅
-- [x] fruit-of-life (134 lines) ✅
-- [x] pentagram (142 lines) ✅
-- [x] egg-of-life (148 lines) ✅
-- [ ] philosophers-stone (150 lines)
-
-**Medium (157-169 lines):**
-- [ ] sri-yantra (157 lines)
-- [ ] star-tetrahedron (158 lines)
-- [ ] germ-of-life (162 lines)
-
-**Complex (206-343 lines):**
-- [ ] metatrons-cube (206 lines)
-- [ ] torus (216 lines)
-- [ ] vector-equilibrium (232 lines)
-- [ ] 64-tetrahedron (257 lines)
-- [ ] tree-of-life (281 lines)
-- [ ] golden-ratio (343 lines)
-
-**Strategy:**
-1. Process in batches of 3-4
-2. Test each batch before continuing
-3. Commit after successful batches
-
-**Estimated Time:** 2-3 hours
-
----
-
-### ✅ Phase 4: Cleanup & Deployment (COMPLETED)
-
-**Tasks:**
-- [x] Delete all static route directories (17 total)
-- [x] Rename `sacred-patterns-dynamic/` to `sacred-patterns/[slug]/`
-- [x] Run production build test (`pnpm build`)
-- [x] Verify all 17 patterns in build output
-- [x] Update CLAUDE.md documentation
-- [x] Update src/content/README.md
-- [x] Fixed ESLint error (created `getMDXComponents` non-hook version)
-
-**Actual Time:** 45 minutes
-
----
-
-## File Structure
-
-### Before Migration
-```
-src/app/sacred-patterns/
-├── page.tsx (list page - KEEP)
-├── circle-dot/page.tsx (DELETE after migration)
-├── vesica-piscis/page.tsx (DELETE after migration)
-├── flower-of-life/page.tsx (DELETE after migration)
-└── ... (14 more directories to DELETE)
+nature:
+  introduction: "The tetrahedral form appears..."
+  examples:
+    - category: Chemistry
+      description: "The carbon atom in methane..."
 ```
 
-### After Migration
-```
-src/app/sacred-patterns/
-├── page.tsx (list page)
-└── [slug]/page.tsx (dynamic route)
+### MDX Structure (src/content/sacred-patterns/*.mdx)
+- Free-form markdown with React components
+- Uses `<Section>` wrapper (MDXSection) for styled Cards
+- Native markdown formatting (no conversion needed)
+- Flexible, extensible with custom components
 
-src/content/sacred-patterns/
-├── circle-dot.mdx
-├── vesica-piscis.mdx
-├── flower-of-life.mdx
-└── ... (14 more .mdx files)
+**Example:**
+```mdx
+---
+slug: flower-of-life
+---
+
+<Section>
+## Construction & Geometry
+
+The Flower of Life is created through a simple yet profound process...
+</Section>
 ```
 
 ---
 
-## Testing Instructions
+## Proposed MDX Schema for Platonic Solids
 
-### Development Testing
-1. Start dev server: `pnpm dev`
-2. Visit test URLs (see Phase 2)
-3. Verify rendering, navigation, styling
-4. Check browser console for errors
+The new MDX format will mirror the current YAML structure but use natural markdown:
 
-### Production Build Testing
-```bash
-pnpm build
+```mdx
+---
+slug: tetrahedron
+---
+
+<Section>
+## Symbolic Properties
+
+In the language of sacred geometry, the tetrahedron speaks of **fire and transformation**. With only four faces, it represents the minimum number of surfaces needed to enclose space. This makes it the foundation of all three-dimensional reality.
+
+**Key Associations:**
+
+- **Fire and transformation**, the spark of creation
+- **Stability through tension**, like a tripod that never wobbles
+- **The Solar Plexus Chakra**, our center of personal power
+- **The number 4**, representing foundation and structure
+</Section>
+
+<Section>
+## Mathematical Insights
+
+The tetrahedron embodies the principle of **minimal complexity**. With its 4 faces, 4 vertices, and 6 edges, it is the simplest possible polyhedron. Remarkably, it is **self-dual**—its dual is another tetrahedron, rotated inside the original.
+
+Every vertex connects to every other vertex—a complete graph in three dimensions. This represents total interconnection, where every point relates directly to all others. No simpler structure can achieve this.
+</Section>
+
+<Section>
+## In Nature and Culture
+
+The tetrahedral form appears throughout nature and sacred traditions:
+
+- **Chemistry:** The carbon atom in methane (CH₄) forms a perfect tetrahedron
+- **Crystals:** Diamond's crystal structure is based on tetrahedral geometry
+- **Engineering:** The pyramid form provides maximum strength with minimum material
+- **Symbolism:** Represents the element of fire in Greek philosophy—sharp, active, ascending
+</Section>
 ```
 
-**Expected Output:**
-- 29 total pages (5 platonic + 17 sacred patterns + 7 other)
-- All sacred pattern routes listed
-- No build errors
-
-### Rollback Plan
-If issues arise, rollback is simple:
-1. Git: `git restore next.config.js mdx-components.tsx`
-2. Git: `git clean -fd src/content/sacred-patterns/`
-3. Git: `git restore src/components/mdx-*.tsx src/lib/content/`
-4. Delete: `rm -rf src/app/sacred-patterns-dynamic/`
+### Benefits
+- ✅ Uses existing MDX infrastructure (same as Sacred Patterns)
+- ✅ Natural markdown - no text parsing needed
+- ✅ Automatic styling via `mdx-components.tsx`
+- ✅ Each `<Section>` wrapped in styled Card
+- ✅ Easily extensible with more complex components later
 
 ---
 
-## Dependencies Installed
+## Page Component Changes
 
-```json
-{
-  "@next/mdx": "15.5.6",
-  "next-mdx-remote": "5.0.0",
-  "remark-gfm": "4.0.1"
+The `/platonic-solids/[slug]/page.tsx` will be simplified and restructured.
+
+### Keep (data-driven sections)
+- Header with title, description, hero image
+- Visual Representations (3 images: solid, wireframe, net)
+- Mathematical Properties grid (faces, vertices, edges)
+- Symbolic Properties metadata (Element, Dual, Order)
+
+### Replace with MDX
+- Symbolic Properties narrative content
+- Mathematical Insights paragraphs
+- In Nature and Culture examples
+
+### New Structure
+```tsx
+// Load data and MDX content
+const geometry = getGeometryBySlug(slug);
+const mdxContent = await getPlatonicSolidContent(slug);
+
+// Render
+<main>
+  {/* Header - data model */}
+  <Header title={geometry.title} description={geometry.description} />
+
+  {/* Visual Representations - data model images */}
+  <VisualRepresentations images={geometry.images} />
+
+  {/* Mathematical Properties - data model */}
+  <MathPropertiesGrid mathProperties={geometry.mathProperties} />
+
+  {/* Symbolic Properties Metadata - data model */}
+  <SymbolicMetadata element={geometry.relatedBy.element} dual={geometry.dualOfTitle} />
+
+  {/* MDX Content - narrative sections */}
+  {mdxContent?.content}
+
+  {/* Navigation */}
+  <GeometryNavigation currentSlug={slug} category="platonic" />
+</main>
+```
+
+---
+
+## Content Loading Updates
+
+### New Loader Function
+
+Create `src/lib/content/platonic-solids.ts`:
+
+```typescript
+import fs from "fs";
+import path from "path";
+import { compileMDX } from "next-mdx-remote/rsc";
+import { MDXSection } from "@/components/mdx-section";
+import { getMDXComponents } from "@/components/mdx-components";
+
+/**
+ * Platonic Solid MDX Content Interface
+ */
+export interface PlatonicSolidContent {
+  slug: string;
+  content: React.ReactElement;
+}
+
+/**
+ * Get the path to a Platonic Solid MDX file
+ */
+function getContentPath(slug: string): string {
+  return path.join(
+    process.cwd(),
+    "src/content/platonic-solids",
+    `${slug}.mdx`
+  );
+}
+
+/**
+ * Check if a Platonic Solid MDX file exists
+ */
+export function platonicSolidContentExists(slug: string): boolean {
+  const filePath = getContentPath(slug);
+  return fs.existsSync(filePath);
+}
+
+/**
+ * Load and compile Platonic Solid MDX content
+ */
+export async function getPlatonicSolidContent(
+  slug: string
+): Promise<PlatonicSolidContent | null> {
+  const filePath = getContentPath(slug);
+
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+
+  const source = fs.readFileSync(filePath, "utf8");
+
+  // Get custom MDX components and merge with Section component
+  const customComponents = getMDXComponents({
+    Section: MDXSection,
+  });
+
+  const { content, frontmatter } = await compileMDX<{
+    slug: string;
+  }>({
+    source,
+    options: { parseFrontmatter: true },
+    components: customComponents,
+  });
+
+  return {
+    slug: frontmatter.slug ?? slug,
+    content,
+  };
+}
+
+/**
+ * Get all available Platonic Solid content slugs
+ */
+export function getAllPlatonicSolidContentSlugs(): string[] {
+  const contentDir = path.join(
+    process.cwd(),
+    "src/content/platonic-solids"
+  );
+
+  if (!fs.existsSync(contentDir)) {
+    return [];
+  }
+
+  return fs
+    .readdirSync(contentDir)
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => file.replace(/\.mdx$/, ""));
 }
 ```
 
----
+### Update Exports
 
-## Future Benefits
+Modify `src/lib/content/index.ts`:
 
-Once migration is complete, we can implement:
+```typescript
+/**
+ * Content loading and formatting utilities
+ * Loads MDX content files for both Platonic Solids and Sacred Patterns
+ */
 
-1. **Relationship Links Component** (2-3 hours)
-   - Show related geometries on each page
-   - Link to dual, contains, appearsIn geometries
-   - Reusable component across all geometries
+// Platonic Solids (MDX)
+export {
+  getPlatonicSolidContent,
+  getAllPlatonicSolidContentSlugs,
+  platonicSolidContentExists,
+  type PlatonicSolidContent,
+} from "./platonic-solids";
 
-2. **Global Search Feature** (6-8 hours)
-   - Search all geometries by name/properties
-   - Navigate directly to any geometry
-   - Cmd+K keyboard shortcut
-   - Preview relationships in results
-
-Both features require unified dynamic routing to work reliably.
-
----
-
-## Notes
-
-- **Dev server:** Running on port 3001 (port 3000 occupied)
-- **TypeScript:** All code passes typecheck ✅
-- **MDX Styling:** Matches existing design system (amber/blue theme)
-- **Navigation:** Uses existing GeometryNavigation component
-- **Content Source:**
-  - Hero (title, description, image) from data model
-  - Narrative sections from MDX files
+// Sacred Patterns (MDX)
+export {
+  getSacredPatternContent,
+  getAllSacredPatternContentSlugs,
+  sacredPatternContentExists,
+  type SacredPatternContent,
+} from "./sacred-patterns";
+```
 
 ---
 
-## Current Status
+## Implementation Steps
 
-**Last Updated:** 2025-10-19 (Migration Complete)
+### Phase 1: Setup
+1. ✅ Analyze current YAML structure and MDX implementation
+2. ✅ Design MDX schema for Platonic Solids
+3. ✅ Document migration plan
 
-**Current Phase:** ✅ COMPLETE - All Phases Finished
+### Phase 2: Content Migration
+4. ⬜ Create `src/lib/content/platonic-solids.ts` MDX loader
+5. ⬜ Convert YAML files to MDX format:
+   - tetrahedron.yml → tetrahedron.mdx
+   - hexahedron.yml → hexahedron.mdx
+   - octahedron.yml → octahedron.mdx
+   - dodecahedron.yml → dodecahedron.mdx
+   - icosahedron.yml → icosahedron.mdx
 
-**Patterns Completed:** 17 of 17 (100%) ✅
+### Phase 3: Code Updates
+6. ⬜ Update `src/lib/content/index.ts` exports
+7. ⬜ Refactor `src/app/platonic-solids/[slug]/page.tsx` to use MDX
+8. ⬜ Test all 5 Platonic Solid pages render correctly
 
-**Batch 1 (Simple):** seed-of-life, fruit-of-life, pentagram, egg-of-life, philosophers-stone ✅
+### Phase 4: Cleanup
+9. ⬜ Remove deprecated YAML files (*.yml)
+10. ⬜ Remove deprecated code:
+    - `src/lib/content/loader.ts` (YAML loader)
+    - `src/lib/content/format.ts` (formatText utility)
+    - `src/lib/content/types.ts` (YAML types)
 
-**Batch 2 (Medium):** sri-yantra, star-tetrahedron, germ-of-life ✅
+### Phase 5: Documentation
+11. ⬜ Update `CLAUDE.md` to reflect unified MDX system
+12. ⬜ Update `src/content/README.md` with new structure
 
-**Batch 3 (Complex part 1):** metatrons-cube, torus, vector-equilibrium ✅
+---
 
-**Batch 4 (Complex part 2):** 64-tetrahedron, tree-of-life, golden-ratio ✅
+## Files to Create/Modify/Remove
 
-**Plus from Phase 2:** circle-dot, vesica-piscis, flower-of-life ✅
+### Create
+- ✅ `PLAN.md` (this file)
+- ⬜ `src/lib/content/platonic-solids.ts` (new MDX loader)
+- ⬜ `src/content/platonic-solids/tetrahedron.mdx`
+- ⬜ `src/content/platonic-solids/hexahedron.mdx`
+- ⬜ `src/content/platonic-solids/octahedron.mdx`
+- ⬜ `src/content/platonic-solids/dodecahedron.mdx`
+- ⬜ `src/content/platonic-solids/icosahedron.mdx`
 
-**Production Build:** ✅ Passing (31 total pages generated)
+### Modify
+- ⬜ `src/lib/content/index.ts` (update exports)
+- ⬜ `src/app/platonic-solids/[slug]/page.tsx` (use MDX instead of YAML)
+- ⬜ `CLAUDE.md` (update content system documentation)
+- ⬜ `src/content/README.md` (update with unified MDX approach)
 
-**Time Invested:** ~4.5 hours total
-- Phase 1 (Infrastructure): ~30 min
-- Phase 2 (Proof of Concept): ~1 hour
-- Phase 3 (Bulk Migration): ~2.5 hours
-- Phase 4 (Cleanup & Deployment): ~45 min
+### Remove (after testing)
+- ⬜ `src/content/platonic-solids/tetrahedron.yml`
+- ⬜ `src/content/platonic-solids/hexahedron.yml`
+- ⬜ `src/content/platonic-solids/octahedron.yml`
+- ⬜ `src/content/platonic-solids/dodecahedron.yml`
+- ⬜ `src/content/platonic-solids/icosahedron.yml`
+- ⬜ `src/lib/content/loader.ts` (YAML loader)
+- ⬜ `src/lib/content/format.ts` (formatText utility)
+- ⬜ `src/lib/content/types.ts` (YAML types)
 
-**Status:** 🎉 PROJECT COMPLETE 🎉
+---
+
+## Risk Mitigation
+
+### During Migration
+- Keep YAML files until MDX implementation is tested and verified
+- Test each converted file individually before moving to the next
+- Keep git commits granular for easy rollback if needed
+
+### Testing Strategy
+1. Visual comparison: Compare rendered MDX pages with current YAML pages
+2. Content verification: Ensure all text, formatting, and styling is preserved
+3. Cross-browser testing: Verify rendering in multiple browsers
+4. Build verification: Ensure production build succeeds
+
+### Rollback Plan
+- If issues arise, revert to YAML by:
+  1. Restoring deleted YAML loader files
+  2. Reverting page component changes
+  3. Restoring YAML exports in index.ts
+
+---
+
+## Success Criteria
+
+- ✅ All 5 Platonic Solid pages render correctly with MDX content
+- ✅ Visual parity with existing YAML-based pages
+- ✅ Production build succeeds without errors
+- ✅ No TypeScript errors or warnings
+- ✅ Content is easily editable in markdown format
+- ✅ Documentation is updated and accurate
+- ✅ Deprecated YAML code is removed
+
+---
+
+## Next Steps
+
+After completing this migration:
+1. Both content systems will use identical MDX infrastructure
+2. Content editing will be unified and simplified
+3. Future enhancements (custom components, interactive elements) can be added to both systems simultaneously
+4. Content system is fully documented and maintainable
+
+---
+
+## Questions/Decisions
+
+- ⬜ Should we keep the "Order" field in frontmatter (e.g., "First Solid") or remove it?
+  - Current: Displayed in Symbolic Properties metadata section
+  - Decision: Keep in data model's `order: number` field, optionally display as "First of Five" using logic
+
+- ⬜ Should we add sections metadata to frontmatter for navigation?
+  - Current: Sacred Patterns use this for table of contents
+  - Decision: Not needed initially, can add later if desired
+
+---
+
+**Status:** Ready for implementation
+**Last Updated:** 2025-10-20
