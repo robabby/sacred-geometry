@@ -19,6 +19,7 @@ import {
   getSacredPatterns,
   getGeometryPath,
 } from "@/lib/data";
+import { SearchCommandTrigger } from "@/components/search-command-trigger";
 
 // Icon mapping for Platonic Solids
 const iconMap: Record<string, typeof Triangle> = {
@@ -111,6 +112,11 @@ export default function HomePage() {
             Flower of Life, explore the geometries that have inspired mystics,
             scientists, and artists throughout history.
           </p>
+
+          {/* Search Command */}
+          <div className="w-full px-4 sm:px-0 sm:w-auto sm:max-w-md">
+            <SearchCommandTrigger />
+          </div>
         </div>
 
         <Flex
