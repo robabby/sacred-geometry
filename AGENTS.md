@@ -4,7 +4,8 @@
 - Sacred Geometry is a Next.js 15 App Router project that blends the T3 stack with React Three Fiber to render interactive geometry content.
 - The app targets React 19 with strict TypeScript, Tailwind CSS v4, Radix UI Themes, and shadcn/ui components (New York style).
 - Three.js powers all 3D scenes via `@react-three/fiber` and `@react-three/drei`, while Lucide React provides icons.
-- Sacred Pattern pages now live under `src/app/sacred-patterns`, delivering long-form narratives (Circle Dot → Pentagram) wired into the geometry catalog and sequential navigation.
+- Sacred Pattern pages now live under `src/app/sacred-patterns`, delivering long-form narratives (Circle Dot → 64 Tetrahedron Grid) wired into the geometry catalog and sequential navigation.
+- The geometry data model has been modularized under `src/lib/data` with dedicated files for types, helpers, relationships, and per-category records plus runtime validation in development.
 
 ## Tech Stack & Tooling
 - Runtime: Next.js 15 (App Router), React 19, TypeScript strict.
@@ -41,6 +42,9 @@ pnpm test:coverage # Vitest coverage
 - `src/components/3d`: React Three Fiber scenes and helpers.
 - `src/components/geometry`: Domain-specific geometry components.
 - `src/lib`: Shared utilities; `src/lib/data` hosts geometry catalog logic.
+- `src/lib/data/index.ts`: Canonical entry point that assembles platonic/pattern datasets, enhances relationships, validates in dev, and re-exports query helpers.
+- `src/lib/data/{platonic-solids,sacred-patterns}.ts`: Data records per category; keep these in sync with image assets and navigation.
+- `src/lib/data/{helpers,relationships,geometries.types,image-paths}.ts`: Query utilities, relationship graphs, type definitions, and asset path helpers.
 - `src/lib/content`: Content loading/formatting helpers for YAML.
 - `src/content`: YAML content files for geometries (e.g., Platonic solids).
 - `src/hooks`: Reusable React hooks.
@@ -54,12 +58,16 @@ pnpm test:coverage # Vitest coverage
 - Tailwind classes follow plugin ordering enforced by Prettier config.
 - Use path aliases (`@/...`) for imports from `src/`.
 - Schema validation lives with `zod` in `src/lib` where practical.
+- Import geometry data helpers from `@/lib/data` (the index export) so relationship enhancement and validation stay consistent.
 - When creating dynamic routes for geometries, fetch data with `getGeometryBySlug` and related helpers from `@/lib/data`.
 - Geometry detail pages should use `GeometryNavigation` with `getGeometryPath` / `getGeometryListPath` to keep previous/next/all links in sync with the catalog ordering.
 
 ## Data & Content Model
-- `src/lib/data/geometries.ts` defines the sacred geometry catalog (5 Platonic Solids, 11 featured Sacred Patterns from Circle Dot through Pentagram, plus supporting shapes like Triangle, Tree of Life, Fibonacci Spiral). Keep `order` and `featured` fields aligned with navigation expectations.
-- Helper functions: `getGeometryById`, `getGeometryBySlug`, `getGeometryPath`, `getGeometryListPath`, `getRelatedGeometries`, `getNextGeometry`, `getPreviousGeometry`, `getPlatonicSolids`, `getSacredPatterns`, `getGeometriesByElement`, `searchGeometries`.
+- `src/lib/data/index.ts` composes `PLATONIC_SOLIDS` and `SACRED_PATTERNS`, runs `enhanceGeometries`, and re-exports typed helpers. Reference this barrel for reads/writes.
+- Sacred geometry catalog now covers 5 Platonic Solids and 17 featured Sacred Patterns (Circle Dot, Vesica Piscis, Germ of Life, Seed of Life, Egg of Life, Fruit of Life, Flower of Life, Metatron's Cube, Sri Yantra, Star Tetrahedron, Golden Ratio, Philosopher's Stone, Pentagram, Torus, Tree of Life, Vector Equilibrium, 64 Tetrahedron Grid) plus supporting entries like Triangle and Fibonacci Spiral. Keep `order` and `featured` aligned with navigation/tests.
+- Helper functions: `getGeometryById`, `getGeometryBySlug`, `getGeometryPath`, `getGeometryListPath`, `getRelatedGeometries`, `getNextGeometry`, `getPreviousGeometry`, `getPlatonicSolids`, `getSacredPatterns`, `getGeometriesByCategory`, `getGeometriesByElement`, `getContainedGeometries`, `getAppearsInGeometries`, `searchGeometries`.
+- Relationships live in `src/lib/data/relationships.ts` via `CONTAINS_GRAPH` and `DUAL_GRAPH`; `appearsIn` is auto-derived during enhancement.
+- Image paths use helpers in `src/lib/data/image-paths.ts`; prefer them when adding assets so naming stays canonical.
 - `src/content/platonic-solids/*.yml` stores narrative content (order strings, symbolic associations, etc.).
 - Combine structural data and YAML content in pages to render full experiences.
 
@@ -68,6 +76,7 @@ pnpm test:coverage # Vitest coverage
 - Run `pnpm check` before PRs to cover linting and type safety.
 - Use Vitest (with RTL + happy-dom) for new tests; document new utilities in PRs.
 - Sacred-pattern and platonic navigation behavior is covered in `src/components/geometry-navigation.test.tsx`; update expectations when changing catalog order, slugs, or navigation rules.
+- Geometry datasets are validated in development via `validateGeometries`; keep local `pnpm dev` output clean when editing relationships.
 
 ## Environment & Assets
 - Define new env vars in `src/env.js` with Zod schemas; add to `.env.example` and `runtimeEnv`.

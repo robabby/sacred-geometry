@@ -80,15 +80,16 @@ The app uses a **clear separation between page structure and content**:
    - Navigation helpers: `getNextGeometry()`, `getPreviousGeometry()`
    - Use for: Geometry cards, detail pages, navigation between geometries
 
-3. **Dynamic Routes** (Platonic Solids - implemented):
-   - Pattern: `app/platonic-solids/[slug]/page.tsx`
-   - Fetch data: `getGeometryBySlug(params.slug)` and `getPlatonicSolidContent(params.slug)`
-   - Consolidates 5 static pages into one reusable template
+3. **Dynamic Routes** (Both categories - implemented):
+   - **Platonic Solids**: `app/platonic-solids/[slug]/page.tsx`
+     - Fetch data: `getGeometryBySlug(params.slug)` and `getPlatonicSolidContent(params.slug)`
+     - Uses YAML content system
+     - Consolidates 5 pages into one reusable template
 
-4. **Static Routes** (Sacred Patterns - current):
-   - Individual pages: `app/sacred-patterns/flower-of-life/page.tsx`, etc.
-   - Still use data model for titles, images, and navigation
-   - Will migrate to dynamic routing when all patterns have animated SVGs
+   - **Sacred Patterns**: `app/sacred-patterns/[slug]/page.tsx`
+     - Fetch data: `getGeometryBySlug(params.slug)` and `getSacredPatternContent(params.slug)`
+     - Uses MDX content system
+     - Consolidates 17 pages into one reusable template
 
 ### Key Patterns
 
@@ -266,28 +267,36 @@ Always add `<GeometryNavigation />` at the bottom of geometry detail pages to pr
 
 ### Content System Architecture
 
-**YAML Content Files** (`src/content/`):
+The project uses two content systems to separate page-specific narrative content from the structural geometry data model. This allows for maintainable, version-controlled content that can be easily edited without touching code.
 
-The project uses a YAML-based content system to separate page-specific narrative content from the structural geometry data model. This allows for maintainable, version-controlled content that can be easily edited without touching code.
-
-**Structure**:
-- `src/content/platonic-solids/` - Content for Platonic Solid pages (tetrahedron.yml, hexahedron.yml, etc.)
-- `src/content/sacred-patterns/` - Content for sacred pattern pages (future, different schema)
+**Content Files** (`src/content/`):
+- `src/content/platonic-solids/` - YAML content for Platonic Solid pages (tetrahedron.yml, hexahedron.yml, etc.)
+- `src/content/sacred-patterns/` - MDX content for Sacred Pattern pages (circle-dot.mdx, flower-of-life.mdx, etc.)
 
 **Content Loading** (`src/lib/content/`):
 
+**Platonic Solids (YAML)**:
 - `getPlatonicSolidContent(slug)` - Load YAML content for a Platonic Solid
 - `formatText(text)` - Simple formatter converting `**bold**` to `<strong>` tags
 - Type-safe with `PlatonicSolidContent` interface
+
+**Sacred Patterns (MDX)**:
+- `getSacredPatternContent(slug)` - Load and compile MDX content for a Sacred Pattern
+- `sacredPatternContentExists(slug)` - Check if MDX file exists
+- `getAllSacredPatternContentSlugs()` - Get all available pattern slugs
+- Type-safe with `SacredPatternContent` interface
+- Uses `next-mdx-remote/rsc` for server-side MDX compilation
+- Custom MDX components in `src/components/mdx-components.tsx` for styling
 
 **Separation of Concerns**:
 - **Data Model** (`src/lib/data/`): Structural data, relationships, mathematical properties
   - Modular files: `platonic-solids.ts`, `sacred-patterns.ts`, `relationships.ts`
   - `order: number` - Integer for sorting/logic (1, 2, 3, etc.)
-- **Content YAML**: Presentational content, narrative, symbolic meanings
-  - `order: string` - Display string ("First Solid", "Second Solid", etc.)
+- **Content Files**: Presentational content, narrative, symbolic meanings
+  - **YAML** (Platonic Solids): `order: string` - Display string ("First Solid", "Second Solid", etc.)
+  - **MDX** (Sacred Patterns): Rich narrative content with React components
 
-**Example Usage**:
+**Example Usage - Platonic Solids (YAML)**:
 
 ```typescript
 import { getGeometryBySlug } from "@/lib/data";
@@ -327,6 +336,55 @@ nature:
   examples:
     - category: Chemistry
       description: "Specific example..."
+```
+
+**Example Usage - Sacred Patterns (MDX)**:
+
+```typescript
+import { getGeometryBySlug } from "@/lib/data";
+import { getSacredPatternContent } from "@/lib/content";
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  const geometry = getGeometryBySlug(params.slug);
+  const patternContent = await getSacredPatternContent(params.slug);
+
+  if (!geometry || !patternContent) notFound();
+
+  // Render MDX content directly
+  return (
+    <div>
+      <h1>{geometry.title}</h1>
+      {patternContent.content}
+    </div>
+  );
+}
+```
+
+**MDX Schema**:
+```mdx
+---
+slug: flower-of-life
+---
+
+<Section title="The Pattern of Creation">
+
+## The Pattern of Creation
+
+The Flower of Life is a geometric pattern consisting of multiple evenly-spaced, overlapping circles...
+
+- **Universal Symbol:** Found in ancient temples worldwide
+- **Sacred Geometry:** Contains the Seed of Life, Egg of Life, and Fruit of Life
+- **Mathematical Perfection:** Based on the hexagonal packing of circles
+
+</Section>
+
+<Section title="Historical Significance">
+
+## Historical Significance
+
+This pattern appears in Egyptian temples, Chinese art, and Renaissance manuscripts...
+
+</Section>
 ```
 
 See `src/content/README.md` for detailed content editing guidelines.

@@ -3,8 +3,21 @@
  * for Docker builds.
  */
 import "./src/env.js";
+import createMDX from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  // Configure pageExtensions to include markdown and MDX files
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+};
 
-export default config;
+// MDX configuration
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
+// Wrap Next.js config with MDX support
+export default withMDX(config);
