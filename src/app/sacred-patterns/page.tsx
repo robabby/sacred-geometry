@@ -95,7 +95,7 @@ export default function SacredPatternsPage() {
             return (
               <Link key={pattern.path} href={pattern.path}>
                 <Card className="cursor-pointer border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-6 backdrop-blur-sm transition-all hover:scale-105 hover:border-amber-500/40">
-                  <div className="flex flex-col gap-4">
+                  <div className="flex min-h-[380px] flex-col gap-4">
                     {/* Image */}
                     <div className="relative flex h-48 w-full items-center justify-center">
                       <Image
@@ -129,11 +129,11 @@ export default function SacredPatternsPage() {
                       </Badge>
                     </div>
 
-                    <Text size="2" className="flex-grow text-blue-300">
+                    <Text size="2" className="line-clamp-3 text-blue-300">
                       {pattern.description}
                     </Text>
 
-                    <div className="text-sm font-medium text-amber-300 transition-colors hover:text-amber-400">
+                    <div className="mt-auto text-sm font-medium text-amber-300 transition-colors hover:text-amber-400">
                       Explore →
                     </div>
                   </div>

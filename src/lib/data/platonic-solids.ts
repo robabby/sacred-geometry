@@ -97,6 +97,36 @@ export const PLATONIC_SOLIDS: Record<string, Geometry> = {
     order: 3,
   },
 
+  icosahedron: {
+    id: "icosahedron",
+    name: "Icosahedron",
+    slug: "icosahedron",
+    category: "platonic",
+    title: "The Icosahedron: Flow of Water",
+    description:
+      "The icosahedron embodies the element of Water—emotion, fluidity, and adaptability. It is the shape of flow and transformation, rolling smoothly like water itself.",
+    dualOfTitle: "Dodecahedron",
+    relatedBy: {
+      element: "water",
+      property: [
+        "flow",
+        "transformation",
+        "emotion",
+        "fluidity",
+        "adaptability",
+      ],
+    },
+    images: getPlatonicImages("icosahedron"),
+    mathProperties: {
+      faces: 20,
+      faceShape: "Triangular",
+      vertices: 12,
+      edges: 30,
+    },
+    featured: true,
+    order: 4,
+  },
+
   dodecahedron: {
     id: "dodecahedron",
     name: "Dodecahedron",
@@ -126,36 +156,6 @@ export const PLATONIC_SOLIDS: Record<string, Geometry> = {
       faces: 12,
       faceShape: "Pentagonal",
       vertices: 20,
-      edges: 30,
-    },
-    featured: true,
-    order: 4,
-  },
-
-  icosahedron: {
-    id: "icosahedron",
-    name: "Icosahedron",
-    slug: "icosahedron",
-    category: "platonic",
-    title: "The Icosahedron: Flow of Water",
-    description:
-      "The icosahedron embodies the element of Water—emotion, fluidity, and adaptability. It is the shape of flow and transformation, rolling smoothly like water itself.",
-    dualOfTitle: "Dodecahedron",
-    relatedBy: {
-      element: "water",
-      property: [
-        "flow",
-        "transformation",
-        "emotion",
-        "fluidity",
-        "adaptability",
-      ],
-    },
-    images: getPlatonicImages("icosahedron"),
-    mathProperties: {
-      faces: 20,
-      faceShape: "Triangular",
-      vertices: 12,
       edges: 30,
     },
     featured: true,

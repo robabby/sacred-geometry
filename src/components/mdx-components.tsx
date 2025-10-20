@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import { Heading, Text } from "@radix-ui/themes";
+import { RelatedGeometries } from "@/components/related-geometries";
 
 /**
  * Get custom MDX components for Sacred Pattern content
@@ -8,24 +9,35 @@ import { Heading, Text } from "@radix-ui/themes";
 export function getMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // Headings
+    h1: ({ children }) => (
+      <Heading
+        mb="2"
+        size="6"
+        className="text-amber-300"
+      >
+        {children}
+      </Heading>
+    ),
     h2: ({ children }) => (
       <Heading
         mb="2"
-        size={{ initial: "5", md: "6" }}
+        size="5"
         className="text-amber-300"
       >
         {children}
       </Heading>
     ),
     h3: ({ children }) => (
-      <Heading size="5" className="mb-3 text-amber-200">
+      <Heading size="4" mb="3" className="text-amber-200">
         {children}
       </Heading>
     ),
 
     // Paragraphs
     p: ({ children }) => (
-      <Text className="mb-4 text-blue-200">{children}</Text>
+      <Text as="p" mb="2" className="text-blue-200">
+        {children}
+      </Text>
     ),
 
     // Lists
@@ -44,6 +56,9 @@ export function getMDXComponents(components: MDXComponents): MDXComponents {
 
     // Wrapper for sections - wraps content between h2s in Cards
     wrapper: ({ children }) => <>{children}</>,
+
+    // Custom components
+    RelatedGeometries,
 
     ...components,
   };
