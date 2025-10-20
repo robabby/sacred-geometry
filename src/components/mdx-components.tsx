@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import { Heading, Text } from "@radix-ui/themes";
+import { RelatedGeometries } from "@/components/related-geometries";
 
 /**
  * Get custom MDX components for Sacred Pattern content
@@ -44,6 +45,9 @@ export function getMDXComponents(components: MDXComponents): MDXComponents {
 
     // Wrapper for sections - wraps content between h2s in Cards
     wrapper: ({ children }) => <>{children}</>,
+
+    // Custom components
+    RelatedGeometries,
 
     ...components,
   };
