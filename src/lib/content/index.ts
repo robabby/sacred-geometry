@@ -1,12 +1,15 @@
 /**
  * Content loading and formatting utilities
- * Loads YAML and MDX content files and provides helpers for rendering
+ * Loads MDX content files for both Platonic Solids and Sacred Patterns
  */
 
-// Platonic Solids (YAML)
-export { getPlatonicSolidContent } from "./loader";
-export { formatText } from "./format";
-export type { PlatonicSolidContent } from "./types";
+// Platonic Solids (MDX)
+export {
+  getPlatonicSolidContent,
+  getAllPlatonicSolidContentSlugs,
+  platonicSolidContentExists,
+  type PlatonicSolidContent,
+} from "./platonic-solids";
 
 // Sacred Patterns (MDX)
 export {
