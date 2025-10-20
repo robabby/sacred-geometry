@@ -7,6 +7,7 @@
 
 import { PLATONIC_SOLIDS } from "./platonic-solids";
 import { SACRED_PATTERNS } from "./sacred-patterns";
+import type { RelationshipType } from "./geometries.types";
 import {
   enhanceGeometries,
   validateGeometries,
@@ -26,6 +27,11 @@ import {
   getGeometryListPath,
   getNextGeometry as _getNextGeometry,
   getPreviousGeometry as _getPreviousGeometry,
+  // Enhanced relationship functions (Phase 2)
+  getRelationshipsByType as _getRelationshipsByType,
+  getRelationshipStrength as _getRelationshipStrength,
+  getRelationshipTypes as _getRelationshipTypes,
+  getGroupedRelationships as _getGroupedRelationships,
 } from "./helpers";
 
 // Re-export types
@@ -169,4 +175,41 @@ export function getPreviousGeometry(
   category: "platonic" | "pattern"
 ) {
   return _getPreviousGeometry(GEOMETRIES, currentId, category);
+}
+
+// ============================================================================
+// ENHANCED RELATIONSHIP FUNCTIONS (Phase 2)
+// ============================================================================
+
+/**
+ * Get all relationships of a specific type for a geometry
+ */
+export function getRelationshipsByType(
+  geometryId: string,
+  type: RelationshipType
+) {
+  return _getRelationshipsByType(GEOMETRIES, geometryId, type);
+}
+
+/**
+ * Get relationship strength between two geometries
+ * Returns null if no direct relationship exists
+ */
+export function getRelationshipStrength(fromId: string, toId: string) {
+  return _getRelationshipStrength(GEOMETRIES, fromId, toId);
+}
+
+/**
+ * Get all relationship types for a geometry
+ */
+export function getRelationshipTypes(geometryId: string) {
+  return _getRelationshipTypes(GEOMETRIES, geometryId);
+}
+
+/**
+ * Get grouped relationships (for display)
+ * Returns relationships organized by type
+ */
+export function getGroupedRelationships(geometryId: string) {
+  return _getGroupedRelationships(GEOMETRIES, geometryId);
 }

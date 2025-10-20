@@ -7,35 +7,62 @@
 import type {
   Geometry,
   GeometryCategory,
+  GeometryId,
   GeometryRelations,
+  RelationshipType,
 } from "./geometries.types";
-import { CONTAINS_GRAPH, DUAL_GRAPH } from "./relationships";
+import {
+  CONTAINS_GRAPH,
+  DUAL_GRAPH,
+  RELATIONSHIP_GRAPH,
+} from "./relationships";
 
 /**
  * Enhance geometries with computed relationships
  *
  * This function:
- * 1. Adds `contains` relationships from CONTAINS_GRAPH
- * 2. Adds `dual` relationships from DUAL_GRAPH
- * 3. Auto-computes `appearsIn` as the inverse of `contains`
+ * 1. Adds `relationships` array from RELATIONSHIP_GRAPH (new system)
+ * 2. Auto-computes legacy fields (contains, dual, appearsIn) from relationships
+ * 3. Falls back to CONTAINS_GRAPH and DUAL_GRAPH for backward compatibility
  */
 export function enhanceGeometries(
   geometries: Record<string, Geometry>
 ): Record<string, Geometry> {
   const enhanced: Record<string, Geometry> = {};
 
-  // First pass: copy all geometries and add contains/dual from graphs
+  // First pass: copy all geometries and add relationships from RELATIONSHIP_GRAPH
   Object.entries(geometries).forEach(([id, geom]) => {
+    const relationships =
+      RELATIONSHIP_GRAPH[id as keyof typeof RELATIONSHIP_GRAPH] ??
+      geom.relationships ??
+      [];
+
+    // Extract legacy fields from relationships
+    const dualRelationship = relationships.find(
+      (r: { type: string }) => r.type === "dual"
+    );
+    const containsRelationships = relationships.filter(
+      (r: { type: string }) => r.type === "contains"
+    );
+
     enhanced[id] = {
       ...geom,
-      contains: CONTAINS_GRAPH[id] ?? geom.contains ?? [],
-      dual: DUAL_GRAPH[id] ?? geom.dual,
+      // New system
+      relationships,
+
+      // Legacy fields (auto-computed from relationships or fallback to old graphs)
+      contains:
+        containsRelationships.length > 0
+          ? (containsRelationships.map((r: { targetId: string }) => r.targetId) as GeometryId[])
+          : CONTAINS_GRAPH[id] ?? geom.contains ?? [],
+      dual: dualRelationship?.targetId ?? DUAL_GRAPH[id] ?? geom.dual,
       appearsIn: [], // Will be computed in next pass
     };
   });
 
-  // Second pass: compute inverse relationships (appearsIn from contains)
+  // Second pass: compute inverse relationships (appearsIn from contains and appears-in relationships)
   Object.values(enhanced).forEach((geometry) => {
+    // Add appearsIn from "contains" inverse
     geometry.contains?.forEach((containedId) => {
       const contained = enhanced[containedId];
       if (contained) {
@@ -45,6 +72,19 @@ export function enhanceGeometries(
         }
       }
     });
+
+    // Add appearsIn from explicit "appears-in" relationships
+    geometry.relationships
+      ?.filter((r) => r.type === "appears-in")
+      .forEach((rel) => {
+        const parent = enhanced[rel.targetId];
+        if (parent) {
+          geometry.appearsIn = geometry.appearsIn ?? [];
+          if (!geometry.appearsIn.includes(parent.id)) {
+            geometry.appearsIn.push(parent.id);
+          }
+        }
+      });
   });
 
   return enhanced;
@@ -299,4 +339,84 @@ export function getPreviousGeometry(
 
   const currentIndex = sortedGeometries.findIndex((g) => g.id === currentId);
   return currentIndex > 0 ? sortedGeometries[currentIndex - 1] : undefined;
+}
+
+// ============================================================================
+// ENHANCED RELATIONSHIP QUERY FUNCTIONS (Phase 2)
+// ============================================================================
+
+/**
+ * Get all relationships of a specific type for a geometry
+ */
+export function getRelationshipsByType(
+  geometries: Record<string, Geometry>,
+  geometryId: string,
+  type: RelationshipType
+): Geometry[] {
+  const geometry = geometries[geometryId];
+  if (!geometry?.relationships) return [];
+
+  const relationshipIds = geometry.relationships
+    .filter((r) => r.type === type)
+    .map((r) => r.targetId);
+
+  return relationshipIds
+    .map((id) => geometries[id])
+    .filter((g): g is Geometry => g !== undefined);
+}
+
+/**
+ * Get relationship strength between two geometries
+ * Returns null if no direct relationship exists
+ */
+export function getRelationshipStrength(
+  geometries: Record<string, Geometry>,
+  fromId: string,
+  toId: string
+): number | null {
+  const geometry = geometries[fromId];
+  if (!geometry?.relationships) return null;
+
+  const relationship = geometry.relationships.find((r) => r.targetId === toId);
+  return relationship?.strength ?? null;
+}
+
+/**
+ * Get all relationship types for a geometry
+ */
+export function getRelationshipTypes(
+  geometries: Record<string, Geometry>,
+  geometryId: string
+): RelationshipType[] {
+  const geometry = geometries[geometryId];
+  if (!geometry?.relationships) return [];
+
+  const types = new Set(geometry.relationships.map((r) => r.type));
+  return Array.from(types);
+}
+
+/**
+ * Get grouped relationships (for display)
+ * Returns relationships organized by type
+ */
+export function getGroupedRelationships(
+  geometries: Record<string, Geometry>,
+  geometryId: string
+): Record<RelationshipType, Geometry[]> {
+  const geometry = geometries[geometryId];
+  const grouped: Partial<Record<RelationshipType, Geometry[]>> = {};
+
+  if (!geometry?.relationships) {
+    return grouped as Record<RelationshipType, Geometry[]>;
+  }
+
+  geometry.relationships.forEach((rel) => {
+    grouped[rel.type] ??= [];
+    const target = geometries[rel.targetId];
+    if (target) {
+      grouped[rel.type]!.push(target);
+    }
+  });
+
+  return grouped as Record<RelationshipType, Geometry[]>;
 }
