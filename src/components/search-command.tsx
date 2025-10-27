@@ -13,7 +13,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import {
   getGeometryPath,
@@ -224,6 +224,7 @@ export function SearchCommand() {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="overflow-hidden p-0 bg-gradient-to-br from-[#0a1628] via-[#1a2642] to-[#0f1b2e] border-amber-500/30 !top-[10vh] !translate-y-0 max-h-[80vh]">
+        <DialogTitle className="sr-only">Search Geometries</DialogTitle>
         <Command shouldFilter={false} loop className="bg-transparent">
           <CommandInput
             placeholder="Search geometries..."
