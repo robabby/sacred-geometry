@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import Fuse from "fuse.js";
 import {
   Command,
@@ -44,7 +45,7 @@ function getRecentSearches(): string[] {
   if (typeof window === 'undefined') return [];
   try {
     const stored = localStorage.getItem(RECENT_SEARCHES_KEY);
-    return stored ? JSON.parse(stored) : [];
+    return stored ? (JSON.parse(stored) as string[]) : [];
   } catch {
     return [];
   }
@@ -276,12 +277,12 @@ export function SearchCommand() {
               ))}
             </div>
             <div className="mt-4 flex justify-center gap-4 text-xs">
-              <a href="/platonic-solids" className="text-amber-400/70 hover:text-amber-300">
+              <Link href="/platonic-solids" className="text-amber-400/70 hover:text-amber-300">
                 Browse Platonic Solids →
-              </a>
-              <a href="/sacred-patterns" className="text-amber-400/70 hover:text-amber-300">
+              </Link>
+              <Link href="/sacred-patterns" className="text-amber-400/70 hover:text-amber-300">
                 Browse Sacred Patterns →
-              </a>
+              </Link>
             </div>
           </div>
         </CommandEmpty>
