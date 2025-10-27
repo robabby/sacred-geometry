@@ -15,7 +15,6 @@ import {
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import {
-  searchGeometries,
   getGeometryPath,
   getAllGeometries,
 } from "@/lib/data";
