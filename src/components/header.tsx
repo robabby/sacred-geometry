@@ -10,9 +10,10 @@ import {
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
 } from "react";
-import { CircleDot } from "lucide-react";
+import { CircleDot, Search } from "lucide-react";
 import { ROUTES } from "@/util/routes";
 import { cn } from "@/lib/utils";
+import { SearchCommand } from "@/components/search-command";
 
 type NavItem = {
   path: string;
@@ -164,49 +165,78 @@ export function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-amber-500/20 bg-[#0a1628]/80 backdrop-blur-xl">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo */}
-        <Link
-          href={ROUTES.home.path}
-          ref={homeRef}
-          className="flex items-center gap-1.5 transition-opacity hover:opacity-80 sm:gap-2"
-          onKeyDown={handleHomeKeyDown}
-        >
-          <CircleDot className="h-5 w-5 text-amber-400 sm:h-6 sm:w-6" />
-          <span className="text-base font-semibold text-amber-100 sm:text-lg">
-            <span className="hidden sm:inline">Sacred Geometry</span>
-            <span className="sm:hidden">Sacred Geometry</span>
-          </span>
-        </Link>
+    <>
+      {/* Global Search Command - listens for ⌘K */}
+      <SearchCommand />
 
-        {/* Navigation */}
-        <nav
-          aria-label="Primary"
-          className="flex items-center gap-3 sm:gap-6"
-          onKeyDown={handleNavKeyDown}
-        >
-          {navItems.map((item, index) => (
-            <Link
-              key={item.path}
-              href={item.path}
-              ref={(node) => {
-                navRefs.current[index] = node;
+      <header className="sticky top-0 z-50 w-full border-b border-amber-500/20 bg-[#0a1628]/80 backdrop-blur-xl">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4">
+          {/* Logo */}
+          <Link
+            href={ROUTES.home.path}
+            ref={homeRef}
+            className="flex items-center gap-1.5 transition-opacity hover:opacity-80 sm:gap-2"
+            onKeyDown={handleHomeKeyDown}
+          >
+            <CircleDot className="h-5 w-5 text-amber-400 sm:h-6 sm:w-6" />
+            <span className="text-base font-semibold text-amber-100 sm:text-lg">
+              <span className="hidden sm:inline">Sacred Geometry</span>
+              <span className="sm:hidden">Sacred Geometry</span>
+            </span>
+          </Link>
+
+          {/* Right side: Search + Navigation */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            {/* Search Button */}
+            <button
+              onClick={() => {
+                // Trigger the ⌘K keyboard event
+                const event = new KeyboardEvent("keydown", {
+                  key: "k",
+                  metaKey: true,
+                  bubbles: true,
+                });
+                document.dispatchEvent(event);
               }}
-              tabIndex={focusIndex === index ? 0 : -1}
-              aria-current={isActive(item.path) ? "page" : undefined}
-              onFocus={() => setFocusIndex(index)}
-              className={cn(
-                "text-xs font-medium transition-colors hover:text-amber-300 sm:text-sm",
-                isActive(item.path) ? "text-amber-400" : "text-blue-200"
-              )}
+              className="flex items-center gap-1.5 rounded-md border border-amber-500/30 bg-blue-950/30 px-2 py-1.5 text-xs font-medium text-blue-200 transition-colors hover:border-amber-500/50 hover:bg-blue-950/50 hover:text-amber-300 sm:gap-2 sm:px-3 sm:py-1.5 sm:text-sm"
+              aria-label="Search geometries"
             >
-              <span className="hidden sm:inline">{item.desktopLabel}</span>
-              <span className="sm:hidden">{item.mobileLabel}</span>
-            </Link>
-          ))}
-        </nav>
-      </div>
-    </header>
+              <Search className="h-3.5 w-3.5 text-amber-400/70 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">Search</span>
+              <kbd className="hidden rounded border border-amber-500/20 bg-blue-900/30 px-1.5 py-0.5 text-xs text-amber-300/70 md:inline">
+                ⌘K
+              </kbd>
+            </button>
+
+            {/* Navigation */}
+            <nav
+              aria-label="Primary"
+              className="flex items-center gap-3 sm:gap-6"
+              onKeyDown={handleNavKeyDown}
+            >
+              {navItems.map((item, index) => (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  ref={(node) => {
+                    navRefs.current[index] = node;
+                  }}
+                  tabIndex={focusIndex === index ? 0 : -1}
+                  aria-current={isActive(item.path) ? "page" : undefined}
+                  onFocus={() => setFocusIndex(index)}
+                  className={cn(
+                    "text-xs font-medium transition-colors hover:text-amber-300 sm:text-sm",
+                    isActive(item.path) ? "text-amber-400" : "text-blue-200"
+                  )}
+                >
+                  <span className="hidden sm:inline">{item.desktopLabel}</span>
+                  <span className="sm:hidden">{item.mobileLabel}</span>
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </div>
+      </header>
+    </>
   );
 }
