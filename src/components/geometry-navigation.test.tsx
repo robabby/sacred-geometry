@@ -36,13 +36,13 @@ describe("GeometryNavigation", () => {
       expect(screen.getByText(/All Platonic Solids/i)).toBeInTheDocument();
     });
 
-    it("should not render Next button for last geometry (Icosahedron)", () => {
+    it("should not render Next button for last geometry (Dodecahedron)", () => {
       render(
-        <GeometryNavigation currentSlug="icosahedron" category="platonic" />
+        <GeometryNavigation currentSlug="dodecahedron" category="platonic" />
       );
 
-      // Should have Previous button to Dodecahedron
-      expect(screen.getByText(/Dodecahedron/i)).toBeInTheDocument();
+      // Should have Previous button to Icosahedron
+      expect(screen.getByText(/Icosahedron/i)).toBeInTheDocument();
       expect(screen.getAllByText(/Previous/i).length).toBeGreaterThan(0);
 
       // Should NOT have Next button
@@ -65,12 +65,12 @@ describe("GeometryNavigation", () => {
       );
       expect(prevLink?.getAttribute("href")).toBe("/platonic-solids/hexahedron");
 
-      // Next link (Dodecahedron)
+      // Next link (Icosahedron) - order: Tetra(1) → Hexa(2) → Octa(3) → Icosa(4) → Dodeca(5)
       const nextLink = Array.from(links).find((link) =>
-        link.textContent?.includes("Dodecahedron")
+        link.textContent?.includes("Icosahedron")
       );
       expect(nextLink?.getAttribute("href")).toBe(
-        "/platonic-solids/dodecahedron"
+        "/platonic-solids/icosahedron"
       );
 
       // All link
@@ -87,12 +87,12 @@ describe("GeometryNavigation", () => {
         <GeometryNavigation currentSlug="seed-of-life" category="pattern" />
       );
 
-      // Should have Previous button to Vesica Piscis
-      expect(screen.getByText(/Vesica Piscis/i)).toBeInTheDocument();
+      // Should have Previous button to Germ of Life (order: Vesica(2) → Germ(2.5) → Seed(3))
+      expect(screen.getByText(/Germ of Life/i)).toBeInTheDocument();
       expect(screen.getAllByText(/Previous/i).length).toBeGreaterThan(0);
 
-      // Should have Next button to Fruit of Life
-      expect(screen.getByText(/Fruit of Life/i)).toBeInTheDocument();
+      // Should have Next button to Egg of Life (order: Seed(3) → Egg(3.5) → Fruit(4))
+      expect(screen.getByText(/Egg of Life/i)).toBeInTheDocument();
       expect(screen.getAllByText(/Next/i).length).toBeGreaterThan(0);
 
       // Should have "All Sacred Patterns" link
@@ -110,9 +110,9 @@ describe("GeometryNavigation", () => {
       expect(screen.getAllByText(/Next/i).length).toBeGreaterThan(0);
     });
 
-    it("should not render Next button for last pattern (Pentagram)", () => {
+    it("should not render Next button for last pattern (64 Tetrahedron)", () => {
       render(
-        <GeometryNavigation currentSlug="pentagram" category="pattern" />
+        <GeometryNavigation currentSlug="64-tetrahedron" category="pattern" />
       );
 
       // Should have Previous button

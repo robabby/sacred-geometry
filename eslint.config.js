@@ -1,18 +1,12 @@
 import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
-import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default [
   {
     ignores: [".next"],
   },
   ...nextCoreWebVitals,
   {
     files: ["**/*.ts", "**/*.tsx"],
-    extends: [
-      ...tseslint.configs.recommended,
-      ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
-    ],
     rules: {
       "@typescript-eslint/array-type": "off",
       "@typescript-eslint/consistent-type-definitions": "off",
@@ -40,5 +34,5 @@ export default tseslint.config(
         projectService: true,
       },
     },
-  }
-);
+  },
+];
