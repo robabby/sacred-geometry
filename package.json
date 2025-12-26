@@ -29,8 +29,6 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/themes": "^3.2.1",
-    "@react-three/drei": "^10.7.6",
-    "@react-three/fiber": "^9.4.0",
     "@t3-oss/env-nextjs": "^0.12.0",
     "@types/mdx": "^2.0.13",
     "@vercel/analytics": "^1.5.0",
@@ -47,7 +45,6 @@
     "react-dom": "19.2.3",
     "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.3.1",
-    "three": "^0.180.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
@@ -59,7 +56,6 @@
     "@types/node": "^20.14.10",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
-    "@types/three": "^0.180.0",
     "@vitest/ui": "^3.2.4",
     "eslint": "^9.23.0",
     "eslint-config-next": "16.1.1",

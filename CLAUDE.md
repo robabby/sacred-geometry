@@ -12,7 +12,6 @@ This is a **T3 Stack** Next.js application focused on sacred geometry. The proje
 - **Language**: TypeScript (strict mode enabled)
 - **Styling**: Tailwind CSS v4 with Radix UI Themes
 - **UI Components**: shadcn/ui (New York style)
-- **3D Graphics**: Three.js with @react-three/fiber and @react-three/drei
 - **Icons**: Lucide React
 - **Content**: MDX content system via `@next/mdx` and `next-mdx-remote`
 - **Environment**: Type-safe env validation with `@t3-oss/env-nextjs`
@@ -53,7 +52,6 @@ pnpm start            # Start production server
 
 - `src/app/` - Next.js App Router pages and layouts
 - `src/components/ui/` - shadcn/ui components (breadcrumb, dropdown-menu, etc.)
-- `src/components/3d/` - Three.js 3D visualization components
 - `src/components/geometry/` - Sacred geometry specific components
 - `src/lib/` - Utility functions and shared logic
 - `src/lib/data/` - **Modular data model with 7 focused files for geometry relationships**
@@ -406,36 +404,6 @@ This pattern appears in Egyptian temples, Chinese art, and Renaissance manuscrip
 ```
 
 See `src/content/README.md` for detailed content editing guidelines.
-
-### 3D Visualization Components
-
-**GeometryViewer Component** (`src/components/3d/GeometryViewer.tsx`):
-
-- Reusable Three.js scene framework for 3D visualizations
-- Features: responsive canvas, orbit controls, lighting, WebGL detection
-- Server-side rendering safe with client-side hydration
-- Accepts `geometry` and `material` props or custom React children
-
-**Usage**:
-
-```typescript
-import { GeometryViewer } from "@/components/3d";
-
-export function MyGeometry() {
-  return (
-    <div className="h-[600px] w-full">
-      <GeometryViewer>
-        <mesh>
-          <icosahedronGeometry args={[1, 0]} />
-          <meshStandardMaterial color="#4fa3d1" />
-        </mesh>
-      </GeometryViewer>
-    </div>
-  );
-}
-```
-
-See `src/components/3d/README.md` for detailed documentation.
 
 ### TypeScript Configuration
 
