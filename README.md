@@ -1,6 +1,6 @@
 # Sacred Geometry Web App
 
-An interactive educational web application for exploring, visualizing, and learning about sacred geometry through immersive 3D experiences.
+An interactive educational web application for exploring and learning about sacred geometry, its mathematical properties, and symbolic significance.
 
 > **Live Site**: [sacred-geometry.vercel.app](https://sacred-geometry.vercel.app/)
 
@@ -28,13 +28,13 @@ Sacred Geometry Web App bridges ancient wisdom with modern web technology, makin
 
 Built with modern web technologies for a fast, responsive, and accessible experience:
 
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with [Radix UI Themes](https://www.radix-ui.com/themes)
 - **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
-- **3D Graphics**: [Three.js](https://threejs.org/) with [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber) and [@react-three/drei](https://github.com/pmndrs/drei)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Animations**: [Motion](https://motion.dev/)
 - **Icons**: [Lucide React](https://lucide.dev/)
+- **Content**: MDX with [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote)
 - **Testing**: [Vitest](https://vitest.dev/) with [React Testing Library](https://testing-library.com/react)
 - **Analytics**: [Vercel Analytics](https://vercel.com/analytics)
 
@@ -97,10 +97,11 @@ sacred-geometry/
 │   │   ├── platonic-solids/    # Platonic solids pages
 │   │   └── sacred-patterns/    # Sacred patterns pages
 │   ├── components/
-│   │   ├── 3d/                 # Three.js visualization components
 │   │   ├── geometry/           # Sacred geometry components
 │   │   └── ui/                 # shadcn/ui components
+│   ├── content/                # MDX content files
 │   ├── lib/
+│   │   ├── content/            # Content loading utilities
 │   │   └── data/               # Geometry data model & relationships
 │   ├── util/                   # Utility functions & constants
 │   └── styles/                 # Global styles
@@ -110,11 +111,11 @@ sacred-geometry/
 
 ### Key Architecture Patterns
 
-**Data Model**: Centralized geometry catalog in `src/lib/data/geometries.ts` with type-safe helper functions for querying relationships.
+**Data Model**: Modular geometry catalog in `src/lib/data/` with type-safe helper functions for querying relationships.
 
-**3D Components**: Reusable `GeometryViewer` component in `src/components/3d/` provides a consistent framework for all 3D visualizations.
+**Content System**: MDX-based content in `src/content/` with server-side compilation via `next-mdx-remote`.
 
-**Dynamic Routing**: Use slug-based routing with `getGeometryBySlug()` for flexible, data-driven pages.
+**Dynamic Routing**: Slug-based routing with `getGeometryBySlug()` for flexible, data-driven pages.
 
 See [CLAUDE.md](./CLAUDE.md) for comprehensive architecture documentation.
 
@@ -161,7 +162,6 @@ The app is deployed on Vercel with automatic deployments from the main branch.
 
 - Built with [T3 Stack](https://create.t3.gg/)
 - UI components from [shadcn/ui](https://ui.shadcn.com/)
-- 3D rendering powered by [Three.js](https://threejs.org/) and [React Three Fiber](https://docs.pmnd.rs/react-three-fiber)
 - Icons by [Lucide](https://lucide.dev/)
 
 ## License
@@ -170,6 +170,6 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**Sacred Geometry Web App** - Exploring the fundamental patterns of creation through interactive 3D visualizations.
+**Sacred Geometry Web App** - Exploring the fundamental patterns of creation.
 
 Built with 💜 by [Rob Abby](https://github.com/robabby)
