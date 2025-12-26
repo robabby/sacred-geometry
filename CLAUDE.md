@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a **T3 Stack** Next.js application focused on sacred geometry. The project uses Next.js 15 with the App Router, React 19, TypeScript, and Tailwind CSS v4. It includes shadcn/ui components for UI elements.
+This is a **T3 Stack** Next.js application focused on sacred geometry. The project uses Next.js 16 with the App Router, React 19, TypeScript, and Tailwind CSS v4. It includes shadcn/ui components for UI elements.
 
 ## Tech Stack
 
-- **Framework**: Next.js 15 (App Router)
+- **Framework**: Next.js 16 (App Router, Turbopack default)
 - **Language**: TypeScript (strict mode enabled)
 - **Styling**: Tailwind CSS v4 with Radix UI Themes
 - **UI Components**: shadcn/ui (New York style)
@@ -24,12 +24,12 @@ This is a **T3 Stack** Next.js application focused on sacred geometry. The proje
 
 ```bash
 # Development
-pnpm dev              # Start dev server with Turbopack
+pnpm dev              # Start dev server (Turbopack is default in Next.js 16)
 
 # Type checking & linting
 pnpm check            # Run lint + typecheck
 pnpm typecheck        # TypeScript type checking only
-pnpm lint             # ESLint
+pnpm lint             # ESLint (uses ESLint CLI directly)
 pnpm lint:fix         # ESLint with auto-fix
 
 # Formatting
@@ -442,7 +442,7 @@ See `src/components/3d/README.md` for detailed documentation.
 - Strict mode enabled with `noUncheckedIndexedAccess`
 - Path aliases: `@/*` maps to `./src/*`
 - Module system: ESNext with bundler resolution
-- JSX: preserve mode for Next.js
+- JSX: `react-jsx` mode (React automatic runtime)
 - `checkJs` enabled for JavaScript files
 
 ### Testing

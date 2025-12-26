@@ -83,6 +83,7 @@ export function SearchCommand() {
   // Load recent searches when modal opens
   useEffect(() => {
     if (open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- syncing with localStorage on open
       setRecentSearches(getRecentSearches());
     }
   }, [open]);

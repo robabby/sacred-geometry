@@ -60,6 +60,7 @@ export function GeometryViewer({
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional SSR detection pattern
     setIsClient(true);
 
     // Check for WebGL support
