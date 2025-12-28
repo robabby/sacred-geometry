@@ -317,7 +317,11 @@ Currently no footer. Add minimal footer:
 
 ## Implementation Phases
 
+> **Parent Issue:** [SG-73 — Frontend Enhancement: Obsidian, Copper & Gold Redesign](https://linear.app/sherpagg/issue/SG-73/frontend-enhancement-obsidian-copper-and-gold-redesign)
+
 ### Phase 1: Foundation (Typography + Atmosphere)
+
+> **Linear:** [SG-74](https://linear.app/sherpagg/issue/SG-74/phase-1-foundation-typography-color-palette-atmosphere) · Branch: `sg-74-phase-1-foundation-typography-color-palette-atmosphere`
 
 **Scope:**
 - Install and configure Google Fonts (Cinzel Decorative, Cormorant Garamond)
@@ -335,6 +339,8 @@ Currently no footer. Add minimal footer:
 
 ### Phase 2: Hero Experience
 
+> **Linear:** [SG-75](https://linear.app/sherpagg/issue/SG-75/phase-2-hero-experience-with-framer-motion) · Branch: `sg-75-phase-2-hero-experience-with-framer-motion`
+
 **Scope:**
 - Build `<AnimatedHero>` component with Framer Motion
 - Create rotating geometry background pattern
@@ -350,6 +356,8 @@ Currently no footer. Add minimal footer:
 ---
 
 ### Phase 3: Scroll Animations
+
+> **Linear:** [SG-76](https://linear.app/sherpagg/issue/SG-76/phase-3-scroll-animations-and-card-reveals) · Branch: `sg-76-phase-3-scroll-animations-card-reveals`
 
 **Scope:**
 - Create reusable `<AnimateOnScroll>` wrapper component
@@ -369,6 +377,8 @@ Currently no footer. Add minimal footer:
 
 ### Phase 4: Interactive Elements
 
+> **Linear:** [SG-77](https://linear.app/sherpagg/issue/SG-77/phase-4-interactive-elements-and-hover-states) · Branch: `sg-77-phase-4-interactive-elements-hover-states`
+
 **Scope:**
 - Enhanced card hover states (glow, scale, geometry rotation)
 - Navigation link animations (underline draw effect)
@@ -385,6 +395,8 @@ Currently no footer. Add minimal footer:
 
 ### Phase 5: Detail Pages
 
+> **Linear:** [SG-78](https://linear.app/sherpagg/issue/SG-78/phase-5-detail-page-enhancements) · Branch: `sg-78-phase-5-detail-page-enhancements`
+
 **Scope:**
 - Hero section entrance animations
 - Content card scroll reveals
@@ -399,6 +411,8 @@ Currently no footer. Add minimal footer:
 ---
 
 ### Phase 6: Navigation & Polish
+
+> **Linear:** [SG-79](https://linear.app/sherpagg/issue/SG-79/phase-6-navigation-footer-and-polish) · Branch: `sg-79-phase-6-navigation-footer-polish`
 
 **Scope:**
 - Page transitions with `AnimatePresence`
