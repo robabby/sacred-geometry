@@ -420,3 +420,56 @@ See `src/content/README.md` for detailed content editing guidelines.
 - **Coverage**: Available via `pnpm test:coverage`
 - Test files should be colocated with source files or in `__tests__` directories
 - Use `.test.ts` or `.test.tsx` extensions
+
+### Linear Integration
+
+This project uses Linear for issue tracking and project management.
+
+**Workspace Configuration:**
+
+| Setting | Value |
+|---------|-------|
+| Workspace | Sherpa |
+| Team | Sherpa |
+| Project | Metatron Collective |
+| Issue Prefix | `SG-` |
+
+**Branch Naming Convention:**
+
+Branches should match Linear's generated branch names:
+
+```
+sg-<issue-number>-<slugified-title>
+```
+
+Examples:
+- `sg-74-phase-1-foundation-typography-color-palette-atmosphere`
+- `sg-75-phase-2-hero-experience-with-framer-motion`
+
+**Workflow States:**
+
+| State | Type | Usage |
+|-------|------|-------|
+| Backlog | backlog | Not yet scheduled |
+| Todo | unstarted | Scheduled, ready to start |
+| In Progress | started | Currently being worked on |
+| In Review | started | Code complete, awaiting review |
+| Done | completed | Finished |
+| Canceled | canceled | Won't be completed |
+
+**Labels:**
+
+- `Feature` — New functionality
+- `Improvement` — Enhancements to existing features
+- `Bug` — Defect fixes
+
+**Working with Linear Issues:**
+
+1. **Starting work**: Move issue to "In Progress", create matching branch
+2. **Commits**: Reference issue ID in commit messages (e.g., `SG-74: Add typography`)
+3. **Completing work**: Create PR, move issue to "In Review"
+4. **After merge**: Move issue to "Done"
+
+**Current Active Work:**
+
+See `PLAN.md` for the current enhancement plan and associated Linear issues.
