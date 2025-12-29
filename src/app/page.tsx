@@ -1,9 +1,8 @@
-import { Button, Callout, Flex, Heading, Text } from "@radix-ui/themes";
+import { Button, Flex, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
 import {
   CircleDot,
-  InfoIcon,
   Sparkles,
   Triangle,
   Droplets,
@@ -69,25 +68,7 @@ export default function HomePage() {
             <CircleDot className="h-8 w-8 text-[var(--color-gold)] sm:h-12 sm:w-12" />
           </div>
 
-          <Callout.Root
-            className="border border-[var(--color-copper)]/30 bg-[var(--color-warm-charcoal)] text-[var(--color-warm-gray)]"
-            style={
-              {
-                "--callout-a": "var(--color-copper)",
-              } as React.CSSProperties
-            }
-          >
-            <Callout.Icon>
-              <InfoIcon className="text-[var(--color-copper)]" />
-            </Callout.Icon>
-            <Callout.Text className="text-[var(--color-warm-gray)]">
-              All text content on this site is AI generated, and may not be
-              factually correct. This site is for educational and illustrative
-              purposes only.
-            </Callout.Text>
-          </Callout.Root>
-
-          <p className="font-heading max-w-2xl px-4 text-base text-[var(--color-warm-gray)] sm:text-xl">
+          <p className="font-heading max-w-2xl px-4 text-lg text-[var(--color-warm-gray)] sm:text-2xl">
             {ROUTES.home.description}
           </p>
 

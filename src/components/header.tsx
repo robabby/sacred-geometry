@@ -179,7 +179,7 @@ export function Header() {
             onKeyDown={handleHomeKeyDown}
           >
             <CircleDot className="h-5 w-5 text-[var(--color-gold)] sm:h-6 sm:w-6" />
-            <span className="font-heading text-base font-semibold text-[var(--color-cream)] sm:text-lg">
+            <span className="font-heading text-lg font-semibold text-[var(--color-cream)] sm:text-xl">
               Sacred Geometry
             </span>
           </Link>
