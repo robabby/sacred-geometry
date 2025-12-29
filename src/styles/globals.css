@@ -196,31 +196,31 @@
     font-family: var(--font-body), "Crimson Pro", serif;
   }
 
-  /* Typography Classes - use CSS variables set by next/font in layout.tsx */
-  .font-display {
-    font-family: var(--font-display), "Cinzel Decorative", serif;
-  }
-
-  .font-heading {
-    font-family: var(--font-heading), "Cormorant Garamond", serif;
-  }
-
-  .font-body {
-    font-family: var(--font-body), "Crimson Pro", serif;
-  }
-
   /* Heading defaults */
   h1,
   h2,
   h3 {
     font-family: var(--font-heading), "Cormorant Garamond", serif;
   }
+}
 
-  /* Focus states with golden ring */
-  :focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: 2px;
-  }
+/* Typography Classes - higher specificity outside base layer */
+.font-display {
+  font-family: var(--font-display), "Cinzel Decorative", serif !important;
+}
+
+.font-heading {
+  font-family: var(--font-heading), "Cormorant Garamond", serif !important;
+}
+
+.font-body {
+  font-family: var(--font-body), "Crimson Pro", serif !important;
+}
+
+/* Focus states with golden ring */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
 }
 
 /* ==========================================================================
