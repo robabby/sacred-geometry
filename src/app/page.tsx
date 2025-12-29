@@ -18,6 +18,7 @@ import {
   getSacredPatterns,
   getGeometryPath,
 } from "@/lib/data";
+import { AnimatedHero, AnimatedHeroItem } from "@/components/animated-hero";
 
 // Icon mapping for Platonic Solids
 const iconMap: Record<string, typeof Triangle> = {
@@ -55,80 +56,92 @@ const platonicSolids = getPlatonicSolids()
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[var(--color-obsidian)] text-[var(--color-cream)]">
-      {/* Hero Section */}
-      <div className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center gap-6 px-4 py-12 sm:min-h-[70vh] sm:gap-8 sm:py-16">
-        <div className="flex flex-col items-center gap-4 text-center sm:gap-6">
-          <div className="flex items-center gap-2 sm:gap-4">
-            <CircleDot className="h-8 w-8 text-[var(--color-gold)] sm:h-12 sm:w-12" />
-            <h1 className="font-display text-hero tracking-tight text-[var(--color-cream)]">
-              Sacred{" "}
-              <span className="text-[var(--color-gold)]">Geometry</span>
-            </h1>
-            <CircleDot className="h-8 w-8 text-[var(--color-gold)] sm:h-12 sm:w-12" />
+    <div className="min-h-screen bg-[var(--color-obsidian)] text-[var(--color-cream)]">
+      {/* Hero Section with Animated Background */}
+      <AnimatedHero className="min-h-[60vh] sm:min-h-[70vh]">
+        <div className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center gap-6 px-4 py-12 sm:min-h-[70vh] sm:gap-8 sm:py-16">
+          <div className="flex flex-col items-center gap-4 text-center sm:gap-6">
+            <AnimatedHeroItem>
+              <div className="flex items-center gap-2 sm:gap-4">
+                <CircleDot className="h-8 w-8 text-[var(--color-gold)] sm:h-12 sm:w-12" />
+                <h1 className="font-display text-hero tracking-tight text-[var(--color-cream)]">
+                  Sacred{" "}
+                  <span className="text-[var(--color-gold)]">Geometry</span>
+                </h1>
+                <CircleDot className="h-8 w-8 text-[var(--color-gold)] sm:h-12 sm:w-12" />
+              </div>
+            </AnimatedHeroItem>
+
+            <AnimatedHeroItem>
+              <p className="font-heading max-w-2xl px-4 text-lg text-[var(--color-warm-gray)] sm:text-2xl">
+                {ROUTES.home.description}
+              </p>
+            </AnimatedHeroItem>
+
+            <AnimatedHeroItem>
+              <div className="flex flex-wrap justify-center gap-2 px-4">
+                <Badge
+                  variant="outline"
+                  className="border-[var(--border-gold)] bg-[var(--color-gold)]/10 text-xs text-[var(--color-gold)] sm:text-sm"
+                >
+                  5 Platonic Solids
+                </Badge>
+                <Badge
+                  variant="outline"
+                  className="border-[var(--border-gold)] bg-[var(--color-gold)]/10 text-xs text-[var(--color-gold)] sm:text-sm"
+                >
+                  Sacred Patterns
+                </Badge>
+                <Badge
+                  variant="outline"
+                  className="border-[var(--border-gold)] bg-[var(--color-gold)]/10 text-xs text-[var(--color-gold)] sm:text-sm"
+                >
+                  Golden Ratio
+                </Badge>
+              </div>
+            </AnimatedHeroItem>
+
+            <AnimatedHeroItem>
+              <p className="max-w-3xl px-4 text-sm text-[var(--color-warm-gray)] sm:text-lg">
+                Discover the mathematical principles and divine patterns that form
+                the foundation of our universe. From the Platonic Solids to the
+                Flower of Life, explore the geometries that have inspired mystics,
+                scientists, and artists throughout history.
+              </p>
+            </AnimatedHeroItem>
           </div>
 
-          <p className="font-heading max-w-2xl px-4 text-lg text-[var(--color-warm-gray)] sm:text-2xl">
-            {ROUTES.home.description}
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-2 px-4">
-            <Badge
-              variant="outline"
-              className="border-[var(--border-gold)] bg-[var(--color-gold)]/10 text-xs text-[var(--color-gold)] sm:text-sm"
+          <AnimatedHeroItem>
+            <Flex
+              gap="3 sm:gap-4"
+              className="mt-4 w-full flex-col px-4 sm:mt-8 sm:w-auto sm:flex-row"
             >
-              5 Platonic Solids
-            </Badge>
-            <Badge
-              variant="outline"
-              className="border-[var(--border-gold)] bg-[var(--color-gold)]/10 text-xs text-[var(--color-gold)] sm:text-sm"
-            >
-              Sacred Patterns
-            </Badge>
-            <Badge
-              variant="outline"
-              className="border-[var(--border-gold)] bg-[var(--color-gold)]/10 text-xs text-[var(--color-gold)] sm:text-sm"
-            >
-              Golden Ratio
-            </Badge>
-          </div>
-
-          <p className="max-w-3xl px-4 text-sm text-[var(--color-warm-gray)] sm:text-lg">
-            Discover the mathematical principles and divine patterns that form
-            the foundation of our universe. From the Platonic Solids to the
-            Flower of Life, explore the geometries that have inspired mystics,
-            scientists, and artists throughout history.
-          </p>
+              <Button
+                asChild
+                size="3"
+                mb={{ xs: "4", md: "0" }}
+                mr={{ xs: "0", md: "4" }}
+                className="w-full bg-[var(--color-gold)] font-semibold text-[var(--color-obsidian)] shadow-lg shadow-[var(--glow-gold)] transition-all hover:bg-[var(--color-gold-bright)] sm:w-auto"
+              >
+                <Link href={ROUTES.platonicSolids.path}>
+                  <span className="hidden sm:inline">
+                    Explore Platonic Solids →
+                  </span>
+                  <span className="sm:hidden">Platonic Solids →</span>
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="3"
+                variant="outline"
+                className="w-full border-[var(--color-gold)]/50 text-[var(--color-gold)] transition-all hover:border-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 sm:w-auto"
+              >
+                <Link href={ROUTES.sacredPatterns.path}>Sacred Patterns →</Link>
+              </Button>
+            </Flex>
+          </AnimatedHeroItem>
         </div>
-
-        <Flex
-          gap="3 sm:gap-4"
-          className="mt-4 w-full flex-col px-4 sm:mt-8 sm:w-auto sm:flex-row"
-        >
-          <Button
-            asChild
-            size="3"
-            mb={{ xs: "4", md: "0" }}
-            mr={{ xs: "0", md: "4" }}
-            className="w-full bg-[var(--color-gold)] font-semibold text-[var(--color-obsidian)] shadow-lg shadow-[var(--glow-gold)] transition-all hover:bg-[var(--color-gold-bright)] sm:w-auto"
-          >
-            <Link href={ROUTES.platonicSolids.path}>
-              <span className="hidden sm:inline">
-                Explore Platonic Solids →
-              </span>
-              <span className="sm:hidden">Platonic Solids →</span>
-            </Link>
-          </Button>
-          <Button
-            asChild
-            size="3"
-            variant="outline"
-            className="w-full border-[var(--color-gold)]/50 text-[var(--color-gold)] transition-all hover:border-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 sm:w-auto"
-          >
-            <Link href={ROUTES.sacredPatterns.path}>Sacred Patterns →</Link>
-          </Button>
-        </Flex>
-      </div>
+      </AnimatedHero>
 
       <Separator className="h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/40 to-transparent" />
 
@@ -303,6 +316,6 @@ export default function HomePage() {
           </TabsContent>
         </Tabs>
       </div>
-    </main>
+    </div>
   );
 }
