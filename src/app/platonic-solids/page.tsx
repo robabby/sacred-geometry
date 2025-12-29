@@ -10,10 +10,10 @@ import {
 } from "lucide-react";
 import { ROUTES } from "@/util/routes";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { getPlatonicSolids, getGeometryPath } from "@/lib/data";
 import { AnimateOnScroll } from "@/components/animate-on-scroll";
 import { StaggerChildren, StaggerItem } from "@/components/stagger-children";
+import { AnimatedCard, GeometryImage } from "@/components/animated-card";
 
 // Icon mapping for Platonic Solids
 const iconMap: Record<string, typeof Triangle> = {
@@ -55,19 +55,19 @@ const platonicSolids = getPlatonicSolids()
 
 export default function PlatonicSolidsPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
+    <main className="min-h-screen bg-[var(--color-obsidian)] text-[var(--color-cream)]">
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
         <AnimateOnScroll className="mx-auto mb-16 max-w-4xl text-center">
-          <Heading size="9" className="text-amber-100" mb="4">
+          <Heading size="9" className="font-display text-[var(--color-cream)]" mb="4">
             {ROUTES.platonicSolids.name}
           </Heading>
           <Box mb="2">
-            <Text size="5" className="text-blue-200">
+            <Text size="5" className="text-[var(--color-gold)]">
               {ROUTES.platonicSolids.description}
             </Text>
           </Box>
-          <Text size="3" className="mx-auto max-w-3xl text-blue-300/80">
+          <Text size="3" className="mx-auto max-w-3xl text-[var(--color-warm-gray)]">
             Discovered by the ancient Greeks and explored by Plato, these five
             perfect solids are the only three-dimensional shapes where every
             face, edge, and angle is identical. Each represents a fundamental
@@ -85,10 +85,10 @@ export default function PlatonicSolidsPage() {
             return (
               <StaggerItem key={solid.path}>
                 <Link href={solid.path}>
-                  <Card className="h-full cursor-pointer border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-6 backdrop-blur-sm transition-all hover:scale-105 hover:border-amber-500/40">
+                  <AnimatedCard className="h-full p-6">
                     <div className="flex flex-col gap-4">
                       {/* Image */}
-                      <div className="relative flex h-48 w-full items-center justify-center">
+                      <GeometryImage className="relative flex h-48 w-full items-center justify-center">
                         <Image
                           src={solid.image}
                           alt={solid.name}
@@ -100,38 +100,38 @@ export default function PlatonicSolidsPage() {
                               "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
                           }}
                         />
-                      </div>
+                      </GeometryImage>
 
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Icon className={`h-5 w-5 ${solid.color}`} />
-                          <Heading size="5" className="text-amber-100">
+                          <Heading size="5" className="text-[var(--color-gold-bright)]">
                             {solid.name}
                           </Heading>
                         </div>
                       </div>
 
-                      <Text size="2" className="text-blue-300">
+                      <Text size="2" className="text-[var(--color-warm-gray)]">
                         {solid.description}
                       </Text>
 
                       <div className="flex flex-wrap justify-between gap-2">
                         <Badge
                           variant="secondary"
-                          className="border-amber-500/30 bg-amber-500/20 text-amber-300"
+                          className="bg-[var(--color-dark-bronze)] text-[var(--color-gold)]"
                         >
                           {solid.element}
                         </Badge>
 
                         <Text
                           size="1"
-                          className="font-medium text-amber-300 transition-colors hover:text-amber-400"
+                          className="font-medium text-[var(--color-gold)] transition-colors group-hover:text-[var(--color-gold-bright)]"
                         >
                           Explore →
                         </Text>
                       </div>
                     </div>
-                  </Card>
+                  </AnimatedCard>
                 </Link>
               </StaggerItem>
             );
@@ -140,23 +140,23 @@ export default function PlatonicSolidsPage() {
 
         {/* Additional Info */}
         <AnimateOnScroll delay={0.3}>
-          <Card className="mx-auto mt-16 max-w-4xl border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
-            <Heading size="6" className="mb-4 text-amber-300">
+          <AnimatedCard className="mx-auto mt-16 max-w-4xl p-8">
+            <Heading size="6" className="mb-4 font-heading text-[var(--color-gold)]">
               The Sacred Five
             </Heading>
-            <Text className="mb-4 text-blue-200">
+            <Text className="mb-4 text-[var(--color-warm-gray)]">
               These five shapes are unique in all of geometry. No other regular
               polyhedra exist beyond these. This mathematical limitation gives
               them profound significance—they represent the complete set of
               possible perfect three-dimensional forms.
             </Text>
-            <Text className="text-blue-200">
+            <Text className="text-[var(--color-warm-gray)]">
               The ancient Greeks believed these shapes were the building blocks
               of reality itself. Modern physics has discovered surprising
               connections between these geometries and the structure of atoms,
               molecules, and even the fabric of spacetime.
             </Text>
-          </Card>
+          </AnimatedCard>
         </AnimateOnScroll>
       </div>
     </main>

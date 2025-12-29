@@ -1,0 +1,61 @@
+"use client";
+
+import { type ReactNode } from "react";
+import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
+
+/**
+ * Animated card wrapper with enhanced hover and focus states.
+ * Provides smooth scale, glow, and border transitions.
+ * Use with GeometryImage for coordinated geometry rotation.
+ */
+interface AnimatedCardProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export function AnimatedCard({ children, className }: AnimatedCardProps) {
+  return (
+    <motion.div
+      className={cn(
+        "group cursor-pointer rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)]",
+        // Focus-visible styles for when card is wrapped in a focusable element
+        "transition-shadow focus-within:ring-2 focus-within:ring-[var(--color-gold)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--color-obsidian)]",
+        className
+      )}
+      whileHover={{
+        scale: 1.02,
+        borderColor: "rgba(212, 168, 75, 0.5)",
+        boxShadow: "0 0 20px rgba(212, 168, 75, 0.15)",
+      }}
+      transition={{
+        duration: 0.3,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/**
+ * Geometry image wrapper that rotates on parent card hover.
+ * Uses CSS group-hover for coordination with AnimatedCard.
+ */
+interface GeometryImageProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export function GeometryImage({ children, className }: GeometryImageProps) {
+  return (
+    <div
+      className={cn(
+        "transition-transform duration-400 ease-out group-hover:rotate-[15deg]",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+}
