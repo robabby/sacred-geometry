@@ -3,9 +3,52 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ==========================================================================
+   Sacred Geometry - Design System
+   Palette: Obsidian, Copper & Gold
+   ========================================================================== */
+
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* Typography - Font Families (variables set by next/font in layout.tsx) */
+  --font-sans: "Crimson Pro", serif;
+
+  /* Typography - Scale (fluid sizing) */
+  --text-hero: clamp(2.5rem, 8vw, 5rem);
+  --text-page-title: clamp(2rem, 5vw, 3.5rem);
+  --text-section: clamp(1.5rem, 3vw, 2rem);
+  --text-card-title: clamp(1.125rem, 2vw, 1.5rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+
+  /* ==========================================================================
+     Color Palette - Obsidian, Copper & Gold
+     ========================================================================== */
+
+  /* Backgrounds - The void from which form emerges */
+  --color-obsidian: #0c0c0c;
+  --color-warm-charcoal: #1a1714;
+  --color-dark-bronze: #252019;
+
+  /* Primary Accent - Gold (divine light, solar consciousness) */
+  --color-gold: #d4a84b;
+  --color-gold-bright: #e8c068;
+  --color-gold-muted: #a68a3c;
+
+  /* Secondary Accent - Copper (earthly grounding, structure) */
+  --color-copper: #b87333;
+  --color-bronze: #8a7355;
+  --color-tarnished: #5c4d3d;
+
+  /* Text Colors */
+  --color-cream: #f5f0e6;
+  --color-warm-gray: #b8a99a;
+  --color-dim: #7a6b5a;
+
+  /* Effects - Glows and borders */
+  --glow-gold: rgba(212, 168, 75, 0.2);
+  --glow-copper: rgba(184, 115, 51, 0.15);
+  --border-gold: rgba(212, 168, 75, 0.3);
+  --border-copper: rgba(184, 115, 51, 0.2);
 }
 
 @theme inline {
@@ -13,6 +56,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Map semantic tokens to palette */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -48,78 +93,255 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Light mode (rarely used, keeping for compatibility) */
+  --background: #f5f0e6;
+  --foreground: #1a1714;
+  --card: #ffffff;
+  --card-foreground: #1a1714;
+  --popover: #ffffff;
+  --popover-foreground: #1a1714;
+  --primary: #d4a84b;
+  --primary-foreground: #0c0c0c;
+  --secondary: #b87333;
+  --secondary-foreground: #0c0c0c;
+  --muted: #e8e3da;
+  --muted-foreground: #7a6b5a;
+  --accent: #b87333;
+  --accent-foreground: #0c0c0c;
+  --destructive: #dc2626;
+  --border: rgba(184, 115, 51, 0.2);
+  --input: rgba(184, 115, 51, 0.15);
+  --ring: #d4a84b;
+  --chart-1: #d4a84b;
+  --chart-2: #b87333;
+  --chart-3: #8a7355;
+  --chart-4: #5c4d3d;
+  --chart-5: #a68a3c;
+  --sidebar: #f5f0e6;
+  --sidebar-foreground: #1a1714;
+  --sidebar-primary: #d4a84b;
+  --sidebar-primary-foreground: #0c0c0c;
+  --sidebar-accent: #b87333;
+  --sidebar-accent-foreground: #0c0c0c;
+  --sidebar-border: rgba(184, 115, 51, 0.2);
+  --sidebar-ring: #d4a84b;
 }
 
+/* ==========================================================================
+   Dark Mode - Primary Theme
+   Obsidian, Copper & Gold
+   ========================================================================== */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Backgrounds */
+  --background: #0c0c0c;
+  --foreground: #f5f0e6;
+  --card: #1a1714;
+  --card-foreground: #f5f0e6;
+  --popover: #1a1714;
+  --popover-foreground: #f5f0e6;
+
+  /* Primary - Gold */
+  --primary: #d4a84b;
+  --primary-foreground: #0c0c0c;
+
+  /* Secondary - Copper */
+  --secondary: #252019;
+  --secondary-foreground: #f5f0e6;
+
+  /* Muted */
+  --muted: #252019;
+  --muted-foreground: #b8a99a;
+
+  /* Accent - Copper */
+  --accent: #b87333;
+  --accent-foreground: #0c0c0c;
+
+  /* Destructive */
+  --destructive: #dc2626;
+
+  /* Borders & Inputs */
+  --border: rgba(212, 168, 75, 0.15);
+  --input: rgba(212, 168, 75, 0.1);
+  --ring: #d4a84b;
+
+  /* Charts - Gold to Copper gradient */
+  --chart-1: #d4a84b;
+  --chart-2: #e8c068;
+  --chart-3: #b87333;
+  --chart-4: #8a7355;
+  --chart-5: #a68a3c;
+
+  /* Sidebar */
+  --sidebar: #1a1714;
+  --sidebar-foreground: #f5f0e6;
+  --sidebar-primary: #d4a84b;
+  --sidebar-primary-foreground: #0c0c0c;
+  --sidebar-accent: #252019;
+  --sidebar-accent-foreground: #f5f0e6;
+  --sidebar-border: rgba(212, 168, 75, 0.15);
+  --sidebar-ring: #d4a84b;
 }
 
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body), "Crimson Pro", serif;
+  }
+
+  /* Typography Classes - use CSS variables set by next/font in layout.tsx */
+  .font-display {
+    font-family: var(--font-display), "Cinzel Decorative", serif;
+  }
+
+  .font-heading {
+    font-family: var(--font-heading), "Cormorant Garamond", serif;
+  }
+
+  .font-body {
+    font-family: var(--font-body), "Crimson Pro", serif;
+  }
+
+  /* Heading defaults */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading), "Cormorant Garamond", serif;
+  }
+
+  /* Focus states with golden ring */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* ==========================================================================
+   Atmospheric Effects
+   ========================================================================== */
+
+/* Noise grain texture overlay - adds organic warmth */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Subtle vignette effect */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+@layer utilities {
+  /* Gold glow effect for hover states */
+  .glow-gold {
+    box-shadow: 0 0 20px var(--glow-gold);
+  }
+
+  /* Copper glow effect */
+  .glow-copper {
+    box-shadow: 0 0 15px var(--glow-copper);
+  }
+
+  /* Gold border */
+  .border-gold {
+    border-color: var(--border-gold);
+  }
+
+  /* Text colors from palette */
+  .text-gold {
+    color: var(--color-gold);
+  }
+
+  .text-gold-bright {
+    color: var(--color-gold-bright);
+  }
+
+  .text-copper {
+    color: var(--color-copper);
+  }
+
+  .text-cream {
+    color: var(--color-cream);
+  }
+
+  .text-warm-gray {
+    color: var(--color-warm-gray);
+  }
+
+  .text-dim {
+    color: var(--color-dim);
+  }
+
+  /* Background colors from palette */
+  .bg-obsidian {
+    background-color: var(--color-obsidian);
+  }
+
+  .bg-warm-charcoal {
+    background-color: var(--color-warm-charcoal);
+  }
+
+  .bg-dark-bronze {
+    background-color: var(--color-dark-bronze);
+  }
+
+  /* Typography sizes */
+  .text-hero {
+    font-size: var(--text-hero);
+    line-height: 1.1;
+  }
+
+  .text-page-title {
+    font-size: var(--text-page-title);
+    line-height: 1.2;
+  }
+
+  .text-section {
+    font-size: var(--text-section);
+    line-height: 1.3;
+  }
+
+  .text-card-title {
+    font-size: var(--text-card-title);
+    line-height: 1.4;
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion Support
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

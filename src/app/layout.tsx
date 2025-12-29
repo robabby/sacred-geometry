@@ -2,7 +2,11 @@ import "@radix-ui/themes/styles.css";
 import "@/styles/globals.css";
 
 import { Analytics } from "@vercel/analytics/next";
-import { Geist } from "next/font/google";
+import {
+  Cinzel_Decorative,
+  Cormorant_Garamond,
+  Crimson_Pro,
+} from "next/font/google";
 import { type Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
 import { Header } from "@/components/header";
@@ -14,16 +18,38 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const geist = Geist({
+// Display font for hero titles and page headings
+const cinzelDecorative = Cinzel_Decorative({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  weight: ["400", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+// Heading font for section headings and card titles
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+// Body font for text and descriptions
+const crimsonPro = Crimson_Pro({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-body",
+  display: "swap",
 });
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable}`}>
+    <html
+      lang="en"
+      className={`${cinzelDecorative.variable} ${cormorantGaramond.variable} ${crimsonPro.variable}`}
+    >
       <body>
         <SkipToContent />
         <Theme appearance="dark">

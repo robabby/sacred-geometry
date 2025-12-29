@@ -169,7 +169,7 @@ export function Header() {
       {/* Global Search Command - listens for ⌘K */}
       <SearchCommand />
 
-      <header className="sticky top-0 z-50 w-full border-b border-amber-500/20 bg-[#0a1628]/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 w-full border-b border-[var(--border-gold)] bg-[var(--color-obsidian)]/95 backdrop-blur-xl">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           {/* Logo */}
           <Link
@@ -178,10 +178,9 @@ export function Header() {
             className="flex items-center gap-1.5 transition-opacity hover:opacity-80 sm:gap-2"
             onKeyDown={handleHomeKeyDown}
           >
-            <CircleDot className="h-5 w-5 text-amber-400 sm:h-6 sm:w-6" />
-            <span className="text-base font-semibold text-amber-100 sm:text-lg">
-              <span className="hidden sm:inline">Sacred Geometry</span>
-              <span className="sm:hidden">Sacred Geometry</span>
+            <CircleDot className="h-5 w-5 text-[var(--color-gold)] sm:h-6 sm:w-6" />
+            <span className="font-heading text-base font-semibold text-[var(--color-cream)] sm:text-lg">
+              Sacred Geometry
             </span>
           </Link>
 
@@ -198,12 +197,12 @@ export function Header() {
                 });
                 document.dispatchEvent(event);
               }}
-              className="flex items-center gap-1.5 rounded-md border border-amber-500/30 bg-blue-950/30 px-2 py-1.5 text-xs font-medium text-blue-200 transition-colors hover:border-amber-500/50 hover:bg-blue-950/50 hover:text-amber-300 sm:gap-2 sm:px-3 sm:py-1.5 sm:text-sm"
+              className="flex items-center gap-1.5 rounded-md border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] px-2 py-1.5 text-xs font-medium text-[var(--color-warm-gray)] transition-colors hover:border-[var(--color-gold)]/50 hover:bg-[var(--color-dark-bronze)] hover:text-[var(--color-gold)] sm:gap-2 sm:px-3 sm:py-1.5 sm:text-sm"
               aria-label="Search geometries"
             >
-              <Search className="h-3.5 w-3.5 text-amber-400/70 sm:h-4 sm:w-4" />
+              <Search className="h-3.5 w-3.5 text-[var(--color-gold)]/70 sm:h-4 sm:w-4" />
               <span className="hidden sm:inline">Search</span>
-              <kbd className="hidden rounded border border-amber-500/20 bg-blue-900/30 px-1.5 py-0.5 text-xs text-amber-300/70 md:inline">
+              <kbd className="hidden rounded border border-[var(--border-gold)] bg-[var(--color-dark-bronze)] px-1.5 py-0.5 text-xs text-[var(--color-gold)]/70 md:inline">
                 ⌘K
               </kbd>
             </button>
@@ -225,8 +224,10 @@ export function Header() {
                   aria-current={isActive(item.path) ? "page" : undefined}
                   onFocus={() => setFocusIndex(index)}
                   className={cn(
-                    "text-xs font-medium transition-colors hover:text-amber-300 sm:text-sm",
-                    isActive(item.path) ? "text-amber-400" : "text-blue-200"
+                    "text-xs font-medium transition-colors hover:text-[var(--color-gold)] sm:text-sm",
+                    isActive(item.path)
+                      ? "text-[var(--color-gold)]"
+                      : "text-[var(--color-warm-gray)]"
                   )}
                 >
                   <span className="hidden sm:inline">{item.desktopLabel}</span>
