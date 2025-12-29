@@ -19,6 +19,8 @@ import {
   getGeometryPath,
 } from "@/lib/data";
 import { AnimatedHero, AnimatedHeroItem } from "@/components/animated-hero";
+import { AnimateOnScroll } from "@/components/animate-on-scroll";
+import { StaggerChildren, StaggerItem } from "@/components/stagger-children";
 
 // Icon mapping for Platonic Solids
 const iconMap: Record<string, typeof Triangle> = {
@@ -165,7 +167,7 @@ export default function HomePage() {
 
           {/* Platonic Solids Tab */}
           <TabsContent value="solids" className="mt-6 sm:mt-8">
-            <div className="mb-6 px-4 text-center sm:mb-8">
+            <AnimateOnScroll className="mb-6 px-4 text-center sm:mb-8">
               <Heading
                 size={{ initial: "6", sm: "7" }}
                 className="font-heading mb-2 text-[var(--color-cream)] sm:mb-3"
@@ -179,48 +181,53 @@ export default function HomePage() {
                 Each solid represents a fundamental element and possesses
                 complete geometric regularity
               </Text>
-            </div>
+            </AnimateOnScroll>
 
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+            <StaggerChildren
+              className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5"
+              staggerDelay={0.08}
+            >
               {platonicSolids.map((solid) => {
                 const Icon = solid.icon;
                 return (
-                  <Link key={solid.name} href={solid.path}>
-                    <div className="cursor-pointer rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] p-3 transition-all hover:scale-[1.02] hover:border-[var(--color-gold)]/50 hover:shadow-[0_0_20px_var(--glow-gold)] sm:p-4">
-                      <div className="flex flex-col items-center gap-2 sm:gap-3">
-                        <div className="flex h-16 w-full items-center justify-center sm:h-24">
-                          <Image
-                            src={solid.image}
-                            alt={solid.name}
-                            width={60}
-                            height={60}
-                            className="object-contain sm:h-20 sm:w-20"
-                            style={{
-                              filter:
-                                "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
-                            }}
+                  <StaggerItem key={solid.name}>
+                    <Link href={solid.path}>
+                      <div className="cursor-pointer rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] p-3 transition-all hover:scale-[1.02] hover:border-[var(--color-gold)]/50 hover:shadow-[0_0_20px_var(--glow-gold)] sm:p-4">
+                        <div className="flex flex-col items-center gap-2 sm:gap-3">
+                          <div className="flex h-16 w-full items-center justify-center sm:h-24">
+                            <Image
+                              src={solid.image}
+                              alt={solid.name}
+                              width={60}
+                              height={60}
+                              className="object-contain sm:h-20 sm:w-20"
+                              style={{
+                                filter:
+                                  "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
+                              }}
+                            />
+                          </div>
+                          <Icon
+                            className={`h-4 w-4 sm:h-5 sm:w-5 ${solid.color}`}
                           />
+                          <Text className="text-center text-[10px] leading-tight font-medium text-[var(--color-gold-bright)] sm:text-xs">
+                            {solid.name}
+                          </Text>
+                          <Badge
+                            variant="secondary"
+                            className="bg-[var(--color-dark-bronze)] px-1.5 py-0.5 text-[10px] text-[var(--color-warm-gray)] sm:text-xs"
+                          >
+                            {solid.element}
+                          </Badge>
                         </div>
-                        <Icon
-                          className={`h-4 w-4 sm:h-5 sm:w-5 ${solid.color}`}
-                        />
-                        <Text className="text-center text-[10px] leading-tight font-medium text-[var(--color-gold-bright)] sm:text-xs">
-                          {solid.name}
-                        </Text>
-                        <Badge
-                          variant="secondary"
-                          className="bg-[var(--color-dark-bronze)] px-1.5 py-0.5 text-[10px] text-[var(--color-warm-gray)] sm:text-xs"
-                        >
-                          {solid.element}
-                        </Badge>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                  </StaggerItem>
                 );
               })}
-            </div>
+            </StaggerChildren>
 
-            <div className="mt-6 text-center sm:mt-8">
+            <AnimateOnScroll className="mt-6 text-center sm:mt-8" delay={0.3}>
               <Button
                 asChild
                 variant="outline"
@@ -234,12 +241,12 @@ export default function HomePage() {
                   <span className="sm:hidden">View All →</span>
                 </Link>
               </Button>
-            </div>
+            </AnimateOnScroll>
           </TabsContent>
 
           {/* Sacred Patterns Tab */}
           <TabsContent value="patterns" className="mt-6 sm:mt-8">
-            <div className="mb-6 px-4 text-center sm:mb-8">
+            <AnimateOnScroll className="mb-6 px-4 text-center sm:mb-8">
               <Heading
                 size={{ initial: "6", sm: "7" }}
                 className="font-heading mb-2 text-[var(--color-cream)] sm:mb-3"
@@ -253,9 +260,12 @@ export default function HomePage() {
                 Patterns that encode universal principles and appear throughout
                 nature and consciousness
               </Text>
-            </div>
+            </AnimateOnScroll>
 
-            <div className="grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 sm:gap-6 sm:px-0 lg:grid-cols-3">
+            <StaggerChildren
+              className="grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 sm:gap-6 sm:px-0 lg:grid-cols-3"
+              staggerDelay={0.12}
+            >
               {[
                 { slug: "flower-of-life", badge: "Universal Pattern" },
                 { slug: "metatrons-cube", badge: "Sacred Blueprint" },
@@ -264,44 +274,46 @@ export default function HomePage() {
                 const pattern = getSacredPatterns().find((p) => p.slug === slug);
                 if (!pattern) return null;
                 return (
-                  <Link key={pattern.slug} href={getGeometryPath(pattern)}>
-                    <div className="cursor-pointer rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] p-6 transition-all hover:scale-[1.02] hover:border-[var(--color-gold)]/50 hover:shadow-[0_0_20px_var(--glow-gold)]">
-                      <div className="flex flex-col items-center gap-4">
-                        <div className="flex h-32 w-full items-center justify-center">
-                          <Image
-                            src={pattern.images?.heroImage ?? ""}
-                            alt={pattern.name}
-                            width={120}
-                            height={120}
-                            style={{
-                              filter:
-                                "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
-                            }}
-                          />
+                  <StaggerItem key={pattern.slug}>
+                    <Link href={getGeometryPath(pattern)}>
+                      <div className="cursor-pointer rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] p-6 transition-all hover:scale-[1.02] hover:border-[var(--color-gold)]/50 hover:shadow-[0_0_20px_var(--glow-gold)]">
+                        <div className="flex flex-col items-center gap-4">
+                          <div className="flex h-32 w-full items-center justify-center">
+                            <Image
+                              src={pattern.images?.heroImage ?? ""}
+                              alt={pattern.name}
+                              width={120}
+                              height={120}
+                              style={{
+                                filter:
+                                  "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
+                              }}
+                            />
+                          </div>
+                          <Heading
+                            size="4"
+                            className="font-heading text-[var(--color-gold-bright)]"
+                          >
+                            {pattern.name}
+                          </Heading>
+                          <Text
+                            size="2"
+                            className="text-center text-[var(--color-warm-gray)]"
+                          >
+                            {pattern.description}
+                          </Text>
+                          <Badge className="bg-[var(--color-gold)]/20 text-[var(--color-gold)]">
+                            {badge}
+                          </Badge>
                         </div>
-                        <Heading
-                          size="4"
-                          className="font-heading text-[var(--color-gold-bright)]"
-                        >
-                          {pattern.name}
-                        </Heading>
-                        <Text
-                          size="2"
-                          className="text-center text-[var(--color-warm-gray)]"
-                        >
-                          {pattern.description}
-                        </Text>
-                        <Badge className="bg-[var(--color-gold)]/20 text-[var(--color-gold)]">
-                          {badge}
-                        </Badge>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                  </StaggerItem>
                 );
               })}
-            </div>
+            </StaggerChildren>
 
-            <div className="mt-6 px-4 text-center sm:mt-8">
+            <AnimateOnScroll className="mt-6 px-4 text-center sm:mt-8" delay={0.3}>
               <Button
                 asChild
                 variant="outline"
@@ -312,7 +324,7 @@ export default function HomePage() {
                   Explore All Patterns →
                 </Link>
               </Button>
-            </div>
+            </AnimateOnScroll>
           </TabsContent>
         </Tabs>
       </div>
