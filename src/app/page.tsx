@@ -21,6 +21,8 @@ import {
 import { AnimatedHero, AnimatedHeroItem } from "@/components/animated-hero";
 import { AnimateOnScroll } from "@/components/animate-on-scroll";
 import { StaggerChildren, StaggerItem } from "@/components/stagger-children";
+import { AnimatedCard, GeometryImage } from "@/components/animated-card";
+import { AnimatedButton } from "@/components/animated-button";
 
 // Icon mapping for Platonic Solids
 const iconMap: Record<string, typeof Triangle> = {
@@ -118,28 +120,32 @@ export default function HomePage() {
               gap="3 sm:gap-4"
               className="mt-4 w-full flex-col px-4 sm:mt-8 sm:w-auto sm:flex-row"
             >
-              <Button
-                asChild
-                size="3"
-                mb={{ xs: "4", md: "0" }}
-                mr={{ xs: "0", md: "4" }}
-                className="w-full bg-[var(--color-gold)] font-semibold text-[var(--color-obsidian)] shadow-lg shadow-[var(--glow-gold)] transition-all hover:bg-[var(--color-gold-bright)] sm:w-auto"
-              >
-                <Link href={ROUTES.platonicSolids.path}>
-                  <span className="hidden sm:inline">
-                    Explore Platonic Solids →
-                  </span>
-                  <span className="sm:hidden">Platonic Solids →</span>
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="3"
-                variant="outline"
-                className="w-full border-[var(--color-gold)]/50 text-[var(--color-gold)] transition-all hover:border-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 sm:w-auto"
-              >
-                <Link href={ROUTES.sacredPatterns.path}>Sacred Patterns →</Link>
-              </Button>
+              <AnimatedButton variant="primary" className="w-full sm:w-auto">
+                <Button
+                  asChild
+                  size="3"
+                  mb={{ xs: "4", md: "0" }}
+                  mr={{ xs: "0", md: "4" }}
+                  className="w-full bg-[var(--color-gold)] font-semibold text-[var(--color-obsidian)] shadow-lg shadow-[var(--glow-gold)] transition-all hover:bg-[var(--color-gold-bright)] sm:w-auto"
+                >
+                  <Link href={ROUTES.platonicSolids.path}>
+                    <span className="hidden sm:inline">
+                      Explore Platonic Solids →
+                    </span>
+                    <span className="sm:hidden">Platonic Solids →</span>
+                  </Link>
+                </Button>
+              </AnimatedButton>
+              <AnimatedButton variant="outline" className="w-full sm:w-auto">
+                <Button
+                  asChild
+                  size="3"
+                  variant="outline"
+                  className="w-full border-[var(--color-gold)]/50 text-[var(--color-gold)] transition-all hover:border-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 sm:w-auto"
+                >
+                  <Link href={ROUTES.sacredPatterns.path}>Sacred Patterns →</Link>
+                </Button>
+              </AnimatedButton>
             </Flex>
           </AnimatedHeroItem>
         </div>
@@ -192,9 +198,9 @@ export default function HomePage() {
                 return (
                   <StaggerItem key={solid.name}>
                     <Link href={solid.path}>
-                      <div className="cursor-pointer rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] p-3 transition-all hover:scale-[1.02] hover:border-[var(--color-gold)]/50 hover:shadow-[0_0_20px_var(--glow-gold)] sm:p-4">
+                      <AnimatedCard className="p-3 sm:p-4">
                         <div className="flex flex-col items-center gap-2 sm:gap-3">
-                          <div className="flex h-16 w-full items-center justify-center sm:h-24">
+                          <GeometryImage className="flex h-16 w-full items-center justify-center sm:h-24">
                             <Image
                               src={solid.image}
                               alt={solid.name}
@@ -206,11 +212,11 @@ export default function HomePage() {
                                   "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
                               }}
                             />
-                          </div>
+                          </GeometryImage>
                           <Icon
                             className={`h-4 w-4 sm:h-5 sm:w-5 ${solid.color}`}
                           />
-                          <Text className="text-center text-[10px] leading-tight font-medium text-[var(--color-gold-bright)] sm:text-xs">
+                          <Text className="text-center text-[10px] font-medium leading-tight text-[var(--color-gold-bright)] sm:text-xs">
                             {solid.name}
                           </Text>
                           <Badge
@@ -220,7 +226,7 @@ export default function HomePage() {
                             {solid.element}
                           </Badge>
                         </div>
-                      </div>
+                      </AnimatedCard>
                     </Link>
                   </StaggerItem>
                 );
@@ -228,19 +234,21 @@ export default function HomePage() {
             </StaggerChildren>
 
             <AnimateOnScroll className="mt-6 text-center sm:mt-8" delay={0.3}>
-              <Button
-                asChild
-                variant="outline"
-                size={{ initial: "2", sm: "3" }}
-                className="border-[var(--border-gold)] text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10"
-              >
-                <Link href={ROUTES.platonicSolids.path}>
-                  <span className="hidden sm:inline">
-                    View All Platonic Solids →
-                  </span>
-                  <span className="sm:hidden">View All →</span>
-                </Link>
-              </Button>
+              <AnimatedButton variant="outline">
+                <Button
+                  asChild
+                  variant="outline"
+                  size={{ initial: "2", sm: "3" }}
+                  className="border-[var(--border-gold)] text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10"
+                >
+                  <Link href={ROUTES.platonicSolids.path}>
+                    <span className="hidden sm:inline">
+                      View All Platonic Solids →
+                    </span>
+                    <span className="sm:hidden">View All →</span>
+                  </Link>
+                </Button>
+              </AnimatedButton>
             </AnimateOnScroll>
           </TabsContent>
 
@@ -276,9 +284,9 @@ export default function HomePage() {
                 return (
                   <StaggerItem key={pattern.slug}>
                     <Link href={getGeometryPath(pattern)}>
-                      <div className="cursor-pointer rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] p-6 transition-all hover:scale-[1.02] hover:border-[var(--color-gold)]/50 hover:shadow-[0_0_20px_var(--glow-gold)]">
+                      <AnimatedCard className="p-6">
                         <div className="flex flex-col items-center gap-4">
-                          <div className="flex h-32 w-full items-center justify-center">
+                          <GeometryImage className="flex h-32 w-full items-center justify-center">
                             <Image
                               src={pattern.images?.heroImage ?? ""}
                               alt={pattern.name}
@@ -289,7 +297,7 @@ export default function HomePage() {
                                   "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
                               }}
                             />
-                          </div>
+                          </GeometryImage>
                           <Heading
                             size="4"
                             className="font-heading text-[var(--color-gold-bright)]"
@@ -306,7 +314,7 @@ export default function HomePage() {
                             {badge}
                           </Badge>
                         </div>
-                      </div>
+                      </AnimatedCard>
                     </Link>
                   </StaggerItem>
                 );
@@ -314,16 +322,18 @@ export default function HomePage() {
             </StaggerChildren>
 
             <AnimateOnScroll className="mt-6 px-4 text-center sm:mt-8" delay={0.3}>
-              <Button
-                asChild
-                variant="outline"
-                size={{ initial: "2", sm: "3" }}
-                className="w-full border-[var(--border-gold)] text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 sm:w-auto"
-              >
-                <Link href={ROUTES.sacredPatterns.path}>
-                  Explore All Patterns →
-                </Link>
-              </Button>
+              <AnimatedButton variant="outline" className="w-full sm:w-auto">
+                <Button
+                  asChild
+                  variant="outline"
+                  size={{ initial: "2", sm: "3" }}
+                  className="w-full border-[var(--border-gold)] text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 sm:w-auto"
+                >
+                  <Link href={ROUTES.sacredPatterns.path}>
+                    Explore All Patterns →
+                  </Link>
+                </Button>
+              </AnimatedButton>
             </AnimateOnScroll>
           </TabsContent>
         </Tabs>

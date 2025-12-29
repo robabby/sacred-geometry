@@ -4,10 +4,10 @@ import Image from "next/image";
 import { Sparkles, Hexagon, Star, Triangle, Circle } from "lucide-react";
 import { ROUTES } from "@/util/routes";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { getSacredPatterns, getGeometryPath } from "@/lib/data";
 import { AnimateOnScroll } from "@/components/animate-on-scroll";
 import { StaggerChildren, StaggerItem } from "@/components/stagger-children";
+import { AnimatedCard, GeometryImage } from "@/components/animated-card";
 
 // Icon mapping for Sacred Patterns
 const iconMap: Record<string, typeof Hexagon> = {
@@ -70,19 +70,19 @@ const sacredPatterns = getSacredPatterns()
 
 export default function SacredPatternsPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#1a2642] to-[#0f1b2e] text-white">
+    <main className="min-h-screen bg-[var(--color-obsidian)] text-[var(--color-cream)]">
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
         <AnimateOnScroll className="mx-auto mb-16 max-w-4xl text-center">
-          <Heading size="9" className="text-amber-100" mb="4">
+          <Heading size="9" className="font-display text-[var(--color-cream)]" mb="4">
             {ROUTES.sacredPatterns.name}
           </Heading>
           <Box mb="2">
-            <Text size="5" className="mb-4 text-blue-200">
+            <Text size="5" className="mb-4 text-[var(--color-gold)]">
               {ROUTES.sacredPatterns.description}
             </Text>
           </Box>
-          <Text size="3" className="mx-auto max-w-3xl text-blue-300/80">
+          <Text size="3" className="mx-auto max-w-3xl text-[var(--color-warm-gray)]">
             These timeless patterns appear across cultures and throughout
             history, from ancient temples to modern science. They represent the
             fundamental organizing principles of consciousness, energy, and
@@ -100,10 +100,10 @@ export default function SacredPatternsPage() {
             return (
               <StaggerItem key={pattern.path}>
                 <Link href={pattern.path}>
-                  <Card className="h-full cursor-pointer border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-6 backdrop-blur-sm transition-all hover:scale-105 hover:border-amber-500/40">
+                  <AnimatedCard className="h-full p-6">
                     <div className="flex min-h-[380px] flex-col gap-4">
                       {/* Image */}
-                      <div className="relative flex h-48 w-full items-center justify-center">
+                      <GeometryImage className="relative flex h-48 w-full items-center justify-center">
                         <Image
                           src={pattern.image}
                           alt={pattern.name}
@@ -115,12 +115,12 @@ export default function SacredPatternsPage() {
                               "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
                           }}
                         />
-                      </div>
+                      </GeometryImage>
 
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Icon className={`h-5 w-5 ${pattern.color}`} />
-                          <Heading size="5" className="text-amber-100">
+                          <Heading size="5" className="text-[var(--color-gold-bright)]">
                             {pattern.name}
                           </Heading>
                         </div>
@@ -129,21 +129,21 @@ export default function SacredPatternsPage() {
                       <div className="flex flex-wrap gap-2">
                         <Badge
                           variant="secondary"
-                          className="border-amber-500/30 bg-amber-500/20 text-amber-300"
+                          className="bg-[var(--color-dark-bronze)] text-[var(--color-gold)]"
                         >
                           {pattern.category}
                         </Badge>
                       </div>
 
-                      <Text size="2" className="line-clamp-3 text-blue-300">
+                      <Text size="2" className="line-clamp-3 text-[var(--color-warm-gray)]">
                         {pattern.description}
                       </Text>
 
-                      <div className="mt-auto text-sm font-medium text-amber-300 transition-colors hover:text-amber-400">
+                      <div className="mt-auto text-sm font-medium text-[var(--color-gold)] transition-colors group-hover:text-[var(--color-gold-bright)]">
                         Explore →
                       </div>
                     </div>
-                  </Card>
+                  </AnimatedCard>
                 </Link>
               </StaggerItem>
             );
@@ -152,9 +152,9 @@ export default function SacredPatternsPage() {
 
         {/* The Flower of Life - Featured Section */}
         <AnimateOnScroll>
-          <Card className="mx-auto mb-8 max-w-4xl border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
+          <AnimatedCard className="mx-auto mb-8 max-w-4xl p-8">
             <div className="mb-4 flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center">
+              <GeometryImage className="flex h-12 w-12 items-center justify-center">
                 <Image
                   src="/images/geometries/sacred-patterns/flower-of-life/flower-of-life-primary.svg"
                   alt="Flower of Life"
@@ -165,13 +165,13 @@ export default function SacredPatternsPage() {
                       "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
                   }}
                 />
-              </div>
-              <Heading size="7" className="text-amber-300">
+              </GeometryImage>
+              <Heading size="7" className="font-heading text-[var(--color-gold)]">
                 The Flower of Life: Universal Pattern
               </Heading>
             </div>
 
-            <Text className="mb-4 text-blue-200">
+            <Text className="mb-4 text-[var(--color-warm-gray)]">
               The Flower of Life is perhaps the most widely recognized symbol in
               sacred geometry. Found in temples across the world—from Egypt to
               China, from Europe to India—this pattern predates all major
@@ -179,7 +179,7 @@ export default function SacredPatternsPage() {
               nature of reality.
             </Text>
 
-            <Text className="text-blue-200">
+            <Text className="text-[var(--color-warm-gray)]">
               By overlapping circles in a specific pattern, the Flower of Life
               emerges naturally. Within its petals hide countless other sacred
               patterns: the Seed of Life, the Tree of Life, Metatron&apos;s
@@ -187,27 +187,27 @@ export default function SacredPatternsPage() {
               pattern contains the entire library of creation&apos;s building
               blocks.
             </Text>
-          </Card>
+          </AnimatedCard>
         </AnimateOnScroll>
 
         {/* Sacred Ratios */}
         <AnimateOnScroll delay={0.1}>
-          <Card className="mx-auto mb-8 max-w-4xl border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
-            <Heading size="6" className="mb-4 text-amber-300">
+          <AnimatedCard className="mx-auto mb-8 max-w-4xl p-8">
+            <Heading size="6" className="mb-4 font-heading text-[var(--color-gold)]">
               The Golden Ratio & Sacred Proportions
             </Heading>
 
-            <Text className="mb-4 text-blue-200">
+            <Text className="mb-4 text-[var(--color-warm-gray)]">
               Sacred patterns often embody special mathematical ratios that
               appear throughout nature:
             </Text>
 
             <div className="grid grid-cols-1 gap-4">
               <div className="flex flex-col gap-2">
-                <Text weight="bold" className="text-amber-300">
+                <Text weight="bold" className="text-[var(--color-gold-bright)]">
                   φ (Phi) ≈ 1.618 - The Golden Ratio
                 </Text>
-                <Text className="text-blue-200">
+                <Text className="text-[var(--color-warm-gray)]">
                   Found in spiral shells, flower petals, galaxy arms, and human
                   proportions. Represents optimal growth and aesthetic
                   perfection.
@@ -215,67 +215,67 @@ export default function SacredPatternsPage() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <Text weight="bold" className="text-amber-300">
+                <Text weight="bold" className="text-[var(--color-gold-bright)]">
                   √2 ≈ 1.414 - The Silver Ratio
                 </Text>
-                <Text className="text-blue-200">
+                <Text className="text-[var(--color-warm-gray)]">
                   The diagonal of a square. Found in paper sizes and sacred
                   architecture. Represents the bridge between dimensions.
                 </Text>
               </div>
 
               <div className="flex flex-col gap-2">
-                <Text weight="bold" className="text-amber-300">
+                <Text weight="bold" className="text-[var(--color-gold-bright)]">
                   π (Pi) ≈ 3.14159 - Circle Constant
                 </Text>
-                <Text className="text-blue-200">
+                <Text className="text-[var(--color-warm-gray)]">
                   The relationship between circle and diameter. Represents
                   cycles, wholeness, and the infinite.
                 </Text>
               </div>
             </div>
-          </Card>
+          </AnimatedCard>
         </AnimateOnScroll>
 
         {/* Where to Find Them */}
         <AnimateOnScroll delay={0.2}>
-          <Card className="mx-auto max-w-4xl border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-8">
-            <Heading size="6" className="mb-4 text-amber-300">
+          <AnimatedCard className="mx-auto max-w-4xl p-8">
+            <Heading size="6" className="mb-4 font-heading text-[var(--color-gold)]">
               Where Sacred Patterns Appear
             </Heading>
 
-            <Text className="mb-4 text-blue-200">
+            <Text className="mb-4 text-[var(--color-warm-gray)]">
               These patterns are not mere human inventions—they are discoveries.
               They appear everywhere:
             </Text>
 
-            <ul className="space-y-3 text-blue-200">
+            <ul className="space-y-3 text-[var(--color-warm-gray)]">
               <li>
-                <strong className="text-amber-300">Nature:</strong> Flower
+                <strong className="text-[var(--color-gold-bright)]">Nature:</strong> Flower
                 petals, pine cones, nautilus shells, crystal structures, DNA
                 helixes
               </li>
               <li>
-                <strong className="text-amber-300">Architecture:</strong>{" "}
+                <strong className="text-[var(--color-gold-bright)]">Architecture:</strong>{" "}
                 Temples, cathedrals, pyramids, mosques—structures designed to
                 elevate consciousness
               </li>
               <li>
-                <strong className="text-amber-300">Art:</strong> Mandalas,
+                <strong className="text-[var(--color-gold-bright)]">Art:</strong> Mandalas,
                 Islamic geometric patterns, Celtic knots, Renaissance paintings
               </li>
               <li>
-                <strong className="text-amber-300">Science:</strong> Atomic
+                <strong className="text-[var(--color-gold-bright)]">Science:</strong> Atomic
                 structures, quantum fields, cymatics (sound made visible),
                 fractal mathematics
               </li>
               <li>
-                <strong className="text-amber-300">Human Body:</strong>{" "}
+                <strong className="text-[var(--color-gold-bright)]">Human Body:</strong>{" "}
                 Proportions, spiral of ear, arrangement of features, energy
                 centers (chakras)
               </li>
             </ul>
-          </Card>
+          </AnimatedCard>
         </AnimateOnScroll>
       </div>
     </main>

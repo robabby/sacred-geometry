@@ -10,6 +10,7 @@ import {
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
 } from "react";
+import { motion } from "motion/react";
 import { CircleDot, Search } from "lucide-react";
 import { ROUTES } from "@/util/routes";
 import { cn } from "@/lib/utils";
@@ -20,6 +21,63 @@ type NavItem = {
   desktopLabel: string;
   mobileLabel: string;
 };
+
+// Animated nav link with underline draw effect
+function AnimatedNavLink({
+  href,
+  isActive,
+  desktopLabel,
+  mobileLabel,
+  tabIndex,
+  onFocus,
+  refCallback,
+}: {
+  href: string;
+  isActive: boolean;
+  desktopLabel: string;
+  mobileLabel: string;
+  tabIndex: number;
+  onFocus: () => void;
+  refCallback: (node: HTMLAnchorElement | null) => void;
+}) {
+  return (
+    <Link
+      href={href}
+      ref={refCallback}
+      tabIndex={tabIndex}
+      aria-current={isActive ? "page" : undefined}
+      onFocus={onFocus}
+      className={cn(
+        "group relative text-xs font-medium transition-colors hover:text-[var(--color-gold)] focus:outline-none focus-visible:text-[var(--color-gold)] sm:text-sm",
+        isActive ? "text-[var(--color-gold)]" : "text-[var(--color-warm-gray)]"
+      )}
+    >
+      <span className="hidden sm:inline">{desktopLabel}</span>
+      <span className="sm:hidden">{mobileLabel}</span>
+
+      {/* Underline - draws on hover, stays if active */}
+      <motion.span
+        className="absolute -bottom-1 left-0 h-0.5 bg-[var(--color-gold)]"
+        initial={false}
+        animate={{
+          width: isActive ? "100%" : "0%",
+          opacity: isActive ? 1 : 0,
+        }}
+        whileHover={{
+          width: "100%",
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.3,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+        style={{
+          boxShadow: isActive ? "0 0 8px var(--glow-gold)" : "none",
+        }}
+      />
+    </Link>
+  );
+}
 
 export function Header() {
   const pathname = usePathname();
@@ -178,7 +236,17 @@ export function Header() {
             className="flex items-center gap-1.5 transition-opacity hover:opacity-80 sm:gap-2"
             onKeyDown={handleHomeKeyDown}
           >
-            <CircleDot className="h-5 w-5 text-[var(--color-gold)] sm:h-6 sm:w-6" />
+            <motion.div
+              initial={{ rotate: 0 }}
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: 1,
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: 0.2,
+              }}
+            >
+              <CircleDot className="h-5 w-5 text-[var(--color-gold)] sm:h-6 sm:w-6" />
+            </motion.div>
             <span className="font-heading text-lg font-semibold text-[var(--color-cream)] sm:text-xl">
               Sacred Geometry
             </span>
@@ -214,25 +282,18 @@ export function Header() {
               onKeyDown={handleNavKeyDown}
             >
               {navItems.map((item, index) => (
-                <Link
+                <AnimatedNavLink
                   key={item.path}
                   href={item.path}
-                  ref={(node) => {
+                  isActive={isActive(item.path)}
+                  desktopLabel={item.desktopLabel}
+                  mobileLabel={item.mobileLabel}
+                  tabIndex={focusIndex === index ? 0 : -1}
+                  onFocus={() => setFocusIndex(index)}
+                  refCallback={(node) => {
                     navRefs.current[index] = node;
                   }}
-                  tabIndex={focusIndex === index ? 0 : -1}
-                  aria-current={isActive(item.path) ? "page" : undefined}
-                  onFocus={() => setFocusIndex(index)}
-                  className={cn(
-                    "text-xs font-medium transition-colors hover:text-[var(--color-gold)] sm:text-sm",
-                    isActive(item.path)
-                      ? "text-[var(--color-gold)]"
-                      : "text-[var(--color-warm-gray)]"
-                  )}
-                >
-                  <span className="hidden sm:inline">{item.desktopLabel}</span>
-                  <span className="sm:hidden">{item.mobileLabel}</span>
-                </Link>
+                />
               ))}
             </nav>
           </div>
