@@ -10,6 +10,8 @@ import {
 import { type Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { MotionProvider } from "@/components/motion-provider";
 import { SkipToContent } from "@/components/skip-to-content";
 
 export const metadata: Metadata = {
@@ -53,8 +55,11 @@ export default function RootLayout({
       <body>
         <SkipToContent />
         <Theme appearance="dark">
-          <Header />
-          <main id="main-content">{children}</main>
+          <MotionProvider>
+            <Header />
+            <main id="main-content">{children}</main>
+            <Footer />
+          </MotionProvider>
         </Theme>
       </body>
       <Analytics />
