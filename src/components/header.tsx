@@ -22,6 +22,30 @@ type NavItem = {
   mobileLabel: string;
 };
 
+// Coming soon nav item with tooltip
+function ComingSoonNavItem({
+  desktopLabel,
+  mobileLabel,
+}: {
+  desktopLabel: string;
+  mobileLabel: string;
+}) {
+  return (
+    <span
+      className="group relative cursor-default text-xs font-medium text-[var(--color-dim)] sm:text-sm"
+      title="Coming Soon"
+    >
+      <span className="hidden sm:inline">{desktopLabel}</span>
+      <span className="sm:hidden">{mobileLabel}</span>
+
+      {/* Coming Soon tooltip */}
+      <span className="pointer-events-none absolute -bottom-8 left-1/2 z-50 -translate-x-1/2 whitespace-nowrap rounded bg-[var(--color-dark-bronze)] px-2 py-1 text-xs text-[var(--color-warm-gray)] opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+        Coming Soon
+      </span>
+    </span>
+  );
+}
+
 // Animated nav link with underline draw effect
 function AnimatedNavLink({
   href,
@@ -295,6 +319,10 @@ export function Header() {
                   }}
                 />
               ))}
+
+              {/* Coming Soon items */}
+              <ComingSoonNavItem desktopLabel="Journal" mobileLabel="Journal" />
+              <ComingSoonNavItem desktopLabel="Shop" mobileLabel="Shop" />
             </nav>
           </div>
         </div>
