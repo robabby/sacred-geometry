@@ -29,13 +29,13 @@ const iconMap: Record<string, typeof Triangle> = {
   icosahedron: Droplets,
 };
 
-// Color mapping for Platonic Solids
+// Color mapping for Platonic Solids - using gold/copper palette
 const colorMap: Record<string, string> = {
-  tetrahedron: "text-red-400",
-  hexahedron: "text-green-400",
-  octahedron: "text-cyan-400",
-  dodecahedron: "text-purple-400",
-  icosahedron: "text-blue-400",
+  tetrahedron: "text-[var(--color-gold)]",
+  hexahedron: "text-[var(--color-copper)]",
+  octahedron: "text-[var(--color-gold-bright)]",
+  dodecahedron: "text-[var(--color-bronze)]",
+  icosahedron: "text-[var(--color-gold-muted)]",
 };
 
 const platonicSolids = getPlatonicSolids()
@@ -69,12 +69,21 @@ export default function HomePage() {
             <CircleDot className="h-8 w-8 text-[var(--color-gold)] sm:h-12 sm:w-12" />
           </div>
 
-          <Callout.Root>
+          <Callout.Root
+            className="border border-[var(--color-copper)]/30 bg-[var(--color-warm-charcoal)] text-[var(--color-warm-gray)]"
+            style={
+              {
+                "--callout-a": "var(--color-copper)",
+              } as React.CSSProperties
+            }
+          >
             <Callout.Icon>
-              <InfoIcon />
+              <InfoIcon className="text-[var(--color-copper)]" />
             </Callout.Icon>
-            <Callout.Text>
-              All text content on this site is AI generated, and may not be factually correct. This site is for educational and illustrative purposes only.
+            <Callout.Text className="text-[var(--color-warm-gray)]">
+              All text content on this site is AI generated, and may not be
+              factually correct. This site is for educational and illustrative
+              purposes only.
             </Callout.Text>
           </Callout.Root>
 
@@ -133,28 +142,28 @@ export default function HomePage() {
             asChild
             size="3"
             variant="outline"
-            className="w-full border-[var(--border-gold)] text-[var(--color-gold)] transition-all hover:border-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 sm:w-auto"
+            className="w-full border-[var(--color-gold)]/50 text-[var(--color-gold)] transition-all hover:border-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 sm:w-auto"
           >
             <Link href={ROUTES.sacredPatterns.path}>Sacred Patterns →</Link>
           </Button>
         </Flex>
       </div>
 
-      <Separator className="bg-[var(--border-gold)]" />
+      <Separator className="h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/40 to-transparent" />
 
       {/* Interactive Tabs Section */}
       <div className="container mx-auto px-4 py-16">
         <Tabs defaultValue="solids" className="mx-auto max-w-6xl">
-          <TabsList className="grid w-full grid-cols-2 border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)]">
+          <TabsList className="grid w-full grid-cols-2 rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] p-1">
             <TabsTrigger
               value="solids"
-              className="data-[state=active]:bg-[var(--color-gold)]/20 data-[state=active]:text-[var(--color-gold)]"
+              className="rounded-md text-[var(--color-warm-gray)] transition-all data-[state=active]:bg-[var(--color-gold)] data-[state=active]:text-[var(--color-obsidian)] data-[state=active]:shadow-[0_0_12px_var(--glow-gold)]"
             >
               Platonic Solids
             </TabsTrigger>
             <TabsTrigger
               value="patterns"
-              className="data-[state=active]:bg-[var(--color-gold)]/20 data-[state=active]:text-[var(--color-gold)]"
+              className="rounded-md text-[var(--color-warm-gray)] transition-all data-[state=active]:bg-[var(--color-gold)] data-[state=active]:text-[var(--color-obsidian)] data-[state=active]:shadow-[0_0_12px_var(--glow-gold)]"
             >
               Sacred Patterns
             </TabsTrigger>
