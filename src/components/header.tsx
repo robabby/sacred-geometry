@@ -270,7 +270,7 @@ export function Header() {
       <SearchCommand />
 
       <header className="sticky top-0 z-50 w-full border-b border-[var(--border-gold)] bg-[var(--color-obsidian)]/95 backdrop-blur-xl">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <Link
             href={ROUTES.home.path}

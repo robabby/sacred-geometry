@@ -71,9 +71,9 @@ const sacredPatterns = getSacredPatterns()
 export default function SacredPatternsPage() {
   return (
     <main className="min-h-screen bg-[var(--color-obsidian)] text-[var(--color-cream)]">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         {/* Header */}
-        <AnimateOnScroll className="mx-auto mb-16 max-w-4xl text-center">
+        <AnimateOnScroll className="mx-auto mb-8 max-w-4xl text-center sm:mb-12 lg:mb-16">
           <Heading size="9" className="font-display text-[var(--color-cream)]" mb="4">
             {ROUTES.sacredPatterns.name}
           </Heading>
@@ -92,7 +92,7 @@ export default function SacredPatternsPage() {
 
         {/* Sacred Patterns Grid */}
         <StaggerChildren
-          className="mx-auto mb-16 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="mx-auto mb-8 grid max-w-6xl grid-cols-1 gap-4 sm:mb-12 sm:gap-6 md:grid-cols-2 lg:mb-16 lg:grid-cols-3 lg:gap-8"
           staggerDelay={0.08}
         >
           {sacredPatterns.map((pattern) => {
@@ -152,7 +152,7 @@ export default function SacredPatternsPage() {
 
         {/* The Flower of Life - Featured Section */}
         <AnimateOnScroll>
-          <AnimatedCard className="mx-auto mb-8 max-w-4xl p-8">
+          <AnimatedCard className="mx-auto mb-4 max-w-4xl p-4 sm:mb-6 sm:p-6 lg:mb-8 lg:p-8">
             <div className="mb-4 flex items-center gap-4">
               <GeometryImage className="relative h-12 w-12 shrink-0">
                 <Image
@@ -193,7 +193,7 @@ export default function SacredPatternsPage() {
 
         {/* Sacred Ratios */}
         <AnimateOnScroll delay={0.1}>
-          <AnimatedCard className="mx-auto mb-8 max-w-4xl p-8">
+          <AnimatedCard className="mx-auto mb-4 max-w-4xl p-4 sm:mb-6 sm:p-6 lg:mb-8 lg:p-8">
             <Heading size="6" className="mb-4 font-heading text-[var(--color-gold)]">
               The Golden Ratio & Sacred Proportions
             </Heading>
@@ -240,7 +240,7 @@ export default function SacredPatternsPage() {
 
         {/* Where to Find Them */}
         <AnimateOnScroll delay={0.2}>
-          <AnimatedCard className="mx-auto max-w-4xl p-8">
+          <AnimatedCard className="mx-auto max-w-4xl p-4 sm:p-6 lg:p-8">
             <Heading size="6" className="mb-4 font-heading text-[var(--color-gold)]">
               Where Sacred Patterns Appear
             </Heading>

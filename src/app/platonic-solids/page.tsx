@@ -56,9 +56,9 @@ const platonicSolids = getPlatonicSolids()
 export default function PlatonicSolidsPage() {
   return (
     <main className="min-h-screen bg-[var(--color-obsidian)] text-[var(--color-cream)]">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         {/* Header */}
-        <AnimateOnScroll className="mx-auto mb-16 max-w-4xl text-center">
+        <AnimateOnScroll className="mx-auto mb-8 max-w-4xl text-center sm:mb-12 lg:mb-16">
           <Heading size="9" className="font-display text-[var(--color-cream)]" mb="4">
             {ROUTES.platonicSolids.name}
           </Heading>
@@ -77,7 +77,7 @@ export default function PlatonicSolidsPage() {
 
         {/* Platonic Solids Grid */}
         <StaggerChildren
-          className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
           staggerDelay={0.1}
         >
           {platonicSolids.map((solid) => {
@@ -140,7 +140,7 @@ export default function PlatonicSolidsPage() {
 
         {/* Additional Info */}
         <AnimateOnScroll delay={0.3}>
-          <AnimatedCard className="mx-auto mt-16 max-w-4xl p-8">
+          <AnimatedCard className="mx-auto mt-8 max-w-4xl p-4 sm:mt-12 sm:p-6 lg:mt-16 lg:p-8">
             <Heading size="6" className="mb-4 font-heading text-[var(--color-gold)]">
               The Sacred Five
             </Heading>

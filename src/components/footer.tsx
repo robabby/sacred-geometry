@@ -9,7 +9,7 @@ import { ROUTES } from "@/util/routes";
  */
 function GeometricDivider() {
   return (
-    <div className="flex items-center justify-center py-8">
+    <div className="flex items-center justify-center py-4 sm:py-6 lg:py-8">
       <svg
         width="200"
         height="20"
@@ -82,11 +82,11 @@ function FooterLink({
 export function Footer() {
   return (
     <footer className="border-t border-[var(--border-gold)] bg-[var(--color-obsidian)]">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <GeometricDivider />
 
         {/* Three-column layout */}
-        <div className="grid grid-cols-1 gap-8 pb-8 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 pb-4 sm:grid-cols-3 sm:gap-6 sm:pb-6 lg:gap-8 lg:pb-8">
           {/* Navigation */}
           <div className="text-center sm:text-left">
             <h3 className="mb-4 font-heading text-sm font-semibold uppercase tracking-wider text-[var(--color-gold)]">
@@ -134,7 +134,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[var(--border-gold)]/30 py-6 text-center">
+        <div className="border-t border-[var(--border-gold)]/30 py-4 text-center sm:py-5 lg:py-6">
           <p className="text-xs text-[var(--color-dim)]">
             Built with Next.js, React, and curiosity
           </p>
