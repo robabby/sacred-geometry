@@ -98,7 +98,8 @@ export default async function SacredPatternPage({
                     alt={name}
                     width={400}
                     height={400}
-                    className="w-full max-w-md object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="w-full max-w-xs sm:max-w-sm md:max-w-md object-contain"
                     style={{
                       filter:
                         "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",

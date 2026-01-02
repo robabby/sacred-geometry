@@ -88,12 +88,12 @@ export default function PlatonicSolidsPage() {
                   <AnimatedCard className="h-full p-6">
                     <div className="flex flex-col gap-4">
                       {/* Image */}
-                      <GeometryImage className="relative flex h-48 w-full items-center justify-center">
+                      <GeometryImage className="relative h-48 w-full">
                         <Image
                           src={solid.image}
                           alt={solid.name}
-                          width={180}
-                          height={180}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-contain"
                           style={{
                             filter:

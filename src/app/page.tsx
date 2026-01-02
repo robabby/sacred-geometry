@@ -200,13 +200,13 @@ export default function HomePage() {
                     <Link href={solid.path}>
                       <AnimatedCard className="p-3 sm:p-4">
                         <div className="flex flex-col items-center gap-2 sm:gap-3">
-                          <GeometryImage className="flex h-16 w-full items-center justify-center sm:h-24">
+                          <GeometryImage className="relative h-16 w-full sm:h-24">
                             <Image
                               src={solid.image}
                               alt={solid.name}
-                              width={60}
-                              height={60}
-                              className="object-contain sm:h-20 sm:w-20"
+                              fill
+                              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                              className="object-contain"
                               style={{
                                 filter:
                                   "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
@@ -286,12 +286,13 @@ export default function HomePage() {
                     <Link href={getGeometryPath(pattern)}>
                       <AnimatedCard className="p-6">
                         <div className="flex flex-col items-center gap-4">
-                          <GeometryImage className="flex h-32 w-full items-center justify-center">
+                          <GeometryImage className="relative h-32 w-full">
                             <Image
                               src={pattern.images?.heroImage ?? ""}
                               alt={pattern.name}
-                              width={120}
-                              height={120}
+                              fill
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              className="object-contain"
                               style={{
                                 filter:
                                   "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",

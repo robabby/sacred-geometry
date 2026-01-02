@@ -306,8 +306,8 @@ export function SearchCommand() {
                       <Image
                         src={geometry.images.heroImage}
                         alt={geometry.name}
-                        width={32}
-                        height={32}
+                        fill
+                        sizes="32px"
                         className="object-contain"
                         style={{
                           filter:
@@ -361,8 +361,8 @@ export function SearchCommand() {
                       <Image
                         src={geometry.images.heroImage}
                         alt={geometry.name}
-                        width={32}
-                        height={32}
+                        fill
+                        sizes="32px"
                         className="object-contain"
                         style={{
                           filter:

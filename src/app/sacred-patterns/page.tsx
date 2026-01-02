@@ -103,12 +103,12 @@ export default function SacredPatternsPage() {
                   <AnimatedCard className="h-full p-6">
                     <div className="flex min-h-[380px] flex-col gap-4">
                       {/* Image */}
-                      <GeometryImage className="relative flex h-48 w-full items-center justify-center">
+                      <GeometryImage className="relative h-48 w-full">
                         <Image
                           src={pattern.image}
                           alt={pattern.name}
-                          width={180}
-                          height={180}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-contain"
                           style={{
                             filter:
@@ -154,12 +154,13 @@ export default function SacredPatternsPage() {
         <AnimateOnScroll>
           <AnimatedCard className="mx-auto mb-8 max-w-4xl p-8">
             <div className="mb-4 flex items-center gap-4">
-              <GeometryImage className="flex h-12 w-12 items-center justify-center">
+              <GeometryImage className="relative h-12 w-12 shrink-0">
                 <Image
                   src="/images/geometries/sacred-patterns/flower-of-life/flower-of-life-primary.svg"
                   alt="Flower of Life"
-                  width={48}
-                  height={48}
+                  fill
+                  sizes="48px"
+                  className="object-contain"
                   style={{
                     filter:
                       "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
