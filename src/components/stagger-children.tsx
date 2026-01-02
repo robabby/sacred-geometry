@@ -12,6 +12,8 @@ interface StaggerChildrenProps {
   delayChildren?: number;
   /** How much of the container should be visible before triggering (0-1) */
   threshold?: number;
+  /** Viewport margin to extend detection zone (CSS margin format) */
+  viewportMargin?: string;
 }
 
 export function StaggerChildren({
@@ -19,14 +21,15 @@ export function StaggerChildren({
   className,
   staggerDelay = 0.1,
   delayChildren = 0,
-  threshold = 0.1,
+  threshold = 0,
+  viewportMargin = "0px 0px 100px 0px",
 }: StaggerChildrenProps) {
   return (
     <motion.div
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: threshold }}
+      viewport={{ once: true, amount: threshold, margin: viewportMargin }}
       variants={{
         hidden: { opacity: 1 },
         visible: {
