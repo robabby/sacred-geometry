@@ -190,7 +190,7 @@ export default function HomePage() {
             </AnimateOnScroll>
 
             <StaggerChildren
-              className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5"
+              className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-5"
               staggerDelay={0.08}
             >
               {platonicSolids.map((solid) => {

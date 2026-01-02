@@ -83,7 +83,7 @@ export default async function PlatonicSolidPage({
                 Visual Representations
               </Heading>
 
-              <Grid columns={{ initial: "1", md: "3" }} gap="6">
+              <Grid columns={{ initial: "1", sm: "2", lg: "3" }} gap="6">
                 <VisualRepCard index={0}>
                   <Flex direction="column" gap="3" align="center">
                     <PulsingGeometry interactive={false} className="flex items-center justify-center">
