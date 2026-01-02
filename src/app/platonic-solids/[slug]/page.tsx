@@ -39,14 +39,14 @@ export default async function PlatonicSolidPage({
 
   return (
     <main className="min-h-screen bg-[var(--color-obsidian)] text-[var(--color-cream)]">
-      <div className="container mx-auto px-4 py-12 sm:py-16">
+      <div className="container mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-6xl">
           {/* Header with Image */}
           <DetailHero>
             <Grid
               columns={{ initial: "1", md: "2" }}
               gap={{ initial: "6", md: "8" }}
-              className="mb-8 sm:mb-12"
+              className="mb-4 sm:mb-8 lg:mb-12"
             >
               {/* Text Content */}
               <HeroText>
@@ -89,12 +89,12 @@ export default async function PlatonicSolidPage({
 
           {/* Visual Representations */}
           <AnimateOnScroll>
-            <AnimatedCard className="mb-8 p-8">
+            <AnimatedCard className="mb-4 p-4 sm:mb-6 sm:p-6 lg:mb-8 lg:p-8">
               <Heading mb="6" size="6" className="font-heading text-[var(--color-gold)]">
                 Visual Representations
               </Heading>
 
-              <Grid columns={{ initial: "1", sm: "2", lg: "3" }} gap="6">
+              <Grid columns={{ initial: "1", sm: "2", lg: "3" }} gap={{ initial: "4", sm: "6", lg: "8" }}>
                 <VisualRepCard index={0}>
                   <Flex direction="column" gap="3" align="center">
                     <PulsingGeometry interactive={false} className="relative h-40 w-full">
@@ -172,12 +172,12 @@ export default async function PlatonicSolidPage({
 
           {/* Mathematical Properties */}
           <AnimateOnScroll delay={0.1}>
-            <AnimatedCard className="mb-8 p-8">
+            <AnimatedCard className="mb-4 p-4 sm:mb-6 sm:p-6 lg:mb-8 lg:p-8">
               <Heading size="6" className="font-heading text-[var(--color-gold)]" mb="6">
                 Mathematical Properties
               </Heading>
 
-              <Grid columns={{ initial: "1", sm: "3" }} gap="8">
+              <Grid columns={{ initial: "1", sm: "3" }} gap={{ initial: "4", sm: "6", lg: "8" }}>
                 <Flex direction="column" gap="3" align="center" className="p-4">
                   <Text size="8" weight="bold" className="text-[var(--color-gold)]">
                     {mathProperties?.faces}
@@ -217,12 +217,12 @@ export default async function PlatonicSolidPage({
 
           {/* Symbolic Properties Metadata */}
           <AnimateOnScroll delay={0.2}>
-            <AnimatedCard className="mb-8 p-8">
+            <AnimatedCard className="mb-4 p-4 sm:mb-6 sm:p-6 lg:mb-8 lg:p-8">
               <Heading size="6" className="font-heading text-[var(--color-gold)]" mb="6">
                 Associations
               </Heading>
 
-              <Grid columns={{ initial: "1", sm: "2" }} gap="6">
+              <Grid columns={{ initial: "1", sm: "2" }} gap={{ initial: "4", sm: "6" }}>
                 <Flex direction="column" gap="2">
                   <Text
                     weight="bold"
