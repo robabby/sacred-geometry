@@ -10,8 +10,8 @@ import {
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
 } from "react";
-import { motion } from "motion/react";
-import { CircleDot, Search } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { CircleDot, Menu, Search, X } from "lucide-react";
 import { ROUTES } from "@/util/routes";
 import { cn } from "@/lib/utils";
 import { SearchCommand } from "@/components/search-command";
@@ -105,6 +105,24 @@ function AnimatedNavLink({
 
 export function Header() {
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   const isActive = useCallback(
     (path: string) => {
@@ -257,7 +275,7 @@ export function Header() {
           <Link
             href={ROUTES.home.path}
             ref={homeRef}
-            className="flex items-center gap-1.5 transition-opacity hover:opacity-80 sm:gap-2"
+            className="flex flex-shrink-0 items-center gap-1.5 transition-opacity hover:opacity-80 sm:gap-2"
             onKeyDown={handleHomeKeyDown}
           >
             <motion.div
@@ -276,8 +294,18 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Right side: Search + Navigation */}
-          <div className="flex items-center gap-3 sm:gap-4">
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            className="flex h-10 w-10 items-center justify-center rounded-md text-[var(--color-warm-gray)] transition-colors hover:bg-[var(--color-warm-charcoal)] hover:text-[var(--color-gold)] sm:hidden"
+            aria-label="Open menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+
+          {/* Desktop: Search + Navigation */}
+          <div className="hidden items-center gap-4 sm:flex">
             {/* Search Button */}
             <button
               onClick={() => {
@@ -289,11 +317,11 @@ export function Header() {
                 });
                 document.dispatchEvent(event);
               }}
-              className="flex items-center gap-1.5 rounded-md border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] px-2 py-1.5 text-xs font-medium text-[var(--color-warm-gray)] transition-colors hover:border-[var(--color-gold)]/50 hover:bg-[var(--color-dark-bronze)] hover:text-[var(--color-gold)] sm:gap-2 sm:px-3 sm:py-1.5 sm:text-sm"
+              className="flex items-center gap-2 rounded-md border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] px-3 py-1.5 text-sm font-medium text-[var(--color-warm-gray)] transition-colors hover:border-[var(--color-gold)]/50 hover:bg-[var(--color-dark-bronze)] hover:text-[var(--color-gold)]"
               aria-label="Search geometries"
             >
-              <Search className="h-3.5 w-3.5 text-[var(--color-gold)]/70 sm:h-4 sm:w-4" />
-              <span className="hidden sm:inline">Search</span>
+              <Search className="h-4 w-4 text-[var(--color-gold)]/70" />
+              <span>Search</span>
               <kbd className="hidden rounded border border-[var(--border-gold)] bg-[var(--color-dark-bronze)] px-1.5 py-0.5 text-xs text-[var(--color-gold)]/70 md:inline">
                 ⌘K
               </kbd>
@@ -302,7 +330,7 @@ export function Header() {
             {/* Navigation */}
             <nav
               aria-label="Primary"
-              className="flex items-center gap-3 sm:gap-6"
+              className="flex items-center gap-6"
               onKeyDown={handleNavKeyDown}
             >
               {navItems.map((item, index) => (
@@ -327,6 +355,116 @@ export function Header() {
           </div>
         </div>
       </header>
+
+      {/* Mobile Menu Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm sm:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-hidden="true"
+            />
+
+            {/* Drawer */}
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="fixed right-0 top-0 z-50 h-full w-72 border-l border-[var(--border-gold)] bg-[var(--color-obsidian)] shadow-2xl sm:hidden"
+            >
+              {/* Drawer Header */}
+              <div className="flex h-16 items-center justify-between border-b border-[var(--border-gold)]/50 px-4">
+                <span className="font-heading text-sm font-medium text-[var(--color-gold)]">
+                  Menu
+                </span>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex h-10 w-10 items-center justify-center rounded-md text-[var(--color-warm-gray)] transition-colors hover:bg-[var(--color-warm-charcoal)] hover:text-[var(--color-gold)]"
+                  aria-label="Close menu"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              {/* Drawer Content */}
+              <nav className="flex flex-col gap-1 p-4" aria-label="Mobile navigation">
+                {/* Search Button */}
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    // Small delay to allow drawer to close before opening search
+                    setTimeout(() => {
+                      const event = new KeyboardEvent("keydown", {
+                        key: "k",
+                        metaKey: true,
+                        bubbles: true,
+                      });
+                      document.dispatchEvent(event);
+                    }, 150);
+                  }}
+                  className="flex items-center gap-3 rounded-lg px-3 py-3 text-left text-[var(--color-warm-gray)] transition-colors hover:bg-[var(--color-warm-charcoal)] hover:text-[var(--color-gold)]"
+                >
+                  <Search className="h-5 w-5 text-[var(--color-gold)]/70" />
+                  <span className="font-medium">Search</span>
+                </button>
+
+                {/* Divider */}
+                <div className="my-2 h-px bg-[var(--border-gold)]/30" />
+
+                {/* Navigation Links */}
+                {navItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    className={cn(
+                      "flex items-center gap-3 rounded-lg px-3 py-3 font-medium transition-colors hover:bg-[var(--color-warm-charcoal)]",
+                      isActive(item.path)
+                        ? "text-[var(--color-gold)]"
+                        : "text-[var(--color-warm-gray)] hover:text-[var(--color-gold)]"
+                    )}
+                  >
+                    {isActive(item.path) && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-gold)]" />
+                    )}
+                    <span className={isActive(item.path) ? "" : "ml-4"}>
+                      {item.desktopLabel}
+                    </span>
+                  </Link>
+                ))}
+
+                {/* Divider */}
+                <div className="my-2 h-px bg-[var(--border-gold)]/30" />
+
+                {/* Coming Soon items */}
+                <div className="flex items-center gap-3 rounded-lg px-3 py-3 text-[var(--color-dim)]">
+                  <span className="ml-4 font-medium">Journal</span>
+                  <span className="rounded bg-[var(--color-dark-bronze)] px-1.5 py-0.5 text-xs text-[var(--color-gold)]/70">
+                    Soon
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 rounded-lg px-3 py-3 text-[var(--color-dim)]">
+                  <span className="ml-4 font-medium">Shop</span>
+                  <span className="rounded bg-[var(--color-dark-bronze)] px-1.5 py-0.5 text-xs text-[var(--color-gold)]/70">
+                    Soon
+                  </span>
+                </div>
+              </nav>
+
+              {/* Decorative geometric accent */}
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-10">
+                <CircleDot className="h-24 w-24 text-[var(--color-gold)]" />
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }
