@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Text } from "@radix-ui/themes";
+import { Button, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -116,16 +116,11 @@ export default function HomePage() {
           </div>
 
           <AnimatedHeroItem>
-            <Flex
-              gap="3 sm:gap-4"
-              className="mt-4 w-full flex-col px-4 sm:mt-8 sm:w-auto sm:flex-row"
-            >
+            <div className="mt-4 flex w-full flex-col items-center gap-3 px-4 sm:mt-8 sm:w-auto sm:flex-row sm:gap-4">
               <AnimatedButton variant="primary" className="w-full sm:w-auto">
                 <Button
                   asChild
                   size="3"
-                  mb={{ xs: "4", md: "0" }}
-                  mr={{ xs: "0", md: "4" }}
                   className="w-full bg-[var(--color-gold)] font-semibold text-[var(--color-obsidian)] shadow-lg shadow-[var(--glow-gold)] transition-all hover:bg-[var(--color-gold-bright)] sm:w-auto"
                 >
                   <Link href={ROUTES.platonicSolids.path}>
@@ -146,7 +141,7 @@ export default function HomePage() {
                   <Link href={ROUTES.sacredPatterns.path}>Sacred Patterns →</Link>
                 </Button>
               </AnimatedButton>
-            </Flex>
+            </div>
           </AnimatedHeroItem>
         </div>
       </AnimatedHero>
