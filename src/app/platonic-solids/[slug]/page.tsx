@@ -39,19 +39,29 @@ export default async function PlatonicSolidPage({
 
   return (
     <main className="min-h-screen bg-[var(--color-obsidian)] text-[var(--color-cream)]">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-6xl">
           {/* Header with Image */}
           <DetailHero>
-            <Grid columns={{ initial: "1", md: "2" }} gap="8" className="mb-12">
+            <Grid
+              columns={{ initial: "1", md: "2" }}
+              gap={{ initial: "6", md: "8" }}
+              className="mb-8 sm:mb-12"
+            >
               {/* Text Content */}
               <HeroText>
                 <Flex direction="column" gap="6" justify="center">
-                  <Heading size="9" className="font-display text-[var(--color-cream)]">
+                  <Heading
+                    size={{ initial: "7", md: "9" }}
+                    className="font-display text-[var(--color-cream)]"
+                  >
                     {title}
                   </Heading>
 
-                  <Text size="5" className="text-[var(--color-gold)]">
+                  <Text
+                    size={{ initial: "3", md: "5" }}
+                    className="text-[var(--color-gold)]"
+                  >
                     {description}
                   </Text>
                 </Flex>
@@ -65,7 +75,8 @@ export default async function PlatonicSolidPage({
                     alt={title ?? "Platonic Solid"}
                     width={400}
                     height={400}
-                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="w-full max-w-xs sm:max-w-sm md:max-w-md object-contain"
                     style={{
                       filter:
                         "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
@@ -86,13 +97,13 @@ export default async function PlatonicSolidPage({
               <Grid columns={{ initial: "1", sm: "2", lg: "3" }} gap="6">
                 <VisualRepCard index={0}>
                   <Flex direction="column" gap="3" align="center">
-                    <PulsingGeometry interactive={false} className="flex items-center justify-center">
+                    <PulsingGeometry interactive={false} className="relative h-40 w-full">
                       <Image
                         src={images?.solidImage ?? ""}
                         alt={`${title} Solid`}
-                        width={150}
-                        height={150}
-                        className="mx-auto h-40 object-contain"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-contain"
                         style={{
                           filter:
                             "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
@@ -110,13 +121,13 @@ export default async function PlatonicSolidPage({
 
                 <VisualRepCard index={1}>
                   <Flex direction="column" gap="3" align="center">
-                    <PulsingGeometry interactive={false} className="flex items-center justify-center">
+                    <PulsingGeometry interactive={false} className="relative h-40 w-full">
                       <Image
                         src={images?.wireframeImage ?? ""}
                         alt={`${title} Wireframe`}
-                        width={150}
-                        height={150}
-                        className="mx-auto h-40 object-contain"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-contain"
                         style={{
                           filter:
                             "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
@@ -134,13 +145,13 @@ export default async function PlatonicSolidPage({
 
                 <VisualRepCard index={2}>
                   <Flex direction="column" gap="3" align="center">
-                    <PulsingGeometry interactive={false} className="flex items-center justify-center">
+                    <PulsingGeometry interactive={false} className="relative h-40 w-full">
                       <Image
                         src={images?.netImage ?? ""}
                         alt={`${title} Net`}
-                        width={150}
-                        height={150}
-                        className="mx-auto h-40 object-contain"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-contain"
                         style={{
                           filter:
                             "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
