@@ -80,8 +80,16 @@ Content here...
 
 Use `<GeometryNavigation currentSlug={slug} category="platonic|pattern" />` at bottom of geometry pages.
 
+## Development Workflow
+
+- **Feature implementations**: Use `/feature-dev:feature-dev` skill for guided feature development with codebase understanding and architecture focus
+- **Prefer agents**: For multi-step implementations, use the Task tool with specialized agents (`feature-dev:code-architect`, `feature-dev:code-explorer`, `feature-dev:code-reviewer`) to parallelize work and maintain focus
+- **Sub-agent model**: All sub-agents must use Claude Opus (`model: "opus"`)
+- **Code review**: After implementations, use `feature-dev:code-reviewer` agent to review for bugs, security issues, and adherence to project conventions
+
 ## Linear Integration
 
 - **Prefix**: `SG-`
 - **Branch format**: `sg-<issue-number>-<slugified-title>`
 - **Commits**: Reference issue ID (e.g., `SG-74: Add typography`)
+- **Auto-close**: Issues are automatically marked Done when their branch is merged—rarely mark items Done manually
