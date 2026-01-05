@@ -56,7 +56,7 @@ function DesktopTableOfContents() {
                 <button
                   onClick={() => scrollToSection(section.id)}
                   className={cn(
-                    "block w-full text-left text-sm transition-all duration-200",
+                    "block w-full cursor-pointer text-left text-sm transition-all duration-200",
                     "py-1.5 pr-2",
                     "hover:text-[var(--color-gold-bright)]",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-obsidian)]",
@@ -109,7 +109,7 @@ function MobileTableOfContents() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
-            "flex w-full items-center justify-between p-4",
+            "flex w-full cursor-pointer items-center justify-between p-4",
             "transition-colors duration-200",
             "hover:bg-[var(--color-warm-charcoal)]/50",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-inset"
@@ -154,7 +154,7 @@ function MobileTableOfContents() {
                       <button
                         onClick={() => handleSectionClick(section.id)}
                         className={cn(
-                          "block w-full rounded-md px-3 py-2 text-left text-sm",
+                          "block w-full cursor-pointer rounded-md px-3 py-2 text-left text-sm",
                           "transition-colors duration-150",
                           "hover:bg-[var(--color-warm-charcoal)]",
                           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-inset",
