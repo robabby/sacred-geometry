@@ -44,3 +44,17 @@ export function getPatternHeroImage(slug: string) {
     heroImage: getPatternImagePath(slug, "primary"),
   };
 }
+
+/**
+ * Get thumbnail image path for any geometry (unified helper)
+ * Works for both Platonic solids and Sacred patterns
+ */
+export function getGeometryThumbnailPath(
+  slug: string,
+  category: "platonic" | "pattern"
+): string {
+  if (category === "platonic") {
+    return getPlatonicImagePath(slug, "primary");
+  }
+  return getPatternImagePath(slug, "primary");
+}
