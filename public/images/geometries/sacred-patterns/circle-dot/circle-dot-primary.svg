@@ -1,6 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" stroke="currentColor" stroke-width="42.67" stroke-linecap="round" stroke-linejoin="round">
-    <g transform="scale(21.333)">
-        <circle cx="12" cy="12" r="10"/>
-        <circle cx="12" cy="12" r="1"/>
-    </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #201600;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-1" d="M256,0C114.62,0,0,114.62,0,256s114.62,256,256,256,256-114.62,256-256S397.38,0,256,0Zm0,469.33c-117.82,0-213.33-95.51-213.33-213.33S138.18,42.67,256,42.67s213.33,95.51,213.33,213.33-95.51,213.33-213.33,213.33Z"/>
+    <circle class="cls-1" cx="256" cy="256" r="42.67"/>
+  </g>
 </svg>
