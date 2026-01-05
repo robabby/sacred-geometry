@@ -39,6 +39,7 @@ export * from "./geometries.types";
 
 // Re-export utilities
 export { getGeometryPath, getGeometryListPath };
+export { getGeometryThumbnailPath } from "./image-paths";
 
 // ============================================================================
 // GEOMETRIES - Enhanced and Validated
