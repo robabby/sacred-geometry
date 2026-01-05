@@ -3,16 +3,14 @@ import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { MDXSection } from "@/components/mdx-section";
 import { getMDXComponents } from "@/components/mdx-components";
+import { extractSectionsFromMDX, type SectionInfo } from "./types";
 
 /**
  * Sacred Pattern MDX Content Interface
  */
 export interface SacredPatternContent {
   slug: string;
-  sections?: Array<{
-    title: string;
-    id: string;
-  }>;
+  sections: SectionInfo[];
   content: React.ReactElement;
 }
 
@@ -63,9 +61,13 @@ export async function getSacredPatternContent(
     components: customComponents,
   });
 
+  // Use frontmatter sections if provided, otherwise extract from h2 headings
+  const sections: SectionInfo[] =
+    frontmatter.sections ?? extractSectionsFromMDX(source);
+
   return {
     slug: frontmatter.slug ?? slug,
-    sections: frontmatter.sections,
+    sections,
     content,
   };
 }

@@ -104,11 +104,11 @@ export function RelatedGeometries({ slug }: RelatedGeometriesProps) {
   );
 
   return (
-    <Card className="mb-6 border-amber-500/20 bg-gradient-to-br from-blue-950/50 to-indigo-950/50 p-6 sm:mb-8 sm:p-8">
+    <Card className="mb-6 border-[var(--border-gold)] bg-gradient-to-br from-[var(--color-warm-charcoal)] to-[var(--color-dark-bronze)] p-6 sm:mb-8 sm:p-8">
       <Heading
         mb="6"
         size={{ initial: "5", md: "6" }}
-        className="text-amber-300"
+        className="text-[var(--color-gold)]"
       >
         Related Geometries
       </Heading>

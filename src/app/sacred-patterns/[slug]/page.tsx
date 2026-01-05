@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Heading, Text } from "@radix-ui/themes";
+import { Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { GeometryNavigation } from "@/components/geometry-navigation";
@@ -6,6 +6,7 @@ import { getGeometryBySlug, getSacredPatterns } from "@/lib/data";
 import { getSacredPatternContent } from "@/lib/content";
 import { DetailHero, HeroText, HeroGeometry } from "@/components/detail-hero";
 import { PulsingGeometry } from "@/components/pulsing-geometry";
+import { ContentLayout } from "@/components/content-layout";
 
 /**
  * Generate static params for all Sacred Patterns
@@ -110,13 +111,15 @@ export default async function SacredPatternPage({
             </Grid>
           </DetailHero>
 
-          {/* MDX Content - Narrative sections */}
+          {/* MDX Content - Narrative sections with ToC and collapsible behavior */}
           {mdxContent ? (
-            <Box>{mdxContent.content}</Box>
+            <ContentLayout sections={mdxContent.sections}>
+              {mdxContent.content}
+            </ContentLayout>
           ) : (
-            <Box className="text-center text-[var(--color-warm-gray)]">
+            <div className="text-center text-[var(--color-warm-gray)]">
               <Text>Content coming soon...</Text>
-            </Box>
+            </div>
           )}
 
           {/* Navigation */}

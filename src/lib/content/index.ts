@@ -3,6 +3,9 @@
  * Loads MDX content files for both Platonic Solids and Sacred Patterns
  */
 
+// Shared types
+export { type SectionInfo, type ContentWithSections } from "./types";
+
 // Platonic Solids (MDX)
 export {
   getPlatonicSolidContent,

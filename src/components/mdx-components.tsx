@@ -1,6 +1,21 @@
 import type { MDXComponents } from "mdx/types";
+import type { ReactNode } from "react";
 import { Heading, Text } from "@radix-ui/themes";
 import { RelatedGeometries } from "@/components/related-geometries";
+
+/**
+ * Named h2 component with displayName for MDXSection title extraction
+ * The displayName "MDXHeading2" is checked by extractTitleFromChildren()
+ * in mdx-section.tsx to identify h2 elements for collapsible section titles.
+ */
+function MDXHeading2({ children }: { children: ReactNode }) {
+  return (
+    <Heading mb="2" size="5" className="text-amber-300">
+      {children}
+    </Heading>
+  );
+}
+MDXHeading2.displayName = "MDXHeading2";
 
 /**
  * Get custom MDX components for Sacred Pattern content
@@ -18,15 +33,7 @@ export function getMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </Heading>
     ),
-    h2: ({ children }) => (
-      <Heading
-        mb="2"
-        size="5"
-        className="text-amber-300"
-      >
-        {children}
-      </Heading>
-    ),
+    h2: MDXHeading2,
     h3: ({ children }) => (
       <Heading size="4" mb="3" className="text-amber-200">
         {children}
@@ -35,17 +42,17 @@ export function getMDXComponents(components: MDXComponents): MDXComponents {
 
     // Paragraphs
     p: ({ children }) => (
-      <Text as="p" mb="2" className="text-blue-200">
+      <Text as="p" mb="2" className="text-[var(--color-cream)]">
         {children}
       </Text>
     ),
 
     // Lists
     ul: ({ children }) => (
-      <ul className="mb-4 space-y-3 text-blue-200">{children}</ul>
+      <ul className="mb-4 space-y-3 text-[var(--color-cream)]">{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="mb-4 ml-4 space-y-3 text-blue-200">{children}</ol>
+      <ol className="mb-4 ml-4 space-y-3 text-[var(--color-cream)]">{children}</ol>
     ),
     li: ({ children }) => <li>{children}</li>,
 
