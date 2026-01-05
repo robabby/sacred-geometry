@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Heading, Text } from "@radix-ui/themes";
+import { Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { GeometryNavigation } from "@/components/geometry-navigation";
@@ -8,6 +8,7 @@ import { DetailHero, HeroText, HeroGeometry } from "@/components/detail-hero";
 import { PulsingGeometry, VisualRepCard } from "@/components/pulsing-geometry";
 import { AnimateOnScroll } from "@/components/animate-on-scroll";
 import { AnimatedCard } from "@/components/animated-card";
+import { ContentLayout } from "@/components/content-layout";
 
 export async function generateStaticParams() {
   return getPlatonicSolids().map((solid) => ({
@@ -252,13 +253,15 @@ export default async function PlatonicSolidPage({
             </AnimatedCard>
           </AnimateOnScroll>
 
-          {/* MDX Content - Narrative sections */}
+          {/* MDX Content - Narrative sections with ToC and collapsible behavior */}
           {mdxContent ? (
-            <Box>{mdxContent.content}</Box>
+            <ContentLayout sections={mdxContent.sections}>
+              {mdxContent.content}
+            </ContentLayout>
           ) : (
-            <Box className="text-center text-blue-300">
+            <div className="text-center text-[var(--color-warm-gray)]">
               <Text>Content coming soon...</Text>
-            </Box>
+            </div>
           )}
 
           {/* Navigation */}

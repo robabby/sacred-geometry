@@ -3,12 +3,14 @@ import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { MDXSection } from "@/components/mdx-section";
 import { getMDXComponents } from "@/components/mdx-components";
+import { extractSectionsFromMDX, type SectionInfo } from "./types";
 
 /**
  * Platonic Solid MDX Content Interface
  */
 export interface PlatonicSolidContent {
   slug: string;
+  sections: SectionInfo[];
   content: React.ReactElement;
 }
 
@@ -52,14 +54,20 @@ export async function getPlatonicSolidContent(
 
   const { content, frontmatter } = await compileMDX<{
     slug: string;
+    sections?: SectionInfo[];
   }>({
     source,
     options: { parseFrontmatter: true },
     components: customComponents,
   });
 
+  // Use frontmatter sections if provided, otherwise extract from h2 headings
+  const sections: SectionInfo[] =
+    frontmatter.sections ?? extractSectionsFromMDX(source);
+
   return {
     slug: frontmatter.slug ?? slug,
+    sections,
     content,
   };
 }
