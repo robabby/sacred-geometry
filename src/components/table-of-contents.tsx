@@ -95,7 +95,11 @@ function MobileTableOfContents() {
 
   const handleSectionClick = useCallback((id: string) => {
     setIsOpen(false);
-    scrollToSection(id);
+    // Delay scroll until after dropdown close animation (200ms) completes
+    // to prevent browser scroll position recalculation from cancelling scroll
+    setTimeout(() => {
+      scrollToSection(id);
+    }, 250);
   }, []);
 
   if (sections.length === 0) return null;
