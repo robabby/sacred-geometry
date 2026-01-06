@@ -61,31 +61,24 @@ export function MDXSection({ children }: MDXSectionProps) {
     element.id = id;
   }, [context, fallbackId]);
 
-  // Set up IntersectionObserver to track active section for ToC
+  // Get stable reference to registerSection
+  const registerSection = context?.registerSection;
+
+  // Register with the centralized section tracker
   useEffect(() => {
-    if (!context) return;
+    if (!registerSection) return;
 
     const element = sectionRef.current;
     if (!element) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Use the current computed ID from ref
-            context.setActiveSection(computedIdRef.current);
-          }
-        });
-      },
-      {
-        rootMargin: "-20% 0px -60% 0px",
-        threshold: 0,
-      }
-    );
+    // Register this section element
+    registerSection(computedIdRef.current, element);
 
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [context]);
+    return () => {
+      // Unregister on cleanup
+      registerSection(computedIdRef.current, null);
+    };
+  }, [registerSection]);
 
   return (
     <Card
