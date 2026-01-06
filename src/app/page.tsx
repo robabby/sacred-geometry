@@ -66,20 +66,20 @@ export default function HomePage() {
         <div className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center gap-4 px-4 py-8 sm:min-h-[70vh] sm:gap-6 sm:px-6 sm:py-12 lg:gap-8 lg:px-8 lg:py-16">
           <div className="flex flex-col items-center gap-4 text-center sm:gap-6">
             <AnimatedHeroItem>
-              <div className="flex items-center gap-2 sm:gap-4">
-                <CircleDot className="h-8 w-8 text-[var(--color-gold)] sm:h-12 sm:w-12" />
-                <h1 className="font-display text-hero tracking-tight text-[var(--color-cream)]">
-                  Sacred{" "}
-                  <span className="text-[var(--color-gold)]">Geometry</span>
-                </h1>
-                <CircleDot className="h-8 w-8 text-[var(--color-gold)] sm:h-12 sm:w-12" />
-              </div>
+              <p className="font-heading max-w-2xl px-4 text-lg text-[var(--color-warm-gray)] sm:text-2xl">
+                Welcome to the world of
+              </p>
             </AnimatedHeroItem>
 
             <AnimatedHeroItem>
-              <p className="font-heading max-w-2xl px-4 text-lg text-[var(--color-warm-gray)] sm:text-2xl">
-                {ROUTES.home.description}
-              </p>
+              <div className="flex items-center gap-2 sm:gap-4">
+                <CircleDot className="h-8 w-8 text-[var(--color-gold)] sm:h-12 sm:w-12" />
+                <h1 className="font-display text-hero tracking-tight text-[var(--color-cream)]">
+                  SACRED{" "}
+                  <span className="text-[var(--color-gold)]">GEOMETRY</span>
+                </h1>
+                <CircleDot className="h-8 w-8 text-[var(--color-gold)] sm:h-12 sm:w-12" />
+              </div>
             </AnimatedHeroItem>
 
             <AnimatedHeroItem>
