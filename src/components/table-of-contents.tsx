@@ -41,7 +41,7 @@ function DesktopTableOfContents() {
       aria-label="Table of contents"
       className="hidden lg:block lg:w-64 lg:flex-shrink-0"
     >
-      <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto">
+      <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto overflow-x-hidden">
         <div className="border-l-2 border-[var(--border-gold)] pl-4">
           <Heading
             size="3"
