@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Fuse from "fuse.js";
+import { Search, X, ArrowRight, Clock } from "lucide-react";
 import {
   Command,
   CommandEmpty,
@@ -18,8 +19,11 @@ import { Badge } from "@/components/ui/badge";
 import {
   getGeometryPath,
   getAllGeometries,
+  getPlatonicSolids,
+  getSacredPatterns,
 } from "@/lib/data";
 import type { Geometry } from "@/lib/data/geometries.types";
+import { cn } from "@/lib/utils";
 
 // Helper function to highlight matching text
 function highlightText(text: string, query: string): React.ReactNode {
@@ -28,7 +32,10 @@ function highlightText(text: string, query: string): React.ReactNode {
   const parts = text.split(new RegExp(`(${query})`, 'gi'));
   return parts.map((part, index) =>
     part.toLowerCase() === query.toLowerCase() ? (
-      <mark key={index} className="bg-amber-400/30 text-amber-200 font-medium">
+      <mark
+        key={index}
+        className="bg-[var(--color-gold)]/20 text-[var(--color-gold-bright)] font-medium rounded-sm px-0.5"
+      >
         {part}
       </mark>
     ) : (
@@ -222,183 +229,407 @@ export function SearchCommand() {
     setQuery(value ?? "");
   };
 
+  // Get counts for discovery state
+  const platonicCount = getPlatonicSolids().length;
+  const patternCount = getSacredPatterns().length;
+
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="overflow-hidden p-0 bg-gradient-to-br from-[#0a1628] via-[#1a2642] to-[#0f1b2e] border-amber-500/30 !top-[10vh] !translate-y-0 max-h-[80vh]">
+      <DialogContent
+        className={cn(
+          "overflow-hidden p-0",
+          "bg-[var(--color-obsidian)] border-[var(--border-gold)]",
+          // Desktop positioning
+          "sm:!top-[15vh] sm:!translate-y-0 sm:max-h-[70vh] sm:rounded-lg sm:max-w-lg",
+          // Mobile - bottom sheet style
+          "!top-auto !bottom-0 !translate-y-0 max-h-[85vh] w-full max-w-full rounded-t-xl rounded-b-none sm:!bottom-auto"
+        )}
+      >
         <DialogTitle className="sr-only">Search Geometries</DialogTitle>
         <Command shouldFilter={false} loop className="bg-transparent">
-          <CommandInput
-            placeholder="Search geometries..."
-            value={query}
-            onValueChange={handleQueryChange}
-            className="text-blue-100 placeholder:text-blue-300/50"
-          />
-      <CommandList className="max-h-[400px]">
-        {/* Recent Searches - show when no query */}
-        {!searchQuery && recentSearches.length > 0 && (
-          <CommandGroup heading="Recent Searches" className="[&_[cmdk-group-heading]]:text-amber-400 [&_[cmdk-group-heading]]:font-semibold">
-            {recentSearches.map((recentQuery, index) => (
-              <CommandItem
-                key={index}
-                value={recentQuery}
-                onSelect={() => handleRecentSearch(recentQuery)}
-                className="cursor-pointer data-[selected=true]:bg-amber-900/20 data-[selected=true]:border-l-2 data-[selected=true]:border-amber-500 hover:bg-blue-900/30"
+          {/* Search Input with Clear Button */}
+          <div className="relative flex items-center bg-[var(--color-warm-charcoal)]/30">
+            <CommandInput
+              placeholder="Search geometries..."
+              value={query}
+              onValueChange={handleQueryChange}
+              className="text-[var(--color-cream)] placeholder:text-[var(--color-dim)] text-base h-12 sm:h-14 pr-10"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setQuery("")}
+                className="absolute right-4 p-1.5 rounded-md text-[var(--color-dim)] hover:text-[var(--color-warm-gray)] hover:bg-[var(--color-dark-bronze)] transition-colors"
               >
-                <div className="flex items-center gap-2 w-full">
-                  <svg className="h-4 w-4 text-amber-400/70" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="flex-1 text-sm text-blue-100">{recentQuery}</span>
-                </div>
-              </CommandItem>
-            ))}
-            <CommandItem
-              onSelect={handleClearRecent}
-              className="cursor-pointer text-amber-400/70 hover:text-amber-300 hover:bg-blue-900/30 border-t border-amber-500/20 mt-2 pt-2"
-            >
-              <span className="text-xs">Clear recent searches</span>
-            </CommandItem>
-          </CommandGroup>
-        )}
-
-        <CommandEmpty>
-          <div className="py-6 px-4 text-center">
-            <p className="text-blue-200/70 text-sm font-medium mb-3">No results found for &ldquo;{searchQuery}&rdquo;</p>
-            <p className="text-blue-300/50 text-xs mb-4">
-              Try a different search term or browse all geometries:
-            </p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {["flower", "tetrahedron", "golden", "circle", "life"].map((suggestion) => (
-                <button
-                  key={suggestion}
-                  onClick={() => setQuery(suggestion)}
-                  className="px-3 py-1 text-xs rounded-full bg-blue-900/50 text-amber-300 border border-amber-500/30 hover:bg-amber-900/20 hover:border-amber-500/50 transition-colors"
-                >
-                  {suggestion}
-                </button>
-              ))}
-            </div>
-            <div className="mt-4 flex justify-center gap-4 text-xs">
-              <Link href="/platonic-solids" className="text-amber-400/70 hover:text-amber-300">
-                Browse Platonic Solids →
-              </Link>
-              <Link href="/sacred-patterns" className="text-amber-400/70 hover:text-amber-300">
-                Browse Sacred Patterns →
-              </Link>
-            </div>
+                <X className="h-4 w-4" />
+              </button>
+            )}
           </div>
-        </CommandEmpty>
 
-        {/* Platonic Solids Group */}
-        {platonicResults.length > 0 && (
-          <CommandGroup heading="Platonic Solids" className="[&_[cmdk-group-heading]]:text-amber-400 [&_[cmdk-group-heading]]:font-semibold">
-            {platonicResults.map((geometry) => (
-              <CommandItem
-                key={geometry.id}
-                value={`${geometry.name} ${geometry.aliases?.join(" ") ?? ""}`}
-                onSelect={() => handleSelect(geometry)}
-                className="cursor-pointer data-[selected=true]:bg-amber-900/20 data-[selected=true]:border-l-2 data-[selected=true]:border-amber-500 hover:bg-blue-900/30"
-              >
-                <div className="flex items-center gap-3 w-full">
-                  {/* Geometry Image */}
-                  {geometry.images?.heroImage && (
-                    <div className="relative h-8 w-8 shrink-0">
-                      <Image
-                        src={geometry.images.heroImage}
-                        alt={geometry.name}
-                        fill
-                        sizes="32px"
-                        className="object-contain"
-                        style={{
-                          filter:
-                            "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
-                        }}
-                      />
-                    </div>
-                  )}
-
-                  {/* Geometry Details */}
-                  <div className="flex flex-col flex-1 min-w-0">
-                    <span className="font-medium text-sm truncate text-amber-100">
-                      {highlightText(geometry.name, searchQuery)}
-                    </span>
-                    {geometry.description && (
-                      <span className="text-blue-300/70 text-xs truncate">
-                        {highlightText(geometry.description, searchQuery)}
-                      </span>
+          <CommandList className="max-h-[50vh] sm:max-h-[400px]">
+            {/* Discovery State - show when no query and no recent searches */}
+            {!searchQuery && recentSearches.length === 0 && (
+              <div className="py-6 px-4">
+                {/* Quick access categories */}
+                <div className="grid grid-cols-2 gap-3">
+                  <Link
+                    href="/platonic-solids"
+                    className={cn(
+                      "flex items-center gap-3 p-3 sm:p-4 rounded-lg",
+                      "bg-[var(--color-warm-charcoal)]/40",
+                      "border border-[var(--border-gold)]/30",
+                      "hover:bg-[var(--color-dark-bronze)]/50",
+                      "hover:border-[var(--color-gold)]/50",
+                      "transition-all duration-200"
                     )}
+                    onClick={() => setOpen(false)}
+                  >
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 rounded bg-[var(--color-dark-bronze)] flex items-center justify-center">
+                      <span className="text-[var(--color-gold)] font-heading text-lg sm:text-xl">{platonicCount}</span>
+                    </div>
+                    <div>
+                      <p className="text-sm sm:text-base font-medium text-[var(--color-cream)]">Platonic Solids</p>
+                      <p className="text-xs sm:text-sm text-[var(--color-dim)]">Perfect forms</p>
+                    </div>
+                  </Link>
+
+                  <Link
+                    href="/sacred-patterns"
+                    className={cn(
+                      "flex items-center gap-3 p-3 sm:p-4 rounded-lg",
+                      "bg-[var(--color-warm-charcoal)]/40",
+                      "border border-[var(--border-gold)]/30",
+                      "hover:bg-[var(--color-dark-bronze)]/50",
+                      "hover:border-[var(--color-gold)]/50",
+                      "transition-all duration-200"
+                    )}
+                    onClick={() => setOpen(false)}
+                  >
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 rounded bg-[var(--color-dark-bronze)] flex items-center justify-center">
+                      <span className="text-[var(--color-gold)] font-heading text-lg sm:text-xl">{patternCount}</span>
+                    </div>
+                    <div>
+                      <p className="text-sm sm:text-base font-medium text-[var(--color-cream)]">Sacred Patterns</p>
+                      <p className="text-xs sm:text-sm text-[var(--color-dim)]">Universal geometry</p>
+                    </div>
+                  </Link>
+                </div>
+
+                {/* Popular searches */}
+                <div className="mt-4 pt-4 border-t border-[var(--border-gold)]/20">
+                  <p className="text-xs sm:text-sm text-[var(--color-dim)] mb-3 px-1">Popular searches</p>
+                  <div className="flex flex-wrap gap-2">
+                    {["Flower of Life", "Metatron", "Golden Ratio", "Vesica Piscis"].map((term) => (
+                      <button
+                        key={term}
+                        onClick={() => setQuery(term)}
+                        className={cn(
+                          "px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-full",
+                          "bg-[var(--color-dark-bronze)]/50",
+                          "text-[var(--color-warm-gray)]",
+                          "border border-transparent",
+                          "hover:text-[var(--color-gold)]",
+                          "hover:border-[var(--border-gold)]/50",
+                          "transition-all duration-200"
+                        )}
+                      >
+                        {term}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Recent Searches - show when no query but has recent searches */}
+            {!searchQuery && recentSearches.length > 0 && (
+              <CommandGroup
+                heading="Recent Searches"
+                className={cn(
+                  "[&_[cmdk-group-heading]]:text-[var(--color-gold)]",
+                  "[&_[cmdk-group-heading]]:font-heading",
+                  "[&_[cmdk-group-heading]]:text-xs",
+                  "[&_[cmdk-group-heading]]:sm:text-sm",
+                  "[&_[cmdk-group-heading]]:uppercase",
+                  "[&_[cmdk-group-heading]]:tracking-wider",
+                  "[&_[cmdk-group-heading]]:px-3",
+                  "[&_[cmdk-group-heading]]:py-2"
+                )}
+              >
+                {recentSearches.map((recentQuery, index) => (
+                  <CommandItem
+                    key={index}
+                    value={recentQuery}
+                    onSelect={() => handleRecentSearch(recentQuery)}
+                    className={cn(
+                      "cursor-pointer rounded-md mx-2 my-0.5 py-3 px-3",
+                      "transition-all duration-200",
+                      "data-[selected=true]:bg-[var(--color-dark-bronze)]/60",
+                      "data-[selected=true]:border-l-2 data-[selected=true]:border-[var(--color-gold)]",
+                      "hover:bg-[var(--color-warm-charcoal)]/50"
+                    )}
+                  >
+                    <div className="flex items-center gap-3 w-full">
+                      <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-[var(--color-gold)]/50" />
+                      <span className="flex-1 text-sm sm:text-base text-[var(--color-cream)]">{recentQuery}</span>
+                    </div>
+                  </CommandItem>
+                ))}
+                <CommandItem
+                  onSelect={handleClearRecent}
+                  className={cn(
+                    "cursor-pointer mx-2 mt-2 py-2 px-3 rounded-md",
+                    "text-[var(--color-dim)]",
+                    "hover:text-[var(--color-gold)]",
+                    "hover:bg-[var(--color-dark-bronze)]/30",
+                    "transition-colors",
+                    "border-t border-[var(--border-gold)]/20"
+                  )}
+                >
+                  <span className="text-xs">Clear recent searches</span>
+                </CommandItem>
+              </CommandGroup>
+            )}
+
+            {/* Empty State - no results found (only show when there's a search query) */}
+            <CommandEmpty>
+              {searchQuery && (
+                <div className="py-8 px-6 text-center">
+                  {/* Visual indicator */}
+                  <div className="mx-auto mb-4 h-12 w-12 rounded-full bg-[var(--color-dark-bronze)] flex items-center justify-center">
+                    <Search className="h-5 w-5 text-[var(--color-dim)]" />
                   </div>
 
-                  {/* Element Badge */}
-                  {geometry.relatedBy?.element && (
-                    <Badge
-                      variant="secondary"
-                      className="shrink-0 capitalize text-xs bg-blue-900/50 text-amber-300 border-amber-500/30"
-                    >
-                      {geometry.relatedBy.element}
-                    </Badge>
-                  )}
-                </div>
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        )}
+                  {/* Message */}
+                  <p className="text-[var(--color-warm-gray)] text-sm font-medium mb-2">
+                    No results for &ldquo;{searchQuery}&rdquo;
+                  </p>
+                  <p className="text-[var(--color-dim)] text-xs mb-6">
+                    Try a different term or explore suggestions below
+                  </p>
 
-        {/* Sacred Patterns Group */}
-        {patternResults.length > 0 && (
-          <CommandGroup heading="Sacred Patterns" className="[&_[cmdk-group-heading]]:text-amber-400 [&_[cmdk-group-heading]]:font-semibold">
-            {patternResults.map((geometry) => (
-              <CommandItem
-                key={geometry.id}
-                value={`${geometry.name} ${geometry.aliases?.join(" ") ?? ""}`}
-                onSelect={() => handleSelect(geometry)}
-                className="cursor-pointer data-[selected=true]:bg-amber-900/20 data-[selected=true]:border-l-2 data-[selected=true]:border-amber-500 hover:bg-blue-900/30"
-              >
-                <div className="flex items-center gap-3 w-full">
-                  {/* Geometry Image */}
-                  {geometry.images?.heroImage && (
-                    <div className="relative h-8 w-8 shrink-0">
-                      <Image
-                        src={geometry.images.heroImage}
-                        alt={geometry.name}
-                        fill
-                        sizes="32px"
-                        className="object-contain"
-                        style={{
-                          filter:
-                            "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
-                        }}
-                      />
-                    </div>
-                  )}
-
-                  {/* Geometry Details */}
-                  <div className="flex flex-col flex-1 min-w-0">
-                    <span className="font-medium text-sm truncate text-amber-100">
-                      {highlightText(geometry.name, searchQuery)}
-                    </span>
-                    {geometry.description && (
-                      <span className="text-blue-300/70 text-xs truncate">
-                        {highlightText(geometry.description, searchQuery)}
-                      </span>
-                    )}
+                  {/* Suggestion pills */}
+                  <div className="flex flex-wrap justify-center gap-2 mb-6">
+                    {["flower", "tetrahedron", "golden", "circle", "life"].map((suggestion) => (
+                      <button
+                        key={suggestion}
+                        onClick={() => setQuery(suggestion)}
+                        className={cn(
+                          "px-3 py-1.5 text-xs rounded-full",
+                          "bg-[var(--color-dark-bronze)]",
+                          "text-[var(--color-gold)]",
+                          "border border-[var(--border-gold)]/50",
+                          "hover:bg-[var(--color-warm-charcoal)]",
+                          "hover:border-[var(--color-gold)]/70",
+                          "transition-all duration-200"
+                        )}
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
                   </div>
 
-                  {/* Element Badge (if applicable) */}
-                  {geometry.relatedBy?.element && (
-                    <Badge
-                      variant="secondary"
-                      className="shrink-0 capitalize text-xs bg-blue-900/50 text-amber-300 border-amber-500/30"
+                  {/* Browse links */}
+                  <div className="flex justify-center gap-6 text-xs">
+                    <Link
+                      href="/platonic-solids"
+                      className="text-[var(--color-gold)]/80 hover:text-[var(--color-gold)] transition-colors flex items-center gap-1"
+                      onClick={() => setOpen(false)}
                     >
-                      {geometry.relatedBy.element}
-                    </Badge>
-                  )}
+                      <span>Platonic Solids</span>
+                      <ArrowRight className="h-3 w-3" />
+                    </Link>
+                    <Link
+                      href="/sacred-patterns"
+                      className="text-[var(--color-gold)]/80 hover:text-[var(--color-gold)] transition-colors flex items-center gap-1"
+                      onClick={() => setOpen(false)}
+                    >
+                      <span>Sacred Patterns</span>
+                      <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  </div>
                 </div>
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        )}
-        </CommandList>
+              )}
+            </CommandEmpty>
+
+            {/* Platonic Solids Group */}
+            {platonicResults.length > 0 && (
+              <CommandGroup
+                heading="Platonic Solids"
+                className={cn(
+                  "[&_[cmdk-group-heading]]:text-[var(--color-gold)]",
+                  "[&_[cmdk-group-heading]]:font-heading",
+                  "[&_[cmdk-group-heading]]:text-xs",
+                  "[&_[cmdk-group-heading]]:sm:text-sm",
+                  "[&_[cmdk-group-heading]]:uppercase",
+                  "[&_[cmdk-group-heading]]:tracking-wider",
+                  "[&_[cmdk-group-heading]]:px-3",
+                  "[&_[cmdk-group-heading]]:py-2"
+                )}
+              >
+                {platonicResults.map((geometry) => (
+                  <CommandItem
+                    key={geometry.id}
+                    value={`${geometry.name} ${geometry.aliases?.join(" ") ?? ""}`}
+                    onSelect={() => handleSelect(geometry)}
+                    className={cn(
+                      "cursor-pointer rounded-md mx-2 my-0.5 py-3 px-3",
+                      "transition-all duration-200",
+                      "data-[selected=true]:bg-[var(--color-dark-bronze)]/60",
+                      "data-[selected=true]:border-l-2 data-[selected=true]:border-[var(--color-gold)]",
+                      "hover:bg-[var(--color-warm-charcoal)]/50"
+                    )}
+                  >
+                    <div className="flex items-center gap-3 w-full">
+                      {/* Geometry Image */}
+                      {geometry.images?.heroImage && (
+                        <div className="relative h-9 w-9 sm:h-10 sm:w-10 shrink-0 rounded-md overflow-hidden bg-[var(--color-dark-bronze)]/30">
+                          <Image
+                            src={geometry.images.heroImage}
+                            alt={geometry.name}
+                            fill
+                            sizes="40px"
+                            className="object-contain p-1"
+                            style={{
+                              filter:
+                                "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
+                            }}
+                          />
+                        </div>
+                      )}
+
+                      {/* Geometry Details */}
+                      <div className="flex flex-col flex-1 min-w-0">
+                        <span className="font-medium text-sm sm:text-base truncate text-[var(--color-cream)]">
+                          {highlightText(geometry.name, searchQuery)}
+                        </span>
+                        {geometry.description && (
+                          <span className="text-[var(--color-warm-gray)] text-xs sm:text-sm truncate">
+                            {highlightText(geometry.description, searchQuery)}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Element Badge */}
+                      {geometry.relatedBy?.element && (
+                        <Badge
+                          variant="outline"
+                          className="shrink-0 capitalize text-xs sm:text-sm bg-transparent border-[var(--border-copper)] text-[var(--color-copper)]"
+                        >
+                          {geometry.relatedBy.element}
+                        </Badge>
+                      )}
+                    </div>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            )}
+
+            {/* Sacred Patterns Group */}
+            {patternResults.length > 0 && (
+              <CommandGroup
+                heading="Sacred Patterns"
+                className={cn(
+                  "[&_[cmdk-group-heading]]:text-[var(--color-gold)]",
+                  "[&_[cmdk-group-heading]]:font-heading",
+                  "[&_[cmdk-group-heading]]:text-xs",
+                  "[&_[cmdk-group-heading]]:sm:text-sm",
+                  "[&_[cmdk-group-heading]]:uppercase",
+                  "[&_[cmdk-group-heading]]:tracking-wider",
+                  "[&_[cmdk-group-heading]]:px-3",
+                  "[&_[cmdk-group-heading]]:py-2"
+                )}
+              >
+                {patternResults.map((geometry) => (
+                  <CommandItem
+                    key={geometry.id}
+                    value={`${geometry.name} ${geometry.aliases?.join(" ") ?? ""}`}
+                    onSelect={() => handleSelect(geometry)}
+                    className={cn(
+                      "cursor-pointer rounded-md mx-2 my-0.5 py-3 px-3",
+                      "transition-all duration-200",
+                      "data-[selected=true]:bg-[var(--color-dark-bronze)]/60",
+                      "data-[selected=true]:border-l-2 data-[selected=true]:border-[var(--color-gold)]",
+                      "hover:bg-[var(--color-warm-charcoal)]/50"
+                    )}
+                  >
+                    <div className="flex items-center gap-3 w-full">
+                      {/* Geometry Image */}
+                      {geometry.images?.heroImage && (
+                        <div className="relative h-9 w-9 sm:h-10 sm:w-10 shrink-0 rounded-md overflow-hidden bg-[var(--color-dark-bronze)]/30">
+                          <Image
+                            src={geometry.images.heroImage}
+                            alt={geometry.name}
+                            fill
+                            sizes="40px"
+                            className="object-contain p-1"
+                            style={{
+                              filter:
+                                "brightness(0) saturate(100%) invert(85%) sepia(66%) saturate(466%) hue-rotate(358deg) brightness(98%) contrast(91%)",
+                            }}
+                          />
+                        </div>
+                      )}
+
+                      {/* Geometry Details */}
+                      <div className="flex flex-col flex-1 min-w-0">
+                        <span className="font-medium text-sm sm:text-base truncate text-[var(--color-cream)]">
+                          {highlightText(geometry.name, searchQuery)}
+                        </span>
+                        {geometry.description && (
+                          <span className="text-[var(--color-warm-gray)] text-xs sm:text-sm truncate">
+                            {highlightText(geometry.description, searchQuery)}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Element Badge (if applicable) */}
+                      {geometry.relatedBy?.element && (
+                        <Badge
+                          variant="outline"
+                          className="shrink-0 capitalize text-xs sm:text-sm bg-transparent border-[var(--border-copper)] text-[var(--color-copper)]"
+                        >
+                          {geometry.relatedBy.element}
+                        </Badge>
+                      )}
+                    </div>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            )}
+          </CommandList>
+
+          {/* Keyboard hints footer */}
+          <div
+            className={cn(
+              "flex items-center justify-between px-4 py-2",
+              "border-t border-[var(--border-gold)]/20",
+              "bg-[var(--color-warm-charcoal)]/30"
+            )}
+          >
+            <div className="hidden sm:flex items-center gap-4 text-xs text-[var(--color-dim)]">
+              <span className="flex items-center gap-1.5">
+                <kbd className="px-1.5 py-0.5 rounded bg-[var(--color-dark-bronze)] text-[var(--color-warm-gray)] font-mono text-[10px]">
+                  ↑↓
+                </kbd>
+                <span>navigate</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <kbd className="px-1.5 py-0.5 rounded bg-[var(--color-dark-bronze)] text-[var(--color-warm-gray)] font-mono text-[10px]">
+                  ↵
+                </kbd>
+                <span>select</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <kbd className="px-1.5 py-0.5 rounded bg-[var(--color-dark-bronze)] text-[var(--color-warm-gray)] font-mono text-[10px]">
+                  esc
+                </kbd>
+                <span>close</span>
+              </span>
+            </div>
+            <span className="text-xs text-[var(--color-dim)]">
+              {results.length > 0 ? `${results.length} result${results.length === 1 ? "" : "s"}` : ""}
+            </span>
+          </div>
         </Command>
       </DialogContent>
     </Dialog>
