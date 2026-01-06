@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types";
-import type { ReactNode } from "react";
+import type { ReactNode, AnchorHTMLAttributes } from "react";
 import { Heading, Text } from "@radix-ui/themes";
+import Link from "next/link";
 import { RelatedGeometries } from "@/components/related-geometries";
 
 /**
@@ -60,6 +61,34 @@ export function getMDXComponents(components: MDXComponents): MDXComponents {
     strong: ({ children }) => (
       <strong className="text-amber-300">{children}</strong>
     ),
+
+    // Links - styled with gold color and underline for visibility
+    a: ({ href, children, ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) => {
+      // Use Next.js Link for internal links
+      const isInternal = href?.startsWith("/") || href?.startsWith("#");
+
+      const linkStyles = "text-[var(--color-gold)] underline decoration-[var(--color-gold-muted)] underline-offset-2 transition-colors hover:text-[var(--color-gold-bright)] hover:decoration-[var(--color-gold)]";
+
+      if (isInternal && href) {
+        return (
+          <Link href={href} className={linkStyles} {...props}>
+            {children}
+          </Link>
+        );
+      }
+
+      return (
+        <a
+          href={href}
+          className={linkStyles}
+          target="_blank"
+          rel="noopener noreferrer"
+          {...props}
+        >
+          {children}
+        </a>
+      );
+    },
 
     // Wrapper for sections - wraps content between h2s in Cards
     wrapper: ({ children }) => <>{children}</>,
