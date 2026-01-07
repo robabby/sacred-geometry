@@ -2,11 +2,19 @@ import { Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { GeometryNavigation } from "@/components/geometry-navigation";
-import { getGeometryBySlug, getSacredPatterns } from "@/lib/data";
+import {
+  getGeometryBySlug,
+  getSacredPatterns,
+  getGeometryPath,
+} from "@/lib/data";
 import { getSacredPatternContent } from "@/lib/content";
 import { DetailHero, HeroText, HeroGeometry } from "@/components/detail-hero";
 import { PulsingGeometry } from "@/components/pulsing-geometry";
 import { ContentLayout } from "@/components/content-layout";
+import {
+  StructuredData,
+  createArticleSchema,
+} from "@/components/structured-data";
 
 /**
  * Generate static params for all Sacred Patterns
@@ -62,8 +70,18 @@ export default async function SacredPatternPage({
 
   const { title, description, images, name } = geometry;
 
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://sacredgeometry.site";
+
   return (
     <main className="min-h-screen bg-[var(--color-obsidian)] text-[var(--color-cream)]">
+      <StructuredData
+        data={createArticleSchema({
+          url: `${baseUrl}${getGeometryPath(geometry)}`,
+          headline: name,
+          description: description ?? "",
+        })}
+      />
       <div className="container mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-6xl">
           {/* Hero Section - Data from geometry model */}
