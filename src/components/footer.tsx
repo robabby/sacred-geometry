@@ -129,6 +129,14 @@ export function Footer() {
               >
                 GitHub
               </a>
+              <a
+                href="https://robabby.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[var(--color-warm-gray)] transition-colors hover:text-[var(--color-gold)]"
+              >
+                Rob Abby
+              </a>
             </div>
           </div>
         </div>
