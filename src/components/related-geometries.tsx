@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { Card, Heading } from "@radix-ui/themes";
 import {
   getGeometryBySlug,
@@ -13,6 +14,7 @@ import {
 } from "./relationship-badge";
 import { cn } from "@/lib/utils";
 import { StaggerChildren, StaggerItem } from "./stagger-children";
+import { useContentLayoutSafe } from "./content-layout-context";
 
 interface RelatedGeometriesProps {
   slug: string;
@@ -60,6 +62,18 @@ function getTypeSortPriority(type: RelationshipType): number {
  */
 export function RelatedGeometries({ slug }: RelatedGeometriesProps) {
   const geometry = getGeometryBySlug(slug);
+  const context = useContentLayoutSafe();
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Register with scroll tracking context
+  useEffect(() => {
+    if (!context?.registerSection) return;
+    const element = sectionRef.current;
+    if (!element) return;
+
+    context.registerSection("related-geometries", element);
+    return () => context.registerSection("related-geometries", null);
+  }, [context]);
 
   if (!geometry?.relationships || geometry.relationships.length === 0) {
     return null;
@@ -104,7 +118,11 @@ export function RelatedGeometries({ slug }: RelatedGeometriesProps) {
   );
 
   return (
-    <Card className="mb-6 border-[var(--border-gold)] bg-gradient-to-br from-[var(--color-warm-charcoal)] to-[var(--color-dark-bronze)] p-6 sm:mb-8 sm:p-8">
+    <Card
+      ref={sectionRef}
+      id="related-geometries"
+      className="mb-6 border-[var(--border-gold)] bg-gradient-to-br from-[var(--color-warm-charcoal)] to-[var(--color-dark-bronze)] p-6 sm:mb-8 sm:p-8"
+    >
       <Heading
         mb="6"
         size={{ initial: "5", md: "6" }}
