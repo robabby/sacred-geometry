@@ -255,7 +255,16 @@ export default async function PlatonicSolidPage({
 
           {/* MDX Content - Narrative sections with ToC and collapsible behavior */}
           {mdxContent ? (
-            <ContentLayout sections={mdxContent.sections}>
+            <ContentLayout
+              sections={
+                geometry.relationships && geometry.relationships.length > 0
+                  ? [
+                      ...mdxContent.sections,
+                      { id: "related-geometries", title: "Related Geometries" },
+                    ]
+                  : mdxContent.sections
+              }
+            >
               {mdxContent.content}
             </ContentLayout>
           ) : (
