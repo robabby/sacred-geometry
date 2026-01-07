@@ -130,4 +130,10 @@ export const ROUTES = {
       },
     },
   },
+  faq: {
+    name: "FAQ",
+    path: "/faq",
+    description: "Frequently asked questions about sacred geometry",
+    order: 3,
+  },
 };

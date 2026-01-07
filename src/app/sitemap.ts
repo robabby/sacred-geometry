@@ -23,6 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       changeFrequency: "monthly",
     },
+    {
+      url: `${BASE_URL}/faq`,
+      priority: 0.6,
+      changeFrequency: "monthly",
+    },
     ...geometries.map((g) => ({
       url: `${BASE_URL}${getGeometryPath(g)}`,
       priority: 0.7,
