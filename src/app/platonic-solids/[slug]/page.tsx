@@ -1,19 +1,65 @@
+import type { Metadata } from "next";
 import { Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { GeometryNavigation } from "@/components/geometry-navigation";
-import { getGeometryBySlug, getPlatonicSolids } from "@/lib/data";
+import {
+  getGeometryBySlug,
+  getPlatonicSolids,
+  getGeometryPath,
+} from "@/lib/data";
 import { getPlatonicSolidContent } from "@/lib/content";
 import { DetailHero, HeroText, HeroGeometry } from "@/components/detail-hero";
 import { PulsingGeometry, VisualRepCard } from "@/components/pulsing-geometry";
 import { AnimateOnScroll } from "@/components/animate-on-scroll";
 import { AnimatedCard } from "@/components/animated-card";
 import { ContentLayout } from "@/components/content-layout";
+import {
+  StructuredData,
+  createArticleSchema,
+} from "@/components/structured-data";
 
+/**
+ * Generate static params for all Platonic Solids
+ */
 export async function generateStaticParams() {
   return getPlatonicSolids().map((solid) => ({
     slug: solid.slug,
   }));
+}
+
+/**
+ * Generate metadata for Platonic Solid pages
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const geometry = getGeometryBySlug(slug);
+
+  if (!geometry) {
+    return {
+      title: "Platonic Solid Not Found",
+    };
+  }
+
+  const element = geometry.relatedBy?.element
+    ? geometry.relatedBy.element.charAt(0).toUpperCase() +
+      geometry.relatedBy.element.slice(1)
+    : null;
+
+  return {
+    title: geometry.name,
+    description: geometry.description,
+    openGraph: {
+      title: `${geometry.name} | Sacred Geometry`,
+      description: element
+        ? `${geometry.description} Associated with the element of ${element}.`
+        : geometry.description,
+    },
+  };
 }
 
 export default async function PlatonicSolidPage({
@@ -31,6 +77,7 @@ export default async function PlatonicSolidPage({
 
   const {
     title,
+    name,
     description,
     images,
     mathProperties,
@@ -38,8 +85,18 @@ export default async function PlatonicSolidPage({
     dualOfTitle,
   } = geometry;
 
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://sacredgeometry.site";
+
   return (
     <main className="min-h-screen bg-[var(--color-obsidian)] text-[var(--color-cream)]">
+      <StructuredData
+        data={createArticleSchema({
+          url: `${baseUrl}${getGeometryPath(geometry)}`,
+          headline: name,
+          description: description ?? "",
+        })}
+      />
       <div className="container mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-6xl">
           {/* Header with Image */}

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Box, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
@@ -52,6 +53,17 @@ const categoryMap: Record<string, string> = {
   "fruit-of-life": "Cosmic Blueprint",
   "philosophers-stone": "Alchemical Symbol",
   "pentagram": "Human Microcosm",
+};
+
+export const metadata: Metadata = {
+  title: "Sacred Patterns",
+  description:
+    "Explore sacred geometric patterns including the Flower of Life, Metatron's Cube, Sri Yantra, Golden Ratio, and more. Discover the mathematical principles and divine patterns underlying the universe.",
+  openGraph: {
+    title: "Sacred Patterns | Sacred Geometry",
+    description:
+      "Timeless geometric patterns that appear across cultures and throughout history, representing the fundamental organizing principles of creation.",
+  },
 };
 
 const sacredPatterns = getSacredPatterns()

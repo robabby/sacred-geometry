@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Box, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
@@ -31,6 +32,17 @@ const colorMap: Record<string, string> = {
   octahedron: "text-cyan-400",
   dodecahedron: "text-purple-400",
   icosahedron: "text-blue-400",
+};
+
+export const metadata: Metadata = {
+  title: "Platonic Solids",
+  description:
+    "Explore the five Platonic solids: Tetrahedron, Hexahedron, Octahedron, Dodecahedron, and Icosahedron. Discover their mathematical properties, elemental associations, and sacred significance.",
+  openGraph: {
+    title: "Platonic Solids | Sacred Geometry",
+    description:
+      "The five perfect three-dimensional forms: Tetrahedron (Fire), Hexahedron (Earth), Octahedron (Air), Dodecahedron (Ether), and Icosahedron (Water).",
+  },
 };
 
 const platonicSolids = getPlatonicSolids()

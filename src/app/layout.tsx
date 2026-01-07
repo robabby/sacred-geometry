@@ -13,11 +13,39 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { MotionProvider } from "@/components/motion-provider";
 import { SkipToContent } from "@/components/skip-to-content";
+import {
+  StructuredData,
+  createWebSiteSchema,
+} from "@/components/structured-data";
+
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://sacredgeometry.site";
 
 export const metadata: Metadata = {
-  title: "Sacred Geometry",
-  description: "Learn about sacred geometry and its significance.",
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "Sacred Geometry - Explore Divine Patterns and Platonic Solids",
+    template: "%s | Sacred Geometry",
+  },
+  description:
+    "Discover the mathematical principles and divine patterns underlying the universe. Explore Platonic solids, the Flower of Life, Metatron's Cube, and other sacred geometric forms.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Sacred Geometry",
+    images: [
+      {
+        url: "/images/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "Sacred Geometry",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 // Display font for hero titles and page headings
@@ -53,6 +81,13 @@ export default function RootLayout({
       className={`${cinzelDecorative.variable} ${cormorantGaramond.variable} ${crimsonPro.variable}`}
     >
       <body>
+        <StructuredData
+          data={createWebSiteSchema(
+            BASE_URL,
+            "Sacred Geometry",
+            "Discover the mathematical principles and divine patterns underlying the universe. Explore Platonic solids, the Flower of Life, Metatron's Cube, and other sacred geometric forms."
+          )}
+        />
         <SkipToContent />
         <Theme appearance="dark">
           <MotionProvider>
