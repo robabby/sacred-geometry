@@ -10,7 +10,7 @@ import {
   Octagon,
 } from "lucide-react";
 import { ROUTES } from "@/util/routes";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/client-tabs";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
