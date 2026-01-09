@@ -89,6 +89,8 @@ Use `<GeometryNavigation currentSlug={slug} category="platonic|pattern" />` at b
 
 ## Linear Integration
 
+- **Project**: Metatron Collective
+- **Team**: Sherpa
 - **Prefix**: `SG-`
 - **Branch format**: `sg-<issue-number>-<slugified-title>`
 - **Commits**: Reference issue ID (e.g., `SG-74: Add typography`)
