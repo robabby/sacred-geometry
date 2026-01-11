@@ -2,6 +2,7 @@
 
 import { type ReactNode } from "react";
 import { motion, type Variants } from "motion/react";
+import { EASE_STANDARD } from "@/lib/animation-constants";
 
 interface AnimateOnScrollProps {
   children: ReactNode;
@@ -65,7 +66,7 @@ export function AnimateOnScroll({
       transition={{
         duration,
         delay,
-        ease: [0.25, 0.46, 0.45, 0.94], // ease-out curve
+        ease: EASE_STANDARD,
       }}
     >
       {children}

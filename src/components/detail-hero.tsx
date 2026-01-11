@@ -2,6 +2,7 @@
 
 import { type ReactNode } from "react";
 import { motion } from "motion/react";
+import { EASE_STANDARD } from "@/lib/animation-constants";
 
 /**
  * Detail page hero section with entrance animations.
@@ -53,7 +54,7 @@ export function HeroText({ children, className }: HeroTextProps) {
           y: 0,
           transition: {
             duration: 0.6,
-            ease: [0.25, 0.46, 0.45, 0.94],
+            ease: EASE_STANDARD,
           },
         },
       }}
@@ -83,7 +84,7 @@ export function HeroGeometry({ children, className }: HeroGeometryProps) {
           scale: 1,
           transition: {
             duration: 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94],
+            ease: EASE_STANDARD,
           },
         },
       }}

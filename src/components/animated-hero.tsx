@@ -8,6 +8,7 @@ import {
   type Variants,
 } from "motion/react";
 import { GeometryBackground } from "./geometry-background";
+import { EASE_STANDARD } from "@/lib/animation-constants";
 
 interface AnimatedHeroProps {
   children: ReactNode;
@@ -36,7 +37,7 @@ const itemVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94], // ease-out curve
+      ease: EASE_STANDARD,
     },
   },
 };

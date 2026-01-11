@@ -6,9 +6,7 @@ import { ChevronDown, List } from "lucide-react";
 import { Heading, Text } from "@radix-ui/themes";
 import { cn } from "@/lib/utils";
 import { useContentLayout } from "./content-layout-context";
-
-// Consistent easing from the design system
-const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
+import { EASE_STANDARD } from "@/lib/animation-constants";
 
 /**
  * Scroll to a section
@@ -130,7 +128,7 @@ function MobileTableOfContents() {
 
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.2, ease: EASE }}
+            transition={{ duration: 0.2, ease: EASE_STANDARD }}
             className="text-[var(--color-gold)]"
           >
             <ChevronDown className="h-4 w-4" />
@@ -146,8 +144,8 @@ function MobileTableOfContents() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{
-                height: { duration: 0.2, ease: EASE },
-                opacity: { duration: 0.15, ease: EASE },
+                height: { duration: 0.2, ease: EASE_STANDARD },
+                opacity: { duration: 0.15, ease: EASE_STANDARD },
               }}
               className="overflow-hidden border-t border-[var(--border-gold)]/50"
             >
