@@ -3,6 +3,7 @@
 import { type ReactNode } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { EASE_STANDARD } from "@/lib/animation-constants";
 
 /**
  * Animated button wrapper with enhanced hover/tap/focus states.
@@ -59,7 +60,7 @@ export function AnimatedButton({
       whileTap={variantStyles[variant].whileTap}
       transition={{
         duration: 0.2,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: EASE_STANDARD,
       }}
     >
       {children}

@@ -15,6 +15,7 @@ import { CircleDot, Menu, Search, X } from "lucide-react";
 import { ROUTES } from "@/util/routes";
 import { cn } from "@/lib/utils";
 import { SearchCommand } from "@/components/search-command";
+import { EASE_STANDARD } from "@/lib/animation-constants";
 
 type NavItem = {
   path: string;
@@ -93,7 +94,7 @@ function AnimatedNavLink({
         }}
         transition={{
           duration: 0.3,
-          ease: [0.25, 0.46, 0.45, 0.94],
+          ease: EASE_STANDARD,
         }}
         style={{
           boxShadow: isActive ? "0 0 8px var(--glow-gold)" : "none",
@@ -283,7 +284,7 @@ export function Header() {
               animate={{ rotate: 360 }}
               transition={{
                 duration: 1,
-                ease: [0.25, 0.46, 0.45, 0.94],
+                ease: EASE_STANDARD,
                 delay: 0.2,
               }}
             >
@@ -376,7 +377,7 @@ export function Header() {
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.2, ease: EASE_STANDARD }}
               className="fixed right-0 top-0 z-50 h-full w-72 border-l border-[var(--border-gold)] bg-[var(--color-obsidian)] shadow-2xl sm:hidden"
             >
               {/* Drawer Header */}

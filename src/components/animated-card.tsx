@@ -3,6 +3,7 @@
 import { type ReactNode } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { EASE_STANDARD } from "@/lib/animation-constants";
 
 /**
  * Animated card wrapper with enhanced hover and focus states.
@@ -30,7 +31,7 @@ export function AnimatedCard({ children, className }: AnimatedCardProps) {
       }}
       transition={{
         duration: 0.3,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: EASE_STANDARD,
       }}
     >
       {children}

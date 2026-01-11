@@ -3,6 +3,7 @@
 import { type ReactNode } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { EASE_STANDARD } from "@/lib/animation-constants";
 
 /**
  * Geometry image wrapper with subtle hover scale effect.
@@ -25,7 +26,7 @@ export function PulsingGeometry({
       whileHover={{ scale: 1.03 }}
       transition={{
         duration: 0.3,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: EASE_STANDARD,
       }}
     >
       {children}
@@ -59,7 +60,7 @@ export function VisualRepCard({
       transition={{
         duration: 0.5,
         delay: index * 0.1,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: EASE_STANDARD,
       }}
     >
       {children}

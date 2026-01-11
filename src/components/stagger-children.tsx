@@ -2,6 +2,7 @@
 
 import { type ReactNode } from "react";
 import { motion, type Variants } from "motion/react";
+import { EASE_STANDARD } from "@/lib/animation-constants";
 
 interface StaggerChildrenProps {
   children: ReactNode;
@@ -65,7 +66,7 @@ const itemVariants: Record<string, Variants> = {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: EASE_STANDARD,
       },
     },
   },
@@ -77,7 +78,7 @@ const itemVariants: Record<string, Variants> = {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: EASE_STANDARD,
       },
     },
   },
@@ -91,7 +92,7 @@ const itemVariants: Record<string, Variants> = {
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: EASE_STANDARD,
       },
     },
   },
