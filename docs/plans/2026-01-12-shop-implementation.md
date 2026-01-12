@@ -1,9 +1,9 @@
 # Shop Page Implementation Plan
 
-> **Linear Issues**: [SG-197](https://linear.app/sherpagg/issue/SG-197) (parent), SG-198 through SG-201 (phases)
+> **Linear Issues**: [SG-197](https://linear.app/sherpagg/issue/SG-197) (parent), SG-198 through SG-203 (phases)
 > **Created**: 2026-01-12
-> **Status**: Phase 1 complete, Phase 2 next
-> **PR**: [#85](https://github.com/robabby/sacred-geometry/pull/85) (Phase 1)
+> **Status**: Phase 2 complete, Phase 3 (Feature Flags) next
+> **PRs**: [#85](https://github.com/robabby/sacred-geometry/pull/85) (Phase 1), [#86](https://github.com/robabby/sacred-geometry/pull/86) (Phase 2)
 
 ## Summary
 
@@ -67,6 +67,9 @@ Implement a proof-of-concept shop for sacred geometry merchandise using Printful
 ### `.env.local` (create new file)
 
 ```bash
+# Feature Flags
+NEXT_PUBLIC_SHOP_ENABLED=true  # Set to "false" in production until ready
+
 # Printful
 PRINTFUL_API_KEY=<your-key>
 
@@ -93,6 +96,7 @@ src/
 │       ├── types.ts                 # Shop-related types
 │       ├── printful.ts              # Printful API client
 │       ├── cart-context.tsx         # Cart state + localStorage
+│       ├── feature-flags.ts         # Shop feature flag utilities
 │       └── stripe.ts                # Stripe utilities
 ├── components/
 │   └── shop/
@@ -187,20 +191,41 @@ export interface PrintfulVariant {
 
 **Verification**: Browse `/shop`, click into a product, see live pricing from Printful
 
-### Phase 2: Cart ([SG-199](https://linear.app/sherpagg/issue/SG-199))
+### Phase 2: Cart ([SG-199](https://linear.app/sherpagg/issue/SG-199)) ✅ COMPLETE
 
 **Goal**: Add to cart functionality with drawer UI
 
-1. Create `src/lib/shop/cart-context.tsx` - React context + localStorage
-2. Create `CartDrawer` component (shadcn Sheet)
-3. Create `CartIcon` component for header
-4. Create `AddToCartButton` component
-5. Update header to include cart icon
-6. Wire up "Add to Cart" on product detail page
+- [x] Create `src/lib/shop/cart-context.tsx` - React context + localStorage
+- [x] Create `CartDrawer` component (shadcn Sheet)
+- [x] Create `CartIcon` component for header
+- [x] Create `AddToCartButton` component
+- [x] Update header to include cart icon
+- [x] Wire up "Add to Cart" on product detail page
 
 **Verification**: Add items to cart, refresh page (persists), open drawer, see items
 
-### Phase 3: Checkout ([SG-200](https://linear.app/sherpagg/issue/SG-200))
+### Phase 3: Feature Flags ([SG-203](https://linear.app/sherpagg/issue/SG-203))
+
+**Goal**: Hide shop in production while continuing development
+
+1. Add `NEXT_PUBLIC_SHOP_ENABLED` to `src/env.js` with Zod validation
+2. Create `src/lib/shop/feature-flags.ts` utility for checking flag
+3. Update header to conditionally show/hide Shop nav link
+4. Update `src/app/layout.tsx` to conditionally wrap with CartProvider
+5. Create `/shop` "Coming Soon" page when disabled
+6. Update `/shop/[slug]` to show "Coming Soon" when disabled
+7. Add `NEXT_PUBLIC_SHOP_ENABLED=true` to `.env.local`
+8. Document Vercel env var setup (default `false` for production)
+
+**Behavior when disabled:**
+- Shop link hidden from navigation
+- CartProvider not rendered (no cart state/localStorage)
+- Direct navigation to `/shop` or `/shop/[slug]` shows "Coming Soon" page
+- Development continues unimpeded with `NEXT_PUBLIC_SHOP_ENABLED=true` locally
+
+**Verification**: Set flag to `false`, verify nav link hidden, verify /shop shows Coming Soon
+
+### Phase 4: Checkout ([SG-200](https://linear.app/sherpagg/issue/SG-200))
 
 **Goal**: Complete purchase flow
 
@@ -213,7 +238,7 @@ export interface PrintfulVariant {
 
 **Verification**: Add item, checkout, use Stripe test card, verify order appears in Printful dashboard
 
-### Phase 4: Polish ([SG-201](https://linear.app/sherpagg/issue/SG-201))
+### Phase 5: Polish ([SG-201](https://linear.app/sherpagg/issue/SG-201))
 
 **Goal**: Production-ready experience
 
@@ -256,18 +281,22 @@ export interface PrintfulVariant {
 - [x] `pnpm dev` runs without errors (Phase 1)
 - [x] `/shop` displays 3 products with Printful pricing (Phase 1)
 - [x] `/shop/[slug]` shows variants, updates price on selection (Phase 1)
-- [ ] Add to cart works, persists on refresh (Phase 2)
-- [ ] Cart drawer opens/closes, shows correct items (Phase 2)
-- [ ] Checkout redirects to Stripe (Phase 3)
-- [ ] Test payment (4242 4242 4242 4242) succeeds (Phase 3)
-- [ ] Order appears in Printful dashboard (test mode) (Phase 3)
+- [x] Add to cart works, persists on refresh (Phase 2)
+- [x] Cart drawer opens/closes, shows correct items (Phase 2)
+- [ ] Shop hidden when `NEXT_PUBLIC_SHOP_ENABLED=false` (Phase 3)
+- [ ] "Coming Soon" page shows on direct /shop navigation when disabled (Phase 3)
+- [ ] Checkout redirects to Stripe (Phase 4)
+- [ ] Test payment (4242 4242 4242 4242) succeeds (Phase 4)
+- [ ] Order appears in Printful dashboard (test mode) (Phase 4)
 
 ### Before Production Deploy
 
+- [ ] Set `NEXT_PUBLIC_SHOP_ENABLED=false` in Vercel (keeps shop hidden until ready)
 - [ ] Switch Stripe to live keys
 - [ ] Set up Stripe webhook endpoint for production URL
 - [ ] Add all env vars to Vercel
 - [ ] Test one real order (can cancel in Printful before fulfillment)
+- [ ] When ready: Set `NEXT_PUBLIC_SHOP_ENABLED=true` to launch shop
 
 ---
 
