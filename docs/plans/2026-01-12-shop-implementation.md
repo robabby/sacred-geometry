@@ -2,7 +2,8 @@
 
 > **Linear Issues**: [SG-197](https://linear.app/sherpagg/issue/SG-197) (parent), SG-198 through SG-201 (phases)
 > **Created**: 2026-01-12
-> **Status**: Ready for implementation
+> **Status**: Phase 1 complete, Phase 2 next
+> **PR**: [#85](https://github.com/robabby/sacred-geometry/pull/85) (Phase 1)
 
 ## Summary
 
@@ -170,17 +171,19 @@ export interface PrintfulVariant {
 
 ## Implementation Phases
 
-### Phase 1: Foundation ([SG-198](https://linear.app/sherpagg/issue/SG-198))
+### Phase 1: Foundation ([SG-198](https://linear.app/sherpagg/issue/SG-198)) ✅ COMPLETE
 
 **Goal**: Display products with real Printful data
 
-1. Create `src/lib/data/products.ts` with 3 products
-2. Create `src/lib/shop/types.ts` with TypeScript interfaces
-3. Create `src/lib/shop/printful.ts` - API client for fetching variants/pricing
-4. Update `src/env.js` with Printful env var
-5. Create `/shop` listing page with product grid
-6. Create `/shop/[slug]` detail page with variant display
-7. Create `ProductCard` and `VariantSelector` components
+- [x] Create `src/lib/data/products.ts` with 3 products
+- [x] Create `src/lib/shop/types.ts` with TypeScript interfaces
+- [x] Create `src/lib/shop/printful.ts` - API client for fetching variants/pricing
+- [x] Update `src/env.js` with Printful env var
+- [x] Create `/shop` listing page with product grid
+- [x] Create `/shop/[slug]` detail page with variant display
+- [x] Create `ProductCard` and `VariantSelector` components
+- [x] Add `createProductSchema` for SEO structured data
+- [x] Configure Next.js image domains for Printful CDN
 
 **Verification**: Browse `/shop`, click into a product, see live pricing from Printful
 
@@ -250,14 +253,14 @@ export interface PrintfulVariant {
 
 ### Local Development
 
-- [ ] `pnpm dev` runs without errors
-- [ ] `/shop` displays 3 products with Printful pricing
-- [ ] `/shop/[slug]` shows variants, updates price on selection
-- [ ] Add to cart works, persists on refresh
-- [ ] Cart drawer opens/closes, shows correct items
-- [ ] Checkout redirects to Stripe
-- [ ] Test payment (4242 4242 4242 4242) succeeds
-- [ ] Order appears in Printful dashboard (test mode)
+- [x] `pnpm dev` runs without errors (Phase 1)
+- [x] `/shop` displays 3 products with Printful pricing (Phase 1)
+- [x] `/shop/[slug]` shows variants, updates price on selection (Phase 1)
+- [ ] Add to cart works, persists on refresh (Phase 2)
+- [ ] Cart drawer opens/closes, shows correct items (Phase 2)
+- [ ] Checkout redirects to Stripe (Phase 3)
+- [ ] Test payment (4242 4242 4242 4242) succeeds (Phase 3)
+- [ ] Order appears in Printful dashboard (test mode) (Phase 3)
 
 ### Before Production Deploy
 
