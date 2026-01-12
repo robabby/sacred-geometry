@@ -50,7 +50,8 @@ async function createPrintfulOrder(session: Stripe.Checkout.Session) {
         sync_variant_id: item.printfulVariantId,
         quantity: item.quantity,
       })),
-      external_id: session.id,
+      // Printful external_id max 32 chars - use last 32 chars of session ID
+      external_id: session.id.slice(-32),
     }),
   });
 

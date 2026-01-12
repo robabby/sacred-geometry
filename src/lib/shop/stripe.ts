@@ -71,7 +71,7 @@ export async function getCheckoutSession(
   sessionId: string
 ): Promise<Stripe.Checkout.Session> {
   return stripe.checkout.sessions.retrieve(sessionId, {
-    expand: ["line_items", "customer_details"],
+    expand: ["line_items", "customer_details", "collected_information"],
   });
 }
 
