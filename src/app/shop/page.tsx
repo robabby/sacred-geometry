@@ -6,6 +6,8 @@ import { AnimateOnScroll } from "@/components/animate-on-scroll";
 import { StaggerChildren, StaggerItem } from "@/components/stagger-children";
 import { AnimatedCard } from "@/components/animated-card";
 import { ProductCard } from "@/components/shop/product-card";
+import { ShopComingSoon } from "@/components/shop/shop-coming-soon";
+import { isShopEnabled } from "@/lib/shop/feature-flags";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -19,6 +21,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ShopPage() {
+  if (!isShopEnabled()) {
+    return <ShopComingSoon />;
+  }
+
   const products = getProducts();
 
   // Hydrate products with Printful data

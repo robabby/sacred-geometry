@@ -9,6 +9,8 @@ import {
   StructuredData,
   createProductSchema,
 } from "@/components/structured-data";
+import { ShopComingSoon } from "@/components/shop/shop-coming-soon";
+import { isShopEnabled } from "@/lib/shop/feature-flags";
 
 /**
  * Generate static params for all products
@@ -51,6 +53,10 @@ export default async function ProductPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  if (!isShopEnabled()) {
+    return <ShopComingSoon />;
+  }
+
   const { slug } = await params;
   const product = getProductBySlug(slug);
 
