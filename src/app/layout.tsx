@@ -17,6 +17,7 @@ import {
   StructuredData,
   createWebSiteSchema,
 } from "@/components/structured-data";
+import { CartProvider } from "@/lib/shop/cart-context";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://sacredgeometry.site";
@@ -83,11 +84,13 @@ export default function RootLayout({
         />
         <SkipToContent />
         <Theme appearance="dark">
-          <MotionProvider>
-            <Header />
-            <main id="main-content">{children}</main>
-            <Footer />
-          </MotionProvider>
+          <CartProvider>
+            <MotionProvider>
+              <Header />
+              <main id="main-content">{children}</main>
+              <Footer />
+            </MotionProvider>
+          </CartProvider>
         </Theme>
       </body>
       <Analytics />

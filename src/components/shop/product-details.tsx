@@ -8,6 +8,7 @@ import { ExternalLink } from "lucide-react";
 import { AnimatedCard } from "@/components/animated-card";
 import { Badge } from "@/components/ui/badge";
 import { VariantSelector } from "@/components/shop/variant-selector";
+import { AddToCartButton } from "@/components/shop/add-to-cart-button";
 import { formatPrice } from "@/lib/shop/printful";
 import type { Product, PrintfulVariant } from "@/lib/shop/types";
 
@@ -122,12 +123,8 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
           </Link>
         )}
 
-        {/* Coming Soon Notice */}
-        <AnimatedCard className="border-dashed p-4">
-          <Text size="2" className="text-center text-[var(--color-warm-gray)]">
-            Add to cart coming soon. Check back for Phase 2!
-          </Text>
-        </AnimatedCard>
+        {/* Add to Cart */}
+        <AddToCartButton product={product} selectedVariant={selectedVariant} />
       </Flex>
     </Grid>
   );
