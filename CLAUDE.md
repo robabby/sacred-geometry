@@ -25,6 +25,7 @@ src/lib/content/            # MDX content loaders
 src/content/                # MDX files (platonic-solids/, sacred-patterns/)
 src/util/routes.ts          # Top-level routing only (NOT geometry links)
 src/env.js                  # Env validation (Zod)
+docs/plans/                 # Implementation plans (YYYY-MM-DD-<topic>.md)
 ```
 
 ## Key Patterns

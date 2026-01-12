@@ -16,6 +16,8 @@ import { ROUTES } from "@/util/routes";
 import { cn } from "@/lib/utils";
 import { SearchCommand } from "@/components/search-command";
 import { EASE_STANDARD } from "@/lib/animation-constants";
+import { CartIcon } from "@/components/shop/cart-icon";
+import { CartDrawer } from "@/components/shop/cart-drawer";
 
 type NavItem = {
   path: string;
@@ -144,6 +146,11 @@ export function Header() {
         path: ROUTES.sacredPatterns.path,
         desktopLabel: "Sacred Patterns",
         mobileLabel: "Patterns",
+      },
+      {
+        path: "/shop",
+        desktopLabel: "Shop",
+        mobileLabel: "Shop",
       },
     ],
     []
@@ -351,11 +358,16 @@ export function Header() {
 
               {/* Coming Soon items */}
               <ComingSoonNavItem desktopLabel="Journal" mobileLabel="Journal" />
-              <ComingSoonNavItem desktopLabel="Shop" mobileLabel="Shop" />
             </nav>
+
+            {/* Cart Icon */}
+            <CartIcon />
           </div>
         </div>
       </header>
+
+      {/* Cart Drawer */}
+      <CartDrawer />
 
       {/* Mobile Menu Drawer */}
       <AnimatePresence>
@@ -446,12 +458,6 @@ export function Header() {
                 {/* Coming Soon items */}
                 <div className="flex items-center gap-3 rounded-lg px-3 py-3 text-[var(--color-dim)]">
                   <span className="ml-4 font-medium">Journal</span>
-                  <span className="rounded bg-[var(--color-dark-bronze)] px-1.5 py-0.5 text-xs text-[var(--color-gold)]/70">
-                    Soon
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 rounded-lg px-3 py-3 text-[var(--color-dim)]">
-                  <span className="ml-4 font-medium">Shop</span>
                   <span className="rounded bg-[var(--color-dark-bronze)] px-1.5 py-0.5 text-xs text-[var(--color-gold)]/70">
                     Soon
                   </span>
