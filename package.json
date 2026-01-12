@@ -14,6 +14,7 @@
     "preview": "next build && next start",
     "start": "next start",
     "test": "vitest run",
+    "stripe:listen": "stripe listen --forward-to localhost:3001/api/webhooks/stripe",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"
@@ -30,6 +31,7 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/themes": "^3.2.1",
+    "@stripe/stripe-js": "^8.6.1",
     "@t3-oss/env-nextjs": "^0.12.0",
     "@types/mdx": "^2.0.13",
     "@vercel/analytics": "^1.5.0",
@@ -45,6 +47,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remark-gfm": "^4.0.1",
+    "stripe": "^20.1.2",
     "tailwind-merge": "^3.3.1",
     "zod": "^3.24.2"
   },

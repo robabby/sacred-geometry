@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { Loader2, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { Text } from "@radix-ui/themes";
 import {
   Sheet,
@@ -26,6 +27,36 @@ export function CartDrawer() {
     removeItem,
     updateQuantity,
   } = useCart();
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  const handleCheckout = async () => {
+    setIsCheckingOut(true);
+    setCheckoutError(null);
+
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items }),
+      });
+
+      const data = (await response.json()) as { url?: string; error?: string };
+
+      if (!response.ok) {
+        throw new Error(data.error ?? "Failed to create checkout session");
+      }
+
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      setCheckoutError(
+        error instanceof Error ? error.message : "Checkout failed"
+      );
+      setIsCheckingOut(false);
+    }
+  };
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && closeCart()}>
@@ -165,11 +196,24 @@ export function CartDrawer() {
             <Text size="1" className="text-[var(--color-warm-gray)]">
               Shipping and taxes calculated at checkout
             </Text>
+            {checkoutError && (
+              <Text size="1" className="text-red-400">
+                {checkoutError}
+              </Text>
+            )}
             <Button
               className="mt-4 w-full bg-[var(--color-gold)] text-[var(--color-obsidian)] hover:bg-[var(--color-gold-bright)]"
-              disabled
+              onClick={handleCheckout}
+              disabled={isCheckingOut}
             >
-              Checkout Coming Soon
+              {isCheckingOut ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Processing...
+                </>
+              ) : (
+                "Proceed to Checkout"
+              )}
             </Button>
           </SheetFooter>
         )}
