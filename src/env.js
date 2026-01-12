@@ -17,7 +17,10 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
-    // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_SHOP_ENABLED: z
+      .string()
+      .transform((val) => val === "true")
+      .default("false"),
   },
 
   /**
@@ -27,7 +30,7 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     PRINTFUL_API_KEY: process.env.PRINTFUL_API_KEY,
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    NEXT_PUBLIC_SHOP_ENABLED: process.env.NEXT_PUBLIC_SHOP_ENABLED,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

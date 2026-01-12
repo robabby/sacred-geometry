@@ -18,6 +18,7 @@ import { SearchCommand } from "@/components/search-command";
 import { EASE_STANDARD } from "@/lib/animation-constants";
 import { CartIcon } from "@/components/shop/cart-icon";
 import { CartDrawer } from "@/components/shop/cart-drawer";
+import { isShopEnabled } from "@/lib/shop/feature-flags";
 
 type NavItem = {
   path: string;
@@ -135,8 +136,10 @@ export function Header() {
     [pathname]
   );
 
-  const navItems = useMemo<NavItem[]>(
-    () => [
+  const shopEnabled = isShopEnabled();
+
+  const navItems = useMemo<NavItem[]>(() => {
+    const items: NavItem[] = [
       {
         path: ROUTES.platonicSolids.path,
         desktopLabel: "Platonic Solids",
@@ -147,14 +150,18 @@ export function Header() {
         desktopLabel: "Sacred Patterns",
         mobileLabel: "Patterns",
       },
-      {
+    ];
+
+    if (shopEnabled) {
+      items.push({
         path: "/shop",
         desktopLabel: "Shop",
         mobileLabel: "Shop",
-      },
-    ],
-    []
-  );
+      });
+    }
+
+    return items;
+  }, [shopEnabled]);
 
   const activeIndex = useMemo(() => {
     const index = navItems.findIndex((item) => isActive(item.path));
@@ -360,14 +367,14 @@ export function Header() {
               <ComingSoonNavItem desktopLabel="Journal" mobileLabel="Journal" />
             </nav>
 
-            {/* Cart Icon */}
-            <CartIcon />
+            {/* Cart Icon - only when shop is enabled */}
+            {shopEnabled && <CartIcon />}
           </div>
         </div>
       </header>
 
-      {/* Cart Drawer */}
-      <CartDrawer />
+      {/* Cart Drawer - only when shop is enabled */}
+      {shopEnabled && <CartDrawer />}
 
       {/* Mobile Menu Drawer */}
       <AnimatePresence>

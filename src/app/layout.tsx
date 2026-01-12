@@ -18,6 +18,7 @@ import {
   createWebSiteSchema,
 } from "@/components/structured-data";
 import { CartProvider } from "@/lib/shop/cart-context";
+import { isShopEnabled } from "@/lib/shop/feature-flags";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://sacredgeometry.site";
@@ -69,6 +70,16 @@ const crimsonPro = Crimson_Pro({
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const shopEnabled = isShopEnabled();
+
+  const content = (
+    <MotionProvider>
+      <Header />
+      <main id="main-content">{children}</main>
+      <Footer />
+    </MotionProvider>
+  );
+
   return (
     <html
       lang="en"
@@ -84,13 +95,7 @@ export default function RootLayout({
         />
         <SkipToContent />
         <Theme appearance="dark">
-          <CartProvider>
-            <MotionProvider>
-              <Header />
-              <main id="main-content">{children}</main>
-              <Footer />
-            </MotionProvider>
-          </CartProvider>
+          {shopEnabled ? <CartProvider>{content}</CartProvider> : content}
         </Theme>
       </body>
       <Analytics />

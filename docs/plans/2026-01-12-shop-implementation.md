@@ -2,7 +2,7 @@
 
 > **Linear Issues**: [SG-197](https://linear.app/sherpagg/issue/SG-197) (parent), SG-198 through SG-203 (phases)
 > **Created**: 2026-01-12
-> **Status**: Phase 2 complete, Phase 3 (Feature Flags) next
+> **Status**: Phase 3 complete, Phase 4 (Checkout) next
 > **PRs**: [#85](https://github.com/robabby/sacred-geometry/pull/85) (Phase 1), [#86](https://github.com/robabby/sacred-geometry/pull/86) (Phase 2)
 
 ## Summary
@@ -204,24 +204,31 @@ export interface PrintfulVariant {
 
 **Verification**: Add items to cart, refresh page (persists), open drawer, see items
 
-### Phase 3: Feature Flags ([SG-203](https://linear.app/sherpagg/issue/SG-203))
+### Phase 3: Feature Flags ([SG-203](https://linear.app/sherpagg/issue/SG-203)) ✅ COMPLETE
 
 **Goal**: Hide shop in production while continuing development
 
-1. Add `NEXT_PUBLIC_SHOP_ENABLED` to `src/env.js` with Zod validation
-2. Create `src/lib/shop/feature-flags.ts` utility for checking flag
-3. Update header to conditionally show/hide Shop nav link
-4. Update `src/app/layout.tsx` to conditionally wrap with CartProvider
-5. Create `/shop` "Coming Soon" page when disabled
-6. Update `/shop/[slug]` to show "Coming Soon" when disabled
-7. Add `NEXT_PUBLIC_SHOP_ENABLED=true` to `.env.local`
-8. Document Vercel env var setup (default `false` for production)
+- [x] Add `NEXT_PUBLIC_SHOP_ENABLED` to `src/env.js` with Zod validation (defaults to `"false"`)
+- [x] Create `src/lib/shop/feature-flags.ts` utility (`isShopEnabled()`)
+- [x] Update header to conditionally show/hide Shop nav link and CartIcon
+- [x] Update `src/app/layout.tsx` to conditionally wrap with CartProvider
+- [x] Create `ShopComingSoon` component at `src/components/shop/shop-coming-soon.tsx`
+- [x] Update `/shop` page to show "Coming Soon" when disabled
+- [x] Update `/shop/[slug]` to show "Coming Soon" when disabled
+- [x] Add `NEXT_PUBLIC_SHOP_ENABLED=true` to `.env.local`
 
 **Behavior when disabled:**
 - Shop link hidden from navigation
+- CartIcon hidden from header
 - CartProvider not rendered (no cart state/localStorage)
-- Direct navigation to `/shop` or `/shop/[slug]` shows "Coming Soon" page
+- Direct navigation to `/shop` or `/shop/[slug]` shows styled "Coming Soon" page (not 404)
 - Development continues unimpeded with `NEXT_PUBLIC_SHOP_ENABLED=true` locally
+
+**Vercel Deployment:**
+- In Vercel dashboard: Settings → Environment Variables
+- Add `NEXT_PUBLIC_SHOP_ENABLED` with value `false` for production (default)
+- When ready to launch shop, change to `true` and redeploy
+- No Preview/Development overrides needed (inherits production setting)
 
 **Verification**: Set flag to `false`, verify nav link hidden, verify /shop shows Coming Soon
 
