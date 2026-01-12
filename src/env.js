@@ -9,6 +9,9 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
     PRINTFUL_API_KEY: z.string().min(1),
+    STRIPE_SECRET_KEY: z.string().startsWith("sk_"),
+    STRIPE_WEBHOOK_SECRET: z.string().startsWith("whsec_"),
+    APP_URL: z.string().url().default("http://localhost:3000"),
   },
 
   /**
@@ -21,6 +24,7 @@ export const env = createEnv({
       .string()
       .transform((val) => val === "true")
       .default("false"),
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().startsWith("pk_"),
   },
 
   /**
@@ -31,6 +35,11 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     PRINTFUL_API_KEY: process.env.PRINTFUL_API_KEY,
     NEXT_PUBLIC_SHOP_ENABLED: process.env.NEXT_PUBLIC_SHOP_ENABLED,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+    APP_URL: process.env.APP_URL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
