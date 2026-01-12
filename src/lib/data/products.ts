@@ -1,0 +1,89 @@
+/**
+ * Product Data
+ *
+ * Sacred geometry merchandise - marketing data mapped to Printful sync product IDs.
+ * Variant pricing and availability come from the Printful API at build time.
+ */
+
+import type { Product } from "@/lib/shop/types";
+
+export const PRODUCTS: Record<string, Product> = {
+  "metatrons-cube-hoodie": {
+    id: "metatrons-cube-hoodie",
+    slug: "metatrons-cube-hoodie",
+    printfulSyncProductId: "69654883c31743",
+    name: "Metatron's Cube Hoodie",
+    tagline: "Wear the blueprint of creation",
+    description:
+      "Premium unisex hoodie featuring Metatron's Cube - the sacred pattern containing all five Platonic solids. Soft, comfortable cotton blend perfect for meditation or everyday wear.",
+    category: "apparel",
+    geometrySlug: "metatrons-cube",
+    images: {
+      hero: "", // Populated from Printful API
+    },
+    featured: true,
+    order: 1,
+  },
+
+  "metatrons-cube-travel-mug": {
+    id: "metatrons-cube-travel-mug",
+    slug: "metatrons-cube-travel-mug",
+    printfulSyncProductId: "696547f103fc66",
+    name: "Metatron's Cube Travel Mug",
+    tagline: "Sacred geometry on the go",
+    description:
+      "Insulated stainless steel travel mug with handle. Features Metatron's Cube design - perfect for your morning ritual or afternoon tea ceremony.",
+    category: "drinkware",
+    geometrySlug: "metatrons-cube",
+    images: {
+      hero: "", // Populated from Printful API
+    },
+    featured: true,
+    order: 2,
+  },
+
+  "metatrons-cube-mug": {
+    id: "metatrons-cube-mug",
+    slug: "metatrons-cube-mug",
+    printfulSyncProductId: "69653bed0aabc4",
+    name: "Metatron's Cube Mug",
+    tagline: "Start your day with sacred geometry",
+    description:
+      "White glossy ceramic mug featuring Metatron's Cube. The perfect vessel for your morning contemplation over coffee or tea.",
+    category: "drinkware",
+    geometrySlug: "metatrons-cube",
+    images: {
+      hero: "", // Populated from Printful API
+    },
+    featured: false,
+    order: 3,
+  },
+};
+
+/**
+ * Get all products sorted by order
+ */
+export function getProducts(): Product[] {
+  return Object.values(PRODUCTS).sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+}
+
+/**
+ * Get a product by slug
+ */
+export function getProductBySlug(slug: string): Product | undefined {
+  return PRODUCTS[slug];
+}
+
+/**
+ * Get featured products
+ */
+export function getFeaturedProducts(): Product[] {
+  return getProducts().filter((p) => p.featured);
+}
+
+/**
+ * Get product URL path
+ */
+export function getProductPath(product: Product): string {
+  return `/shop/${product.slug}`;
+}

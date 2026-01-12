@@ -1,0 +1,277 @@
+# Shop Page Implementation Plan
+
+> **Linear Issues**: [SG-197](https://linear.app/sherpagg/issue/SG-197) (parent), SG-198 through SG-201 (phases)
+> **Created**: 2026-01-12
+> **Status**: Ready for implementation
+
+## Summary
+
+Implement a proof-of-concept shop for sacred geometry merchandise using Printful (print-on-demand) + Stripe (payments). The goal is to validate demand with minimal infrastructure.
+
+### Key Decisions
+
+- **Platform**: Printful API for fulfillment
+- **Payments**: Stripe Checkout (hosted, transaction-based pricing)
+- **Products**: 3 items featuring Metatron's Cube (hoodie, travel mug, glossy mug)
+- **Cart**: Drawer-style with localStorage persistence (supports future `/cart` page)
+- **Product data**: TypeScript files mapping to Printful IDs (matches geometry pattern)
+- **Content linking**: One-way (products → geometries, not vice versa)
+
+### Printful Products
+
+| Product | Sync ID | Variants |
+|---------|---------|----------|
+| Unisex Hoodie | `69654883c31743` | 6 |
+| Travel mug with a handle | `696547f103fc66` | 2 |
+| White Metatron's Cube glossy mug | `69653bed0aabc4` | 3 |
+
+### Important Dates
+
+- **Printful API key expires**: Dec 31, 2026
+
+---
+
+## Architecture
+
+### URL Structure
+
+```
+/shop                    → Product listing page
+/shop/[slug]             → Product detail page
+/api/checkout            → Creates Stripe checkout session
+/api/webhooks/stripe     → Handles payment success, creates Printful order
+```
+
+### Data Flow
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│  Your TS Data   │     │  Printful API   │     │     Stripe      │
+│  (marketing)    │ ──► │  (variants,     │ ──► │  (payment)      │
+│                 │     │   pricing)      │     │                 │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+         │                      │                       │
+         └──────────────────────┴───────────────────────┘
+                               │
+                        ┌──────▼──────┐
+                        │   Next.js   │
+                        │   Frontend  │
+                        └─────────────┘
+```
+
+---
+
+## Environment Variables
+
+### `.env.local` (create new file)
+
+```bash
+# Printful
+PRINTFUL_API_KEY=<your-key>
+
+# Stripe
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+```
+
+### Update `src/env.js`
+
+Add validation for new environment variables using existing Zod pattern.
+
+---
+
+## New Files & Structure
+
+```
+src/
+├── lib/
+│   ├── data/
+│   │   └── products.ts              # Product definitions
+│   └── shop/
+│       ├── types.ts                 # Shop-related types
+│       ├── printful.ts              # Printful API client
+│       ├── cart-context.tsx         # Cart state + localStorage
+│       └── stripe.ts                # Stripe utilities
+├── components/
+│   └── shop/
+│       ├── product-card.tsx         # Grid card component
+│       ├── variant-selector.tsx     # Size/color picker
+│       ├── cart-drawer.tsx          # Slide-out cart
+│       ├── cart-icon.tsx            # Header icon with badge
+│       └── add-to-cart-button.tsx   # Add to cart CTA
+├── app/
+│   ├── shop/
+│   │   ├── page.tsx                 # Product listing
+│   │   └── [slug]/
+│   │       └── page.tsx             # Product detail
+│   └── api/
+│       ├── checkout/
+│       │   └── route.ts             # Create Stripe session
+│       └── webhooks/
+│           └── stripe/
+│               └── route.ts         # Handle payment webhooks
+```
+
+---
+
+## Data Models
+
+### Product (`src/lib/data/products.ts`)
+
+```typescript
+export interface Product {
+  id: string;
+  slug: string;
+  printfulSyncProductId: string;
+  name: string;
+  tagline: string;
+  description: string;
+  category: "apparel" | "drinkware" | "accessories";
+  geometrySlug?: string;
+  images: {
+    hero: string;
+    gallery?: string[];
+  };
+  featured?: boolean;
+  order?: number;
+}
+```
+
+### Cart Item (`src/lib/shop/types.ts`)
+
+```typescript
+export interface CartItem {
+  productId: string;
+  printfulVariantId: number;
+  quantity: number;
+  name: string;
+  variantName: string;
+  price: number;
+  image: string;
+}
+```
+
+### Printful Variant (from API)
+
+```typescript
+export interface PrintfulVariant {
+  id: number;
+  name: string;
+  size: string;
+  color: string;
+  colorCode: string;
+  price: number;
+  inStock: boolean;
+}
+```
+
+---
+
+## Implementation Phases
+
+### Phase 1: Foundation ([SG-198](https://linear.app/sherpagg/issue/SG-198))
+
+**Goal**: Display products with real Printful data
+
+1. Create `src/lib/data/products.ts` with 3 products
+2. Create `src/lib/shop/types.ts` with TypeScript interfaces
+3. Create `src/lib/shop/printful.ts` - API client for fetching variants/pricing
+4. Update `src/env.js` with Printful env var
+5. Create `/shop` listing page with product grid
+6. Create `/shop/[slug]` detail page with variant display
+7. Create `ProductCard` and `VariantSelector` components
+
+**Verification**: Browse `/shop`, click into a product, see live pricing from Printful
+
+### Phase 2: Cart ([SG-199](https://linear.app/sherpagg/issue/SG-199))
+
+**Goal**: Add to cart functionality with drawer UI
+
+1. Create `src/lib/shop/cart-context.tsx` - React context + localStorage
+2. Create `CartDrawer` component (shadcn Sheet)
+3. Create `CartIcon` component for header
+4. Create `AddToCartButton` component
+5. Update header to include cart icon
+6. Wire up "Add to Cart" on product detail page
+
+**Verification**: Add items to cart, refresh page (persists), open drawer, see items
+
+### Phase 3: Checkout ([SG-200](https://linear.app/sherpagg/issue/SG-200))
+
+**Goal**: Complete purchase flow
+
+1. Create Stripe account (test mode) and get API keys
+2. Create `/api/checkout/route.ts` - creates Stripe session with cart items
+3. Create `/api/webhooks/stripe/route.ts` - handles successful payment
+4. Implement Printful order creation in webhook
+5. Create success/cancel pages
+6. Add "Checkout" button to cart drawer
+
+**Verification**: Add item, checkout, use Stripe test card, verify order appears in Printful dashboard
+
+### Phase 4: Polish ([SG-201](https://linear.app/sherpagg/issue/SG-201))
+
+**Goal**: Production-ready experience
+
+1. Add loading states (skeletons for product grid, spinner for add to cart)
+2. Add error handling (API failures, out of stock)
+3. Add SEO metadata (`generateMetadata` for shop pages)
+4. Mobile responsiveness pass
+5. Configure Printful order confirmation emails
+
+**Verification**: Full flow on mobile, test error scenarios, check SEO tags
+
+---
+
+## Files to Modify
+
+| File | Change |
+|------|--------|
+| `src/env.js` | Add shop environment variables |
+| `src/components/header.tsx` | Add cart icon |
+| `src/util/routes.ts` | Add `/shop` route |
+| `src/app/layout.tsx` | Wrap with CartProvider |
+
+---
+
+## Out of Scope (Future Iterations)
+
+- User accounts / order history
+- Dedicated `/cart` page (drawer only for POC)
+- Discount codes
+- Inventory tracking UI
+- Multiple shipping options
+- Order tracking page
+
+---
+
+## Verification Checklist
+
+### Local Development
+
+- [ ] `pnpm dev` runs without errors
+- [ ] `/shop` displays 3 products with Printful pricing
+- [ ] `/shop/[slug]` shows variants, updates price on selection
+- [ ] Add to cart works, persists on refresh
+- [ ] Cart drawer opens/closes, shows correct items
+- [ ] Checkout redirects to Stripe
+- [ ] Test payment (4242 4242 4242 4242) succeeds
+- [ ] Order appears in Printful dashboard (test mode)
+
+### Before Production Deploy
+
+- [ ] Switch Stripe to live keys
+- [ ] Set up Stripe webhook endpoint for production URL
+- [ ] Add all env vars to Vercel
+- [ ] Test one real order (can cancel in Printful before fulfillment)
+
+---
+
+## Dependencies to Add
+
+```bash
+pnpm add stripe @stripe/stripe-js
+```
+
+No Printful SDK needed - we'll use fetch with the REST API directly.

@@ -81,3 +81,63 @@ export function createFAQPageSchema(
     })),
   };
 }
+
+// Helper to create Product schema for shop pages
+export function createProductSchema({
+  url,
+  name,
+  description,
+  image,
+  price,
+  priceCurrency = "USD",
+  availability = "InStock",
+  lowPrice,
+  highPrice,
+}: {
+  url: string;
+  name: string;
+  description: string;
+  image?: string;
+  price: number;
+  priceCurrency?: string;
+  availability?: "InStock" | "OutOfStock" | "PreOrder";
+  lowPrice?: number;
+  highPrice?: number;
+}): JsonLdData {
+  const availabilityUrl = {
+    InStock: "https://schema.org/InStock",
+    OutOfStock: "https://schema.org/OutOfStock",
+    PreOrder: "https://schema.org/PreOrder",
+  }[availability];
+
+  // Use AggregateOffer if price range, otherwise single Offer
+  const offers =
+    lowPrice !== undefined && highPrice !== undefined
+      ? {
+          "@type": "AggregateOffer",
+          lowPrice,
+          highPrice,
+          priceCurrency,
+          availability: availabilityUrl,
+        }
+      : {
+          "@type": "Offer",
+          price,
+          priceCurrency,
+          availability: availabilityUrl,
+        };
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name,
+    description,
+    url,
+    ...(image && { image }),
+    offers,
+    brand: {
+      "@type": "Brand",
+      name: "Sacred Geometry",
+    },
+  };
+}
