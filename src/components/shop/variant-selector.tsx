@@ -93,6 +93,8 @@ export function VariantSelector({
                   type="button"
                   onClick={() => handleSizeSelect(size)}
                   disabled={!isAvailable}
+                  aria-label={`Select size ${size}${!isAvailable ? " (out of stock)" : ""}${isSelected ? " (selected)" : ""}`}
+                  aria-pressed={isSelected}
                   className={cn(
                     "min-w-[3rem] rounded-md border px-3 py-2 text-sm font-medium transition-all",
                     isSelected
@@ -130,6 +132,8 @@ export function VariantSelector({
                   type="button"
                   onClick={() => handleColorSelect(color)}
                   disabled={!isAvailable}
+                  aria-label={`Select color ${color}${!isAvailable ? " (out of stock)" : ""}${isSelected ? " (selected)" : ""}`}
+                  aria-pressed={isSelected}
                   className={cn(
                     "rounded-md border px-4 py-2 text-sm font-medium transition-all",
                     isSelected

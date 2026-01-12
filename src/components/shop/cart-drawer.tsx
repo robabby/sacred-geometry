@@ -146,27 +146,27 @@ export function CartDrawer() {
                         onClick={() =>
                           updateQuantity(item.printfulVariantId, item.quantity - 1)
                         }
-                        className="flex h-7 w-7 items-center justify-center rounded border border-[var(--border-gold)]/50 text-[var(--color-warm-gray)] transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
-                        aria-label="Decrease quantity"
+                        className="flex h-10 w-10 items-center justify-center rounded-md border border-[var(--border-gold)]/50 text-[var(--color-warm-gray)] transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+                        aria-label={`Decrease quantity of ${item.name}`}
                       >
-                        <Minus className="h-3 w-3" />
+                        <Minus className="h-4 w-4" />
                       </button>
-                      <span className="w-8 text-center text-sm text-[var(--color-cream)]">
+                      <span className="w-10 text-center text-sm text-[var(--color-cream)]">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() =>
                           updateQuantity(item.printfulVariantId, item.quantity + 1)
                         }
-                        className="flex h-7 w-7 items-center justify-center rounded border border-[var(--border-gold)]/50 text-[var(--color-warm-gray)] transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
-                        aria-label="Increase quantity"
+                        className="flex h-10 w-10 items-center justify-center rounded-md border border-[var(--border-gold)]/50 text-[var(--color-warm-gray)] transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+                        aria-label={`Increase quantity of ${item.name}`}
                       >
-                        <Plus className="h-3 w-3" />
+                        <Plus className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => removeItem(item.printfulVariantId)}
-                        className="ml-auto flex h-7 w-7 items-center justify-center rounded text-[var(--color-warm-gray)] transition-colors hover:text-red-400"
-                        aria-label="Remove item"
+                        className="ml-auto flex h-10 w-10 items-center justify-center rounded-md text-[var(--color-warm-gray)] transition-colors hover:text-red-400"
+                        aria-label={`Remove ${item.name} from cart`}
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -180,7 +180,7 @@ export function CartDrawer() {
 
         {/* Footer with Subtotal */}
         {items.length > 0 && (
-          <SheetFooter className="border-t border-[var(--border-gold)]/50">
+          <SheetFooter className="border-t border-[var(--border-gold)]/50 pb-safe">
             <div className="flex w-full items-center justify-between">
               <Text size="3" className="text-[var(--color-warm-gray)]">
                 Subtotal

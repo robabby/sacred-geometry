@@ -29,11 +29,15 @@ export function ProductCard({ product, variants, thumbnail }: ProductCardProps) 
       : `${formatPrice(priceRange.min)} – ${formatPrice(priceRange.max)}`;
 
   return (
-    <Link href={getProductPath(product)}>
-      <AnimatedCard className="h-full p-6">
+    <Link
+      href={getProductPath(product)}
+      aria-label={`View ${product.name} - ${priceDisplay}`}
+      className="group block"
+    >
+      <AnimatedCard className="h-full p-3 sm:p-6">
         <div className="flex flex-col gap-4">
           {/* Product Image */}
-          <div className="relative aspect-square w-full overflow-hidden rounded-md bg-[var(--color-obsidian)]">
+          <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-[var(--color-obsidian)]">
             {thumbnail ? (
               <Image
                 src={thumbnail}
