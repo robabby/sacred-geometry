@@ -44,7 +44,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
   return (
     <Grid
       columns={{ initial: "1", md: "2" }}
-      gap={{ initial: "6", md: "10", lg: "16" }}
+      className="mx-auto max-w-7xl gap-6 md:gap-10 lg:gap-16"
     >
       {/* Product Image */}
       <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-[var(--color-warm-charcoal)]">
@@ -54,7 +54,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
             alt={product.name}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-contain p-4"
+            className="object-contain p-8"
             priority
           />
         ) : (

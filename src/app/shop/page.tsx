@@ -73,7 +73,7 @@ export default async function ShopPage() {
             staggerDelay={0.1}
           >
             {productsWithVariants.map(({ product, variants, thumbnail }) => (
-              <StaggerItem key={product.id}>
+              <StaggerItem key={product.id} className="h-full">
                 <ProductCard
                   product={product}
                   variants={variants}

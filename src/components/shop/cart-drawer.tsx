@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Loader2, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { Loader2, Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
 import { Text } from "@radix-ui/themes";
 import {
   Sheet,
@@ -65,15 +65,24 @@ export function CartDrawer() {
         className="flex w-full flex-col border-[var(--border-gold)] bg-[var(--color-obsidian)] sm:max-w-md"
       >
         <SheetHeader className="border-b border-[var(--border-gold)]/50">
-          <SheetTitle className="flex items-center gap-2 font-heading text-[var(--color-cream)]">
-            <ShoppingBag className="h-5 w-5 text-[var(--color-gold)]" />
-            Your Cart
-            {itemCount > 0 && (
-              <span className="ml-auto text-sm font-normal text-[var(--color-warm-gray)]">
-                {itemCount} {itemCount === 1 ? "item" : "items"}
-              </span>
-            )}
-          </SheetTitle>
+          <div className="flex items-center justify-between">
+            <SheetTitle className="flex items-center gap-2 font-heading text-[var(--color-cream)]">
+              <ShoppingBag className="h-5 w-5 text-[var(--color-gold)]" />
+              Your Cart
+              {itemCount > 0 && (
+                <span className="ml-2 text-sm font-normal text-[var(--color-warm-gray)]">
+                  ({itemCount})
+                </span>
+              )}
+            </SheetTitle>
+            <button
+              onClick={closeCart}
+              className="flex h-11 w-11 items-center justify-center rounded-md text-[var(--color-warm-gray)] transition-colors hover:bg-[var(--color-warm-charcoal)] hover:text-[var(--color-cream)]"
+              aria-label="Close cart"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
           <SheetDescription className="sr-only">
             Review and manage items in your shopping cart
           </SheetDescription>
