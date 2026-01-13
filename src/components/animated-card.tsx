@@ -19,7 +19,7 @@ export function AnimatedCard({ children, className }: AnimatedCardProps) {
   return (
     <motion.div
       className={cn(
-        "group cursor-pointer rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)]",
+        "rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)]",
         // Focus-visible styles for when card is wrapped in a focusable element
         "transition-shadow focus-within:ring-2 focus-within:ring-[var(--color-gold)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--color-obsidian)]",
         className

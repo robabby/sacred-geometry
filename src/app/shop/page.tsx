@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Box, Heading, Text } from "@radix-ui/themes";
+import { ShoppingBag } from "lucide-react";
 import { getProducts } from "@/lib/data/products";
 import { getProductWithVariants } from "@/lib/shop/printful";
 import { AnimateOnScroll } from "@/components/animate-on-scroll";
@@ -53,20 +54,35 @@ export default async function ShopPage() {
         </AnimateOnScroll>
 
         {/* Product Grid */}
-        <StaggerChildren
-          className="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
-          staggerDelay={0.1}
-        >
-          {productsWithVariants.map(({ product, variants, thumbnail }) => (
-            <StaggerItem key={product.id}>
-              <ProductCard
-                product={product}
-                variants={variants}
-                thumbnail={thumbnail}
-              />
-            </StaggerItem>
-          ))}
-        </StaggerChildren>
+        {productsWithVariants.length === 0 ? (
+          <AnimateOnScroll>
+            <AnimatedCard className="mx-auto max-w-2xl p-8 text-center">
+              <ShoppingBag className="mx-auto mb-4 h-16 w-16 text-[var(--color-warm-gray)]/50" />
+              <Heading size="6" className="mb-4 font-heading text-[var(--color-gold)]">
+                No Products Available
+              </Heading>
+              <Text className="text-[var(--color-warm-gray)]">
+                We&apos;re working on adding new sacred geometry merchandise.
+                Check back soon!
+              </Text>
+            </AnimatedCard>
+          </AnimateOnScroll>
+        ) : (
+          <StaggerChildren
+            className="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+            staggerDelay={0.1}
+          >
+            {productsWithVariants.map(({ product, variants, thumbnail }) => (
+              <StaggerItem key={product.id} className="h-full">
+                <ProductCard
+                  product={product}
+                  variants={variants}
+                  thumbnail={thumbnail}
+                />
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
+        )}
 
         {/* Additional Info */}
         <AnimateOnScroll delay={0.3}>

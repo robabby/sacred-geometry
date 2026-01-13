@@ -309,15 +309,23 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(true)}
-            className="flex h-10 w-10 items-center justify-center rounded-md text-[var(--color-warm-gray)] transition-colors hover:bg-[var(--color-warm-charcoal)] hover:text-[var(--color-gold)] sm:hidden"
-            aria-label="Open menu"
-            aria-expanded={mobileMenuOpen}
-          >
-            <Menu className="h-6 w-6" />
-          </button>
+          {/* Mobile Actions: Cart + Menu */}
+          <div className="flex items-center gap-1 sm:hidden">
+            {shopEnabled && (
+              <>
+                <CartIcon />
+                <div className="h-6 w-px bg-[var(--border-gold)]/30" />
+              </>
+            )}
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="flex h-10 w-10 items-center justify-center rounded-md text-[var(--color-warm-gray)] transition-colors hover:bg-[var(--color-warm-charcoal)] hover:text-[var(--color-gold)]"
+              aria-label="Open menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </div>
 
           {/* Desktop: Search + Navigation */}
           <div className="hidden items-center gap-4 sm:flex">

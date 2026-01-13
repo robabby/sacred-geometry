@@ -192,7 +192,7 @@ export default function HomePage() {
                 const Icon = solid.icon;
                 return (
                   <StaggerItem key={solid.name}>
-                    <Link href={solid.path}>
+                    <Link href={solid.path} className="group block">
                       <AnimatedCard className="p-3 sm:p-4">
                         <div className="flex flex-col items-center gap-2 sm:gap-3">
                           <GeometryImage className="relative h-16 w-full sm:h-24">
@@ -278,7 +278,7 @@ export default function HomePage() {
                 if (!pattern) return null;
                 return (
                   <StaggerItem key={pattern.slug}>
-                    <Link href={getGeometryPath(pattern)}>
+                    <Link href={getGeometryPath(pattern)} className="group block">
                       <AnimatedCard className="p-6">
                         <div className="flex flex-col items-center gap-4">
                           <GeometryImage className="relative h-32 w-full">

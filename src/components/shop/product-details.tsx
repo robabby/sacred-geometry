@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import { ExternalLink } from "lucide-react";
-import { AnimatedCard } from "@/components/animated-card";
 import { Badge } from "@/components/ui/badge";
 import { VariantSelector } from "@/components/shop/variant-selector";
 import { AddToCartButton } from "@/components/shop/add-to-cart-button";
@@ -45,7 +44,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
   return (
     <Grid
       columns={{ initial: "1", md: "2" }}
-      gap={{ initial: "6", md: "8", lg: "12" }}
+      className="mx-auto max-w-7xl gap-6 md:gap-10 lg:gap-16"
     >
       {/* Product Image */}
       <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-[var(--color-warm-charcoal)]">
@@ -55,7 +54,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
             alt={product.name}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-contain p-4"
+            className="object-contain p-8"
             priority
           />
         ) : (
@@ -89,21 +88,21 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
         </div>
 
         {/* Price */}
-        <Heading size="7" className="text-[var(--color-cream)]">
+        <Text size="6" weight="bold" className="text-[var(--color-gold)]">
           {selectedVariant ? formatPrice(selectedVariant.price) : "—"}
-        </Heading>
+        </Text>
 
         {/* Description */}
         <Text className="text-[var(--color-warm-gray)]">{product.description}</Text>
 
         {/* Variant Selector */}
-        <AnimatedCard className="p-6">
+        <div className="rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] p-6">
           <VariantSelector
             variants={variants}
             selectedVariantId={selectedVariantId}
             onVariantChange={setSelectedVariantId}
           />
-        </AnimatedCard>
+        </div>
 
         {/* Selected Variant Info */}
         {selectedVariant && (

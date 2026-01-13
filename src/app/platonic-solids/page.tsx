@@ -96,7 +96,7 @@ export default function PlatonicSolidsPage() {
             const Icon = solid.icon;
             return (
               <StaggerItem key={solid.path}>
-                <Link href={solid.path}>
+                <Link href={solid.path} className="group block">
                   <AnimatedCard className="h-full p-6">
                     <div className="flex flex-col gap-4">
                       {/* Image */}

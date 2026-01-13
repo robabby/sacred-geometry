@@ -111,7 +111,7 @@ export default function SacredPatternsPage() {
             const Icon = pattern.icon;
             return (
               <StaggerItem key={pattern.path}>
-                <Link href={pattern.path}>
+                <Link href={pattern.path} className="group block">
                   <AnimatedCard className="h-full p-6">
                     <div className="flex min-h-[380px] flex-col gap-4">
                       {/* Image */}
