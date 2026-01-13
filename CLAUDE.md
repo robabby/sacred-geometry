@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-T3 Stack Next.js 16 app for sacred geometry. Uses App Router, React 19, TypeScript, Tailwind CSS v4, shadcn/ui (New York style), Radix UI Themes (dark default), MDX content via `next-mdx-remote`, and Vitest.
+T3 Stack Next.js 16 app for sacred geometry. Uses App Router, React 19, TypeScript, Tailwind CSS v4, shadcn/ui (New York style), Radix UI Themes (dark default), MDX content via `next-mdx-remote`, Vitest, Stripe (checkout), and Printful (print-on-demand).
 
 ## Commands
 
@@ -18,9 +18,13 @@ pnpm build        # Production build
 
 ```
 src/app/                    # App Router pages
+src/app/shop/               # Shop pages (listing, [slug], success, cancel)
+src/app/api/                # API routes (checkout, webhooks)
 src/components/ui/          # shadcn/ui components
 src/components/geometry/    # Geometry-specific components
-src/lib/data/               # Data model (7 files, see below)
+src/components/shop/        # Shop UI components (cart, product cards, etc.)
+src/lib/data/               # Data model (geometries + products)
+src/lib/shop/               # Shop: Printful API, Stripe, cart, feature flags
 src/lib/content/            # MDX content loaders
 src/content/                # MDX files (platonic-solids/, sacred-patterns/)
 src/util/routes.ts          # Top-level routing only (NOT geometry links)
@@ -80,6 +84,34 @@ Content here...
 ## Navigation
 
 Use `<GeometryNavigation currentSlug={slug} category="platonic|pattern" />` at bottom of geometry pages.
+
+## Shop Integration (`src/lib/shop/`)
+
+| File | Purpose |
+|------|---------|
+| `printful.ts` | Printful API client with ISR caching (1hr revalidation) |
+| `stripe.ts` | Stripe checkout session creation |
+| `cart-context.tsx` | React Context for cart state + localStorage persistence |
+| `feature-flags.ts` | `isShopEnabled()` for production feature gating |
+| `types.ts` | TypeScript interfaces for products, variants, cart |
+
+**Products** (`src/lib/data/products.ts`): Marketing data (name, tagline, description) mapped to Printful sync product IDs. Variant pricing/availability fetched from Printful at build time.
+
+**Key Functions:**
+- `getProductWithVariants(product)` - Hydrates product with Printful data
+- `createCheckoutSession(items)` - Creates Stripe checkout session
+- `useCart()` - Cart hook with add/remove/update/clear actions
+
+## Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `PRINTFUL_API_KEY` | Printful API token |
+| `STRIPE_SECRET_KEY` | Stripe server key (`sk_*`) |
+| `STRIPE_WEBHOOK_SECRET` | Stripe webhook verification (`whsec_*`) |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe client key (`pk_*`) |
+| `NEXT_PUBLIC_SHOP_ENABLED` | Feature flag (`true`/`false`, default: `false`) |
+| `APP_URL` | Base URL for Stripe redirects (default: `http://localhost:3000`) |
 
 ## Development Workflow
 
