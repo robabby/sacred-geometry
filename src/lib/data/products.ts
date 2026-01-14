@@ -105,6 +105,57 @@ export const PRODUCTS: Record<string, Product> = {
     featured: true,
     order: 4,
   },
+
+  "flower-of-life-stickers": {
+    id: "flower-of-life-stickers",
+    slug: "flower-of-life-stickers",
+    printfulSyncProductId: "6967f23d7e21a7",
+    name: "Flower of Life Stickers",
+    tagline: "Sacred geometry for every surface",
+    description:
+      "High-quality kiss-cut stickers featuring the Flower of Life pattern. Perfect for laptops, water bottles, journals, and anywhere you want to add sacred geometry.",
+    category: "accessories",
+    geometrySlug: "flower-of-life",
+    images: {
+      hero: "", // Populated from local images
+    },
+    localImages: {
+      thumbnail: "/images/shop/flower-of-life-stickers/thumbnail.png",
+      includeApiImage: true,
+      variants: {
+        '3″×3″': [
+          "/images/shop/flower-of-life-stickers/3x3-front-1.png",
+          "/images/shop/flower-of-life-stickers/3x3-front-2.png",
+          "/images/shop/flower-of-life-stickers/3x3-front-3.png",
+          "/images/shop/flower-of-life-stickers/3x3-front-4.png",
+          "/images/shop/flower-of-life-stickers/3x3-front-5.png",
+          "/images/shop/flower-of-life-stickers/3x3-lifestyle-1.png",
+          "/images/shop/flower-of-life-stickers/3x3-lifestyle-2.png",
+          "/images/shop/flower-of-life-stickers/3x3-lifestyle-3.png",
+        ],
+        '4″×4″': [
+          "/images/shop/flower-of-life-stickers/4x4-front-1.png",
+          "/images/shop/flower-of-life-stickers/4x4-front-2.png",
+          "/images/shop/flower-of-life-stickers/4x4-front-3.png",
+          "/images/shop/flower-of-life-stickers/4x4-front-4.png",
+          "/images/shop/flower-of-life-stickers/4x4-lifestyle-1.png",
+          "/images/shop/flower-of-life-stickers/4x4-lifestyle-2.png",
+          "/images/shop/flower-of-life-stickers/4x4-lifestyle-3.png",
+        ],
+        '5.5″×5.5″': [
+          "/images/shop/flower-of-life-stickers/5.5x5.5-front-1.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-front-2.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-front-3.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-front-4.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-lifestyle-1.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-lifestyle-2.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-lifestyle-3.png",
+        ],
+      },
+    },
+    featured: false,
+    order: 5,
+  },
 };
 
 /**
