@@ -66,8 +66,8 @@ Optimized for **highest margins** and **lowest marketing needs**:
 | **White Ceramic Mug (11oz)** | $15-20 | 40-60% | Gift staple, consistent demand |
 
 **MVP Scope:**
-- 2-3 geometries (spanning platonic solids + sacred patterns)
-- ~6-9 SKUs total
+- 3 geometries: **Flower of Life**, **Metatron's Cube**, **Seed of Life**
+- 9 SKUs total (3 shapes × 3 products)
 - Purpose: Validate the full pipeline before scaling
 
 ### Product Roadmap
@@ -86,6 +86,55 @@ Optimized for **highest margins** and **lowest marketing needs**:
 - Desk Mats (monthly AI artwork series)
 - Embroidered caps
 - All-over print tees/hoodies
+
+### MVP Geometry Selection
+
+Based on market research across Etsy, Amazon, and spiritual marketplaces:
+
+**MVP Geometries (Start Here):**
+
+| Shape | Category | Why Selected |
+|-------|----------|--------------|
+| **Flower of Life** | Sacred Pattern | #1 bestseller, universal recognition, mass market appeal |
+| **Metatron's Cube** | Sacred Pattern | Strong niche appeal, visually impressive, contains all Platonic solids |
+| **Seed of Life** | Sacred Pattern | Clean/minimalist, works great at small sizes, beginner-friendly |
+
+**Geometry Rankings by Commercial Viability:**
+
+*Tier 1 - High Commercial (Mass Market):*
+- Flower of Life, Metatron's Cube, Seed of Life, Tree of Life
+
+*Tier 2 - Strong Niche (Spiritual Practitioners):*
+- Golden Ratio, Sri Yantra, Merkaba, Vesica Piscis
+
+*Tier 3 - Platonic Solids (Differentiated):*
+- Dodecahedron (ether/universe), Icosahedron (water), Tetrahedron (fire)
+
+*Tier 4 - Skip for Now:*
+- Hexahedron (too common), Torus (hard in 2D), 64-Tetrahedron (very niche), Pentagram (controversial)
+
+### Design Style Guidelines
+
+**Color Schemes by Market Segment:**
+
+| Style | Target Market | Characteristics |
+|-------|---------------|-----------------|
+| **Minimalist Black & White** | Broadest appeal | Clean lines, high contrast, modern aesthetic |
+| **Gold on Dark** | Premium segment | Gold foil on navy/black/purple, commands higher prices |
+| **Colorful/Psychedelic** | Festival market | Vibrant blues, purples, teals, cosmic themes |
+| **Neutral Earth Tones** | Wellness market | Beige, cream, subtle gold, "Pinterest-friendly" |
+
+**Style Recommendations for MVP:**
+
+1. **Start with minimalist black/white** - Works everywhere, lowest risk
+2. **Add gold variants** for premium positioning
+3. **Test colorful versions** after validating base designs
+
+**Design Execution Standards:**
+- Precise geometry (symmetry matters to this audience)
+- Professional mockups showing lifestyle context (meditation spaces, yoga studios)
+- High-quality product photography
+- Meaningful descriptions connecting to spiritual significance
 
 ---
 
@@ -205,14 +254,15 @@ Print-ready PNGs in `print-assets/`:
 
 ```
 print-assets/
-├── platonic-solids/
-│   ├── tetrahedron/
-│   │   ├── tetrahedron-3d-sticker.png   (1200×1200 px)
-│   │   ├── tetrahedron-3d-poster.png    (3600×4800 px)
-│   │   └── tetrahedron-3d-mug.png       (2700×1050 px)
-│   └── ...
 └── sacred-patterns/
-    └── ...
+    ├── flower-of-life/
+    │   ├── flower-of-life-primary-sticker.png   (1200×1200 px)
+    │   ├── flower-of-life-primary-poster.png    (3600×4800 px)
+    │   └── flower-of-life-primary-mug.png       (2700×1050 px)
+    ├── metatrons-cube/
+    │   └── ...
+    └── seed-of-life/
+        └── ...
 
 ---
 
