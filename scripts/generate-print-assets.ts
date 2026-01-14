@@ -11,10 +11,10 @@
  *   pnpm print-assets --all               # All geometries
  *   pnpm print-assets --list              # List available geometries
  *
- * Products supported:
- *   - Embroidered Dad Cap: 1200 × 525 px
- *   - White Ceramic Mug (11oz): 2700 × 1050 px
+ * Products supported (MVP):
  *   - Kiss-Cut Sticker (4"): 1200 × 1200 px
+ *   - Poster (12"×16"): 3600 × 4800 px
+ *   - White Ceramic Mug (11oz): 2700 × 1050 px
  */
 
 import { Resvg } from "@resvg/resvg-js";
@@ -22,11 +22,11 @@ import * as fs from "fs";
 import * as path from "path";
 import sharp from "sharp";
 
-// Product dimensions (in pixels)
+// Product dimensions (in pixels) - MVP products optimized for margins & organic sales
 const PRODUCTS = {
-  cap: { width: 1200, height: 525, name: "Embroidered Dad Cap" },
-  mug: { width: 2700, height: 1050, name: "White Ceramic Mug (11oz)" },
   sticker: { width: 1200, height: 1200, name: 'Kiss-Cut Sticker (4")' },
+  poster: { width: 3600, height: 4800, name: 'Poster (12"×16")' },
+  mug: { width: 2700, height: 1050, name: "White Ceramic Mug (11oz)" },
 } as const;
 
 type ProductType = keyof typeof PRODUCTS;

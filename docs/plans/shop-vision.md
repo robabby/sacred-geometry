@@ -2,6 +2,50 @@
 
 > Source of truth for Sacred Geometry shop strategy, product roadmap, and operational workflows.
 
+---
+
+## Market Research Insights
+
+*Research conducted January 2026*
+
+### Why Sacred Geometry Is Ideal for Low-Marketing Sales
+
+Sacred geometry is an optimal niche because buyers:
+- Have **strong emotional connections** (spirituality, meaning, mindfulness)
+- **Actively search** for specific designs (Flower of Life, Metatron's Cube, Merkaba)
+- Are **passionate** and become repeat customers/brand ambassadors
+- Are willing to pay **premium prices** for authentic, meaningful designs
+
+This means organic discovery works exceptionally well - buyers are already looking for these products.
+
+### Market Size
+
+- **Spiritual Products Market**: $178.9B (2024), growing at 4% CAGR
+- **E-commerce dominance**: 70% of spiritual product sales occur online
+- **Home Decor POD**: Fastest growing category at 28% CAGR
+
+### Platform Strategy (Minimal Marketing)
+
+| Platform | Monthly Traffic | Strategy |
+|----------|-----------------|----------|
+| **Etsy** | 400M visits, 89.6M active buyers | Primary - built-in discovery, buyers searching for sacred geometry |
+| **Pinterest** | 553M users | Secondary - pins drive traffic for years, spiritual content performs well |
+| **Own Site** | Zero built-in traffic | Tertiary - brand home, direct sales |
+
+*Note: One seller reports $50k+/month on Etsy with NO ads - the platform's search brings buyers organically.*
+
+### Product Margins by Category
+
+| Product | Profit Margin | Notes |
+|---------|---------------|-------|
+| Stickers | 60-80% | Impulse buy, low barrier |
+| Wall Art (Posters/Canvas) | 74-78% | Highest margins, ideal for sacred geometry |
+| Mugs | 40-60% | Gift staple, consistent demand |
+| Embroidered Caps | 30-45% | $6.50 digitization fee per design |
+| T-shirts | 40-75% | Competitive market |
+
+---
+
 ## Product Strategy
 
 ### Two-Tier Approach
@@ -11,26 +55,37 @@
 | **Baseline** | Simple wireframe geometry on standard products | One-time setup, always available | Evergreen catalog |
 | **Featured** | AI-generated sacred geometry artwork | Weekly/monthly releases | Permanent, but less prominent over time |
 
-### MVP Products
+### MVP Products (Revised Based on Market Research)
 
-For the initial launch, we're validating the pipeline with three product types:
+Optimized for **highest margins** and **lowest marketing needs**:
 
-1. **Embroidered Dad Cap** - Premium anchor, higher price point
-2. **Kiss-Cut Stickers** - Low-cost entry, volume potential
-3. **White Ceramic Mug (11oz)** - Classic middle-tier
+| Product | Price Point | Margin | Why It Works |
+|---------|-------------|--------|--------------|
+| **Kiss-Cut Stickers** | $2-5 | 60-80% | Impulse buy, organic Etsy discovery |
+| **Posters** | $18-35 | 74%+ | Perfect for sacred geometry, home decor growing 28% |
+| **White Ceramic Mug (11oz)** | $15-20 | 40-60% | Gift staple, consistent demand |
 
 **MVP Scope:**
 - 2-3 geometries (spanning platonic solids + sacred patterns)
 - ~6-9 SKUs total
-- Purpose: Validate the full pipeline before scaling to 90+ products
+- Purpose: Validate the full pipeline before scaling
 
-### Future Products (Post-MVP)
+### Product Roadmap
 
-For AI-generated featured artwork:
-- **Desk Mats** - Monthly series, large canvas for detailed art
-- **Posters** - Wall art pieces
-- **All-over print tees/hoodies** - Vibrant, colorful artwork
-- **Canvas Tote Bags** - Eco-friendly option
+**Tier 1 - MVP (Now):**
+- Kiss-Cut Stickers
+- Posters
+- Mugs
+
+**Tier 2 - After Validation:**
+- Canvas prints (premium wall art)
+- Tote bags
+- Phone cases
+
+**Tier 3 - Future/Featured:**
+- Desk Mats (monthly AI artwork series)
+- Embroidered caps
+- All-over print tees/hoodies
 
 ---
 
@@ -80,29 +135,7 @@ For AI-generated artwork products:
 
 ## Printful Product Specifications
 
-### Embroidered Dad Cap
-
-| Spec | Value |
-|------|-------|
-| Max embroidery area | 4" × 1.75" (front) |
-| **Pixel dimensions** | **1200 × 525 px** @ 300 DPI |
-| Side/back logo | 2" × 1" (600 × 300 px) |
-| Digitization fee | $6.50 per design (one-time) |
-| File format | Vector preferred (AI, PDF) or high-res PNG |
-| Max colors | 4 colors for flat embroidery |
-| Notes | Simple wireframe geometry is ideal (clean lines) |
-
-### White Ceramic Mug (11oz)
-
-| Spec | Value |
-|------|-------|
-| Print method | Sublimation (wrap-around) |
-| **Pixel dimensions** | **2700 × 1050 px** |
-| Physical size | Height: 3.79" (9.6 cm), Diameter: 3.25" (8.3 cm) |
-| File format | PNG, 300 DPI |
-| Features | Dishwasher and microwave safe |
-
-### Kiss-Cut Stickers
+### Kiss-Cut Stickers (MVP)
 
 | Spec | Value |
 |------|-------|
@@ -112,8 +145,42 @@ For AI-generated artwork products:
 | **Sizes (@ 300 DPI)** | |
 | 2" × 2" | 600 × 600 px |
 | 3" × 3" | 900 × 900 px |
-| 4" × 4" | 1200 × 1200 px |
+| 4" × 4" | 1200 × 1200 px (recommended) |
 | 5.5" × 5.5" | 1650 × 1650 px |
+
+### Posters (MVP)
+
+| Spec | Value |
+|------|-------|
+| Print method | Giclée (archival quality) |
+| Paper | Museum-quality matte or semi-gloss |
+| **Common Sizes** | |
+| 8" × 10" | 2400 × 3000 px @ 300 DPI |
+| 12" × 16" | 3600 × 4800 px @ 300 DPI |
+| 18" × 24" | 5400 × 7200 px @ 300 DPI |
+| File format | PNG, 300 DPI |
+| Notes | Sacred geometry designs are ideal for wall art/meditation spaces |
+
+### White Ceramic Mug (11oz) (MVP)
+
+| Spec | Value |
+|------|-------|
+| Print method | Sublimation (wrap-around) |
+| **Pixel dimensions** | **2700 × 1050 px** |
+| Physical size | Height: 3.79" (9.6 cm), Diameter: 3.25" (8.3 cm) |
+| File format | PNG, 300 DPI |
+| Features | Dishwasher and microwave safe |
+
+### Embroidered Dad Cap (Tier 3)
+
+| Spec | Value |
+|------|-------|
+| Max embroidery area | 4" × 1.75" (front) |
+| **Pixel dimensions** | **1200 × 525 px** @ 300 DPI |
+| Digitization fee | $6.50 per design (one-time) |
+| File format | Vector preferred (AI, PDF) or high-res PNG |
+| Max colors | 4 colors for flat embroidery |
+| Notes | Deferred to Tier 3 due to per-design setup cost |
 
 ---
 
@@ -140,13 +207,12 @@ Print-ready PNGs in `print-assets/`:
 print-assets/
 ├── platonic-solids/
 │   ├── tetrahedron/
-│   │   ├── tetrahedron-wireframe-cap.png
-│   │   ├── tetrahedron-wireframe-mug.png
-│   │   └── tetrahedron-wireframe-sticker.png
+│   │   ├── tetrahedron-3d-sticker.png   (1200×1200 px)
+│   │   ├── tetrahedron-3d-poster.png    (3600×4800 px)
+│   │   └── tetrahedron-3d-mug.png       (2700×1050 px)
 │   └── ...
 └── sacred-patterns/
     └── ...
-```
 
 ---
 
