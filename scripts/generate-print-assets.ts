@@ -12,7 +12,7 @@
  *   pnpm print-assets --list              # List available geometries
  *
  * Products supported (MVP):
- *   - Kiss-Cut Sticker (4"): 1200 × 1200 px
+ *   - Kiss-Cut Sticker (3″-5.5″): 1800 × 1800 px @ 300+ DPI
  *   - Poster (12"×16"): 3600 × 4800 px
  *   - White Ceramic Mug (11oz): 2700 × 1050 px
  */
@@ -23,8 +23,9 @@ import * as path from "path";
 import sharp from "sharp";
 
 // Product dimensions (in pixels) - MVP products optimized for margins & organic sales
+// Sticker: 1800px supports Printful sizes 3"×3", 4"×4", 5.5"×5.5" at 300+ DPI
 const PRODUCTS = {
-  sticker: { width: 1200, height: 1200, name: 'Kiss-Cut Sticker (4")' },
+  sticker: { width: 1800, height: 1800, name: "Kiss-Cut Sticker (3″-5.5″)" },
   poster: { width: 3600, height: 4800, name: 'Poster (12"×16")' },
   mug: { width: 2700, height: 1050, name: "White Ceramic Mug (11oz)" },
 } as const;
