@@ -102,6 +102,49 @@ Use `<GeometryNavigation currentSlug={slug} category="platonic|pattern" />` at b
 - `createCheckoutSession(items)` - Creates Stripe checkout session
 - `useCart()` - Cart hook with add/remove/update/clear actions
 
+## Product Images
+
+**Directory Structure:**
+```
+mockups/                              # Source mockups from Printful (not committed)
+public/images/shop/{product-slug}/    # Production images served by Next.js
+```
+
+**Image Naming Convention:**
+```
+thumbnail.png                    # Product card thumbnail
+{size}-front-{n}.png            # Front view mockups (e.g., 3x3-front-1.png)
+{size}-lifestyle-{n}.png        # Lifestyle mockups (e.g., 3x3-lifestyle-1.png)
+{size}-detail-{n}.png           # Detail/close-up shots
+```
+
+**Local Images Config** (`products.ts`):
+```typescript
+localImages: {
+  thumbnail: "/images/shop/product-slug/thumbnail.png",
+  includeApiImage: true,  // Show Printful image first, then local images
+  variants: {
+    '3″×3″': [            // Use Unicode: ″ (U+2033) not " (U+0022)
+      "/images/shop/product-slug/3x3-front-1.png",
+      "/images/shop/product-slug/3x3-lifestyle-1.png",
+    ],
+  },
+},
+```
+
+**Image Modes:**
+| Mode | `includeApiImage` | Behavior |
+|------|-------------------|----------|
+| Replace | `false` / omitted | Local images replace Printful mockups entirely |
+| Append | `true` | Printful image shown first, local images follow in gallery |
+
+**Adding Product Images:**
+1. Download mockups from Printful dashboard to `mockups/{product-type}/{geometry}/`
+2. Create `public/images/shop/{product-slug}/` directory
+3. Copy and rename images following naming convention
+4. Add `localImages` config to product definition in `products.ts`
+5. **Critical**: Variant keys must match Printful API exactly (use `″` and `×` Unicode characters)
+
 ## Environment Variables
 
 | Variable | Description |
