@@ -75,7 +75,7 @@ export const PRODUCTS: Record<string, Product> = {
     localImages: {
       thumbnail: "/images/shop/flower-of-life-deskmat/thumbnail.png",
       variants: {
-        "12×18": [
+        '12"×18"': [
           "/images/shop/flower-of-life-deskmat/12x18-front-1.png",
           "/images/shop/flower-of-life-deskmat/12x18-front-2.png",
           "/images/shop/flower-of-life-deskmat/12x18-front-3.png",
@@ -83,7 +83,7 @@ export const PRODUCTS: Record<string, Product> = {
           "/images/shop/flower-of-life-deskmat/12x18-detail-1.png",
           "/images/shop/flower-of-life-deskmat/12x18-detail-2.png",
         ],
-        "12×22": [
+        '12"×22"': [
           "/images/shop/flower-of-life-deskmat/12x22-front-1.png",
           "/images/shop/flower-of-life-deskmat/12x22-front-2.png",
           "/images/shop/flower-of-life-deskmat/12x22-front-3.png",
@@ -91,7 +91,7 @@ export const PRODUCTS: Record<string, Product> = {
           "/images/shop/flower-of-life-deskmat/12x22-detail-1.png",
           "/images/shop/flower-of-life-deskmat/12x22-detail-2.png",
         ],
-        "16×32": [
+        '16"×32"': [
           "/images/shop/flower-of-life-deskmat/16x32-front-1.png",
           "/images/shop/flower-of-life-deskmat/16x32-front-2.png",
           "/images/shop/flower-of-life-deskmat/16x32-front-3.png",
