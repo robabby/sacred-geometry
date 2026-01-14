@@ -59,6 +59,15 @@ export function ProductCard({ product, variants, thumbnail }: ProductCardProps) 
               {product.name}
             </Heading>
 
+            {product.edition && (
+              <Badge
+                variant="outline"
+                className="w-fit border-[var(--color-gold)] text-[var(--color-gold)]"
+              >
+                {product.edition}
+              </Badge>
+            )}
+
             <Text size="2" className="text-[var(--color-warm-gray)]">
               {product.tagline}
             </Text>

@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { VariantSelector } from "@/components/shop/variant-selector";
 import { AddToCartButton } from "@/components/shop/add-to-cart-button";
 import { formatPrice } from "@/lib/shop/printful";
+import { cn } from "@/lib/utils";
 import type { Product, PrintfulVariant } from "@/lib/shop/types";
 
 interface ProductDetailsProps {
@@ -34,12 +35,31 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
       return inStockVariant?.id ?? variants[0]?.id ?? null;
     }
   );
+  const [galleryIndex, setGalleryIndex] = useState(0);
 
   const selectedVariant = variants.find((v) => v.id === selectedVariantId);
 
-  // Derive current image from selected variant (no effect needed)
-  const currentImage =
-    selectedVariant?.image ?? variants[0]?.image ?? "";
+  // Handle variant change and reset gallery index
+  const handleVariantChange = (variantId: number | null) => {
+    setSelectedVariantId(variantId);
+    setGalleryIndex(0);
+  };
+
+  // Get gallery images for the selected variant (from localImages or fallback to variant image)
+  const galleryImages: string[] = (() => {
+    if (product.localImages?.variants && selectedVariant) {
+      const images = product.localImages.variants[selectedVariant.size];
+      if (images && images.length > 0) {
+        return images;
+      }
+    }
+    // Fallback to single variant image
+    const variantImage = selectedVariant?.image ?? variants[0]?.image;
+    return variantImage ? [variantImage] : [];
+  })();
+
+  // Derive current image from gallery
+  const currentImage = galleryImages[galleryIndex] ?? galleryImages[0] ?? "";
 
   return (
     <Grid
@@ -47,19 +67,48 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
       className="mx-auto max-w-7xl gap-6 md:gap-10 lg:gap-16"
     >
       {/* Product Image */}
-      <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-[var(--color-warm-charcoal)]">
-        {currentImage ? (
-          <Image
-            src={currentImage}
-            alt={product.name}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-contain p-8"
-            priority
-          />
-        ) : (
-          <div className="flex h-full items-center justify-center">
-            <Text className="text-[var(--color-warm-gray)]">No image available</Text>
+      <div className="flex flex-col gap-4">
+        <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-[var(--color-warm-charcoal)]">
+          {currentImage ? (
+            <Image
+              src={currentImage}
+              alt={product.name}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-contain p-8"
+              priority
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center">
+              <Text className="text-[var(--color-warm-gray)]">No image available</Text>
+            </div>
+          )}
+        </div>
+
+        {/* Thumbnail Gallery (only show if multiple images) */}
+        {galleryImages.length > 1 && (
+          <div className="flex gap-2 overflow-x-auto pb-2">
+            {galleryImages.map((image, index) => (
+              <button
+                key={image}
+                onClick={() => setGalleryIndex(index)}
+                className={cn(
+                  "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md transition-all",
+                  "hover:ring-2 hover:ring-[var(--color-gold)] hover:ring-offset-2 hover:ring-offset-[var(--color-obsidian)]",
+                  index === galleryIndex
+                    ? "ring-2 ring-[var(--color-gold)] ring-offset-2 ring-offset-[var(--color-obsidian)]"
+                    : "opacity-60 hover:opacity-100"
+                )}
+              >
+                <Image
+                  src={image}
+                  alt={`${product.name} view ${index + 1}`}
+                  fill
+                  sizes="64px"
+                  className="object-contain bg-[var(--color-warm-charcoal)] p-1"
+                />
+              </button>
+            ))}
           </div>
         )}
       </div>
@@ -87,6 +136,16 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
           </Text>
         </div>
 
+        {/* Edition Badge */}
+        {product.edition && (
+          <Badge
+            variant="outline"
+            className="w-fit border-[var(--color-gold)] px-3 py-1 text-sm text-[var(--color-gold)]"
+          >
+            {product.edition}
+          </Badge>
+        )}
+
         {/* Price */}
         <Text size="6" weight="bold" className="text-[var(--color-gold)]">
           {selectedVariant ? formatPrice(selectedVariant.price) : "—"}
@@ -100,7 +159,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
           <VariantSelector
             variants={variants}
             selectedVariantId={selectedVariantId}
-            onVariantChange={setSelectedVariantId}
+            onVariantChange={handleVariantChange}
           />
         </div>
 
