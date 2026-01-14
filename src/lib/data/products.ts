@@ -105,6 +105,23 @@ export const PRODUCTS: Record<string, Product> = {
     featured: true,
     order: 4,
   },
+
+  "flower-of-life-stickers": {
+    id: "flower-of-life-stickers",
+    slug: "flower-of-life-stickers",
+    printfulSyncProductId: "6967f23d7e21a7",
+    name: "Flower of Life Stickers",
+    tagline: "Sacred geometry for every surface",
+    description:
+      "High-quality kiss-cut stickers featuring the Flower of Life pattern. Perfect for laptops, water bottles, journals, and anywhere you want to add sacred geometry.",
+    category: "accessories",
+    geometrySlug: "flower-of-life",
+    images: {
+      hero: "", // Populated from Printful API
+    },
+    featured: false,
+    order: 5,
+  },
 };
 
 /**
