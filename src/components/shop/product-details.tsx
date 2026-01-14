@@ -87,7 +87,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
 
         {/* Thumbnail Gallery (only show if multiple images) */}
         {galleryImages.length > 1 && (
-          <div className="flex gap-2 overflow-x-auto pb-2">
+          <div className="flex gap-2 overflow-x-auto p-1">
             {galleryImages.map((image, index) => (
               <button
                 key={image}
