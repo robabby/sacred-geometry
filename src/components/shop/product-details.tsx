@@ -92,28 +92,34 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
 
         {/* Thumbnail Gallery (only show if multiple images) */}
         {galleryImages.length > 1 && (
-          <div className="flex gap-2 overflow-x-auto p-1">
-            {galleryImages.map((image, index) => (
-              <button
-                key={image}
-                onClick={() => setGalleryIndex(index)}
-                className={cn(
-                  "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md transition-all",
-                  "hover:ring-2 hover:ring-[var(--color-gold)] hover:ring-offset-2 hover:ring-offset-[var(--color-obsidian)]",
-                  index === galleryIndex
-                    ? "ring-2 ring-[var(--color-gold)] ring-offset-2 ring-offset-[var(--color-obsidian)]"
-                    : "opacity-60 hover:opacity-100"
-                )}
-              >
-                <Image
-                  src={image}
-                  alt={`${product.name} view ${index + 1}`}
-                  fill
-                  sizes="64px"
-                  className="object-contain bg-[var(--color-warm-charcoal)] p-1"
-                />
-              </button>
-            ))}
+          <div className="relative">
+            {/* Gradient fade edges to indicate scrollable content */}
+            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-8 bg-gradient-to-r from-[var(--color-obsidian)] to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-8 bg-gradient-to-l from-[var(--color-obsidian)] to-transparent" />
+
+            <div className="scrollbar-none flex gap-2 overflow-x-auto px-2 py-1">
+              {galleryImages.map((image, index) => (
+                <button
+                  key={image}
+                  onClick={() => setGalleryIndex(index)}
+                  className={cn(
+                    "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md transition-all",
+                    "hover:ring-2 hover:ring-[var(--color-gold)] hover:ring-offset-2 hover:ring-offset-[var(--color-obsidian)]",
+                    index === galleryIndex
+                      ? "ring-2 ring-[var(--color-gold)] ring-offset-2 ring-offset-[var(--color-obsidian)]"
+                      : "opacity-60 hover:opacity-100"
+                  )}
+                >
+                  <Image
+                    src={image}
+                    alt={`${product.name} view ${index + 1}`}
+                    fill
+                    sizes="64px"
+                    className="object-contain bg-[var(--color-warm-charcoal)] p-1"
+                  />
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>
