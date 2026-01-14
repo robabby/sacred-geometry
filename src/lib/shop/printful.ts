@@ -102,16 +102,31 @@ export async function getProductThumbnail(syncProductId: string): Promise<string
 
 /**
  * Get product with variants hydrated from Printful
+ * Uses local images as fallback when available
  */
 export async function getProductWithVariants(product: Product): Promise<{
   product: Product;
   variants: PrintfulVariant[];
   thumbnail: string;
 }> {
-  const [variants, thumbnail] = await Promise.all([
+  const [variants, apiThumbnail] = await Promise.all([
     getProductVariants(product.printfulSyncProductId),
     getProductThumbnail(product.printfulSyncProductId),
   ]);
+
+  // Use local thumbnail if available, otherwise use API thumbnail
+  const thumbnail = product.localImages?.thumbnail ?? apiThumbnail;
+
+  // Apply local variant images if available (first image in array is primary)
+  const variantsWithLocalImages = variants.map((variant) => {
+    if (product.localImages?.variants) {
+      const localImages = product.localImages.variants[variant.size];
+      if (localImages && localImages.length > 0) {
+        return { ...variant, image: localImages[0] };
+      }
+    }
+    return variant;
+  });
 
   return {
     product: {
@@ -121,7 +136,7 @@ export async function getProductWithVariants(product: Product): Promise<{
         hero: thumbnail,
       },
     },
-    variants,
+    variants: variantsWithLocalImages,
     thumbnail,
   };
 }

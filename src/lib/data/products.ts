@@ -58,6 +58,53 @@ export const PRODUCTS: Record<string, Product> = {
     featured: false,
     order: 3,
   },
+
+  "flower-of-life-deskmat": {
+    id: "flower-of-life-deskmat",
+    slug: "flower-of-life-deskmat",
+    printfulSyncProductId: "6966a40834ac72",
+    name: "Flower of Life Desk Mat",
+    tagline: "Sacred geometry for your workspace",
+    description:
+      "Premium desk mat featuring the Flower of Life pattern - the ancient symbol of creation found in temples worldwide. Transform your workspace into a sacred space.",
+    category: "accessories",
+    geometrySlug: "flower-of-life",
+    images: {
+      hero: "", // Populated from local images
+    },
+    localImages: {
+      thumbnail: "/images/shop/flower-of-life-deskmat/thumbnail.png",
+      variants: {
+        '12″×18″': [
+          "/images/shop/flower-of-life-deskmat/12x18-front-1.png",
+          "/images/shop/flower-of-life-deskmat/12x18-front-2.png",
+          "/images/shop/flower-of-life-deskmat/12x18-front-3.png",
+          "/images/shop/flower-of-life-deskmat/12x18-front-4.png",
+          "/images/shop/flower-of-life-deskmat/12x18-detail-1.png",
+          "/images/shop/flower-of-life-deskmat/12x18-detail-2.png",
+        ],
+        '12″×22″': [
+          "/images/shop/flower-of-life-deskmat/12x22-front-1.png",
+          "/images/shop/flower-of-life-deskmat/12x22-front-2.png",
+          "/images/shop/flower-of-life-deskmat/12x22-front-3.png",
+          "/images/shop/flower-of-life-deskmat/12x22-front-4.png",
+          "/images/shop/flower-of-life-deskmat/12x22-detail-1.png",
+          "/images/shop/flower-of-life-deskmat/12x22-detail-2.png",
+        ],
+        '16″×32″': [
+          "/images/shop/flower-of-life-deskmat/16x32-front-1.png",
+          "/images/shop/flower-of-life-deskmat/16x32-front-2.png",
+          "/images/shop/flower-of-life-deskmat/16x32-front-3.png",
+          "/images/shop/flower-of-life-deskmat/16x32-front-4.png",
+          "/images/shop/flower-of-life-deskmat/16x32-detail-1.png",
+          "/images/shop/flower-of-life-deskmat/16x32-detail-2.png",
+        ],
+      },
+    },
+    edition: "January 2026 Edition",
+    featured: true,
+    order: 4,
+  },
 };
 
 /**

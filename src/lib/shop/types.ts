@@ -27,6 +27,14 @@ export interface Product {
     hero: string;
     gallery?: string[];
   };
+  /** Local images for products where Printful mockups aren't available */
+  localImages?: {
+    thumbnail: string;
+    /** Maps size to array of image paths (first is primary, rest are gallery) */
+    variants?: Record<string, string[]>;
+  };
+  /** Edition label for limited/monthly releases (e.g., "January 2026 Edition") */
+  edition?: string;
   featured?: boolean;
   order?: number;
 }

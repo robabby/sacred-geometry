@@ -252,9 +252,9 @@ Usage:
   pnpm print-assets --list              # List available geometries
 
 Products:
-  - cap:     ${PRODUCTS.cap.width}×${PRODUCTS.cap.height}px (${PRODUCTS.cap.name})
-  - mug:     ${PRODUCTS.mug.width}×${PRODUCTS.mug.height}px (${PRODUCTS.mug.name})
   - sticker: ${PRODUCTS.sticker.width}×${PRODUCTS.sticker.height}px (${PRODUCTS.sticker.name})
+  - poster:  ${PRODUCTS.poster.width}×${PRODUCTS.poster.height}px (${PRODUCTS.poster.name})
+  - mug:     ${PRODUCTS.mug.width}×${PRODUCTS.mug.height}px (${PRODUCTS.mug.name})
 
 Output: print-assets/{category}/{slug}/
 `);
