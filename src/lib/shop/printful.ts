@@ -118,8 +118,9 @@ export async function getProductWithVariants(product: Product): Promise<{
   const thumbnail = product.localImages?.thumbnail ?? apiThumbnail;
 
   // Apply local variant images if available (first image in array is primary)
+  // When includeApiImage is true, keep the Printful image and append local images to gallery
   const variantsWithLocalImages = variants.map((variant) => {
-    if (product.localImages?.variants) {
+    if (product.localImages?.variants && !product.localImages.includeApiImage) {
       const localImages = product.localImages.variants[variant.size];
       if (localImages && localImages.length > 0) {
         return { ...variant, image: localImages[0] };

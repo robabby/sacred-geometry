@@ -47,14 +47,19 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
 
   // Get gallery images for the selected variant (from localImages or fallback to variant image)
   const galleryImages: string[] = (() => {
+    const variantImage = selectedVariant?.image ?? variants[0]?.image;
+
     if (product.localImages?.variants && selectedVariant) {
-      const images = product.localImages.variants[selectedVariant.size];
-      if (images && images.length > 0) {
-        return images;
+      const localImages = product.localImages.variants[selectedVariant.size];
+      if (localImages && localImages.length > 0) {
+        // When includeApiImage is true, prepend the Printful image to local images
+        if (product.localImages.includeApiImage && variantImage) {
+          return [variantImage, ...localImages];
+        }
+        return localImages;
       }
     }
     // Fallback to single variant image
-    const variantImage = selectedVariant?.image ?? variants[0]?.image;
     return variantImage ? [variantImage] : [];
   })();
 

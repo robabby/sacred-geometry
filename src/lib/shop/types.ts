@@ -32,6 +32,8 @@ export interface Product {
     thumbnail: string;
     /** Maps size to array of image paths (first is primary, rest are gallery) */
     variants?: Record<string, string[]>;
+    /** When true, keeps Printful API image as primary and appends local images to gallery */
+    includeApiImage?: boolean;
   };
   /** Edition label for limited/monthly releases (e.g., "January 2026 Edition") */
   edition?: string;

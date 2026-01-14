@@ -117,7 +117,41 @@ export const PRODUCTS: Record<string, Product> = {
     category: "accessories",
     geometrySlug: "flower-of-life",
     images: {
-      hero: "", // Populated from Printful API
+      hero: "", // Populated from local images
+    },
+    localImages: {
+      thumbnail: "/images/shop/flower-of-life-stickers/thumbnail.png",
+      includeApiImage: true,
+      variants: {
+        '3″×3″': [
+          "/images/shop/flower-of-life-stickers/3x3-front-1.png",
+          "/images/shop/flower-of-life-stickers/3x3-front-2.png",
+          "/images/shop/flower-of-life-stickers/3x3-front-3.png",
+          "/images/shop/flower-of-life-stickers/3x3-front-4.png",
+          "/images/shop/flower-of-life-stickers/3x3-front-5.png",
+          "/images/shop/flower-of-life-stickers/3x3-lifestyle-1.png",
+          "/images/shop/flower-of-life-stickers/3x3-lifestyle-2.png",
+          "/images/shop/flower-of-life-stickers/3x3-lifestyle-3.png",
+        ],
+        '4″×4″': [
+          "/images/shop/flower-of-life-stickers/4x4-front-1.png",
+          "/images/shop/flower-of-life-stickers/4x4-front-2.png",
+          "/images/shop/flower-of-life-stickers/4x4-front-3.png",
+          "/images/shop/flower-of-life-stickers/4x4-front-4.png",
+          "/images/shop/flower-of-life-stickers/4x4-lifestyle-1.png",
+          "/images/shop/flower-of-life-stickers/4x4-lifestyle-2.png",
+          "/images/shop/flower-of-life-stickers/4x4-lifestyle-3.png",
+        ],
+        '5.5″×5.5″': [
+          "/images/shop/flower-of-life-stickers/5.5x5.5-front-1.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-front-2.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-front-3.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-front-4.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-lifestyle-1.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-lifestyle-2.png",
+          "/images/shop/flower-of-life-stickers/5.5x5.5-lifestyle-3.png",
+        ],
+      },
     },
     featured: false,
     order: 5,
