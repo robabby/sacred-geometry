@@ -47,3 +47,6 @@ yarn-error.log*
 
 # generated print assets
 /print-assets
+
+# source mockup images
+/mockups
