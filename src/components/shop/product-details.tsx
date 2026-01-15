@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { VariantSelector } from "@/components/shop/variant-selector";
 import { AddToCartButton } from "@/components/shop/add-to-cart-button";
+import { ImageLightbox } from "@/components/shop/image-lightbox";
 import { formatPrice } from "@/lib/shop/printful";
 import { cn } from "@/lib/utils";
 import type { Product, PrintfulVariant } from "@/lib/shop/types";
@@ -44,6 +45,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
     }
   );
   const [galleryIndex, setGalleryIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const selectedVariant = variants.find((v) => v.id === selectedVariantId);
 
@@ -101,7 +103,16 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
       >
       {/* Product Image */}
       <div className="flex flex-col gap-4">
-        <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-[var(--color-warm-charcoal)]">
+        <button
+          onClick={() => currentImage && setLightboxOpen(true)}
+          className={cn(
+            "relative aspect-square w-full overflow-hidden rounded-lg bg-[var(--color-warm-charcoal)]",
+            "transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)] focus:ring-offset-2 focus:ring-offset-[var(--color-obsidian)]",
+            currentImage && "cursor-zoom-in hover:ring-2 hover:ring-[var(--color-gold)]/50"
+          )}
+          aria-label={currentImage ? `View ${product.name} fullscreen` : undefined}
+          disabled={!currentImage}
+        >
           {currentImage ? (
             <Image
               src={currentImage}
@@ -117,7 +128,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
               <Text className="text-[var(--color-warm-gray)]">No image available</Text>
             </div>
           )}
-        </div>
+        </button>
 
         {/* Thumbnail Gallery (only show if multiple images) */}
         {galleryImages.length > 1 && (
@@ -147,6 +158,24 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
                     className="object-contain bg-[var(--color-warm-charcoal)] p-1"
                   />
                 </button>
+              ))}
+            </div>
+
+            {/* Dot indicators */}
+            <div className="mt-3 flex justify-center gap-1.5">
+              {galleryImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setGalleryIndex(index)}
+                  className={cn(
+                    "h-1.5 rounded-full transition-all",
+                    index === galleryIndex
+                      ? "w-4 bg-[var(--color-gold)]"
+                      : "w-1.5 bg-[var(--color-warm-gray)]/40 hover:bg-[var(--color-warm-gray)]"
+                  )}
+                  aria-label={`View image ${index + 1}`}
+                  aria-current={index === galleryIndex ? "true" : undefined}
+                />
               ))}
             </div>
           </div>
@@ -225,6 +254,16 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
         <AddToCartButton product={product} selectedVariant={selectedVariant} />
       </Flex>
     </Grid>
+
+      {/* Image Lightbox */}
+      <ImageLightbox
+        images={galleryImages}
+        currentIndex={galleryIndex}
+        onIndexChange={setGalleryIndex}
+        open={lightboxOpen}
+        onOpenChange={setLightboxOpen}
+        productName={product.name}
+      />
     </div>
   );
 }
