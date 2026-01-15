@@ -156,6 +156,54 @@ export const PRODUCTS: Record<string, Product> = {
     featured: false,
     order: 5,
   },
+
+  "metatrons-cube-stickers": {
+    id: "metatrons-cube-stickers",
+    slug: "metatrons-cube-stickers",
+    printfulSyncProductId: "6967f3c5902d16",
+    name: "Metatron's Cube Stickers",
+    tagline: "The blueprint of creation, anywhere you go",
+    description:
+      "High-quality kiss-cut stickers featuring Metatron's Cube - the sacred pattern containing all five Platonic solids. Perfect for laptops, water bottles, journals, and anywhere you want to carry the geometry of the universe.",
+    category: "accessories",
+    geometrySlug: "metatrons-cube",
+    images: {
+      hero: "", // Populated from local images
+    },
+    localImages: {
+      thumbnail: "/images/shop/metatrons-cube-stickers/thumbnail.png",
+      includeApiImage: true,
+      variants: {
+        '3″×3″': [
+          "/images/shop/metatrons-cube-stickers/3x3-front-1.png",
+          "/images/shop/metatrons-cube-stickers/3x3-front-2.png",
+          "/images/shop/metatrons-cube-stickers/3x3-front-3.png",
+          "/images/shop/metatrons-cube-stickers/3x3-front-4.png",
+          "/images/shop/metatrons-cube-stickers/3x3-lifestyle-1.png",
+          "/images/shop/metatrons-cube-stickers/3x3-lifestyle-2.png",
+          "/images/shop/metatrons-cube-stickers/3x3-lifestyle-3.png",
+        ],
+        '4″×4″': [
+          "/images/shop/metatrons-cube-stickers/4x4-front-1.png",
+          "/images/shop/metatrons-cube-stickers/4x4-front-2.png",
+          "/images/shop/metatrons-cube-stickers/4x4-front-3.png",
+          "/images/shop/metatrons-cube-stickers/4x4-lifestyle-1.png",
+          "/images/shop/metatrons-cube-stickers/4x4-lifestyle-2.png",
+          "/images/shop/metatrons-cube-stickers/4x4-lifestyle-3.png",
+        ],
+        '5.5″×5.5″': [
+          "/images/shop/metatrons-cube-stickers/5.5x5.5-front-1.png",
+          "/images/shop/metatrons-cube-stickers/5.5x5.5-front-2.png",
+          "/images/shop/metatrons-cube-stickers/5.5x5.5-front-3.png",
+          "/images/shop/metatrons-cube-stickers/5.5x5.5-lifestyle-1.png",
+          "/images/shop/metatrons-cube-stickers/5.5x5.5-lifestyle-2.png",
+          "/images/shop/metatrons-cube-stickers/5.5x5.5-lifestyle-3.png",
+        ],
+      },
+    },
+    featured: false,
+    order: 6,
+  },
 };
 
 /**
