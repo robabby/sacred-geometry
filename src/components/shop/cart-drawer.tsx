@@ -3,8 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Loader2, Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
-import { Text } from "@radix-ui/themes";
+import { AlertCircle, Loader2, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -65,24 +64,15 @@ export function CartDrawer() {
         className="flex w-full flex-col border-[var(--border-gold)] bg-[var(--color-obsidian)] sm:max-w-md"
       >
         <SheetHeader className="border-b border-[var(--border-gold)]/50">
-          <div className="flex items-center justify-between">
-            <SheetTitle className="flex items-center gap-2 font-heading text-[var(--color-cream)]">
-              <ShoppingBag className="h-5 w-5 text-[var(--color-gold)]" />
-              Your Cart
-              {itemCount > 0 && (
-                <span className="ml-2 text-sm font-normal text-[var(--color-warm-gray)]">
-                  ({itemCount})
-                </span>
-              )}
-            </SheetTitle>
-            <button
-              onClick={closeCart}
-              className="flex h-11 w-11 items-center justify-center rounded-md text-[var(--color-warm-gray)] transition-colors hover:bg-[var(--color-warm-charcoal)] hover:text-[var(--color-cream)]"
-              aria-label="Close cart"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          </div>
+          <SheetTitle className="flex items-center gap-2 font-heading text-[var(--color-cream)]">
+            <ShoppingBag className="h-5 w-5 text-[var(--color-gold)]" />
+            Your Cart
+            {itemCount > 0 && (
+              <span className="ml-2 text-sm font-normal text-[var(--color-warm-gray)]">
+                ({itemCount})
+              </span>
+            )}
+          </SheetTitle>
           <SheetDescription className="sr-only">
             Review and manage items in your shopping cart
           </SheetDescription>
@@ -93,9 +83,9 @@ export function CartDrawer() {
           {items.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center gap-4 p-6 text-center">
               <ShoppingBag className="h-16 w-16 text-[var(--color-warm-gray)]/50" />
-              <Text className="text-[var(--color-warm-gray)]">
+              <span className="text-base text-[var(--color-warm-gray)]">
                 Your cart is empty
-              </Text>
+              </span>
               <Link href="/shop" onClick={closeCart}>
                 <Button
                   variant="outline"
@@ -130,24 +120,16 @@ export function CartDrawer() {
                   </div>
 
                   {/* Product Details */}
-                  <div className="flex flex-1 flex-col gap-1">
-                    <Text
-                      size="2"
-                      weight="medium"
-                      className="text-[var(--color-cream)]"
-                    >
+                  <div className="flex flex-1 flex-col gap-1.5">
+                    <span className="font-heading text-lg font-medium text-[var(--color-cream)]">
                       {item.name}
-                    </Text>
-                    <Text size="1" className="text-[var(--color-warm-gray)]">
+                    </span>
+                    <span className="text-sm text-[var(--color-warm-gray)]">
                       {item.variantName}
-                    </Text>
-                    <Text
-                      size="2"
-                      weight="medium"
-                      className="text-[var(--color-gold)]"
-                    >
+                    </span>
+                    <span className="text-lg font-semibold text-[var(--color-gold)]">
                       {formatPrice(item.price)}
-                    </Text>
+                    </span>
 
                     {/* Quantity Controls */}
                     <div className="mt-2 flex items-center gap-2">
@@ -160,7 +142,7 @@ export function CartDrawer() {
                       >
                         <Minus className="h-4 w-4" />
                       </button>
-                      <span className="w-10 text-center text-sm text-[var(--color-cream)]">
+                      <span className="w-10 text-center text-base text-[var(--color-cream)]">
                         {item.quantity}
                       </span>
                       <button
@@ -191,24 +173,23 @@ export function CartDrawer() {
         {items.length > 0 && (
           <SheetFooter className="border-t border-[var(--border-gold)]/50 pb-safe">
             <div className="flex w-full items-center justify-between">
-              <Text size="3" className="text-[var(--color-warm-gray)]">
+              <span className="text-base text-[var(--color-warm-gray)]">
                 Subtotal
-              </Text>
-              <Text
-                size="5"
-                weight="bold"
-                className="text-[var(--color-cream)]"
-              >
+              </span>
+              <span className="text-xl font-bold text-[var(--color-cream)]">
                 {formatPrice(subtotal)}
-              </Text>
+              </span>
             </div>
-            <Text size="1" className="text-[var(--color-warm-gray)]">
+            <span className="text-sm text-[var(--color-warm-gray)]">
               Shipping and taxes calculated at checkout
-            </Text>
+            </span>
             {checkoutError && (
-              <Text size="1" className="text-red-400">
-                {checkoutError}
-              </Text>
+              <div className="flex items-center gap-2 rounded-md border border-red-400/50 bg-red-400/10 px-3 py-2">
+                <AlertCircle className="h-4 w-4 flex-shrink-0 text-red-400" />
+                <span className="text-sm text-red-400">
+                  {checkoutError}
+                </span>
+              </div>
             )}
             <Button
               className="mt-4 w-full bg-[var(--color-gold)] text-[var(--color-obsidian)] hover:bg-[var(--color-gold-bright)]"
