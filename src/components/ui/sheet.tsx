@@ -73,10 +73,10 @@ function SheetContent({
       >
         {children}
         <SheetPrimitive.Close
-          className="ring-offset-background focus:ring-ring absolute top-4 right-4 flex h-11 w-11 items-center justify-center rounded-md transition-colors hover:bg-[var(--color-warm-charcoal)] focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none"
+          className="ring-offset-background focus:ring-ring absolute top-2 right-4 flex h-11 w-11 items-center justify-center rounded-md text-[var(--color-warm-gray)] transition-colors hover:bg-[var(--color-warm-charcoal)] hover:text-[var(--color-cream)] focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none"
           aria-label="Close"
         >
-          <XIcon className="size-5" />
+          <XIcon className="size-6" />
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>
