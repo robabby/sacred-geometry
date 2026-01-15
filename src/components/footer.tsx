@@ -87,7 +87,7 @@ export function Footer() {
 
         {/* Three-column layout */}
         <div className="grid grid-cols-1 gap-4 pb-4 sm:grid-cols-3 sm:gap-6 sm:pb-6 lg:gap-8 lg:pb-8">
-          {/* Navigation */}
+          {/* Navigation + Legal */}
           <div className="text-center sm:text-left">
             <h3 className="mb-4 font-heading text-sm font-semibold uppercase tracking-wider text-[var(--color-gold)]">
               Explore
@@ -101,6 +101,16 @@ export function Footer() {
                 Sacred Patterns
               </FooterLink>
               <FooterLink href={ROUTES.faq.path}>FAQ</FooterLink>
+            </nav>
+
+            <h3 className="mb-4 mt-6 font-heading text-sm font-semibold uppercase tracking-wider text-[var(--color-gold)]">
+              Legal
+            </h3>
+            <nav className="flex flex-col gap-2">
+              <FooterLink href="/legal/terms">Terms of Service</FooterLink>
+              <FooterLink href="/legal/privacy">Privacy Policy</FooterLink>
+              <FooterLink href="/legal/returns">Returns</FooterLink>
+              <FooterLink href="/legal/shipping">Shipping</FooterLink>
             </nav>
           </div>
 
