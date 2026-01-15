@@ -6,6 +6,14 @@ import Link from "next/link";
 import { Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import { ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { VariantSelector } from "@/components/shop/variant-selector";
 import { AddToCartButton } from "@/components/shop/add-to-cart-button";
 import { formatPrice } from "@/lib/shop/printful";
@@ -67,10 +75,30 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
   const currentImage = galleryImages[galleryIndex] ?? galleryImages[0] ?? "";
 
   return (
-    <Grid
-      columns={{ initial: "1", md: "2" }}
-      className="mx-auto max-w-7xl gap-6 md:gap-10 lg:gap-16"
-    >
+    <div className="mx-auto max-w-7xl">
+      {/* Breadcrumb Navigation */}
+      <Breadcrumb className="mb-6">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/shop" className="text-[var(--color-warm-gray)] hover:text-[var(--color-gold)]">
+                Shop
+              </Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator className="text-[var(--color-warm-gray)]" />
+          <BreadcrumbItem>
+            <BreadcrumbPage className="text-[var(--color-cream)]">
+              {product.name}
+            </BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
+      <Grid
+        columns={{ initial: "1", md: "2" }}
+        className="gap-6 md:gap-10 lg:gap-16"
+      >
       {/* Product Image */}
       <div className="flex flex-col gap-4">
         <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-[var(--color-warm-charcoal)]">
@@ -82,6 +110,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-contain p-8"
               priority
+              loading="eager"
             />
           ) : (
             <div className="flex h-full items-center justify-center">
@@ -196,5 +225,6 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
         <AddToCartButton product={product} selectedVariant={selectedVariant} />
       </Flex>
     </Grid>
+    </div>
   );
 }

@@ -103,7 +103,7 @@ export function AddToCartButton({
       "flex w-full items-center justify-center gap-2 py-6 text-lg font-medium transition-all";
 
     if (buttonState === "added") {
-      return `${baseClass} bg-green-600 text-white hover:bg-green-600`;
+      return `${baseClass} bg-[var(--color-gold)] text-[var(--color-obsidian)] hover:bg-[var(--color-gold)]`;
     }
     if (isDisabled) {
       return `${baseClass} bg-[var(--color-warm-charcoal)] text-[var(--color-dim)] cursor-not-allowed`;

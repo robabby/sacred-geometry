@@ -26,7 +26,7 @@ export function ProductCard({ product, variants, thumbnail }: ProductCardProps) 
   const priceDisplay =
     priceRange.min === priceRange.max
       ? formatPrice(priceRange.min)
-      : `${formatPrice(priceRange.min)} – ${formatPrice(priceRange.max)}`;
+      : `From ${formatPrice(priceRange.min)}`;
 
   return (
     <Link

@@ -51,8 +51,8 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
 
       <div className="flex max-w-md flex-col items-center gap-6 text-center">
         {/* Success Icon */}
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-500/20">
-          <CheckCircle className="h-10 w-10 text-green-500" />
+        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[var(--color-gold)]/20">
+          <CheckCircle className="h-10 w-10 text-[var(--color-gold)]" />
         </div>
 
         {/* Heading */}
@@ -87,7 +87,7 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
           <Link href="/shop">
             <Button
               variant="outline"
-              className="border-[var(--color-gold)] text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10"
+              className="border-[var(--color-gold)] text-[var(--color-gold)] hover:border-[var(--color-gold-bright)] hover:bg-[var(--color-gold)]/20 hover:text-[var(--color-gold-bright)]"
             >
               Continue Shopping
             </Button>
