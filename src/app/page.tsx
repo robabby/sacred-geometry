@@ -107,7 +107,7 @@ export default function HomePage() {
 
             <AnimatedHeroItem>
               <p className="max-w-3xl px-4 text-sm text-[var(--color-warm-gray)] sm:text-lg">
-                Discover the mathematical principles and divine patterns that form
+                Discover the mathematical principles and timeless patterns that form
                 the foundation of our universe. From the Platonic Solids to the
                 Flower of Life, explore the geometries that have inspired mystics,
                 scientists, and artists throughout history.
