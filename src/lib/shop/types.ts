@@ -130,3 +130,43 @@ export interface PrintfulSyncProductResponse {
     sync_variants: PrintfulSyncVariant[];
   };
 }
+
+/**
+ * Validation Error Codes
+ */
+export type ValidationErrorCode =
+  | "PRODUCT_NOT_FOUND"
+  | "VARIANT_NOT_FOUND"
+  | "OUT_OF_STOCK"
+  | "INVALID_QUANTITY"
+  | "PRINTFUL_API_ERROR";
+
+/**
+ * Cart item validation error
+ */
+export interface CartItemError {
+  index: number;
+  productId: string;
+  printfulVariantId: number;
+  code: ValidationErrorCode;
+  message: string;
+}
+
+/**
+ * Validated cart item with authoritative price from Printful
+ */
+export interface ValidatedCartItem extends CartItem {
+  validatedPrice: number;
+  priceWasAdjusted: boolean;
+  originalClientPrice: number;
+}
+
+/**
+ * Result of cart validation
+ */
+export interface ValidationResult {
+  success: boolean;
+  validatedItems: ValidatedCartItem[];
+  errors: CartItemError[];
+  pricesAdjusted: boolean;
+}

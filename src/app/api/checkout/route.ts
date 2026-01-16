@@ -2,11 +2,13 @@
  * Checkout API Route
  *
  * Creates a Stripe checkout session from cart items.
+ * Validates all items server-side against Printful pricing before checkout.
  */
 
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { env } from "@/env";
+import { validateCartItems } from "@/lib/shop/checkout-validation";
 import { createCheckoutSession } from "@/lib/shop/stripe";
 import type { CartItem } from "@/lib/shop/types";
 
@@ -29,8 +31,21 @@ export async function POST(request: Request) {
     const body = (await request.json()) as unknown;
     const { items } = CheckoutRequestSchema.parse(body);
 
+    // Validate cart items against Printful's authoritative pricing
+    const validation = await validateCartItems(items as CartItem[]);
+
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          error: "Cart validation failed",
+          validationErrors: validation.errors,
+        },
+        { status: 400 }
+      );
+    }
+
     // Use configured APP_URL for success/cancel URLs (avoids origin header spoofing)
-    const session = await createCheckoutSession(items as CartItem[], env.APP_URL);
+    const session = await createCheckoutSession(validation.validatedItems, env.APP_URL);
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
