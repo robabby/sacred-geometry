@@ -33,7 +33,9 @@ export async function createCheckoutSession(
         product_data: {
           name: item.name,
           description: item.variantName,
-          images: item.image ? [item.image] : undefined,
+          images: item.image
+            ? [item.image.startsWith("http") ? item.image : `${origin}${item.image}`]
+            : undefined,
           metadata: {
             productId: item.productId,
             printfulVariantId: item.printfulVariantId.toString(),
