@@ -40,9 +40,28 @@ export function CartDrawer() {
         body: JSON.stringify({ items }),
       });
 
-      const data = (await response.json()) as { url?: string; error?: string };
+      const data = (await response.json()) as {
+        url?: string;
+        error?: string;
+        validationErrors?: Array<{
+          code: string;
+          message: string;
+          productId: string;
+        }>;
+      };
 
       if (!response.ok) {
+        // Handle validation errors with specific messages
+        if (data.validationErrors && data.validationErrors.length > 0) {
+          const firstError = data.validationErrors[0]!;
+          if (firstError.code === "OUT_OF_STOCK") {
+            throw new Error(firstError.message);
+          } else if (firstError.code === "PRODUCT_NOT_FOUND" || firstError.code === "VARIANT_NOT_FOUND") {
+            throw new Error("Some items in your cart are no longer available");
+          } else if (firstError.code === "PRINTFUL_API_ERROR") {
+            throw new Error("Unable to verify product availability. Please try again.");
+          }
+        }
         throw new Error(data.error ?? "Failed to create checkout session");
       }
 

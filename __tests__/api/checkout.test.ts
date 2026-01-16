@@ -1,4 +1,5 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
+import { describe, expect, it, vi, beforeEach, type Mock } from "vitest";
+import type { PrintfulVariant } from "@/lib/shop/types";
 
 /**
  * Checkout API Integration Tests
@@ -22,6 +23,25 @@ vi.mock("stripe", () => {
   };
 });
 
+// Mock Printful API
+vi.mock("@/lib/shop/printful", () => ({
+  getProductVariants: vi.fn(),
+}));
+
+// Mock product data
+vi.mock("@/lib/data/products", () => ({
+  PRODUCTS: {
+    "flower-of-life-stickers": {
+      id: "flower-of-life-stickers",
+      printfulSyncProductId: "6967f23d7e21a7",
+    },
+    "metatrons-cube-stickers": {
+      id: "metatrons-cube-stickers",
+      printfulSyncProductId: "6967f3c5902d16",
+    },
+  },
+}));
+
 // Mock env
 vi.mock("@/env", () => ({
   env: {
@@ -33,9 +53,31 @@ vi.mock("@/env", () => ({
   },
 }));
 
+/**
+ * Creates a mock Printful variant
+ */
+function createMockVariant(overrides: Partial<PrintfulVariant> = {}): PrintfulVariant {
+  return {
+    id: 12345,
+    name: 'Test Sticker - 3"×3"',
+    size: '3"×3"',
+    color: "Default",
+    colorCode: "",
+    price: 5.99,
+    inStock: true,
+    image: "https://example.com/image.png",
+    ...overrides,
+  };
+}
+
 describe("Checkout API", () => {
-  beforeEach(() => {
+  let mockGetProductVariants: Mock;
+
+  beforeEach(async () => {
     vi.clearAllMocks();
+    // Get mock reference
+    const printful = await import("@/lib/shop/printful");
+    mockGetProductVariants = printful.getProductVariants as Mock;
   });
 
   describe("POST /api/checkout", () => {
@@ -50,6 +92,10 @@ describe("Checkout API", () => {
     };
 
     it("creates a checkout session with valid cart items", async () => {
+      // Setup mock to return matching variant
+      const variant = createMockVariant({ id: 12345, price: 5.99 });
+      mockGetProductVariants.mockResolvedValue([variant]);
+
       const { POST } = await import("@/app/api/checkout/route");
 
       const request = new Request("http://localhost:3000/api/checkout", {
@@ -145,6 +191,13 @@ describe("Checkout API", () => {
     });
 
     it("handles multiple cart items", async () => {
+      // Setup mocks for both products
+      const flowerVariant = createMockVariant({ id: 12345, price: 5.99 });
+      const metatronVariant = createMockVariant({ id: 12346, price: 5.99 });
+      mockGetProductVariants
+        .mockResolvedValueOnce([flowerVariant])
+        .mockResolvedValueOnce([metatronVariant]);
+
       const { POST } = await import("@/app/api/checkout/route");
 
       const items = [

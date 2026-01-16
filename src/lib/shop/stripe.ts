@@ -6,7 +6,7 @@
 
 import Stripe from "stripe";
 import { env } from "@/env";
-import type { CartItem } from "./types";
+import type { ValidatedCartItem } from "./types";
 
 /**
  * Server-side Stripe client
@@ -17,10 +17,13 @@ export const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
 });
 
 /**
- * Create a Stripe checkout session from cart items
+ * Create a Stripe checkout session from validated cart items
+ *
+ * Uses `validatedPrice` from Printful (not client-provided price) to prevent
+ * price tampering attacks.
  */
 export async function createCheckoutSession(
-  items: CartItem[],
+  items: ValidatedCartItem[],
   origin: string
 ): Promise<Stripe.Checkout.Session> {
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map(
@@ -36,7 +39,7 @@ export async function createCheckoutSession(
             printfulVariantId: item.printfulVariantId.toString(),
           },
         },
-        unit_amount: Math.round(item.price * 100), // Stripe expects cents
+        unit_amount: Math.round(item.validatedPrice * 100), // Use validated price (Stripe expects cents)
       },
       quantity: item.quantity,
     })
