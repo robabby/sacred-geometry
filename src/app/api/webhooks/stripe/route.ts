@@ -14,7 +14,11 @@ import type Stripe from "stripe";
  * Create a Printful order from checkout session data
  */
 async function createPrintfulOrder(session: Stripe.Checkout.Session) {
-  const shipping = session.collected_information?.shipping_details;
+  // Try collected_information first (current API), fall back to top-level shipping_details (older API)
+  type ShippingDetails = NonNullable<Stripe.Checkout.Session["collected_information"]>["shipping_details"];
+  const shipping =
+    session.collected_information?.shipping_details ??
+    (session as unknown as { shipping_details?: ShippingDetails }).shipping_details;
   const customerEmail = session.customer_details?.email;
   const cartItemsJson = session.metadata?.cartItems;
 
