@@ -54,7 +54,7 @@ function DesktopTableOfContents() {
                 <button
                   onClick={() => scrollToSection(section.id)}
                   className={cn(
-                    "block w-full cursor-pointer text-left text-sm transition-all duration-200",
+                    "block w-full cursor-pointer text-left text-sm transition-[color,transform] duration-200",
                     "py-1.5 pr-2",
                     "hover:text-[var(--color-gold-bright)]",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-obsidian)]",
@@ -68,7 +68,7 @@ function DesktopTableOfContents() {
                 >
                   <span
                     className={cn(
-                      "inline-block transition-all duration-200",
+                      "inline-block transition-transform duration-200",
                       activeSection === section.id && "translate-x-1"
                     )}
                   >

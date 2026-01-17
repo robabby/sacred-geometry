@@ -96,7 +96,7 @@ export function VariantSelector({
                   aria-label={`Select size ${size}${!isAvailable ? " (out of stock)" : ""}${isSelected ? " (selected)" : ""}`}
                   aria-pressed={isSelected}
                   className={cn(
-                    "min-w-[3rem] rounded-md border px-3 py-2 text-sm font-medium transition-all",
+                    "min-w-[3rem] rounded-md border px-3 py-2 text-sm font-medium transition-[border-color,background-color]",
                     isSelected
                       ? "border-[var(--color-gold)] bg-[var(--color-gold)] text-[var(--color-obsidian)]"
                       : "border-[var(--border-gold)] bg-transparent text-[var(--color-cream)] hover:border-[var(--color-gold)] hover:bg-[var(--color-gold)]/10",
@@ -135,7 +135,7 @@ export function VariantSelector({
                   aria-label={`Select color ${color}${!isAvailable ? " (out of stock)" : ""}${isSelected ? " (selected)" : ""}`}
                   aria-pressed={isSelected}
                   className={cn(
-                    "rounded-md border px-4 py-2 text-sm font-medium transition-all",
+                    "rounded-md border px-4 py-2 text-sm font-medium transition-[border-color,background-color]",
                     isSelected
                       ? "border-[var(--color-gold)] bg-[var(--color-gold)] text-[var(--color-obsidian)]"
                       : "border-[var(--border-gold)] bg-transparent text-[var(--color-cream)] hover:border-[var(--color-gold)] hover:bg-[var(--color-gold)]/10",

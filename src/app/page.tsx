@@ -121,7 +121,7 @@ export default function HomePage() {
                 <Button
                   asChild
                   size="3"
-                  className="w-full bg-[var(--color-gold)] font-semibold text-[var(--color-obsidian)] shadow-lg shadow-[var(--glow-gold)] transition-all hover:bg-[var(--color-gold-bright)] sm:w-auto"
+                  className="w-full bg-[var(--color-gold)] font-semibold text-[var(--color-obsidian)] shadow-lg shadow-[var(--glow-gold)] transition-colors hover:bg-[var(--color-gold-bright)] sm:w-auto"
                 >
                   <Link href={ROUTES.platonicSolids.path}>
                     <span className="hidden sm:inline">
@@ -136,7 +136,7 @@ export default function HomePage() {
                   asChild
                   size="3"
                   variant="outline"
-                  className="w-full border-[var(--color-gold)]/50 text-[var(--color-gold)] transition-all hover:border-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 sm:w-auto"
+                  className="w-full border-[var(--color-gold)]/50 text-[var(--color-gold)] transition-[border-color,background-color] hover:border-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 sm:w-auto"
                 >
                   <Link href={ROUTES.sacredPatterns.path}>Sacred Patterns →</Link>
                 </Button>
@@ -154,13 +154,13 @@ export default function HomePage() {
           <TabsList className="grid w-full grid-cols-2 rounded-lg border border-[var(--border-gold)] bg-[var(--color-warm-charcoal)] p-1">
             <TabsTrigger
               value="solids"
-              className="rounded-md text-[var(--color-warm-gray)] transition-all data-[state=active]:bg-[var(--color-gold)] data-[state=active]:text-[var(--color-obsidian)] data-[state=active]:shadow-[0_0_12px_var(--glow-gold)]"
+              className="rounded-md text-[var(--color-warm-gray)] transition-[background-color,color,box-shadow] data-[state=active]:bg-[var(--color-gold)] data-[state=active]:text-[var(--color-obsidian)] data-[state=active]:shadow-[0_0_12px_var(--glow-gold)]"
             >
               Platonic Solids
             </TabsTrigger>
             <TabsTrigger
               value="patterns"
-              className="rounded-md text-[var(--color-warm-gray)] transition-all data-[state=active]:bg-[var(--color-gold)] data-[state=active]:text-[var(--color-obsidian)] data-[state=active]:shadow-[0_0_12px_var(--glow-gold)]"
+              className="rounded-md text-[var(--color-warm-gray)] transition-[background-color,color,box-shadow] data-[state=active]:bg-[var(--color-gold)] data-[state=active]:text-[var(--color-obsidian)] data-[state=active]:shadow-[0_0_12px_var(--glow-gold)]"
             >
               Sacred Patterns
             </TabsTrigger>

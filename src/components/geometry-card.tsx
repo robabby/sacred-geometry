@@ -44,7 +44,7 @@ export function GeometryCard({
         // Shadow
         "shadow-lg shadow-black/20",
         // Hover effects
-        "transition-all duration-300 ease-out",
+        "transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out",
         "hover:-translate-y-1",
         "hover:shadow-xl hover:shadow-[var(--glow-gold)]",
         "hover:border-[var(--color-gold)]/50",
