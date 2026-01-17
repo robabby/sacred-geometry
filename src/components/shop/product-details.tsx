@@ -107,7 +107,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
           onClick={() => currentImage && setLightboxOpen(true)}
           className={cn(
             "relative aspect-square w-full overflow-hidden rounded-lg bg-[var(--color-warm-charcoal)]",
-            "transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)] focus:ring-offset-2 focus:ring-offset-[var(--color-obsidian)]",
+            "transition-shadow focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)] focus:ring-offset-2 focus:ring-offset-[var(--color-obsidian)]",
             currentImage && "cursor-zoom-in hover:ring-2 hover:ring-[var(--color-gold)]/50"
           )}
           aria-label={currentImage ? `View ${product.name} fullscreen` : undefined}
@@ -143,7 +143,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
                   key={image}
                   onClick={() => setGalleryIndex(index)}
                   className={cn(
-                    "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md transition-all",
+                    "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md transition-[box-shadow,opacity]",
                     "hover:ring-2 hover:ring-[var(--color-gold)] hover:ring-offset-2 hover:ring-offset-[var(--color-obsidian)]",
                     index === galleryIndex
                       ? "ring-2 ring-[var(--color-gold)] ring-offset-2 ring-offset-[var(--color-obsidian)]"
@@ -168,7 +168,7 @@ export function ProductDetails({ product, variants, geometryLink }: ProductDetai
                   key={index}
                   onClick={() => setGalleryIndex(index)}
                   className={cn(
-                    "h-1.5 rounded-full transition-all",
+                    "h-1.5 rounded-full transition-[width,background-color]",
                     index === galleryIndex
                       ? "w-4 bg-[var(--color-gold)]"
                       : "w-1.5 bg-[var(--color-warm-gray)]/40 hover:bg-[var(--color-warm-gray)]"

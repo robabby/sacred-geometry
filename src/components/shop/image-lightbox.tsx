@@ -148,7 +148,7 @@ export function ImageLightbox({
                   key={index}
                   onClick={() => onIndexChange(index)}
                   className={cn(
-                    "h-2 rounded-full transition-all",
+                    "h-2 rounded-full transition-[width,background-color]",
                     index === currentIndex
                       ? "w-6 bg-[var(--color-gold)]"
                       : "w-2 bg-[var(--color-warm-gray)]/50 hover:bg-[var(--color-warm-gray)]"

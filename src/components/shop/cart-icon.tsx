@@ -18,7 +18,7 @@ export function CartIcon({ className }: CartIconProps) {
     <button
       onClick={openCart}
       className={cn(
-        "relative flex h-10 w-10 items-center justify-center rounded-md transition-all duration-300",
+        "relative flex h-10 w-10 items-center justify-center rounded-md transition-[background-color,color] duration-300",
         hasItems
           ? "text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10"
           : "text-[var(--color-warm-gray)] hover:bg-[var(--color-warm-charcoal)] hover:text-[var(--color-gold)]",

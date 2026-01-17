@@ -279,7 +279,7 @@ export function SearchCommand() {
                       "border border-[var(--border-gold)]/30",
                       "hover:bg-[var(--color-dark-bronze)]/50",
                       "hover:border-[var(--color-gold)]/50",
-                      "transition-all duration-200"
+                      "transition-[background-color,border-color] duration-200"
                     )}
                     onClick={() => setOpen(false)}
                   >
@@ -300,7 +300,7 @@ export function SearchCommand() {
                       "border border-[var(--border-gold)]/30",
                       "hover:bg-[var(--color-dark-bronze)]/50",
                       "hover:border-[var(--color-gold)]/50",
-                      "transition-all duration-200"
+                      "transition-[background-color,border-color] duration-200"
                     )}
                     onClick={() => setOpen(false)}
                   >
@@ -329,7 +329,7 @@ export function SearchCommand() {
                           "border border-transparent",
                           "hover:text-[var(--color-gold)]",
                           "hover:border-[var(--border-gold)]/50",
-                          "transition-all duration-200"
+                          "transition-[color,border-color] duration-200"
                         )}
                       >
                         {term}
@@ -362,7 +362,7 @@ export function SearchCommand() {
                     onSelect={() => handleRecentSearch(recentQuery)}
                     className={cn(
                       "cursor-pointer rounded-md mx-2 my-0.5 py-3 px-3",
-                      "transition-all duration-200",
+                      "transition-[background-color] duration-200",
                       "data-[selected=true]:bg-[var(--color-dark-bronze)]/60",
                       "data-[selected=true]:border-l-2 data-[selected=true]:border-[var(--color-gold)]",
                       "hover:bg-[var(--color-warm-charcoal)]/50"
@@ -420,7 +420,7 @@ export function SearchCommand() {
                           "border border-[var(--border-gold)]/50",
                           "hover:bg-[var(--color-warm-charcoal)]",
                           "hover:border-[var(--color-gold)]/70",
-                          "transition-all duration-200"
+                          "transition-[background-color,border-color] duration-200"
                         )}
                       >
                         {suggestion}
@@ -473,7 +473,7 @@ export function SearchCommand() {
                     onSelect={() => handleSelect(geometry)}
                     className={cn(
                       "cursor-pointer rounded-md mx-2 my-0.5 py-3 px-3",
-                      "transition-all duration-200",
+                      "transition-[background-color] duration-200",
                       "data-[selected=true]:bg-[var(--color-dark-bronze)]/60",
                       "data-[selected=true]:border-l-2 data-[selected=true]:border-[var(--color-gold)]",
                       "hover:bg-[var(--color-warm-charcoal)]/50"
@@ -546,7 +546,7 @@ export function SearchCommand() {
                     onSelect={() => handleSelect(geometry)}
                     className={cn(
                       "cursor-pointer rounded-md mx-2 my-0.5 py-3 px-3",
-                      "transition-all duration-200",
+                      "transition-[background-color] duration-200",
                       "data-[selected=true]:bg-[var(--color-dark-bronze)]/60",
                       "data-[selected=true]:border-l-2 data-[selected=true]:border-[var(--color-gold)]",
                       "hover:bg-[var(--color-warm-charcoal)]/50"

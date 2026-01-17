@@ -100,7 +100,7 @@ export function AddToCartButton({
 
   const getButtonClassName = () => {
     const baseClass =
-      "flex w-full items-center justify-center gap-2 py-6 text-lg font-medium transition-all";
+      "flex w-full items-center justify-center gap-2 py-6 text-lg font-medium transition-colors";
 
     if (buttonState === "added") {
       return `${baseClass} bg-[var(--color-gold)] text-[var(--color-obsidian)] hover:bg-[var(--color-gold)]`;
