@@ -109,8 +109,6 @@ export function Footer() {
             <nav className="flex flex-col gap-2">
               <FooterLink href="/legal/terms">Terms of Service</FooterLink>
               <FooterLink href="/legal/privacy">Privacy Policy</FooterLink>
-              <FooterLink href="/legal/returns">Returns</FooterLink>
-              <FooterLink href="/legal/shipping">Shipping</FooterLink>
             </nav>
           </div>
 
